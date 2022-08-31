@@ -1,0 +1,289 @@
+extends layout
+
+
+
+  
+block content  
+    section.d-flex.flex-column.align-items-center.justify-content-center.py-4
+      .container
+        .row.justify-content-center
+          .col-lg-6.col-md-6.d-flex.flex-column.align-items-center.justify-content-center
+            .d-flex.justify-content-center.py-4
+              a.logo.d-flex.align-items-center.w-auto(href='/')
+                img(src='assets/img/enko-modern-logo.png' alt='')
+                span.d-lg-block.text-success Enko Education
+            // End Logo
+    .row.lg-6.justify-content-center
+        .row-lg-6.justify-content-center
+            form.row.g-3.needs-validation.justify-content-center(novalidate='' action='/add_employee' method='post')
+                .card(style="width: 75%")
+                    
+                    .card-body
+                        h5.card-title General informations about the person
+                        // General Form Elements                        
+                        .col-md-4
+                            input#validationCustom03jh.form-control(type='text' value=useridentry name='userid' placeholder='' required='' disabled='' hidden='')                                        
+
+                        .col-md-8
+                            label.form-label(for='validationCustom01') Firstname
+                            input#validationCustom03.form-control(type='text' required='' name='firstname' pattern="[A-Za-z]{2,}" minLength="2")
+                            .invalid-feedback
+                                | Please provide a valid Firstname without space.
+                        .col-md-8
+                            label.form-label(for='validationCustom02') Lastname
+                            input#validationCustom03.form-control(type='text' required='' name='lastname' pattern="[A-Za-z]{2,}" minLength="2")
+                            .invalid-feedback
+                                | Please provide a valid Last name without space.
+                        
+                        .col-md-8
+                                label.form-label(for='validationCustompemail') Personal email of the employee
+                                input.form-control(type='email' required=''  pattern="[A-Za-z]{2,}[0-9]*@[A-Za-z]{2,}.[A-Za-z]{2,}" minLength="4" placeholder="personal email" name='personalemail')
+                                .invalid-feedback
+                                    | Please provide a valid email.
+                        .col-md-8
+                                label.form-label(for='validationCustom01') Personal phone number
+                                input.form-control(type='number' required='' name='personalphone' min='1')
+                                .invalid-feedback
+                                    | Please provide a valid Phone number.
+                        .col-md-8
+                                label.form-label(for='inputDate') Birth date
+                                input.form-control(type='date' name='birthdate')
+                        .col-md-8
+                            label.form-label(for='validationCustom01') Country of residence
+                            select.selectpicker.countrypicker.form-control(data-flag='true' name='contryresidence')
+                            .invalid-feedback
+                                | Please provide a valid contry.
+                        .col-md-8
+                            label.form-label(for='validationCustom0Nat') Nationality
+                            select.selectpicker.countrypicker.form-control(data-flag='true' name='nationality')
+                                .invalid-feedback
+                                    | Please provide a valid Nationality.
+                        .col-md-8
+                            label.form-label(for='validationCustom02') City of residence
+                            input#validationCustom03.form-control(type='text' required='' name='city')
+                            .invalid-feedback
+                                | Please provide a valid Last name.
+                        
+                        .col-md-8
+                                label.form-label(for='validationCustom02') Gender
+                                .br
+                                .form-check.form-check-inline
+                                    input#inlineRadiom.form-check-input(type='radio' value='male' name='gender' )
+                                    label.form-check-label(for='inlineRadiom') Male
+                                .form-check.form-check-inline
+                                    input#inlineRadiof.form-check-input(type='radio' value='female' name='gender')
+                                    label.form-check-label(for='inlineRadiof') Female
+                                .form-check.form-check-inline
+                                    input#inlineRadioo.form-check-input(type='radio' value='other' name='gender')
+                                    label.form-check-label(for='inlineRadioo') Other
+                                    input#validationCustom03.form-control(type='text' name='othergender')
+                                                                                
+                        .col-md-8
+                            label.form-label(for='validationCustom02') Identifier type
+                            .br
+                            .form-check.form-check-inline
+                                input#inlineRadioid.form-check-input(type='radio' value='NIC' name='identifier')
+                                label.form-check-label(for='inlineRadioid') NIC
+                                //input#validationCustom0n.form-control(type='text' name='NIC')
+                            .form-check.form-check-inline
+                                input#inlineRadiop.form-check-input(type='radio' value='passport' name='identifier')
+                                label.form-check-label(for='inlineRadiop') Passport
+                            .br
+                            label.form-check-label(for='validationCustom0v2') Identifier number
+                            input#validationCustom03.form-control(type='text' name='identifiervalue')                        
+                            
+                        .col-md-8
+                            label.form-label(for='validationCustom02') Marital Status
+                            .br
+                            .form-check.form-check-inline
+                                input#inlineRadiosi.form-check-input(type='radio' value='sigle' name='maritalstatus' )
+                                label.form-check-label(for='inlineRadiosi') Single
+                            .form-check.form-check-inline
+                                input#inlineRadioma.form-check-input(type='radio' value='married' name='maritalstatus')
+                                label.form-check-label(for='inlineRadioma') Married
+                            .form-check.form-check-inline
+                                input#inlineRadiow.form-check-input(type='radio' value='widow' name='maritalstatus')
+                                label.form-check-label(for='inlineRadiow') Widow(er)
+                            .form-check.form-check-inline
+                                input#inlineRadioooth.form-check-input(type='radio' value='other' name='maritalstatus')
+                                label.form-check-label(for='inlineRadioooth') Other
+                                input#inlineRadioooth.form-control(type='text' name='othermaritalstatus' placeholder='type other')                    
+                        .col-md-8
+                            label.form-label(for='validationCustom01') Number of children (lower than 18)
+                            input#validationCustom03.form-control(type='number'  name='numberchildren' min='0')
+                            .invalid-feedback
+                                | Please provide a valid number.
+                            
+                        .col-md-8
+                            label.form-label(for='validationCustom01') Emergency contact - Name
+                            input.form-control(type='text' required='' name='emergencycontactname')
+                            .invalid-feedback
+                                | Please provide a valid name.
+                        .col-md-8
+                            label.form-label(for='validationCustom01') Emergency contact - Phone
+                            input.form-control(type='number' required='' name='emergencycontactphone')
+                            .invalid-feedback
+                                | Please provide a valid Phone number.
+
+                .card(style="width: 75%")
+                    .card-body
+                        .pt-4.pb-2
+                            h5.card-title Specific informations about the person at Enko
+                            // General Form Elements                        
+                           
+                            .col-12
+                                label.form-label(for='yourUsername') Username
+                                .input-group.has-validation
+                                .input-group.mb-3
+                                    input.form-control(type='text' name='suggestedemail' pattern="[A-Za-z]{1,}.[A-Za-z]{1,}" minLength="3" placeholder="firstname.lastname" aria-label="Recipient's username" aria-describedby='basic-addon2' required='' )
+                                    span#basic-addon2.input-group-text @enkoeducation.com
+                                    .invalid-feedback please provide a valid suggestion
+                            .col-md-8
+                                label.form-label(for='validationCustom04') School / Campus / Organisation
+                                select#validationCustom04.form-control.form-select(required='' name='school' )                                    
+                                    option(value='' disabled='') N.H
+                                    option(value='Enko Riviera' selected='') Enko Riviera                   
+                                    option(value='Enko Ouaga ') Enko Ouaga                    
+                                    option(value='Enko Bamako') Enko Bamako                 
+                                    option(value='Enko Keur Gorgui') Enko Keur Gorgui         
+                                    option(value='Enko Waca') Enko Waca                      
+                                    option(value='Enko La Gaieté') Enko La Gaieté               
+                                    option(value='Enko Bonanjo') Enko Bonanjo
+                                    option(value='' disabled='') S.H
+                                    option(value='Amazing Grace Private School') Amazing Grace Private School
+                                    option(value='Jacaranda Academy') Jacaranda Academy
+                                    option(value='Enko Botho') Enko Botho
+                                    option(value='Pestalozzi Education Center') Pestalozzi Education Center
+                                    option(value='Enko Riverside') Enko Riverside
+                                    option(value='Enko Sekeleka')  Enko Sekeleka
+                                .invalid-feedback
+                                    | Please select a valid school / Campus.
+                            
+                            .col-md-8
+                                label.form-label(for='validationCustomPos') Position
+                                select#validationCustomPos.form-control.form-select(required='' name='position' )                                    
+                                    option(value='teacher' selected='') Teacher
+                                    option(value='marketer' ) Marketer
+                                    option(value='it' ) IT
+                                    option(value='finance' ) Finance
+                                    option(value='other' selected='') Other...
+                                .invalid-feedback 
+                                        | Please provide a valid position.  
+                                
+                            .col-md-8
+                                label.form-label(for='validationCustom0333') Subject (If teacher)
+                                input#validationCustom03.form-control(type='text' name='subject' )  
+                                .invalid-feedback 
+                                        | Please provide a valid Subject.                     
+                            
+                            .col-md-8
+                                label.form-label(for='validationCustom02') Type of contract
+                                select.form-select.form-control(aria-label='Default select example' name='typeofcontract')
+                                    option(selected='' disabled='') Choose ...
+                                    option(value='permanent') Permanent
+                                    option(value='fixed') Fixed term (1 year, 2 year, ...) contract
+                                    option(value='consultant') Consultant                  
+                                    option(value='Other') Intern
+                                    option(value='other') Other
+
+                            .col-md-8
+                                label.form-label(for='validationCustom02') Type of employment
+                                .br
+                                .form-check.form-check-inline
+                                    input#inlineRadiofull.form-check-input(type='radio' name='typeofemployment' value='fulltime')
+                                    label.form-check-label(for='inlineRadiofull') Full time
+                                .form-check.form-check-inline
+                                    input#inlineRadiopart.form-check-input(type='radio' name='typeofemployment' value='parttime')
+                                    label.form-check-label(for='inlineRadiopart') Part time 
+                            .col-md-8
+                                label.form-label(for='validationCustom01') Who is the new staff member reporting to (please give a full name)?
+                                input#validationCustom0st.form-control(type='text' required='' name='staffmemberreportingto')
+                                .invalid-feedback
+                                    | Please provide a valid Residence.                       
+                            .col-md-8
+                                label.form-label(for='inputDateProbation') Expiration date of the probation period.
+                                input.form-control(type='date' name='expirationdateofpropationperiod')
+                                    
+                            .col-md-12
+                                label.form-label(for='validationCustom02') Is the probation period renewable?
+                                .br
+                                .form-check.form-check-inline
+                                    input#inlineRadioyes.form-check-input(type='radio' value='yes' name='isprobationperionrenewable' checked='')
+                                    label.form-check-label(for='inlineRadioyes') Yes
+                                .form-check.form-check-inline
+                                    input#inlineRadiono.form-check-input(type='radio' value='no' name='isprobationperionrenewable')
+                                    label.form-check-label(for='inlineRadiono') No
+                            
+                            .col-md-4
+                                label.form-label(for='startDate') Start date
+                                input.form-control(type='date' name='startdate' required='')
+                            .col-md-4
+                                label.form-label(for='endDate') End date
+                                input.form-control(type='date' name='enddate')
+                            .col-md-8
+                                label.form-label(for='validationCustomsal') Gross monthly salary (in local currency)
+                                input.form-control(type='text' required='' name='grosssalary')
+                                .invalid-feedback
+                                    | Please provide a valid salary.
+                            .col-md-8
+                                label.form-label(for='validationCustomsal') Net monthly salary (in local currency)
+                                input.form-control(type='text' required='' name='netsalary')
+                                .invalid-feedback
+                                    | Please provide a valid salary.
+                .card(style="width: 75%")
+                    .card-body.container
+                        .row
+                            h5.card-title Other
+                            // General Form Elements                        
+                                       
+                            .col-sm
+                                label.col-md-2.col-form-label IT tools
+                                .col-sm-10
+                                    .form-check.form-switch
+                                    input#flexSwitchCheckDefaultit1.form-check-input(type='checkbox' value='gsuite' checked='' name='gsuite')
+                                    label.form-check-label(for='flexSwitchCheckDefaultit1') Workspace
+                                    .form-check.form-switch
+                                    input#flexSwitchCheckCheckedit2.form-check-input(type='checkbox' value='edadmin' name='edadmin')
+                                    label.form-check-label(for='flexSwitchCheckCheckedit2') Ed admin
+                                    .form-check.form-switch
+                                    input#flexSwitchCheckCheckeditpayspace.form-check-input(type='checkbox' value='payspace' name='payspace')
+                                    label.form-check-label(for='flexSwitchCheckCheckeditpayspace') Payspace
+                                    .form-check.form-switch
+                                    input#flexSwitchCheckCheckeditturnitin.form-check-input(type='checkbox' value='turnitin' name='turnitin')
+                                    label.form-check-label(for='flexSwitchCheckCheckeditturnitin') Turnitin
+                                    .form-check.form-switch
+                                    input#flexSwitchCheckCheckeditcanvas.form-check-input(type='checkbox' value='canvas' name='canvas')
+                                    label.form-check-label(for='flexSwitchCheckCheckeditcanvas') Canvas
+                                    .form-check.form-switch
+                                    input#flexSwitchCheckCheckeditpipedrive.form-check-input(type='checkbox' value='pipedrive' name='pipedrive')
+                                    label.form-check-label(for='flexSwitchCheckCheckeditpipedrive') Pipedrive
+                                    .form-check.form-switch
+                                    input#flexSwitchCheckCheckeditesignature.form-check-input(type='checkbox' value='esignature' name='esignature')
+                                    label.form-check-label(for='flexSwitchCheckCheckeditesignature') Esignature
+                                    .form-check.form-switch
+                                    input#flexSwitchCheckCheckeditslack.form-check-input(type='checkbox' value='slack' name='slack')
+                                    label.form-check-label(for='flexSwitchCheckCheckeditslack') Slack
+                                    .form-check.form-switch
+                                    input#flexSwitchCheckCheckeditfreshdesk.form-check-input(type='checkbox' value='freshdesk' name='freshdesk')
+                                    label.form-check-label(for='flexSwitchCheckCheckeditfreshdesk') Freshdesk
+                            .col-sm
+                                label.col-md-2.col-form-label IT groups
+                                .col-sm-10
+                                    .form-check.form-switch
+                                    input#flexSwitchCheckDefaultg1.form-check-input(type='checkbox'  value='allstaff' checked='' name='allstaff')
+                                    label.form-check-label(for='flexSwitchCheckDefaultg1') All Staff
+                                    .form-check.form-switch
+                                    input#flexSwitchCheckCheckedg2.form-check-input(type='checkbox' value='allteacher' name='allteacher')
+                                    label.form-check-label(for='flexSwitchCheckCheckedg2') All teacher
+                                    .form-check.form-switch
+                                    input#flexSwitchCheckCheckedg3.form-check-input(type='checkbox' value='allrh' name='allrh')
+                                    label.form-check-label(for='flexSwitchCheckCheckedg3') RH
+                                    
+                            
+                section.d-flex.flex-column.align-items-center.justify-content-center.py-4
+                
+                    .row.justify-content-center
+                    .col-lg-6.col-md-6.justify-content-center
+                        .d-flex.justify-content-center.py-4
+                        button.btn.btn-primary(type='submit') Submit form
+                

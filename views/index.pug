@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  .container
+    section.section.register.min-vh-100.d-flex.flex-column.align-items-center.justify-content-center.py-4
+      .container
+        .row.justify-content-center
+          .col-lg-6.col-md-6.d-flex.flex-column.align-items-center.justify-content-center
+            .d-flex.justify-content-center.py-4
+              a.logo.d-flex.align-items-center.w-auto(href='/')
+                img(src='assets/img/enko-modern-logo.png' alt='')
+                span.d-lg-block.text-success Enko Education
+            // End Logo
+            .card.mb-3
+              .card-body
+                .pt-4.pb-2
+                  h5.card-title.text-center.pb-0.fs-4.text-dark Login to Your Account
+                  p.text-center.small Enter your username &amp; password to login
+                form.row.g-3.needs-validation(action='/auth' method='post' novalidate='')
+                  .col-12
+                    label.form-label(for='yourUsername') Username
+                    .input-group.has-validation
+                      .input-group.mb-3
+                        input.form-control(type='text' name='email' pattern="[A-Za-z]{1,}.[A-Za-z]{1,}" minLength="3" placeholder="firstname.lastname" aria-label="Recipient's username" aria-describedby='basic-addon2' required='' )
+                        span#basic-addon2.input-group-text @enkoeducation.com
+                        .invalid-feedback please provide your Firstname and lastname separated with a point
+                    button.btn.btn-primary.w-100(type='submit') Login
+                  

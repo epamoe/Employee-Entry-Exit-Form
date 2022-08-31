@@ -1,0 +1,48 @@
+extends layout
+  
+block content  
+    section.d-flex.flex-column.align-items-center.justify-content-center.py-4
+      .container
+        .row.justify-content-center
+          .col-lg-6.col-md-6.d-flex.flex-column.align-items-center.justify-content-center
+            .d-flex.justify-content-center.py-4
+              a.logo.d-flex.align-items-center.w-auto(href='/')
+                img(src='assets/img/enko-modern-logo.png' alt='')
+                span.d-lg-block.text-success Enko Education
+            // End Logo
+    .row.lg-6.justify-content-center
+        .row-lg-6.justify-content-center
+            form.row.g-3.needs-validation.justify-content-center(novalidate='' method='POST' action='/delete_employee' autocomplete='off')
+                .card(style="width: 75%")
+                    .card-body
+                        h5.card-title Please, provide information bellow
+                        // General Form Elements                        
+                        
+                        
+                        .col-6
+                            label.form-label(for='yourUsername') Username
+                            .input-group.has-validation
+                            .input-group.mb-3
+                                input.form-control(type='text' name='employeeid' pattern="[A-Za-z]{1,}.[A-Za-z]{1,}" minLength="3" placeholder="firstname.lastname" aria-label="Recipient's username" aria-describedby='basic-addon2' required='' )
+                                span#basic-addon2.input-group-text @enkoeducation.com
+                                .invalid-feedback please provide the Firstname and lastname separated with a point
+                        .col-md-6
+                            label.form-label(for='validationCustomre') Reason of leaving
+                            select.form-select.form-control(aria-label='Default select example' name='leavingreason')
+                                option(selected='' disabled='') Choose ...
+                                option(value='endofcontract') End of contract
+                                option(value='dismissal') Dismissal
+                                option(value='resignation') Resignation 
+                        .col-md-6
+                            label.form-label(for='leavingdate') Scheduled end date
+                            input.form-control(type='date' name='leavingdate' required='')
+                        .col-md-6
+                            label.form-label(for='leavingdate') Scheduled deprovisioning date
+                            input.form-control(type='date' name='deprovisioningdate' required='')
+                                                           
+                    section.d-flex.flex-column.align-items-center.justify-content-center.py-4                    
+                        .row.justify-content-center
+                        .col-lg-6.col-md-6.justify-content-center
+                            .d-flex.justify-content-center.py-4
+                            button.btn.btn-primary(type='submit') Submit form
+                
