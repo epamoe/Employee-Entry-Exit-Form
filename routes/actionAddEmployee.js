@@ -14,7 +14,12 @@ app.use(express.static(path.join(__dirname, 'static')));
 router.post('/', function(request, response, next) {
     var data = request.body;
     var user = "NA";
-    var it_tools = [data.gsuite, data.edadmin, data.payspace, data.turnitin, data.canvas, data.pipedrive, data.esignature, data.slack, data.freshdesk];
+    var it_tools = [
+        data.gsuite, data.edadmin, data.payspace,
+        data.turnitin, data.canvas, data.pipedrive, data.docusign,
+        data.slack, data.helpdesk, data.jazzhr, data.asana, data.mailchimp,
+        data.surveymonkey, data.powerbi, data.office365
+    ];
     it_tools = it_tools.filter(n => n); //remove null and undefined values
     var groups = [data.allstaff, data.allteacher, data.allrh];
     groups = groups.filter(n => n); //remove null and undefined values

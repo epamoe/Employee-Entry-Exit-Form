@@ -241,71 +241,60 @@ block content
                 .card(style="width: 75%")
                     .card-body.container
                         .row
-                            h5.card-title IT tools
+                            h5.card-title Other
                             // General Form Elements                        
                                        
                             .col-sm
+                                label.col-md-2.col-form-label IT tools
                                 .col-sm-10
-                                    .form-check.form-switch
-                                    input#flexSwitchCheckCheckeditasana.form-check-input(type='checkbox' value='asana' name='asana')
-                                    label.form-check-label(for='flexSwitchCheckCheckeditasana') Asana
-                                    .form-check.form-switch
-                                    input#flexSwitchCheckCheckeditcanvas.form-check-input(type='checkbox' value='canvas' name='canvas')
-                                    label.form-check-label(for='flexSwitchCheckCheckeditcanvas') Canvas
-                                    .form-check.form-switch
-                                    input#flexSwitchCheckCheckedit11.form-check-input(type='checkbox' value='docusign' name='docusign')
-                                    label.form-check-label(for='flexSwitchCheckCheckedit11') Docusign
-                            .col-sm
-                                .col-sm-12
-                                    .form-check.form-switch
-                                    input#flexSwitchCheckCheckedit2.form-check-input(type='checkbox' value='edadmin' name='edadmin')
-                                    label.form-check-label(for='flexSwitchCheckCheckedit2') Ed admin
                                     .form-check.form-switch
                                     input#flexSwitchCheckDefaultit1.form-check-input(type='checkbox' value='gsuite' checked='' name='gsuite')
                                     label.form-check-label(for='flexSwitchCheckDefaultit1') Google Workspace
                                     .form-check.form-switch
-                                    input#flexSwitchCheckCheckedithelpdesk.form-check-input(type='checkbox' value='helpdesk' name='helpdesk')
-                                    label.form-check-label(for='flexSwitchCheckCheckedithelpdesk') Helpdesk
-                            .col-sm
-                                .col-sm-10
-                                    .form-check.form-switch
-                                    input#flexSwitchCheckCheckeditjazzhr.form-check-input(type='checkbox' value='jazzhr' name='jazzhr')
-                                    label.form-check-label(for='flexSwitchCheckCheckeditjazzhr') JazzHR
-                                    .form-check.form-switch
-                                    input#flexSwitchCheckCheckeditmailchimp.form-check-input(type='checkbox' value='mailchimp' name='mailchimp')
-                                    label.form-check-label(for='flexSwitchCheckCheckeditmailchimp') Mailchimp 
-                                    .form-check.form-switch
-                                    input#flexSwitchCheckCheckeditoffice365.form-check-input(type='checkbox' value='office365' name='office365')
-                                    label.form-check-label(for='flexSwitchCheckCheckeditoffice365') Office365                                    
-                            .col-sm
-                                .col-sm-10
+                                    input#flexSwitchCheckCheckedit2.form-check-input(type='checkbox' value='edadmin' name='edadmin')
+                                    label.form-check-label(for='flexSwitchCheckCheckedit2') Ed admin
                                     .form-check.form-switch
                                     input#flexSwitchCheckCheckeditpayspace.form-check-input(type='checkbox' value='payspace' name='payspace' checked='')
                                     label.form-check-label(for='flexSwitchCheckCheckeditpayspace') Payspace
                                     .form-check.form-switch
+                                    input#flexSwitchCheckCheckeditturnitin.form-check-input(type='checkbox' value='turnitin' name='turnitin')
+                                    label.form-check-label(for='flexSwitchCheckCheckeditturnitin') Turnitin
+                                    .form-check.form-switch
+                                    input#flexSwitchCheckCheckeditcanvas.form-check-input(type='checkbox' value='canvas' name='canvas')
+                                    label.form-check-label(for='flexSwitchCheckCheckeditcanvas') Canvas
+                                    .form-check.form-switch
                                     input#flexSwitchCheckCheckeditpipedrive.form-check-input(type='checkbox' value='pipedrive' name='pipedrive')
                                     label.form-check-label(for='flexSwitchCheckCheckeditpipedrive') Pipedrive
                                     .form-check.form-switch
-                                    input#flexSwitchCheckCheckeditpowerbi.form-check-input(type='checkbox' value='powerbi' name='powerbi')
-                                    label.form-check-label(for='flexSwitchCheckCheckeditpowerbi') PowerBI 
-                            .col-sm
-                                .col-sm-10
+                                    input#flexSwitchCheckCheckedit11.form-check-input(type='checkbox' value='docusign' name='docusign')
+                                    label.form-check-label(for='flexSwitchCheckCheckedit11') Docusign
                                     .form-check.form-switch
                                     input#flexSwitchCheckCheckeditslack.form-check-input(type='checkbox' value='slack' name='slack')
                                     label.form-check-label(for='flexSwitchCheckCheckeditslack') Slack
                                     .form-check.form-switch
+                                    input#flexSwitchCheckCheckedithelpdesk.form-check-input(type='checkbox' value='helpdesk' name='helpdesk')
+                                    label.form-check-label(for='flexSwitchCheckCheckedithelpdesk') Helpdesk
+                                    .form-check.form-switch
+                                    input#flexSwitchCheckCheckeditjazzhr.form-check-input(type='checkbox' value='jazzhr' name='jazzhr')
+                                    label.form-check-label(for='flexSwitchCheckCheckeditjazzhr') JazzHR
+                                    .form-check.form-switch
+                                    input#flexSwitchCheckCheckeditfreshdesk.form-check-input(type='checkbox' value='asana' name='asana')
+                                    label.form-check-label(for='flexSwitchCheckCheckeditasana') Asana
+                                    .form-check.form-switch
+                                    input#flexSwitchCheckCheckeditmailchimp.form-check-input(type='checkbox' value='mailchimp' name='mailchimp')
+                                    label.form-check-label(for='flexSwitchCheckCheckeditmailchimp') Mailchimp 
+                                    .form-check.form-switch
                                     input#flexSwitchCheckCheckeditsurveymonkey.form-check-input(type='checkbox' value='surveymonkey' name='surveymonkey')
                                     label.form-check-label(for='flexSwitchCheckCheckeditsurveymonkey') SurveyMonkey
                                     .form-check.form-switch
-                                    input#flexSwitchCheckCheckeditturnitin.form-check-input(type='checkbox' value='turnitin' name='turnitin')
-                                    label.form-check-label(for='flexSwitchCheckCheckeditturnitin') Turnitin
-                .card(style="width: 75%")
-                    .card-body.container
-                        .row
-                            h5.card-title Emails groups
-                            // General Form Elements                        
-                                       
+                                    input#flexSwitchCheckCheckeditpowerbi.form-check-input(type='checkbox' value='powerbi' name='powerbi')
+                                    label.form-check-label(for='flexSwitchCheckCheckeditpowerbi') PowerBI 
+                                    .form-check.form-switch
+                                    input#flexSwitchCheckCheckeditoffice365.form-check-input(type='checkbox' value='office365' name='office365')
+                                    label.form-check-label(for='flexSwitchCheckCheckeditoffice365') Office365
+                                    
                             .col-sm
+                                label.col-md-2.col-form-label Emails groups
                                 .col-sm-10
                                     .form-check.form-switch
                                     input#flexSwitchCheckDefaultg1.form-check-input(type='checkbox'  value='allstaff' checked='' name='allstaff')
