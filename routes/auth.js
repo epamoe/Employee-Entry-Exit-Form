@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var session = require('express-session');
 const path = require('path');
+const { response } = require('../app.js');
 const mysqlCnx = require('./utilsFunctions/dbConnection.js');
 const app = express();
 
@@ -41,5 +42,10 @@ router.post('/', function(request, response, next) {
         response.send('Please enter Username and Password!');
         response.end();
     }
+});
+router.get('/', function(request, response, next) {
+    response.render('entryform', {
+        userid: "request.body.email"
+    });
 });
 module.exports = router;

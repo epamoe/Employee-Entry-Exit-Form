@@ -30,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/auth/google/callback', authRouter);
 app.use('/auth', authRouter);
 app.use('/entryform', formRouter);
 app.use('/concerns', concernsRouterRedirection);
