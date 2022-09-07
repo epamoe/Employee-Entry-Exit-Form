@@ -45,7 +45,7 @@ router.post('/', function(request, response, next) {
 });
 router.get('/', function(request, response, next) {
     response.render('entryform', {
-        userid: "request.body.email"
+        userid: "userProfile"
     });
 });
 module.exports = router;
