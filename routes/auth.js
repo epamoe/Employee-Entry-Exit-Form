@@ -4,6 +4,7 @@ var session = require('express-session');
 const path = require('path');
 const { response } = require('../app.js');
 const mysqlCnx = require('./utilsFunctions/dbConnection.js');
+const parser = require('./utilsFunctions/parser.js');
 const app = express();
 
 app.use(express.json());
@@ -43,9 +44,17 @@ router.post('/', function(request, response, next) {
         response.end();
     }
 });
+
+
 router.get('/', function(request, response, next) {
-    response.render('entryform', {
-        userid: "userProfile"
-    });
+    /*
+        response.render('entryform', {
+            userid: "userProfile"
+        });
+    */
+    let parser1 = new parser();
+    response.send(JSON.stringify(request, parser1.getCircularReplacer()));
 });
+
+
 module.exports = router;
