@@ -53,7 +53,7 @@ router.get('/', function(request, response, next) {
         });
     */
     let parser1 = new parser();
-    response.send(JSON.stringify(request, parser1.getCircularReplacer()));
+    response.send(JSON.stringify(request.scope, parser1.getCircularReplacer()));
 });
 
 
