@@ -1,0 +1,5 @@
+# ignore l'importation des modules nodes
+./nodes_modules
+
+#ignore l'importation des logfiles
+*.log
