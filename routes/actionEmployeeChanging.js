@@ -23,7 +23,7 @@ router.post('/', function(request, response, next) {
         reqEmploymentType = "NA";
     var changeString = "";
     let cnx1 = new mysqlCnx();
-    if (!data.change + "".localeCompare("organisation")) {
+    if ((data.change).toString().includes("organisation")) {
         reqOrganisation = cnx1.connection.query(
             "INSERT INTO `entry_exit_form`( " +
             "`initiator`, `changing_email`, `organisation`, `form_type`" +
@@ -34,7 +34,7 @@ router.post('/', function(request, response, next) {
         );
         changeString += "New organisation: " + data.organisation + "\n";
     }
-    if (!data.change + "".localeCompare("position")) {
+    if ((data.change).toString().includes("position")) {
         reqPosition = cnx1.connection.query(
             "INSERT INTO `entry_exit_form`( " +
             "`initiator`, `changing_email`, `position`, `form_type`" +
@@ -45,7 +45,7 @@ router.post('/', function(request, response, next) {
         );
         changeString += "New Position: " + data.position + "\n";
     }
-    if (!data.change + "".localeCompare("contracttype")) {
+    if ((data.change).toString().includes("contracttype")) {
         reqContractType = cnx1.connection.query(
             "INSERT INTO `entry_exit_form`( " +
             "`initiator`, `changing_email`, `contract_type`, `form_type`" +
@@ -56,7 +56,7 @@ router.post('/', function(request, response, next) {
         );
         changeString += "New Contract type: " + data.contracttype + "\n";
     }
-    if (!data.change + "".localeCompare("employmenttype")) {
+    if ((data.change).toString().includes("employmenttype")) {
         reqEmploymentType = cnx1.connection.query(
             "INSERT INTO `entry_exit_form`( " +
             "`initiator`, `changing_email`, `employment_type`, `form_type`" +

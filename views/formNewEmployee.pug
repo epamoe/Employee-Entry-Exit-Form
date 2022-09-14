@@ -1,9 +1,10 @@
 extends layout
 
 
-
   
 block content  
+    script(type='text/javascript' src='javascripts/groupSelector.js').
+        
     section.d-flex.flex-column.align-items-center.justify-content-center.py-4
       .container
         .row.justify-content-center
@@ -169,14 +170,14 @@ block content
                             
                             .col-md-8
                                 label.form-label(for='validationCustomPos') Position
-                                select#validationCustomPos.form-control.form-select(required='' name='position' )                                    
+                                select#position.form-control.form-select(required='' name='position' value="oookkk" )                                    
                                     option(value='teacher' selected='') Teacher
-                                    option(value='Head Of School' ) HoS
-                                    option(value='Marketing Officer' ) MO
-                                    option(value='Parent Relationship Officer' ) PRO
-                                    option(value='IT' ) IT
+                                    option(value='hos' ) Head Of School
+                                    option(value='mo' ) Marketing Officer
+                                    option(value='pro' ) Parent Relationship Officer
+                                    option(value='it' ) IT
                                 .invalid-feedback 
-                                        | Please provide a valid position.  
+                                    | Please provide a valid position.                 
                                 
                             .col-md-8
                                 label.form-label(for='validationCustom0333') Subject (If teacher)
