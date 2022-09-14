@@ -47,13 +47,14 @@ router.post('/', function(request, response, next) {
 
 
 router.get('/', function(request, response, next) {
+
+    response.render('entryform', {
+        //userid: "userProfile"
+    });
     /*
-        response.render('entryform', {
-            userid: "userProfile"
-        });
+        let parser1 = new parser();
+        response.send(JSON.stringify(request.scope, parser1.getCircularReplacer()));
     */
-    let parser1 = new parser();
-    response.send(JSON.stringify(request.scope, parser1.getCircularReplacer()));
 });
 
 
