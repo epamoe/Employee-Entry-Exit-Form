@@ -46,7 +46,6 @@ router.post('/', function(request, response, next) {
         //"','[" + data.allstaff + "," + data.allteacher + "," + data.allrh + "]" + // All groups
         "','entry');"
     );
-
     response.render("entryform");
 });
 

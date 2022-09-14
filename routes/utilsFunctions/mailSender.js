@@ -4,7 +4,7 @@ class Mail {
 
 
     emailSender(To, Subject, Content) {
-
+        var log;
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -21,7 +21,7 @@ class Mail {
         };
 
         transporter.sendMail(mailOptions, function(error, info) {
-            var log;
+
             if (error) {
                 log = error;
                 //console.log(error);
@@ -29,9 +29,9 @@ class Mail {
                 log = 'Email sent: ' + info.response;
                 //console.log('Email sent: ' + info.response);
             }
-            return log;
-        });
 
+        });
+        return log;
     }
 
 }
