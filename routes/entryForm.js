@@ -8,18 +8,24 @@ router.post('/', function(request, response, next) {
         case "newemployee":
             {
                 response.render("formNewEmployee", {
-                    useridentry: request.body.concerns
+                    userid: request.session.userId
                 });
                 break;
             }
         case "employeeleaving":
-            response.render("formEmployeeLeaving");
+            response.render("formEmployeeLeaving", {
+                userid: request.session.userId
+            });
             break;
         case "employeechanging":
-            response.render("formEmployeeChanging");
+            response.render("formEmployeeChanging", {
+                userid: request.session.userId
+            });
             break;
         default:
-            response.render('entryform');
+            response.render('entryform', {
+                userid: request.session.userId
+            });
     }
 });
 

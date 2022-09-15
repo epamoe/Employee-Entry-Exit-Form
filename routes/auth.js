@@ -29,12 +29,13 @@ router.post('/', function(request, response, next) {
             if (error) throw error;
             // If the account exists
             if (results.length > 0) {
+                request.session.userId = email;
                 response.render('entryform', {
-                    userid: request.body.email
+                    userid: request.session.userId
                 });
             } else {
                 response.render('error', {
-                    message: "" + email + " Does not appear in our system !"
+                    message: "" + email + "@enkoeducation.com does not appear in our system !"
                 });
             }
             response.end();

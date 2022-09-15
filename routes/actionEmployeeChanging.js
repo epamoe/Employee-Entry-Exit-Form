@@ -6,6 +6,8 @@ const session = require('express-session');
 const path = require('path');
 const mysqlCnx = require('./utilsFunctions/dbConnection.js');
 const mail = require('./utilsFunctions/mailSender');
+const itaddress = require('./utilsObjects/itEmail.js');
+const manageraddress = require('./utilsObjects/managerEmail.js');
 const app = express();
 
 app.use(express.json());
@@ -16,7 +18,7 @@ app.use(express.static(path.join(__dirname, 'static')));
 router.post('/', function(request, response, next) {
 
     var data = request.body;
-    var user = "NA";
+    var user = request.body.userid;
     var reqOrganisation = "NA",
         reqPosition = "NA",
         reqContractType = "NA",
@@ -67,35 +69,27 @@ router.post('/', function(request, response, next) {
         );
         changeString += "New Employment type: " + data.employmenttype + "\n";
     }
-    //Track changes to personalise emails
-    /*
-        if (!reqOrganisation + "".localeCompare("NA")) {
-            change += "New organisation: " + data.organisation + "\n";
-        }
-        if (!reqPosition + "".localeCompare("NA")) {
-            change += "New Position: " + data.position + "\n";
-        }
-        if (!reqContractType + "".localeCompare("NA")) {
-            change += "New Contract type: " + data.contracttype + "\n";
-        }
-        if (!reqEmploymentType + "".localeCompare("NA")) {
-            change += "New Employment type: " + data.employmenttype + "\n";
-        }*/
+
     //Email dispatcher
     var mailObject = "Employee Changing";
+
     //Send email to IT admin
+    var itaddress1 = new itaddress();
     var itContent = "Dear IT, \n " +
         "be sure you have made set this new information to the account identified by: " + data.employeeid + "@enkoeducation.com \n" + changeString;
     let ItEmail = new mail();
-    var itEmailLog = ItEmail.emailSender('frederic.tchouli@enkoeducation.com', mailObject, itContent);
+    var itEmailLog = ItEmail.emailSender('' + itaddress1.email, mailObject, itContent);
+
     //Send email to employee's manager
     var managerContent = "Dear manager the employee identified by " + data.employeeid + "@enkoeducation.com is changing: \n" + changeString;
     let ManagerEmail = new mail();
-    var managerEmailLog = ManagerEmail.emailSender('estebanc.pamoe@enkoeducation.com', mailObject, managerContent);
+    var manageraddress1 = new manageraddress();
+    var managerEmailLog = ManagerEmail.emailSender('' + manageraddress1.email, mailObject, managerContent);
+
     //Send email to The employee
     var employeeContent = "Dear Sr, you profile at ENKO education have changed: \n" + changeString;
     let EmployeeEmail = new mail();
-    var employeeEmailLog = EmployeeEmail.emailSender('epamoe@gmail.com', mailObject, employeeContent);
+    var employeeEmailLog = EmployeeEmail.emailSender(data.employeeid, mailObject, employeeContent);
 
     console.log("\n" + itEmailLog + "\n" + managerEmailLog + "\n" + employeeEmailLog);
     response.render("entryform");

@@ -14,7 +14,7 @@ class Mail {
         });
 
         var mailOptions = {
-            from: 'itsupport@enkoeducation.com',
+            from: 'ENKO IT Support <itsupport@enkoeducation.com>',
             to: '' + To,
             subject: '' + Subject,
             text: '' + Content

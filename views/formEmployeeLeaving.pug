@@ -10,16 +10,17 @@ block content
                 img(src='assets/img/enko-modern-logo.png' alt='')
                 span.d-lg-block.text-success Enko Education
             // End Logo
+            h6 Hello #{userid}, You are about to dismiss an employee
     .row.lg-6.justify-content-center
         .row-lg-6.justify-content-center
             form.row.g-3.needs-validation.justify-content-center(novalidate='' method='POST' action='/delete_employee' autocomplete='off')
                 .card(style="width: 75%")
                     .card-body
                         h5.card-title Please, provide information bellow
-                        // General Form Elements                        
-                        
-                        
+                        // General Form Elements                           
                         .col-6
+                            //gathering current user from session
+                            input.form-control(type='hidden' name='userid' required='' value=userid)
                             label.form-label(for='yourUsername') Username
                             .input-group.has-validation
                             .input-group.mb-3

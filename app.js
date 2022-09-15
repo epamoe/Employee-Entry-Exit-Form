@@ -2,6 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+const sessions = require('express-session');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
@@ -17,6 +18,28 @@ var actionEMployeeChangingRouter = require('./routes/actionEmployeeChanging');
 var actionEMployeeLeavingRouter = require('./routes/actionEmployeeLeaving');
 
 var app = express();
+
+/* -- Begin Session setup */
+
+// creating 24 hours from milliseconds
+const oneDay = 1000 * 60 * 60 * 24;
+//session middleware
+app.use(sessions({
+    secret: "ENKOEducation@Secret#KeyTo!Be&generated@Laterfhrgfgrfrty84fwir767",
+    saveUninitialized: true,
+    cookie: { maxAge: oneDay },
+    resave: false
+}));
+// parsing the incoming data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+//serving public file
+app.use(express.static(__dirname));
+// cookie parser middleware
+app.use(cookieParser());
+
+
+/* -- End Session setup */
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

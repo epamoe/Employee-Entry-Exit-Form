@@ -10,6 +10,7 @@ block content
                 img(src='assets/img/enko-modern-logo.png' alt='')
                 span.d-lg-block.text-success Enko Education
             // End Logo
+            h6 Hello #{userid}, You are about to change information on an employee
     .row.lg-6.justify-content-center
         .row-lg-6.justify-content-center
             form.row.g-3.needs-validation.justify-content-center(method='post' action='/change_employee' novalidate='')
@@ -19,6 +20,8 @@ block content
                         // General Form Elements                         
                       
                         .col-4
+                          //gathering current user from session
+                          input.form-control(type='hidden' name='userid' required='' value=userid)
                           label.form-label(for='yourUsername') Username
                           .input-group.has-validation
                             .input-group.mb-3
@@ -26,8 +29,8 @@ block content
                               span#basic-addon2.input-group-text @enkoeducation.com
                               .invalid-feedback please provide your Firstname and lastname separated with a point
                    
-                        .col-md-4
-                          label.form-check-label(for='employeeid') Choose the changing topic then type/select                         
+                        .col-md-6
+                          label.form-check-label(for='employeeid') Choose the changing topic then type                       
                           .form-check
                             input#flexRadioDefaultorg.form-check-input(type='checkbox' value='organisation' name='change')
                             label.form-check-label(for='flexRadioDefaultorg')

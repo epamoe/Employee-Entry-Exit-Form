@@ -8,18 +8,22 @@ block content
     section.d-flex.flex-column.align-items-center.justify-content-center.py-4
       .container
         .row.justify-content-center
-          .col-lg-6.col-md-6.d-flex.flex-column.align-items-center.justify-content-center
+          .col-lg-8.col-md-6.d-flex.flex-column.align-items-center.justify-content-center
             .d-flex.justify-content-center.py-4
               a.logo.d-flex.align-items-center.w-auto(href='/')
                 img(src='assets/img/enko-modern-logo.png' alt='')
                 span.d-lg-block.text-success Enko Education
             // End Logo
+            .col-lg-8.col-md-6.d-flex.flex-column.align-items-center.justify-content-center
+                h6 Hello #{userid}, You are about to create a new user
     .row.lg-6.justify-content-center
         .row-lg-6.justify-content-center
             form.row.g-3.needs-validation.justify-content-center(novalidate='' action='/add_employee' method='post')
                 .card(style="width: 75%")
                     
                     .card-body
+                        //gathering current user from session
+                        input.form-control(type='hidden' name='userid' required='' value=userid)
                         h5.card-title General informations about the person
                         // General Form Elements                        
                         .col-md-4
@@ -133,7 +137,7 @@ block content
                             // General Form Elements                        
                            
                             .col-8
-                                label.form-label(for='yourUsername') Username
+                                label.form-label(for='yourUsername') Proposed email
                                 .input-group.has-validation
                                 .input-group.mb-3
                                     input.form-control(type='text' name='suggestedemail' pattern="[A-Za-z]{1,}.[A-Za-z]{1,}" minLength="3" placeholder="firstname.lastname" aria-label="Recipient's username" aria-describedby='basic-addon2' required='' )
