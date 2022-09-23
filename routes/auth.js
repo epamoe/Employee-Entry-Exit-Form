@@ -3,8 +3,8 @@ var router = express.Router();
 var session = require('express-session');
 const path = require('path');
 const { response } = require('../app.js');
-const mysqlCnx = require('./utilsFunctions/dbConnection.js');
-const parser = require('./utilsFunctions/parser.js');
+const mysqlCnx = require('./utils/dbConnection.js');
+//const parser = require('../public/javascripts/emailAddressVerifier.js');
 const app = express();
 
 app.use(express.json());

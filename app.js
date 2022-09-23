@@ -51,9 +51,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use('/', formRouter);
 app.use('/users', usersRouter);
-app.use('/auth/google/callback', authRouter);
+app.use('/auth/google/callback', formRouter);
 app.use('/auth', authRouter);
 app.use('/entryform', formRouter);
 app.use('/concerns', concernsRouterRedirection);

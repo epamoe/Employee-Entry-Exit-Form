@@ -1,0 +1,1387 @@
+{
+    "body": [{
+        "name": "Access",
+        "email": "access@enkoeducation.com",
+        "member": 4,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Admin Enko Bamako",
+        "email": "admin.bamako@enkoeducation.com",
+        "member": 7,
+        "status": "",
+        "organisation": "Enko Bamako Campus",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Admin Enko Bonanjo",
+        "email": "admin.bonanjo@enkoeducation.com",
+        "member": 6,
+        "status": "",
+        "organisation": "Enko Bonanjo Campus",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Admin Enko Botho",
+        "email": "admin.botho@enkoeducation.com",
+        "member": 8,
+        "status": "",
+        "organisation": "Enko Botho Campus",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Admin Enko keur gorgui",
+        "email": "admin.keurgorgui@enkoeducation.com",
+        "member": 7,
+        "status": "",
+        "organisation": "Enko Keur Gorgui Campus",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Admin Enko la gaiete",
+        "email": "admin.lagaiete@enkoeducation.com",
+        "member": 8,
+        "status": "",
+        "organisation": "Enko La Gaiete Campus",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Admin Enko Ouaga",
+        "email": "admin.ouaga@enkoeducation.com",
+        "member": 12,
+        "status": "",
+        "organisation": "Enko Ouaga Campus",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Admin Enko Riverside",
+        "email": "admin.riverside@enkoeducation.com",
+        "member": 10,
+        "status": "",
+        "organisation": "Enko Riverside Campus",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Admin Enko Riviera",
+        "email": "admin@enkoeducation.com",
+        "member": 7,
+        "status": "",
+        "organisation": "Enko Riviera Campus",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Admin Enko Waca",
+        "email": "admin.waca@enkoeducation.com",
+        "member": 7,
+        "status": "",
+        "organisation": "Enko Waca Campus",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Admin Jacaranda Academy",
+        "email": "admin.jacaranda@enkoeducation.com",
+        "member": 6,
+        "status": "",
+        "organisation": "Jacaranda Academy",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Admin Pestalozzi Education Center",
+        "email": "admin.pestalozzi@enkoeducation.com",
+        "member": 12,
+        "status": "",
+        "organisation": "Pestalozzi Education Center",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Admin Sekeleka",
+        "email": "adminsekeleka@enkoeducation.com",
+        "member": 6,
+        "status": "",
+        "organisation": "Enko Sekeleka Campus",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Administration",
+        "email": "administration@amazingraceschool.co.za",
+        "member": 5,
+        "status": "",
+        "organisation": "Amazing Grace Private School",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Afrique en Poésie",
+        "email": "afriqueenpoesie@enkoeducation.com",
+        "member": 7,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "AGPS Management",
+        "email": "management@amazingraceschool.co.za",
+        "member": 12,
+        "status": "",
+        "organisation": "Amazing Grace Private School",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "AGPS MBR List",
+        "email": "agps_mbr_list@enkoeducation.com",
+        "member": 14,
+        "status": "",
+        "organisation": "Amazing Grace Private School",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "AGPS Teachers",
+        "email": "teachers@amazingraceschool.co.za",
+        "member": 28,
+        "status": "",
+        "organisation": "Amazing Grace Private School",
+        "subOrganisation": "",
+        "position": "Teachers"
+    }, {
+        "name": "All Enko (Students and Staffs)",
+        "email": "enkofamily@enkoeducation.com",
+        "member": 2024,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "All Enko Staff",
+        "email": "allenkostaff@enkoeducation.com",
+        "member": 17,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "All Pestalozzi",
+        "email": "all.pestalozzi@enkoeducation.com",
+        "member": 91,
+        "status": "",
+        "organisation": "Pestalozzi Education Center",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "All School Staff",
+        "email": "allschoolstaff@enkoeducation.com",
+        "member": 362,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "All Staff AGPS",
+        "email": "staff.agps@enkoeducation.com",
+        "member": 36,
+        "status": "",
+        "organisation": "Amazing Grace Private School",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "All Staff Bonanjo",
+        "email": "staff.bonanjo@enkoeducation.com",
+        "member": 35,
+        "status": "",
+        "organisation": "Enko Bonanjo Campus",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "All Staff Botho",
+        "email": "staff.botho@enkoeducation.com",
+        "member": 36,
+        "status": "",
+        "organisation": "Enko Botho Campus",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "All staff Enko Bamako",
+        "email": "allstaff.bamako@enkoeducation.com",
+        "member": 33,
+        "status": "",
+        "organisation": "Enko Bamako Campus",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "All Staff Enko La Gaieté Primary School",
+        "email": "staff.lgprimary@enkoeducation.com",
+        "member": 24,
+        "status": "",
+        "organisation": "Enko La Gaiete Campus",
+        "subOrganisation": "International Primary School",
+        "position": ""
+    }, {
+        "name": "All Staff Enko La Gaieté Secondary School",
+        "email": "staff.lgsecondary@enkoeducation.com",
+        "member": 27,
+        "status": "",
+        "organisation": "Enko La Gaiete Campus",
+        "subOrganisation": "International Secondary School",
+        "position": ""
+    }, {
+        "name": "All Staff Enko WACA",
+        "email": "staff.waca@enkoeducation.com",
+        "member": 72,
+        "status": "",
+        "organisation": "Enko Waca Campus",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "All Staff Jacaranda Academy",
+        "email": "staff.jacaranda@enkoeducation.com",
+        "member": 14,
+        "status": "",
+        "organisation": "Jacaranda Academy",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "All Staff Riviera",
+        "email": "staff.riviera@enkoeducation.com",
+        "member": 75,
+        "status": "",
+        "organisation": "Enko Riviera Campus",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "All Staff Sekeleka",
+        "email": "staff.sekeleka@enkoeducation.com",
+        "member": 48,
+        "status": "",
+        "organisation": "Enko Sekeleka Campus",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "All@EnkoOuaga",
+        "email": "all.ouaga@enkoeducation.com",
+        "member": 39,
+        "status": "",
+        "organisation": "Enko Ouaga Campus",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Alumni Enko Education",
+        "email": "alumni@enkoeducation.com",
+        "member": 3,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Amazing Grace",
+        "email": "amazingrace@enkoeducation.com",
+        "member": 20,
+        "status": "",
+        "organisation": "Amazing Grace Private School",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Ask Anything",
+        "email": "ask.anything@enkoeducation.com",
+        "member": 1,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Botho MBR List",
+        "email": "botho_mbr_list@enkoeducation.com",
+        "member": 14,
+        "status": "",
+        "organisation": "Enko Botho Campus",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Calibration Northern Hemisphere",
+        "email": "calibration.nh@enkoeducation.com",
+        "member": 1,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Calibration Southern Hemisphere",
+        "email": "calibration.sh@enkoeducation.com",
+        "member": 1,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Canvas Support",
+        "email": "canvas.support@enkoeducation.com",
+        "member": 4,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Classroom Teachers",
+        "email": "classroom_teachers@enkoeducation.com",
+        "member": 0,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Classroom Visits",
+        "email": "classroomvisits@enkoeducation.com",
+        "member": 2,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Contabilidade Sekeleka",
+        "email": "contabilidade.sekeleka@enkoeducation.com",
+        "member": 1,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Contact",
+        "email": "contact@enkoeducation.com",
+        "member": 2,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Coordinators Enko Riverside",
+        "email": "coordinators.riverside@enkoeducation.com",
+        "member": 7,
+        "status": "",
+        "organisation": "Enko Riverside Campus",
+        "subOrganisation": "",
+        "position": "Coordinators"
+    }, {
+        "name": "Coordinators@enkoouaga",
+        "email": "coordinators.ouaga@enkoeducation.com",
+        "member": 4,
+        "status": "",
+        "organisation": "Enko Ouaga Campus",
+        "subOrganisation": "",
+        "position": "Coordinators"
+    }, {
+        "name": "Covid19",
+        "email": "covid19@enkoeducation.com",
+        "member": 1,
+        "status": "to delete ?",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Domains Leads",
+        "email": "domains@enkoeducation.com",
+        "member": 12,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Donation",
+        "email": "donation@enkoeducation.com",
+        "member": 3,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "DP 2019 to 2021@ Ouaga Campus",
+        "email": "dp2019-2021-eoc@enkoschools.com",
+        "member": 13,
+        "status": "to delete ?",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Dp2020-2022 at Enko Ouaga",
+        "email": "dp2020-2022-eoc@enkoeducation.com",
+        "member": 16,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Dp2021-2023 at Enko Ouaga",
+        "email": "dp2021-2023-eoc@enkoeducation.com",
+        "member": 20,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Due Diligence Ext",
+        "email": "duediligence.ext@enkoeducation.com",
+        "member": 15,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "EBIS Douala",
+        "email": "ebisdouala@enkoeducation.com",
+        "member": 36,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Ed-admin Focal Points",
+        "email": "focalpoints@enkoeducation.com",
+        "member": 16,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "ELGIS Faculty",
+        "email": "elgisfaculty@enkoeducation.com",
+        "member": 24,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Enko Bamako International School",
+        "email": "bamako@enkoeducation.com",
+        "member": 3,
+        "status": "",
+        "organisation": "Enko Bamako Campus",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Enko Benga",
+        "email": "benga@enkoeducation.com",
+        "member": 2,
+        "status": "To change ?",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Enko Bonanjo",
+        "email": "bonanjo@enkoeducation.com",
+        "member": 4,
+        "status": "To change ?To change ?",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Enko Botho Campus",
+        "email": "botho@enkoeducation.com",
+        "member": 3,
+        "status": "To change ?",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Enko Dakar International School",
+        "email": "dakar@enkoeducation.com",
+        "member": 5,
+        "status": "To change ?",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Enko John Wesley",
+        "email": "johnwesley@enkoeducation.com",
+        "member": 3,
+        "status": "To change ?",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Enko La Gaieté",
+        "email": "lagaiete@enkoeducation.com",
+        "member": 4,
+        "status": "To change ?",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Enko Nyamunda - 2018 - DP2",
+        "email": "dp2.2018.nyamunda@enkoschools.com",
+        "member": 15,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Enko Ouaga Campus",
+        "email": "ouaga@enkoeducation.com",
+        "member": 5,
+        "status": "To change ?",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Enko Riverside - 2019",
+        "email": "riversidegraduation.2019@enkoschools.com",
+        "member": 19,
+        "status": "To change ?",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Enko Riverside 2020",
+        "email": "enkoriverside-2020@enkoschools.com",
+        "member": 17,
+        "status": "To change ?",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Enko Riviera",
+        "email": "riviera@enkoeducation.com",
+        "member": 6,
+        "status": "To change ?",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Enko Sandton",
+        "email": "sandton@enkoeducation.com",
+        "member": 3,
+        "status": "To change ?",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Enko Sekeleka",
+        "email": "vilankulo@enkoeducation.com",
+        "member": 2,
+        "status": "To change ?",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Enko Staff",
+        "email": "enkostaff@enkoeducation.com",
+        "member": 484,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Enko WACA International School",
+        "email": "waca@enkoeducation.com",
+        "member": 5,
+        "status": "",
+        "organisation": "Enko Waca Campus",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Enseignants DP Riviera",
+        "email": "dpriviera@enkoeducation.com",
+        "member": 22,
+        "status": "",
+        "organisation": "Enko Riviera Campus",
+        "subOrganisation": "",
+        "position": "Teachers"
+    }, {
+        "name": "Enseignants MYP Riviera",
+        "email": "mypriviera@enkoeducation.com",
+        "member": 33,
+        "status": "",
+        "organisation": "Enko Riviera Campus",
+        "subOrganisation": "",
+        "position": "Teachers"
+    }, {
+        "name": "Eric Pignot",
+        "email": "e.pignot@enkoeducation.com",
+        "member": 1,
+        "status": "???",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Events Enko Education",
+        "email": "events@enkoeducation.com",
+        "member": 2,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Feedback Pestalozzi",
+        "email": "feedback.pestalozzi@enkoeducation.com",
+        "member": 1,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Finance",
+        "email": "finance@enkoeducation.com",
+        "member": 4,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Finance AGPS",
+        "email": "finance.agps@enkoeducation.com",
+        "member": 7,
+        "status": "",
+        "organisation": "Amazing Grace Private School",
+        "subOrganisation": "",
+        "position": "Finance"
+    }, {
+        "name": "Finance Enko Bamako",
+        "email": "finance.bamako@enkoeducation.com",
+        "member": 6,
+        "status": "",
+        "organisation": "Enko Bamako Campus",
+        "subOrganisation": "",
+        "position": "Finance"
+    }, {
+        "name": "Finance Enko Bonanjo",
+        "email": "finance.bonanjo@enkoeducation.com",
+        "member": 7,
+        "status": "",
+        "organisation": "Enko Bonanjo Campus",
+        "subOrganisation": "",
+        "position": "Finance"
+    }, {
+        "name": "Finance Enko Botho",
+        "email": "finance.botho@enkoeducation.com",
+        "member": 6,
+        "status": "",
+        "organisation": "Enko Botho Campus",
+        "subOrganisation": "",
+        "position": "Finance"
+    }, {
+        "name": "Finance Enko Keur Gorgui",
+        "email": "finance.keurgorgui@enkoeducation.com",
+        "member": 7,
+        "status": "",
+        "organisation": "Enko Keur Gorgui Campus",
+        "subOrganisation": "",
+        "position": "Finance"
+    }, {
+        "name": "Finance Enko Ouaga",
+        "email": "financeenkoouaga@enkoeducation.com",
+        "member": 8,
+        "status": "",
+        "organisation": "Enko Ouaga Campus",
+        "subOrganisation": "",
+        "position": "Finance"
+    }, {
+        "name": "Finance Enko Riverside",
+        "email": "finance.riverside@enkoeducation.com",
+        "member": 6,
+        "status": "",
+        "organisation": "Enko Riverside Campus",
+        "subOrganisation": "",
+        "position": "Finance"
+    }, {
+        "name": "Finance Enko Riviera",
+        "email": "finance.riviera@enkoeducation.com",
+        "member": 8,
+        "status": "",
+        "organisation": "Enko Riviera Campus",
+        "subOrganisation": "",
+        "position": "Finance"
+    }, {
+        "name": "Finance Enko Sekeleka",
+        "email": "finance.sekeleka@enkoeducation.com",
+        "member": 5,
+        "status": "",
+        "organisation": "Enko Sekeleka Campus",
+        "subOrganisation": "",
+        "position": "Finance"
+    }, {
+        "name": "Finance Enko Waca",
+        "email": "finance.waca@enkoeducation.com",
+        "member": 7,
+        "status": "",
+        "organisation": "Enko Waca Campus",
+        "subOrganisation": "",
+        "position": "Finance"
+    }, {
+        "name": "Finance Jacaranda Academy",
+        "email": "finance.jacaranda@enkoeducation.com",
+        "member": 7,
+        "status": "",
+        "organisation": "Jacaranda Academy",
+        "subOrganisation": "",
+        "position": "Finance"
+    }, {
+        "name": "Finance La Gaieté Primary",
+        "email": "finance.lgprimary@enkoeducation.com",
+        "member": 8,
+        "status": "",
+        "organisation": "Enko La Gaiete Campus",
+        "subOrganisation": "International Primary School",
+        "position": "Finance"
+    }, {
+        "name": "Finance La Gaieté Secondary",
+        "email": "finance.lgsecondary@enkoeducation.com",
+        "member": 8,
+        "status": "",
+        "organisation": "Enko La Gaiete Campus",
+        "subOrganisation": "International Secondary School",
+        "position": "Finance"
+    }, {
+        "name": "Finance Officers NH",
+        "email": "finance.nh@enkoeducation.com",
+        "member": 11,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Finance Officers SH",
+        "email": "finance.sh@enkoeducation.com",
+        "member": 8,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Finance Pestalozzi Education Center",
+        "email": "finance.pestalozzi@enkoeducation.com",
+        "member": 8,
+        "status": "",
+        "organisation": "Pestalozzi Education Center",
+        "subOrganisation": "",
+        "position": "Finance"
+    }, {
+        "name": "Finance Sandton",
+        "email": "finance.sandton@enkoeducation.com",
+        "member": 4,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Financial aid",
+        "email": "financial.aid@enkoeducation.com",
+        "member": 2,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Form Tutors Ouaga",
+        "email": "formtutors.ouaga@enkoeducation.com",
+        "member": 8,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Founders",
+        "email": "founders@enkoeducation.com",
+        "member": 2,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "General Leadership",
+        "email": "leadership@enkoeducation.com",
+        "member": 8,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Group Due Diligence",
+        "email": "duediligence@enkoeducation.com",
+        "member": 3,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Heads of School",
+        "email": "hos@enkoeducation.com",
+        "member": 16,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": "Heads of school"
+    }, {
+        "name": "Heads of School & Principals",
+        "email": "hos.principals@enkoeducation.com",
+        "member": 20,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "HR",
+        "email": "hr@enkoeducation.com",
+        "member": 4,
+        "status": "Deleted",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Human Resources",
+        "email": "human.resources@enkoeducation.com",
+        "member": 4,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": "HR"
+    }, {
+        "name": "IB teachers Ouaga",
+        "email": "ibteachers.ouaga@enkoeducation.com",
+        "member": 1,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "IT Leads",
+        "email": "itleads@enkoeducation.com",
+        "member": 15,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": "IT"
+    }, {
+        "name": "IT Support",
+        "email": "itsupport@enkoeducation.com",
+        "member": 7,
+        "status": "Deleted",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Jacaranda Academy",
+        "email": "jacaranda@enkoeducation.com",
+        "member": 4,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Jacaranda MBR List",
+        "email": "jacaranda_mbr_list@enkoeducation.com",
+        "member": 14,
+        "status": "",
+        "organisation": "Jacaranda Academy",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "jacquesjansevanrensburg",
+        "email": "jacquesjansevan@enkoeducation.com",
+        "member": 3,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Learning & Development",
+        "email": "learnings@enkoeducation.com",
+        "member": 3,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Learning & Teaching",
+        "email": "learning@enkoeducation.com",
+        "member": 1,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Lower Secondary Kalgondin Ouaga",
+        "email": "lower.secondary.ouaga@enkoeducation.com",
+        "member": 7,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Marketing",
+        "email": "marketing@enkoeducation.com",
+        "member": 7,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Marketing Officers NH",
+        "email": "marketing.officers.nh@enkoeducation.com",
+        "member": 10,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": "MO"
+    }, {
+        "name": "Marketing Officers SH",
+        "email": "marketing.officers.sh@enkoeducation.com",
+        "member": 10,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": "MO"
+    }, {
+        "name": "Operations",
+        "email": "operations@enkoeducation.com",
+        "member": 1,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Ouaga Primary School",
+        "email": "primary.ouaga@enkoeducation.com",
+        "member": 11,
+        "status": "",
+        "organisation": "Enko Ouaga",
+        "subOrganisation": "",
+        "position": "Teacher"
+    }, {
+        "name": "Parents and Teacher A",
+        "email": "pta@amazingraceschool.co.za",
+        "member": 8,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Parents Relation Officer SH",
+        "email": "pro.sh@enkoeducation.com",
+        "member": 8,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": "PRO"
+    }, {
+        "name": "Parents Relation Officers NH",
+        "email": "pro.nh@enkoeducation.com",
+        "member": 13,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": "PRO"
+    }, {
+        "name": "Pestalozzi Education Center",
+        "email": "pestalozzi@enkoeducation.com",
+        "member": 3,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Pestalozzi MBR List",
+        "email": "pestalozzi_mbr_list@enkoeducation.com",
+        "member": 13,
+        "status": "",
+        "organisation": "Pestalozzi Education Center",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Platform",
+        "email": "platform@enkoeducation.com",
+        "member": 24,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Purchase",
+        "email": "purchase@enkoeducation.com",
+        "member": 0,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Reception Jacaranda",
+        "email": "reception.jacaranda@enkoeducation.com",
+        "member": 1,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Recruit",
+        "email": "recruit@enkoeducation.com",
+        "member": 1,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Riverside MBR List",
+        "email": "riverside_mbr_list@enkoeducation.com",
+        "member": 14,
+        "status": "",
+        "organisation": "Enko Riverside Campus",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "School Launchers",
+        "email": "launchers@enkoeducation.com",
+        "member": 5,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "School Ops Leadership",
+        "email": "schoolopsleadership@enkoeducation.com",
+        "member": 10,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Scorecard",
+        "email": "scorecard@enkoeducation.com",
+        "member": 2,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Secondary Ouaga",
+        "email": "secondary.ouaga@enkoeducation.com",
+        "member": 20,
+        "status": "",
+        "organisation": "Enko Ouaga Campus",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Sekeleka MBR List",
+        "email": "sekeleka_mbr_list@enkoeducation.com",
+        "member": 11,
+        "status": "",
+        "organisation": "Enko Sekeleka",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Senate",
+        "email": "senate.ouaga@enkoeducation.com",
+        "member": 9,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "SH School Operations",
+        "email": "sh.schoolops@enkoeducation.com",
+        "member": 7,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Southern Hemisphere HoS",
+        "email": "sh-hos@enkoeducation.com",
+        "member": 8,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Staff Admin Riviera",
+        "email": "adminriviera@enkoeducation.com",
+        "member": 21,
+        "status": "",
+        "organisation": "Enko Riviera Campus",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Staff Enko Riverside",
+        "email": "staff.riverside@enkoeducation.com",
+        "member": 37,
+        "status": "",
+        "organisation": "Enko Riverside Campus",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Staff Keur Gorgui",
+        "email": "staff.keurgorgui@enkoeducation.com",
+        "member": 52,
+        "status": "",
+        "organisation": "Enko Keur Gorgui Campus",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "student life jacaranda",
+        "email": "studentlifejac@enkoeducation.com",
+        "member": 2,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Student Recruitment",
+        "email": "studentrecruitment@enkoeducation.com",
+        "member": 1,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "studentlife agps",
+        "email": "studentlife.agps@enkoeducation.com",
+        "member": 2,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "studentlife ebot",
+        "email": "studentlife.ebot@enkoeducation.com",
+        "member": 1,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "studentlife eris",
+        "email": "studentlife.eris@enkoeducation.com",
+        "member": 2,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "studentlife pec",
+        "email": "studentlife.pec@enkoeducation.com",
+        "member": 2,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Suppliers Enko Education",
+        "email": "suppliers@enkoeducation.com",
+        "member": 1,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "survey",
+        "email": "survey.enko@enkoeducation.com",
+        "member": 4,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Teachers Bamako",
+        "email": "teachers.bamako@enkoeducation.com",
+        "member": 22,
+        "status": "",
+        "organisation": "Enko ouaga Campus",
+        "subOrganisation": "Teacher",
+        "position": ""
+    }, {
+        "name": "Teachers Benga",
+        "email": "teachers.benga@enkoeducation.com",
+        "member": 9,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Teachers Bonanjo",
+        "email": "teachers.bonanjo@enkoeducation.com",
+        "member": 24,
+        "status": "",
+        "organisation": "Enko bonanjo Campus",
+        "subOrganisation": "Teacher",
+        "position": ""
+    }, {
+        "name": "Teachers Botho",
+        "email": "teachers.botho@enkoeducation.com",
+        "member": 27,
+        "status": "",
+        "organisation": "Enko Botho Campus",
+        "subOrganisation": "Teacher",
+        "position": ""
+    }, {
+        "name": "Teachers Enko Ouaga",
+        "email": "teachers.ouaga@enkoeducation.com",
+        "member": 28,
+        "status": "",
+        "organisation": "Enko Ouaga Campus",
+        "subOrganisation": "Teacher",
+        "position": ""
+    }, {
+        "name": "Teachers Jacaranda Academy",
+        "email": "teachers.jacaranda@enkoeducation.com",
+        "member": 6,
+        "status": "",
+        "organisation": "Jacaranda Academy",
+        "subOrganisation": "Teacher",
+        "position": ""
+    }, {
+        "name": "Teachers John Wesley",
+        "email": "teachers.johnwesley@enkoeducation.com",
+        "member": 5,
+        "status": "past",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Teachers Keur Gorgui",
+        "email": "teachers.keurgorgui@enkoeducation.com",
+        "member": 35,
+        "status": "",
+        "organisation": "Enko Keur Gorgui Campus",
+        "subOrganisation": "Teacher",
+        "position": ""
+    }, {
+        "name": "Teachers La Gaieté",
+        "email": "teachers.lagaiete@enkoeducation.com",
+        "member": 44,
+        "status": "",
+        "organisation": "Enko La Gaite Campus",
+        "subOrganisation": "Teacher",
+        "position": ""
+    }, {
+        "name": "Teachers Pestalozzi",
+        "email": "teachers.pestalozzi@enkoeducation.com",
+        "member": 70,
+        "status": "",
+        "organisation": "Pestalozzi Education Center",
+        "subOrganisation": "Teacher",
+        "position": ""
+    }, {
+        "name": "Teachers Riverside",
+        "email": "teachers.riverside@enkoeducation.com",
+        "member": 22,
+        "status": "",
+        "organisation": "Enko Riverside Campus",
+        "subOrganisation": "Teacher",
+        "position": ""
+    }, {
+        "name": "Teachers Riviera",
+        "email": "teachers.riviera@enkoeducation.com",
+        "member": 49,
+        "status": "",
+        "organisation": "Enko Riviera Campus",
+        "subOrganisation": "Teacher",
+        "position": ""
+    }, {
+        "name": "Teachers Sandton",
+        "email": "teachers.sandton@enkoeducation.com",
+        "member": 12,
+        "status": "",
+        "organisation": "Enko Sandton Campus",
+        "subOrganisation": "Teacher",
+        "position": ""
+    }, {
+        "name": "Teachers Sekeleka",
+        "email": "teachers.sekeleka@enkoeducation.com",
+        "member": 39,
+        "status": "",
+        "organisation": "Enko Sekeleka Campus",
+        "subOrganisation": "Teacher",
+        "position": ""
+    }, {
+        "name": "Teachers WACA",
+        "email": "teachers.waca@enkoeducation.com",
+        "member": 47,
+        "status": "",
+        "organisation": "Enko Waca Campus",
+        "subOrganisation": "Teacher",
+        "position": ""
+    }, {
+        "name": "Team Bonanjo",
+        "email": "team.bonanjo@enkoeducation.com",
+        "member": 11,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Team Dakar",
+        "email": "team.dakar@enkoeducation.com",
+        "member": 23,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Team John Wesley",
+        "email": "team.johnwesley@enkoeducation.com",
+        "member": 7,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Team La Gaieté",
+        "email": "team.lagaiete@enkoeducation.com",
+        "member": 0,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Team Nyamunda",
+        "email": "team.nyamunda@enkoeducation.com",
+        "member": 0,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Team Riviera",
+        "email": "team.riviera@enkoeducation.com",
+        "member": 8,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Team Vilankulo",
+        "email": "team.vilankulo@enkoeducation.com",
+        "member": 8,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "TEST",
+        "email": "testmien@enkoeducation.com",
+        "member": 1,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "University Counselors",
+        "email": "counselors@enkoeducation.com",
+        "member": 13,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "WA HoS",
+        "email": "wa.hos@enkoeducation.com",
+        "member": 11,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }, {
+        "name": "Whistleblowing",
+        "email": "whistleblowing@enkoeducation.com",
+        "member": 1,
+        "status": "",
+        "organisation": "",
+        "subOrganisation": "",
+        "position": ""
+    }]
+}

@@ -4,10 +4,9 @@ var router = express.Router();
 const mysql = require('mysql');
 const session = require('express-session');
 const path = require('path');
-const mysqlCnx = require('./utilsFunctions/dbConnection.js');
-const mail = require('./utilsFunctions/mailSender');
-const itaddress = require('./utilsObjects/itEmail.js');
-const manageraddress = require('./utilsObjects/managerEmail.js');
+const mysqlCnx = require('./utils/dbConnection.js');
+var ticketMgmt = require('./utils/helpdeskManagement.js');
+var emailMgmt = require('./utils/emailManagement');
 const app = express();
 
 app.use(express.json());
@@ -69,29 +68,16 @@ router.post('/', function(request, response, next) {
         );
         changeString += "New Employment type: " + data.employmenttype + "\n";
     }
+    //Send IT email
+    let ITEmail = new emailMgmt();
+    let ITticket = new ticketMgmt(ITEmail.getITTitle(), ITEmail.getITMailAddress(), ITEmail.getOnChangingSubject(), ITEmail.getITOnChangingMessage("#", data.employeeid, changeString));
+    var ITMailLog = ITEmail.sendMail(ITEmail.getITMailAddress(), ITEmail.getOnChangingSubject(), ITEmail.getITOnChangingMessage(ITticket.getTicketID(), data.employeeid, changeString));
 
-    //Email dispatcher
-    var mailObject = "Employee Changing";
+    //Send HR email
+    let HREmail = new emailMgmt();
+    let HRticket = new ticketMgmt(HREmail.getHRTitle(), HREmail.getHRMailAddress(), HREmail.getOnChangingSubject(), HREmail.getHROnChangingMessage("#", data.employeeid, changeString), HREmail.getHRHelpTopic());
+    var HRMailLog = HREmail.sendMail(HREmail.getHRMailAddress(), HREmail.getOnChangingSubject(), HREmail.getHROnChangingMessage(HRticket.getTicketID(), data.employeeid, changeString));
 
-    //Send email to IT admin
-    var itaddress1 = new itaddress();
-    var itContent = "Dear IT, \n " +
-        "be sure you have made set this new information to the account identified by: " + data.employeeid + "@enkoeducation.com \n" + changeString;
-    let ItEmail = new mail();
-    var itEmailLog = ItEmail.emailSender('' + itaddress1.email, mailObject, itContent);
-
-    //Send email to employee's manager
-    var managerContent = "Dear manager the employee identified by " + data.employeeid + "@enkoeducation.com is changing: \n" + changeString;
-    let ManagerEmail = new mail();
-    var manageraddress1 = new manageraddress();
-    var managerEmailLog = ManagerEmail.emailSender('' + manageraddress1.email, mailObject, managerContent);
-
-    //Send email to The employee
-    var employeeContent = "Dear Sr, you profile at ENKO education have changed: \n" + changeString;
-    let EmployeeEmail = new mail();
-    var employeeEmailLog = EmployeeEmail.emailSender(data.employeeid, mailObject, employeeContent);
-
-    console.log("\n" + itEmailLog + "\n" + managerEmailLog + "\n" + employeeEmailLog);
     response.render("entryform");
 });
 module.exports = router;

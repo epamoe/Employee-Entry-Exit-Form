@@ -4,6 +4,8 @@ extends layout
   
 block content  
     script(type='text/javascript' src='javascripts/groupSelector.js').
+
+    //script(type='text/javascript' src='javascripts/emaiAddressVerifier.js').
         
     section.d-flex.flex-column.align-items-center.justify-content-center.py-4
       .container
@@ -42,7 +44,7 @@ block content
                         
                         .col-md-8
                                 label.form-label(for='validationCustompemail') Personal email of the employee
-                                input.form-control(type='email' required=''  pattern="[A-Za-z]{2,}[0-9]*@[A-Za-z]{2,}.[A-Za-z]{2,}" minLength="4" placeholder="personal email" name='personalemail')
+                                input.form-control(type='email' required='' minLength="4" placeholder="personal email" name='personalemail')
                                 .invalid-feedback
                                     | Please provide a valid email.
                         .col-md-8
@@ -140,9 +142,12 @@ block content
                                 label.form-label(for='yourUsername') Proposed email
                                 .input-group.has-validation
                                 .input-group.mb-3
-                                    input.form-control(type='text' name='suggestedemail' pattern="[A-Za-z]{1,}.[A-Za-z]{1,}" minLength="3" placeholder="firstname.lastname" aria-label="Recipient's username" aria-describedby='basic-addon2' required='' )
+                                    input#proposedemail.form-control(type='text' name='suggestedemail' pattern="[A-Za-z]{1,}.[A-Za-z]{1,}" minLength="3" placeholder="firstname.lastname" aria-label="Recipient's username" aria-describedby='basic-addon2' required='' )
                                     span#basic-addon2.input-group-text @enkoeducation.com
+                                    button#checkproposedemail.btn.btn-primary(onclick='checkProposedEmail()' type='button') Verify
                                     .invalid-feedback please provide a valid suggestion
+                                    #emailfeedback
+                                    
                             .col-md-8
                                 label.form-label(for='validationCustom04') School / Campus / Organisation
                                 select#validationCustom04.form-control.form-select(required='' name='school' )                                    
@@ -243,12 +248,20 @@ block content
                                 input.form-control(type='text' required='' name='netsalary')
                                 .invalid-feedback
                                     | Please provide a valid salary.
+                section.d-flex.flex-column.align-items-center.justify-content-center.py-4
+                    .row.justify-content-center
+                        .col-lg-6.col-md-6.justify-content-center 
+                            #onsubmitemailfeedback
+                            .d-flex.justify-content-center.py-4
+                            button.btn.btn-primary(type='submit' ) Submit form
+                            //button#submit.btn.btn-primary(type='submit' onclick='checkProposedEmail()') Submit form
+                  
                 .card(style="width: 75%")
                     .card-body.container
                         .row
                             h5.card-title IT tools
                             // General Form Elements                        
-                                       
+                                        
                             .row
                                 .col
                                     .form-check.form-switch
@@ -315,29 +328,21 @@ block content
                                     label.form-check-label(for='flexSwitchCheckCheckeditturnitin') Turnitin
                                 .col
                                     |
+                    
                 .card(style="width: 75%")
                     .card-body.container
                         .row
                             h5.card-title Emails groups
-                            // General Form Elements                        
-                                       
+                            // General Form Elements 
                             .col-sm
-                                .col-sm-10
+                                -var i = 0;
+                                each group in groups.body                                    
                                     .form-check.form-switch
-                                    input#flexSwitchCheckDefaultg1.form-check-input(type='checkbox'  value='allstaff' checked='' name='allstaff')
-                                    label.form-check-label(for='flexSwitchCheckDefaultg1') All Staff
-                                    .form-check.form-switch
-                                    input#flexSwitchCheckCheckedg2.form-check-input(type='checkbox' value='allteacher' name='allteacher')
-                                    label.form-check-label(for='flexSwitchCheckCheckedg2') All teacher
-                                    .form-check.form-switch
-                                    input#flexSwitchCheckCheckedg3.form-check-input(type='checkbox' value='allrh' name='allrh')
-                                    label.form-check-label(for='flexSwitchCheckCheckedg3') HR
-                                    
+                                    #{tmp = group.name }
+                                    #{i++}
+                                    input.form-check-input#tmp(type='checkbox' value=group.name name='allteacher')
+                                    label.form-check-label(for=group.email) #{group.name}
+
                             
-                section.d-flex.flex-column.align-items-center.justify-content-center.py-4
-                
-                    .row.justify-content-center
-                    .col-lg-6.col-md-6.justify-content-center
-                        .d-flex.justify-content-center.py-4
-                        button.btn.btn-primary(type='submit') Submit form
+                    
                 

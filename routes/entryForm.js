@@ -1,14 +1,20 @@
 var express = require('express');
 var router = express.Router();
 
+//import groups list
+const groupsList = require('./utils/groupList.json');
+
 /* GET users listing. */
 router.post('/', function(request, response, next) {
     var concerns = request.body.concerns;
     switch (concerns) {
         case "newemployee":
             {
+
+                //response.send(groups);
                 response.render("formNewEmployee", {
-                    userid: request.session.userId
+                    userid: request.session.userId,
+                    groups: groupsList
                 });
                 break;
             }
@@ -28,5 +34,9 @@ router.post('/', function(request, response, next) {
             });
     }
 });
-
+router.get('/', function(request, response, next) {
+    response.render('entryform', {
+        userid: request.session.userId
+    });
+});
 module.exports = router;
