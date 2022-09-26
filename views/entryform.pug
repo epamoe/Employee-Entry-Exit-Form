@@ -1,60 +1,56 @@
 extends layout
   
 block content 
-  form.container(method='POST' action='/concerns')
-    section.d-flex.flex-column.align-items-center.justify-content-center.py-4
-      .container
-        .row.justify-content-center
-          .col-lg-6.col-md-6.d-flex.flex-column.align-items-center.justify-content-center
-            .d-flex.justify-content-center.py-4
-              a.logo.d-flex.align-items-center.w-auto(href='/')
-                img(src='assets/img/enko-modern-logo.png' alt='')
-                span.d-lg-block.text-success Enko Education
-            // End Logo
-            h6 Hello #{userid}, choose one case and Continue,               
-    .row.justify-content-center
-      
-      .col-lg-3.align-self-start
-        .col-md-4
-          input#validationCustom03jh.form-control(type='text' value=userid name='userid' placeholder='' required='' disabled='' hidden='')                                        
+  
+  section.d-flex.flex-column.align-items-center.justify-content-center.py-4
+    .container
+      .row.justify-content-center
+        .col-lg-6.col-md-6.d-flex.flex-column.align-items-center.justify-content-center
+          .d-flex.justify-content-center.py-4
+            a.logo.d-flex.align-items-center.w-auto(href='/')
+              img(src='assets/img/enko-modern-logo.png' alt='')
+              span.d-lg-block.text-success Enko Education
+          // End Logo
+          h6 Hello #{userid}, choose one case and Continue               
+  .row.justify-content-center
+    
+    .col-lg-3.align-self-start
+      .col-md-4
+        input#validationCustom03jh.form-control(type='text' value=userid name='userid' placeholder='' required='' disabled='' hidden='')                                        
 
-        .form-check
-          input#flexRadioDefaultNew.form-check-input(type='radio' name='concerns' value='newemployee' checked='')
+      .form-check
+        form.container(method='POST' action='/concerns')
+          input(type='text' name='concerns' value='newemployee' hidden)
           label.form-check-label(for='flexRadioDefaultNew')
-            //| Default radio
-            //a(href='/new_employee')
-            .card.mb-3
-              .card-body
-                h5.card-title A new employe
-                p.card-text.text-dark
-                  //| Before changing information on an employe, make sure you receive a formal order to proceed that way
-              //img.card-img-bottom(src='assets/img/card.jpg' alt='...')   
-      .col-lg-3.align-self-center
-        .form-check
-          input#flexRadioDefaultLeaving.form-check-input(type='radio' name='concerns' value='employeeleaving')
+            button(type='submitt')
+              .card.mb-3
+                .card-body
+                  h5.card-title Create employee
+                  //p.card-text.text-dark
+    .col-lg-3.align-self-center
+      .form-check
+        form.container(method='POST' action='/concerns')
+          input(type='text' name='concerns' value='employeeleaving' hidden)
           label.form-check-label(for='flexRadioDefaultLeaving')
-            //a(href='/employee_leaving')
-            .card.mb-3
-              .card-body
-                h5.card-title An employee leaving
-                p.card-text.text-dark
-                  //| Before removing an employee, make sure you receive a formal order to proceed that way
-              //img.card-img-bottom(src='assets/img/card.jpg' alt='...')
-      .col-lg-3.align-self-end
-        .form-check
-          input#flexRadioDefaultChanging.form-check-input(type='radio' name='concerns' value='employeechanging')
+            button(type='submitt')
+              .card.mb-3
+                .card-body
+                  h5.card-title Delete employee
+                  p.card-text.text-dark
+    .col-lg-3.align-self-end
+      .form-check
+        form.container(method='POST' action='/concerns')
+          input(type='text' name='concerns' value='employeechanging' hidden)
           label.form-check-label(for='flexRadioDefaultChanging')
-            //a(href='/employee_changing')
-            .card.mb-4
-              .card-body
-                h5.card-title An employee changing contract/position
-                p.card-text.text-dark
-                  //| Some quick example text to build on the card title and make up the bulk of the card&apos;s content.
-            //img.card-img-bottom(src='assets/img/card.jpg' alt='...')
-      section.d-flex.flex-column.align-items-center.justify-content-center.py-4                    
-        .row.justify-content-center
-        .col-lg-6.col-md-6.justify-content-center
-            .d-flex.justify-content-center.py-4
-            button.btn.btn-primary(type='submit') Continue
-                
+            button(type='submitt')
+              .card.mb-4
+                .card-body
+                  h5.card-title Modify employee
+                  p.card-text.text-dark
+    section.d-flex.flex-column.align-items-center.justify-content-center.py-4                    
+      .row.justify-content-center
+      .col-lg-6.col-md-6.justify-content-center
+          .d-flex.justify-content-center.py-4
+          //button.btn.btn-primary(type='submit') 
+              
 

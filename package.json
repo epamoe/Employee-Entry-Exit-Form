@@ -15,6 +15,7 @@
     "ejs": "^3.1.8",
     "express": "~4.16.1",
     "express-session": "^1.17.3",
+    "google-auth-library": "^8.5.2",
     "http": "^0.0.1-security",
     "http-errors": "~1.6.3",
     "mongodb": "^4.9.0",

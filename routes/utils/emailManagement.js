@@ -8,9 +8,10 @@ class Mail {
         this.HRTitle = "HR Team";
         this.HRMailAddress = "epamoe@gmail.com";
         this.HRHelpTopic = "HR form";
-        this.OnLeavingSubject = "Test - Employee leaving";
-        this.OnComingSubject = "Test - Employee coming";
-        this.OnChangingSubject = "Test - Employee changing";
+        this.OnLeavingSubject = "Employee Leaving";
+        this.OnComingSubject = "New employee creation";
+        this.OnComingSubjectEmployee = "Welcome to ENKO Education Group";
+        this.OnChangingSubject = "Employee changing";
     }
     getITTitle() { return this.ITTitle; }
     getITMailAddress() { return this.ITMailAddress; }
@@ -23,20 +24,53 @@ class Mail {
     getOnComingSubject() { return this.OnComingSubject; }
     getOnChangingSubject() { return this.OnChangingSubject; }
 
+
+    getRequesterOnCommingMessage(firstName, lastName, startDate, endDate, position) {
+        return " Hi,\n\
+            You ask an employee creation, and your request has been transmitted to HR Department and IT Department.\n\
+            You will be keep informed of the status of the request very soon.\n\
+            Below are some details about your request:\n\
+            Organization: blablabla > xxxxxx\n\
+            First Name: " + firstName + "\n\
+            Last Name: " + lastName + "\n\
+            Start Date: " + startDate + "\n\
+            End Date: " + endDate + "\n\
+            Position: " + position + "\n\n\
+            Regards\n\
+            IT Support - itsupport @enkoeducation.com\n\
+            ";
+    }
     getITOnComingMessage(ticketID, employeeID, groups, ITTools) {
-        return "Ticket number: " + ticketID + "\n" +
-            "There is a new member in our organisation. \n " +
-            "Employee ID: " + employeeID + "@enkoeducation.com : \n " +
-            "Please provide him/her acces to: \n" +
-            "The following tools: " + ITTools + "\n" +
-            "The following Goups: " + groups;
+        return "Hello\n\n\
+        Please make sure the following user is created: " + employeeID + "@enkoeducation.com \n\
+        Create an account on the following tools: " + ITTools + "n\
+        Regards\n\
+        IT Support - itsupport @enkoeducation.com ";
     }
+    getEmployeeOnComingMessage(ticketID, employeeID, groups, ITTools) {
+        return "Dear {Firstname},\n\n\
+        Welcome to the ENKO Education group.\n\
+        We are so happy to have you onboard with us, and know you will help us achieve the very high goals we have.\n\n\
+        You will receive an email to set your ENKO email.\n\n\
+        For any inquiry,\n\
+        if it is related to\n\
+        HR, then write to hrsupport@enkoeducation.com\n\
+        Payroll, then write to payroll@enkoeducation.com\n\
+        IT tools, then write to itsupport@enkoeducation.com\n\n\
+        Regards\n\
+        HR Support - hrsupport@enkoeducation.com ";
+    }
+
     getHROnComingMessage(ticketID, employeeID) {
-        return "Ticket number: " + ticketID + "\n" +
-            "There is a new member in our organisation. \n " +
-            "His/Her ENKO email is : " + employeeID + "@enkoeducation.com \n " +
-            "Would you please create his/her payspace account ?";
+        return "Dear HR team, \n\
+            There is a new employee at ENKO Education.\n\
+            A ticket Number" + ticketID + "\n\
+            is assigned to you so that you complete the new profile in Payspace.\n\
+            The ticket will provide you with all necessary information and attachment.\n\n\
+            Regards\n\
+            IT Support - itsupport@enkoeducation.com ";
     }
+
     getITOnChangingMessage(ticketID, employeeID, changes) {
         return "Ticket number: " + ticketID + "\n" +
             "There is a change in our organisation. \n Please, Give/suspend access to appropiate tools/groups if necessary:\n" +

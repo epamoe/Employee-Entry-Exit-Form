@@ -6,7 +6,7 @@ const sessions = require('express-session');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+//var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
 var formRouter = require('./routes/entryForm');
 var concernsRouterRedirection = require('./routes/entryForm');
@@ -51,8 +51,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', formRouter);
-app.use('/users', usersRouter);
+app.use('/', authRouter);
+//app.use('/', indexRouter);
 app.use('/auth/google/callback', formRouter);
 app.use('/auth', authRouter);
 app.use('/entryform', formRouter);

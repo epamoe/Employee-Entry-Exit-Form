@@ -149,42 +149,47 @@ block content
                                     #emailfeedback
                                     
                             .col-md-8
-                                label.form-label(for='validationCustom04') School / Campus / Organisation
-                                select#validationCustom04.form-control.form-select(required='' name='school' )                                    
+                                label.form-label(for='school') School / Campus / Organisation
+                                select#school.form-control.form-select(required='' name='school' onclick='groupChecker()')                                    
+                                    option(value='' disabled=''  selected='') Choose ...
                                     option(value='' disabled='') N.H
-                                    option(value='Enko Riviera' selected='') Enko Riviera                   
-                                    option(value='Enko Ouaga ') Enko Ouaga                    
-                                    option(value='Enko Bamako') Enko Bamako                 
-                                    option(value='Enko Keur Gorgui') Enko Keur Gorgui         
-                                    option(value='Enko Waca') Enko Waca                      
-                                    option(value='Enko La Gaieté') Enko La Gaieté               
-                                    option(value='Enko Bonanjo') Enko Bonanjo
+                                    option(value='ERV') Enko Riviera                   
+                                    option(value='EOG') Enko Ouaga                    
+                                    option(value='EBK') Enko Bamako                 
+                                    option(value='EKG') Enko Keur Gorgui         
+                                    option(value='EWC') Enko Waca                      
+                                    option(value='EGC-P') Enko La Gaieté Primary              
+                                    option(value='EGC-S') Enko La Gaieté Secondary
+                                    option(value='EBC') Enko Bonanjo
                                     option(value='' disabled='') S.H
-                                    option(value='Amazing Grace Private School') Amazing Grace Private School
-                                    option(value='Jacaranda Academy') Jacaranda Academy
-                                    option(value='Enko Botho') Enko Botho
-                                    option(value='Pestalozzi Education Center') Pestalozzi Education Center
-                                    option(value='Enko Riverside') Enko Riverside
-                                    option(value='Enko Sekeleka')  Enko Sekeleka
-                                    option(value='Enko Sekeleka') Enko Sekeleka
+                                    option(value='AGP') Amazing Grace Private School
+                                    option(value='EJA') Jacaranda Academy
+                                    option(value='EBT') Enko Botho
+                                    option(value='PED') Pestalozzi Education Center
+                                    option(value='EVS') Enko Riverside
+                                    option(value='ESC') Enko Sekeleka
                                     option(value='' disabled='') Central Office
-                                    option(value='Marketing Team') Marketing Team
-                                    option(value='IT Team') IT Team
-                                    option(value='Finance Team') Finance Team
-                                    option(value='Learning and Teaching Team') Learning and Teaching Team
-                                    option(value='School Ops Team') School Ops Team
+                                    option(value='MKG') Marketing Team
+                                    option(value='IT') IT Team
+                                    option(value='FI') Finance Team
+                                    option(value='L&T') Learning and Teaching Team
+                                    option(value='OPS') School Ops Team
+                                    option(value='LDS') Leadership Team
 
                                 .invalid-feedback
                                     | Please select a valid school / Campus.
                             
                             .col-md-8
                                 label.form-label(for='validationCustomPos') Position
-                                select#position.form-control.form-select(required='' name='position' value="oookkk" )                                    
+                                select#position.form-control.form-select(required='' name='position' onclick='positionChecker()' )                                    
+                                    option(value='' disabled=''  selected='') Choose ...
                                     option(value='teacher' selected='') Teacher
                                     option(value='hos' ) Head Of School
                                     option(value='mo' ) Marketing Officer
                                     option(value='pro' ) Parent Relationship Officer
+                                    option(value='hr' ) HR
                                     option(value='it' ) IT
+                                    option(value='ext' ) External
                                 .invalid-feedback 
                                     | Please provide a valid position.                 
                                 
@@ -248,14 +253,7 @@ block content
                                 input.form-control(type='text' required='' name='netsalary')
                                 .invalid-feedback
                                     | Please provide a valid salary.
-                section.d-flex.flex-column.align-items-center.justify-content-center.py-4
-                    .row.justify-content-center
-                        .col-lg-6.col-md-6.justify-content-center 
-                            #onsubmitemailfeedback
-                            .d-flex.justify-content-center.py-4
-                            button.btn.btn-primary(type='submit' ) Submit form
-                            //button#submit.btn.btn-primary(type='submit' onclick='checkProposedEmail()') Submit form
-                  
+                
                 .card(style="width: 75%")
                     .card-body.container
                         .row
@@ -265,84 +263,290 @@ block content
                             .row
                                 .col
                                     .form-check.form-switch
-                                    input#flexSwitchCheckCheckeditasana.form-check-input(type='checkbox' value='asana' name='asana')
-                                    label.form-check-label(for='flexSwitchCheckCheckeditasana') Asana
+                                    input#itasana.form-check-input(type='checkbox' value='asana' name='asana')
+                                    label.form-check-label(for='itasana') &nbsp Asana
                                 .col
                                     .form-check.form-switch
-                                    input#flexSwitchCheckCheckeditcanvas.form-check-input(type='checkbox' value='canvas' name='canvas')
-                                    label.form-check-label(for='flexSwitchCheckCheckeditcanvas') Canvas
+                                    input#itcanvas.form-check-input(type='checkbox' value='canvas' name='canvas')
+                                    label.form-check-label(for='itcanvas') &nbsp Canvas
                                 .col
                                     .form-check.form-switch
-                                    input#flexSwitchCheckCheckedit11.form-check-input(type='checkbox' value='docusign' name='docusign')
-                                    label.form-check-label(for='flexSwitchCheckCheckedit11') Docusign
+                                    input#itdocusign.form-check-input(type='checkbox' value='docusign' name='docusign')
+                                    label.form-check-label(for='itdocusign') &nbsp Docusign
                                 .col
                                     .form-check.form-switch
-                                    input#flexSwitchCheckCheckedit2.form-check-input(type='checkbox' value='edadmin' name='edadmin')
-                                    label.form-check-label(for='flexSwitchCheckCheckedit2') Ed admin
+                                    input#itedadmin.form-check-input(type='checkbox' value='edadmin' name='edadmin')
+                                    label.form-check-label(for='itedadmin') Ed admin
                             .row
                                 .col
                                     .form-check.form-switch
-                                    input#flexSwitchCheckDefaultit1.form-check-input(type='checkbox' value='gsuite' checked='' name='gsuite')
-                                    label.form-check-label(for='flexSwitchCheckDefaultit1') Google Workspace
+                                    input#itgsuite.form-check-input(type='checkbox' value='gsuite' )
+                                    label.form-check-label(for='itgsuite') &nbsp Google Workspace
                                 .col
                                     .form-check.form-switch
-                                    input#flexSwitchCheckCheckedithelpdesk.form-check-input(type='checkbox' value='helpdesk' name='helpdesk')
-                                    label.form-check-label(for='flexSwitchCheckCheckedithelpdesk') Helpdesk
+                                    input#ithelpdesk.form-check-input(type='checkbox' value='helpdesk' name='helpdesk'  )
+                                    label.form-check-label(for='ithelpdesk') &nbsp Helpdesk
                                 .col
                                     .form-check.form-switch
-                                    input#flexSwitchCheckCheckeditjazzhr.form-check-input(type='checkbox' value='jazzhr' name='jazzhr')
-                                    label.form-check-label(for='flexSwitchCheckCheckeditjazzhr') JazzHR
+                                    input#itjazzhr.form-check-input(type='checkbox' value='jazzhr' name='jazzhr' )
+                                    label.form-check-label(for='itjazzhr') &nbsp JazzHR
                                 .col
                                     .form-check.form-switch
-                                    input#flexSwitchCheckCheckeditmailchimp.form-check-input(type='checkbox' value='mailchimp' name='mailchimp')
-                                    label.form-check-label(for='flexSwitchCheckCheckeditmailchimp') Mailchimp 
+                                    input#itmailchimp.form-check-input(type='checkbox' value='mailchimp' name='mailchimp')
+                                    label.form-check-label(for='itmailchimp') &nbsp Mailchimp 
                             .row
                                 .col
                                     .form-check.form-switch
-                                    input#flexSwitchCheckCheckeditoffice365.form-check-input(type='checkbox' value='office365' name='office365')
-                                    label.form-check-label(for='flexSwitchCheckCheckeditoffice365') Office365    
+                                    input#itoffice365.form-check-input(type='checkbox' value='office365' name='office365')
+                                    label.form-check-label(for='itoffice365') &nbsp Office365    
                                 .col
                                     .form-check.form-switch
-                                    input#flexSwitchCheckCheckeditpayspace.form-check-input(type='checkbox' value='payspace' name='payspace' checked='')
-                                    label.form-check-label(for='flexSwitchCheckCheckeditpayspace') Payspace
+                                    input#itpayspace.form-check-input(type='checkbox' value='payspace' name='payspace')
+                                    label.form-check-label(for='itpayspace') &nbsp Payspace
                                 .col
                                     .form-check.form-switch
-                                    input#flexSwitchCheckCheckeditpipedrive.form-check-input(type='checkbox' value='pipedrive' name='pipedrive')
-                                    label.form-check-label(for='flexSwitchCheckCheckeditpipedrive') Pipedrive
+                                    input#itpipedrive.form-check-input(type='checkbox' value='pipedrive' name='pipedrive')
+                                    label.form-check-label(for='itpipedrive') &nbsp Pipedrive
                                 .col
                                     .form-check.form-switch
-                                    input#flexSwitchCheckCheckeditpowerbi.form-check-input(type='checkbox' value='powerbi' name='powerbi')
-                                    label.form-check-label(for='flexSwitchCheckCheckeditpowerbi') PowerBI 
+                                    input#itpowerbi.form-check-input(type='checkbox' value='powerbi' name='powerbi')
+                                    label.form-check-label(for='itpowerbi') &nbsp PowerBI 
                             .row
                                 .col
                                     .form-check.form-switch
-                                    input#flexSwitchCheckCheckeditslack.form-check-input(type='checkbox' value='slack' name='slack')
-                                    label.form-check-label(for='flexSwitchCheckCheckeditslack') Slack
+                                    input#itslack.form-check-input(type='checkbox' value='slack' name='slack' )
+                                    label.form-check-label(for='itslack') &nbsp Slack
                                 .col
                                     .form-check.form-switch
-                                    input#flexSwitchCheckCheckeditsurveymonkey.form-check-input(type='checkbox' value='surveymonkey' name='surveymonkey')
-                                    label.form-check-label(for='flexSwitchCheckCheckeditsurveymonkey') SurveyMonkey
+                                    input#itsurveymonkey.form-check-input(type='checkbox' value='surveymonkey' name='surveymonkey')
+                                    label.form-check-label(for='itsurveymonkey') &nbsp  SurveyMonkey
                                 .col
                                     .form-check.form-switch
-                                    input#flexSwitchCheckCheckeditturnitin.form-check-input(type='checkbox' value='turnitin' name='turnitin')
-                                    label.form-check-label(for='flexSwitchCheckCheckeditturnitin') Turnitin
+                                    input#itturnitin.form-check-input(type='checkbox' value='turnitin' name='turnitin')
+                                    label.form-check-label(for='itturnitin') &nbsp  Turnitin
                                 .col
-                                    |
+                                                                |
                     
                 .card(style="width: 75%")
                     .card-body.container
-                        .row
-                            h5.card-title Emails groups
-                            // General Form Elements 
-                            .col-sm
-                                -var i = 0;
-                                each group in groups.body                                    
-                                    .form-check.form-switch
-                                    #{tmp = group.name }
-                                    #{i++}
-                                    input.form-check-input#tmp(type='checkbox' value=group.name name='allteacher')
-                                    label.form-check-label(for=group.email) #{group.name}
-
-                            
-                    
-                
+                        h5.card-title Groups
+                        // Accordion without outline borders
+                        #accordionFlushExample.accordion.accordion-flush
+                            .accordion-item
+                                h2#flush-headingOne.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseOne' aria-expanded='false' aria-controls='flush-collapseOne')
+                                    | Amazing Grace Private School
+                                #flush-collapseOne.accordion-collapse.collapse(aria-labelledby='flush-headingOne' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    .container
+                                        .row
+                                            each group in groups
+                                                if (group.school=="AGP")
+                                                    .col-sm
+                                                        .form-check.form-switch
+                                                        input(id=group.mail class='school' class=group.school  type='checkbox' value=group.email name=group.email)
+                                                        label.form-check-label(for=group.mail) &nbsp 
+                                                            | #{ group.mail.toString().split('@')[0] }
+                            .accordion-item
+                                h2#flush-headingOne.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseOne' aria-expanded='false' aria-controls='flush-collapseOne')
+                                    | Enko Bamako Campus
+                                #flush-collapseOne.accordion-collapse.collapse(aria-labelledby='flush-headingOne' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    .container
+                                        .row
+                                            each group in groups
+                                                if (group.school=="EBK")
+                                                    .col-sm
+                                                        .form-check.form-switch
+                                                        input(id=group.mail class='school' class=group.school  type='checkbox' value=group.email name=group.email)
+                                                        label.form-check-label(for=group.mail) &nbsp 
+                                                            | #{ group.mail.toString().split('@')[0] }
+                            .accordion-item
+                                h2#flush-headingTwo.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
+                                    | Enko Bonanjo Campus
+                                #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    .container
+                                        .row
+                                            each group in groups
+                                                if (group.school=="EBC")
+                                                    .col-sm
+                                                        .form-check.form-switch
+                                                        input(id=group.mail class='school' class=group.school  type='checkbox' value=group.email name=group.email)
+                                                        label.form-check-label(for=group.mail) &nbsp 
+                                                            | #{ group.mail.toString().split('@')[0] }
+                            .accordion-item
+                                h2#flush-headingOne.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseOne' aria-expanded='false' aria-controls='flush-collapseOne')
+                                    | Enko Botho Campus
+                                #flush-collapseOne.accordion-collapse.collapse(aria-labelledby='flush-headingOne' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    .container
+                                        .row
+                                            each group in groups
+                                                if (group.school=="EBT")
+                                                    .col-sm
+                                                        .form-check.form-switch
+                                                        input(id=group.mail class='school' class=group.school  type='checkbox' value=group.email name=group.email)
+                                                        label.form-check-label(for=group.mail) &nbsp 
+                                                            | #{ group.mail.toString().split('@')[0] }
+                            .accordion-item
+                                h2#flush-headingTwo.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
+                                    | Enko Keur Gorgui Campus
+                                #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    .container
+                                        .row
+                                            each group in groups
+                                                if (group.school=="EKG")
+                                                    .col-sm
+                                                        .form-check.form-switch
+                                                        input(id=group.mail class='school' class=group.school  type='checkbox' value=group.email name=group.email)
+                                                        label.form-check-label(for=group.mail) &nbsp 
+                                                            | #{ group.mail.toString().split('@')[0] }
+                            .accordion-item
+                                h2#flush-headingOne.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseOne' aria-expanded='false' aria-controls='flush-collapseOne')
+                                    | Enko La Gaiete Campus
+                                #flush-collapseOne.accordion-collapse.collapse(aria-labelledby='flush-headingOne' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    .container
+                                        .row
+                                            each group in groups
+                                                if (group.school=="EGC")
+                                                    .col-sm
+                                                        .form-check.form-switch
+                                                        input(id=group.mail class='school' class=group.school  type='checkbox' value=group.email name=group.email)
+                                                        label.form-check-label(for=group.mail) &nbsp 
+                                                            | #{ group.mail.toString().split('@')[0] }
+                            .accordion-item
+                                h2#flush-headingTwo.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
+                                    | Enko Ouaga Campus
+                                #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    .container
+                                        .row
+                                            each group in groups
+                                                if (group.school=="EOG")
+                                                    .col-sm
+                                                        .form-check.form-switch
+                                                        input(id=group.mail class='school' class=group.school  type='checkbox' value=group.email name=group.email)
+                                                        label.form-check-label(for=group.mail) &nbsp 
+                                                            | #{ group.mail.toString().split('@')[0] }
+                            .accordion-item
+                                h2#flush-headingOne.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseOne' aria-expanded='false' aria-controls='flush-collapseOne')
+                                    | Enko Riverside Campus
+                                #flush-collapseOne.accordion-collapse.collapse(aria-labelledby='flush-headingOne' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    .container
+                                        .row
+                                            each group in groups
+                                                if (group.school=="EVS")
+                                                    .col-sm
+                                                        .form-check.form-switch
+                                                        input(id=group.mail class='school' class=group.school  type='checkbox' value=group.email name=group.email)
+                                                        label.form-check-label(for=group.mail) &nbsp 
+                                                            | #{ group.mail.toString().split('@')[0] }
+                            .accordion-item
+                                h2#flush-headingTwo.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
+                                    | Enko Riviera Campus
+                                #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    .container
+                                        .row
+                                            each group in groups
+                                                if (group.school=="ERV")
+                                                    .col-sm
+                                                        .form-check.form-switch
+                                                        input(id=group.mail class='school' class=group.school type='checkbox' value=group.email name=group.email)
+                                                        label.form-check-label(for=group.mail) &nbsp 
+                                                            | #{ group.mail.toString().split('@')[0] }
+                            .accordion-item
+                                h2#flush-headingOne.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseOne' aria-expanded='false' aria-controls='flush-collapseOne')
+                                    | Enko Sekeleka Campus
+                                #flush-collapseOne.accordion-collapse.collapse(aria-labelledby='flush-headingOne' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    .container
+                                        .row
+                                            each group in groups
+                                                if (group.school=="ESC")
+                                                    .col-sm
+                                                        .form-check.form-switch
+                                                        input(id=group.mail class='school' class=group.school  type='checkbox' value=group.email name=group.email)
+                                                        label.form-check-label(for=group.mail) &nbsp 
+                                                            | #{ group.mail.toString().split('@')[0] }
+                            .accordion-item
+                                h2#flush-headingTwo.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
+                                    | Enko Waca Campus
+                                #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    .container
+                                        .row
+                                            each group in groups
+                                                if (group.school=="EWC")
+                                                    .col-sm
+                                                        .form-check.form-switch
+                                                        input(id=group.mail class='school' class=group.school  type='checkbox' value=group.email name=group.email)
+                                                        label.form-check-label(for=group.mail) &nbsp 
+                                                            | #{ group.mail.toString().split('@')[0] }
+                            .accordion-item
+                                h2#flush-headingTwo.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
+                                    | Jacaranda Academy
+                                #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    .container
+                                        .row
+                                            each group in groups
+                                                if (group.school=="EJA")
+                                                    .col-sm
+                                                        .form-check.form-switch
+                                                        input(id=group.mail class='school' class=group.school  type='checkbox' value=group.email name=group.email)
+                                                        label.form-check-label(for=group.mail) &nbsp 
+                                                            | #{ group.mail.toString().split('@')[0] }
+                            .accordion-item
+                                h2#flush-headingTwo.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
+                                    | Pestalozzi Education Center
+                                #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    .container
+                                        .row
+                                            each group in groups
+                                                if (group.school=="PED")
+                                                    .col-sm
+                                                        .form-check.form-switch
+                                                        input(id=group.mail class='school' class=group.school  type='checkbox' value=group.email name=group.email)
+                                                        label.form-check-label(for=group.mail) &nbsp 
+                                                            | #{ group.mail.toString().split('@')[0] }
+                            .accordion-item
+                                h2#flush-headingTwo.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
+                                    | Common groups
+                                #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    .container
+                                        .row
+                                            each group in groups
+                                                if (group.school=="ALL")
+                                                    .col-sm
+                                                        .form-check.form-switch
+                                                        input(id=group.mail class='school' class=group.school  type='checkbox' value=group.email name=group.email checked='')
+                                                        label.form-check-label(for=group.mail) &nbsp 
+                                                            | #{ group.mail.toString().split('@')[0] }
+    section.d-flex.flex-column.align-items-center.justify-content-center
+        .row.justify-content-center
+            .col-lg-12.justify-content-center 
+                #onsubmitemailfeedback
+                .d-flex.justify-content-center.py-4
+                    button.btn.btn-primary(type='submit' onclick='checkProposedEmail()' ) Submit form
+                //button#submit.btn.btn-primary(type='submit' onclick='checkProposedEmail()') Submit form
+                  

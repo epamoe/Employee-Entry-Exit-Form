@@ -11,18 +11,40 @@ block content
                 img(src='assets/img/enko-modern-logo.png' alt='')
                 span.d-lg-block.text-success Enko Education
             // End Logo
-            .card.mb-3
+            .card.mb-3(style="width: 80%")
               .card-body
-                .pt-4.pb-2
-                  h5.card-title.text-center.pb-0.fs-4.text-dark Login to Your Account
-                  p.text-center.small Enter your username &amp; password to login
-                form.row.g-3.needs-validation(action='/auth' method='post' novalidate='')
-                  .col-12
-                    label.form-label(for='yourUsername') Username
-                    .input-group.has-validationk
-                      .input-group.mb-3
-                        input.form-control(type='text' name='email' pattern="[A-Za-z]{1,}.[A-Za-z]{1,}" minLength="3" placeholder="firstname.lastname" aria-label="Recipient's username" aria-describedby='basic-addon2' required='' )
-                        span#basic-addon2.input-group-text @enkoeducation.com
-                        .invalid-feedback please provide your Firstname and lastname separated with a point
-                    button.btn.btn-primary.w-100(type='submit') Login
-                  
+                  .pt-4.pb-2
+                      h5.card-title.text-center.pb-0.fs-4.text-dark One stop employee service
+                      p.text-center.small Login with your ENKO Education account
+                      .col-4.text-center.d-flex.p-2
+                          .input-group.has-validation
+                          .input-group.mb-3 
+                          .g-signin2(data-onsuccess='onSignIn' data-theme='dark')
+              script.
+                function onSignIn(googleUser) {
+                // Useful data for your client-side scripts:
+                //var profile = googleUser.getBasicProfile();
+                //console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+                //console.log('Full Name: ' + profile.getName());
+                //console.log('Given Name: ' + profile.getGivenName());
+                //console.log('Family Name: ' + profile.getFamilyName());
+                //console.log("Image URL: " + profile.getImageUrl());
+                //console.log("Email: " + profile.getEmail());
+                // The ID token you need to pass to your backend:
+                var id_token = googleUser.getAuthResponse().id_token;
+                console.log("ID Token: " + id_token);
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/entryForm');
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.onload = function() {
+                    console.log('Signed in as: ' + xhr.responseText);
+                    if(xhr.responseText == 'success'){
+                        signOut();
+                        location.assign('/profile')
+                    }
+                };
+                xhr.send(JSON.stringify({token : id_token}));
+                }
+
+                                      
+                                
