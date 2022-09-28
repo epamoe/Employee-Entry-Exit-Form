@@ -1,8 +1,6 @@
 # Ignorer les modules nodesJs
 ./nodes_modules
 
-# Ignore les logfiles
-*.log
-
 # Ignorer les fichiers d connexion à la BD
-./routes/utilsFunctions/dbConnection.js
+./routes/utils/dbConnection.js
+
