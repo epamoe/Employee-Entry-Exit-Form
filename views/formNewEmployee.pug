@@ -157,7 +157,8 @@ block content
                                     option(value='Enko Bamako') Enko Bamako                 
                                     option(value='Enko Keur Gorgui') Enko Keur Gorgui         
                                     option(value='Enko Waca') Enko Waca                      
-                                    option(value='Enko La Gaieté') Enko La Gaieté               
+                                    option(value='Enko La Gaieté Primary') Enko La Gaieté Primary              
+                                    option(value='Enko La Gaieté Secondary') Enko La Gaieté Secondary
                                     option(value='Enko Bonanjo') Enko Bonanjo
                                     option(value='' disabled='') S.H
                                     option(value='Amazing Grace Private School') Amazing Grace Private School
@@ -165,7 +166,6 @@ block content
                                     option(value='Enko Botho') Enko Botho
                                     option(value='Pestalozzi Education Center') Pestalozzi Education Center
                                     option(value='Enko Riverside') Enko Riverside
-                                    option(value='Enko Sekeleka')  Enko Sekeleka
                                     option(value='Enko Sekeleka') Enko Sekeleka
                                     option(value='' disabled='') Central Office
                                     option(value='Marketing Team') Marketing Team
@@ -173,6 +173,7 @@ block content
                                     option(value='Finance Team') Finance Team
                                     option(value='Learning and Teaching Team') Learning and Teaching Team
                                     option(value='School Ops Team') School Ops Team
+                                    option(value='Leadership Team') Leadership Team
 
                                 .invalid-feedback
                                     | Please select a valid school / Campus.
@@ -331,18 +332,105 @@ block content
                     
                 .card(style="width: 75%")
                     .card-body.container
-                        .row
-                            h5.card-title Emails groups
-                            // General Form Elements 
-                            .col-sm
-                                -var i = 0;
-                                each group in groups.body                                    
-                                    .form-check.form-switch
-                                    #{tmp = group.name }
-                                    #{i++}
-                                    input.form-check-input#tmp(type='checkbox' value=group.name name='allteacher')
-                                    label.form-check-label(for=group.email) #{group.name}
-
+                        h5.card-title Groups
+                        // Accordion without outline borders
+                        #accordionFlushExample.accordion.accordion-flush
+                            .accordion-item
+                                h2#flush-headingOne.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseOne' aria-expanded='false' aria-controls='flush-collapseOne')
+                                    | Amazing Grace Private School
+                                #flush-collapseOne.accordion-collapse.collapse(aria-labelledby='flush-headingOne' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    | mmmmmmmmmmm
+                            .accordion-item
+                                h2#flush-headingTwo.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
+                                    | Amazing Grace Private School
+                                #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    | bbbbbbbbbbbbbbbbbbbbbbb
+                            .accordion-item
+                                h2#flush-headingOne.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseOne' aria-expanded='false' aria-controls='flush-collapseOne')
+                                    | Enko Bamako Campus
+                                #flush-collapseOne.accordion-collapse.collapse(aria-labelledby='flush-headingOne' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    | mmmmmmmmmmm
+                            .accordion-item
+                                h2#flush-headingTwo.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
+                                    | Enko Bonanjo Campus
+                                #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    | bbbbbbbbbbbbbbbbbbbbbbb
+                            .accordion-item
+                                h2#flush-headingOne.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseOne' aria-expanded='false' aria-controls='flush-collapseOne')
+                                    | Enko Botho Campus
+                                #flush-collapseOne.accordion-collapse.collapse(aria-labelledby='flush-headingOne' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    | mmmmmmmmmmm
+                            .accordion-item
+                                h2#flush-headingTwo.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
+                                    | Enko Keur Gorgui Campus
+                                #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    | bbbbbbbbbbbbbbbbbbbbbbb
+                            .accordion-item
+                                h2#flush-headingOne.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseOne' aria-expanded='false' aria-controls='flush-collapseOne')
+                                    | Enko La Gaiete Campus
+                                #flush-collapseOne.accordion-collapse.collapse(aria-labelledby='flush-headingOne' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    | mmmmmmmmmmm
+                            .accordion-item
+                                h2#flush-headingTwo.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
+                                    | Enko Ouaga Campus
+                                #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    | bbbbbbbbbbbbbbbbbbbbbbb
+                            .accordion-item
+                                h2#flush-headingOne.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseOne' aria-expanded='false' aria-controls='flush-collapseOne')
+                                    | Enko Riverside Campus
+                                #flush-collapseOne.accordion-collapse.collapse(aria-labelledby='flush-headingOne' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    | mmmmmmmmmmm
+                            .accordion-item
+                                h2#flush-headingTwo.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
+                                    | Enko Riviera Campus
+                                #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    | bbbbbbbbbbbbbbbbbbbbbbb
+                            .accordion-item
+                                h2#flush-headingOne.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseOne' aria-expanded='false' aria-controls='flush-collapseOne')
+                                    | Enko Sekeleka Campus
+                                #flush-collapseOne.accordion-collapse.collapse(aria-labelledby='flush-headingOne' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    | mmmmmmmmmmm
+                            .accordion-item
+                                h2#flush-headingTwo.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
+                                    | Enko Waca Campus
+                                #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    | bbbbbbbbbbbbbbbbbbbbbbb
+                            .accordion-item
+                                h2#flush-headingTwo.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
+                                    | Jacaranda Academy
+                                #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    | bbbbbbbbbbbbbbbbbbbbbbb
+                            .accordion-item
+                                h2#flush-headingTwo.accordion-header
+                                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
+                                    | Pestalozzi Education Center
+                                #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
+                                .accordion-body
+                                    | bbbbbbbbbbbbbbbbbbbbbbb
                             
-                    
-                

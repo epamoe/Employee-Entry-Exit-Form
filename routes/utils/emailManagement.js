@@ -8,9 +8,9 @@ class Mail {
         this.HRTitle = "HR Team";
         this.HRMailAddress = "epamoe@gmail.com";
         this.HRHelpTopic = "HR form";
-        this.OnLeavingSubject = "Test - Employee leaving";
-        this.OnComingSubject = "Test - Employee coming";
-        this.OnChangingSubject = "Test - Employee changing";
+        this.OnLeavingSubject = "Employee Leaving";
+        this.OnComingSubject = "New employee creation";
+        this.OnChangingSubject = "Employee changing";
     }
     getITTitle() { return this.ITTitle; }
     getITMailAddress() { return this.ITMailAddress; }
@@ -24,13 +24,31 @@ class Mail {
     getOnChangingSubject() { return this.OnChangingSubject; }
 
     getITOnComingMessage(ticketID, employeeID, groups, ITTools) {
-        return "Ticket number: " + ticketID + "\n" +
-            "There is a new member in our organisation. \n " +
-            "Employee ID: " + employeeID + "@enkoeducation.com : \n " +
-            "Please provide him/her acces to: \n" +
-            "The following tools: " + ITTools + "\n" +
-            "The following Goups: " + groups;
+            return "Hello\n\n\
+            Please make sure the following user is created: \n\
+            Create an account on the following tools: " + ITTools + "n\
+            Regards\n\
+            IT Support - itsupport @enkoeducation.com ";
+        }
+        /*
+              
+            */
+    getRequesterOnCommingMessage(firstName, lastName, startDate, endDate, position) {
+        return " Hi,\n\
+            You ask an employee creation, and your request has been transmitted to HR Department and IT Department.\n\
+            You will be keep informed of the status of the request very soon.\n\
+            Below are some details about your request:\n\
+            Organization: blablabla > xxxxxx\n\
+            First Name: " + firstName + "\n\
+            Last Name: " + lastName + "\n\
+            Start Date: " + startDate + "\n\
+            End Date: " + endDate + "\n\
+            Position: " + position + "\n\n\
+            Regards\n\
+            IT Support - itsupport @enkoeducation.com\n\
+            ";
     }
+
     getHROnComingMessage(ticketID, employeeID) {
         return "Ticket number: " + ticketID + "\n" +
             "There is a new member in our organisation. \n " +
