@@ -21,7 +21,7 @@ router.post('/', function(request, response, next) {
         data.gsuite, data.edadmin, data.payspace,
         data.turnitin, data.canvas, data.pipedrive, data.docusign,
         data.slack, data.helpdesk, data.jazzhr, data.asana, data.mailchimp,
-        data.surveymonkey, data.powerbi, data.office365
+        data.surveymonkey, data.powerbi, data.office365, data.zoom
     ];
     it_tools = it_tools.filter(n => n); //remove null and undefined values
     var groups = [data.allstaff, data.allteacher, data.allrh];
@@ -60,7 +60,9 @@ router.post('/', function(request, response, next) {
     var HRMailLog = HREmail.sendMail(HREmail.getHRMailAddress(), HREmail.getOnComingSubject(), HREmail.getHROnComingMessage(HRticket.getTicketID(), data.suggestedemail));
 
 
-    response.render("entryform");
+    response.render("entryform", {
+        session: request.session
+    });
 });
 
 module.exports = router;

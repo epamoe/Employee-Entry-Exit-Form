@@ -17,7 +17,7 @@ block content
                 span.d-lg-block.text-success Enko Education
             // End Logo
             .col-lg-8.col-md-6.d-flex.flex-column.align-items-center.justify-content-center
-                h6 Hello #{userid}, You are about to create a new user
+                h6 Hello #{session.username}, You are about to create a new user
     .row.lg-6.justify-content-center
         .row-lg-6.justify-content-center
             form.row.g-3.needs-validation.justify-content-center(novalidate='' action='/add_employee' method='post')
@@ -25,7 +25,7 @@ block content
                     
                     .card-body
                         //gathering current user from session
-                        input.form-control(type='hidden' name='userid' required='' value=userid)
+                        input.form-control(type='hidden' name='userid' required='' value=session.email)
                         h5.card-title General informations about the person
                         // General Form Elements                        
                         .col-md-4
@@ -181,17 +181,18 @@ block content
                             
                             .col-md-8
                                 label.form-label(for='validationCustomPos') Position
-                                select#position.form-control.form-select(required='' name='position' onclick='positionChecker()' )                                    
+                                select#position.form-control.form-select(required='' name='position' onclick='toolChecker()' )                               
                                     option(value='' disabled=''  selected='') Choose ...
-                                    option(value='teacher' selected='') Teacher
+                                    option(value='teacher' ) Teacher
                                     option(value='hos' ) Head Of School
                                     option(value='mo' ) Marketing Officer
-                                    option(value='pro' ) Parent Relationship Officer
+                                    option(value='pro' ) Parent Relations Officer
                                     option(value='hr' ) HR
                                     option(value='it' ) IT
+                                    option(value='finance' ) Finance
                                     option(value='ext' ) External
                                 .invalid-feedback 
-                                    | Please provide a valid position.                 
+                                    | Please provide a valid position.
                                 
                             .col-md-8
                                 label.form-label(for='validationCustom0333') Subject (If teacher)
@@ -263,69 +264,71 @@ block content
                             .row
                                 .col
                                     .form-check.form-switch
-                                    input#itasana.form-check-input(type='checkbox' value='asana' name='asana')
+                                    input#itasana.position.form-check-input(type='checkbox' value='asana' name='asana')
                                     label.form-check-label(for='itasana') &nbsp Asana
                                 .col
                                     .form-check.form-switch
-                                    input#itcanvas.form-check-input(type='checkbox' value='canvas' name='canvas')
+                                    input#itcanvas.position.form-check-input(type='checkbox' value='canvas' name='canvas')
                                     label.form-check-label(for='itcanvas') &nbsp Canvas
                                 .col
                                     .form-check.form-switch
-                                    input#itdocusign.form-check-input(type='checkbox' value='docusign' name='docusign')
+                                    input#itdocusign.position.form-check-input(type='checkbox' value='docusign' name='docusign')
                                     label.form-check-label(for='itdocusign') &nbsp Docusign
                                 .col
                                     .form-check.form-switch
-                                    input#itedadmin.form-check-input(type='checkbox' value='edadmin' name='edadmin')
+                                    input#itedadmin.position.form-check-input(type='checkbox' value='edadmin' name='edadmin')
                                     label.form-check-label(for='itedadmin') Ed admin
                             .row
                                 .col
                                     .form-check.form-switch
-                                    input#itgsuite.form-check-input(type='checkbox' value='gsuite' )
+                                    input#itgsuite.position.form-check-input(type='checkbox' value='gsuite' )
                                     label.form-check-label(for='itgsuite') &nbsp Google Workspace
                                 .col
                                     .form-check.form-switch
-                                    input#ithelpdesk.form-check-input(type='checkbox' value='helpdesk' name='helpdesk'  )
+                                    input#ithelpdesk.position.form-check-input(type='checkbox' value='helpdesk' name='helpdesk'  )
                                     label.form-check-label(for='ithelpdesk') &nbsp Helpdesk
                                 .col
                                     .form-check.form-switch
-                                    input#itjazzhr.form-check-input(type='checkbox' value='jazzhr' name='jazzhr' )
+                                    input#itjazzhr.position.form-check-input(type='checkbox' value='jazzhr' name='jazzhr' )
                                     label.form-check-label(for='itjazzhr') &nbsp JazzHR
                                 .col
                                     .form-check.form-switch
-                                    input#itmailchimp.form-check-input(type='checkbox' value='mailchimp' name='mailchimp')
+                                    input#itmailchimp.position.form-check-input(type='checkbox' value='mailchimp' name='mailchimp')
                                     label.form-check-label(for='itmailchimp') &nbsp Mailchimp 
                             .row
                                 .col
                                     .form-check.form-switch
-                                    input#itoffice365.form-check-input(type='checkbox' value='office365' name='office365')
+                                    input#itoffice365.position.form-check-input(type='checkbox' value='office365' name='office365')
                                     label.form-check-label(for='itoffice365') &nbsp Office365    
                                 .col
                                     .form-check.form-switch
-                                    input#itpayspace.form-check-input(type='checkbox' value='payspace' name='payspace')
+                                    input#itpayspace.position.form-check-input(type='checkbox' value='payspace' name='payspace')
                                     label.form-check-label(for='itpayspace') &nbsp Payspace
                                 .col
                                     .form-check.form-switch
-                                    input#itpipedrive.form-check-input(type='checkbox' value='pipedrive' name='pipedrive')
+                                    input#itpipedrive.position.form-check-input(type='checkbox' value='pipedrive' name='pipedrive')
                                     label.form-check-label(for='itpipedrive') &nbsp Pipedrive
                                 .col
                                     .form-check.form-switch
-                                    input#itpowerbi.form-check-input(type='checkbox' value='powerbi' name='powerbi')
+                                    input#itpowerbi.position.form-check-input(type='checkbox' value='powerbi' name='powerbi')
                                     label.form-check-label(for='itpowerbi') &nbsp PowerBI 
                             .row
                                 .col
                                     .form-check.form-switch
-                                    input#itslack.form-check-input(type='checkbox' value='slack' name='slack' )
+                                    input#itslack.position.form-check-input(type='checkbox' value='slack' name='slack' )
                                     label.form-check-label(for='itslack') &nbsp Slack
                                 .col
                                     .form-check.form-switch
-                                    input#itsurveymonkey.form-check-input(type='checkbox' value='surveymonkey' name='surveymonkey')
+                                    input#itsurveymonkey.position.form-check-input(type='checkbox' value='surveymonkey' name='surveymonkey')
                                     label.form-check-label(for='itsurveymonkey') &nbsp  SurveyMonkey
                                 .col
                                     .form-check.form-switch
-                                    input#itturnitin.form-check-input(type='checkbox' value='turnitin' name='turnitin')
+                                    input#itturnitin.position.form-check-input(type='checkbox' value='turnitin' name='turnitin')
                                     label.form-check-label(for='itturnitin') &nbsp  Turnitin
                                 .col
-                                                                |
+                                    .form-check.form-switch
+                                    input#itzoom.position.form-check-input(type='checkbox' value='zoom' name='zoom')
+                                    label.form-check-label(for='itzoom') &nbsp  Zoom
                     
                 .card(style="width: 75%")
                     .card-body.container
@@ -341,10 +344,10 @@ block content
                                     .container
                                         .row
                                             each group in groups
-                                                if (group.school=="AGP")
+                                                if (group.school_code=="AGP")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school  type='checkbox' value=group.email name=group.email)
+                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.email name=group.email)
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
                             .accordion-item
@@ -356,10 +359,10 @@ block content
                                     .container
                                         .row
                                             each group in groups
-                                                if (group.school=="EBK")
+                                                if (group.school_code=="EBK")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school  type='checkbox' value=group.email name=group.email)
+                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.email name=group.email)
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
                             .accordion-item
@@ -371,10 +374,10 @@ block content
                                     .container
                                         .row
                                             each group in groups
-                                                if (group.school=="EBC")
+                                                if (group.school_code=="EBC")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school  type='checkbox' value=group.email name=group.email)
+                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.email name=group.email)
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
                             .accordion-item
@@ -386,10 +389,10 @@ block content
                                     .container
                                         .row
                                             each group in groups
-                                                if (group.school=="EBT")
+                                                if (group.school_code=="EBT")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school  type='checkbox' value=group.email name=group.email)
+                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.email name=group.email)
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
                             .accordion-item
@@ -401,10 +404,10 @@ block content
                                     .container
                                         .row
                                             each group in groups
-                                                if (group.school=="EKG")
+                                                if (group.school_code=="EKG")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school  type='checkbox' value=group.email name=group.email)
+                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.email name=group.email)
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
                             .accordion-item
@@ -416,10 +419,10 @@ block content
                                     .container
                                         .row
                                             each group in groups
-                                                if (group.school=="EGC")
+                                                if (group.school_code=="EGC")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school  type='checkbox' value=group.email name=group.email)
+                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.email name=group.email)
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
                             .accordion-item
@@ -431,10 +434,10 @@ block content
                                     .container
                                         .row
                                             each group in groups
-                                                if (group.school=="EOG")
+                                                if (group.school_code=="EOG")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school  type='checkbox' value=group.email name=group.email)
+                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.email name=group.email)
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
                             .accordion-item
@@ -446,10 +449,10 @@ block content
                                     .container
                                         .row
                                             each group in groups
-                                                if (group.school=="EVS")
+                                                if (group.school_code=="EVS")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school  type='checkbox' value=group.email name=group.email)
+                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.email name=group.email)
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
                             .accordion-item
@@ -461,10 +464,10 @@ block content
                                     .container
                                         .row
                                             each group in groups
-                                                if (group.school=="ERV")
+                                                if (group.school_code=="ERV")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school type='checkbox' value=group.email name=group.email)
+                                                        input(id=group.mail class='school' class=group.school_code type='checkbox' value=group.email name=group.email)
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
                             .accordion-item
@@ -476,10 +479,10 @@ block content
                                     .container
                                         .row
                                             each group in groups
-                                                if (group.school=="ESC")
+                                                if (group.school_code=="ESC")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school  type='checkbox' value=group.email name=group.email)
+                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.email name=group.email)
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
                             .accordion-item
@@ -491,10 +494,10 @@ block content
                                     .container
                                         .row
                                             each group in groups
-                                                if (group.school=="EWC")
+                                                if (group.school_code=="EWC")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school  type='checkbox' value=group.email name=group.email)
+                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.email name=group.email)
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
                             .accordion-item
@@ -506,10 +509,10 @@ block content
                                     .container
                                         .row
                                             each group in groups
-                                                if (group.school=="EJA")
+                                                if (group.school_code=="EJA")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school  type='checkbox' value=group.email name=group.email)
+                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.email name=group.email)
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
                             .accordion-item
@@ -521,10 +524,10 @@ block content
                                     .container
                                         .row
                                             each group in groups
-                                                if (group.school=="PED")
+                                                if (group.school_code=="PED")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school  type='checkbox' value=group.email name=group.email)
+                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.email name=group.email)
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
                             .accordion-item
@@ -536,10 +539,10 @@ block content
                                     .container
                                         .row
                                             each group in groups
-                                                if (group.school=="ALL")
+                                                if (group.school_code=="ALL")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school  type='checkbox' value=group.email name=group.email checked='')
+                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.email name=group.email checked='')
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
     section.d-flex.flex-column.align-items-center.justify-content-center

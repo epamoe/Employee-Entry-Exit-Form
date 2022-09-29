@@ -11,15 +11,14 @@ block content
               img(src='assets/img/enko-modern-logo.png' alt='')
               span.d-lg-block.text-success Enko Education
           // End Logo
-          h6 Hello #{userid}, choose one case and Continue               
+          h6 Hello ### choose one case and Continue               
   .row.justify-content-center
     
-    .col-lg-3.align-self-start
-      .col-md-4
-        input#validationCustom03jh.form-control(type='text' value=userid name='userid' placeholder='' required='' disabled='' hidden='')                                        
-
+    .col-lg-3.align-self-start      
       .form-check
         form.container(method='POST' action='/concerns')
+          //gathering current user from session
+          input.form-control(type='hidden' name='session' required='' value=session)
           input(type='text' name='concerns' value='newemployee' hidden)
           label.form-check-label(for='flexRadioDefaultNew')
             button(type='submitt')
@@ -30,6 +29,8 @@ block content
     .col-lg-3.align-self-center
       .form-check
         form.container(method='POST' action='/concerns')
+          //gathering current user from session
+          input.form-control(type='hidden' name='session' required='' value=session)
           input(type='text' name='concerns' value='employeeleaving' hidden)
           label.form-check-label(for='flexRadioDefaultLeaving')
             button(type='submitt')
@@ -40,6 +41,7 @@ block content
     .col-lg-3.align-self-end
       .form-check
         form.container(method='POST' action='/concerns')
+          input.form-control(type='hidden' name='session' required='' value=session)
           input(type='text' name='concerns' value='employeechanging' hidden)
           label.form-check-label(for='flexRadioDefaultChanging')
             button(type='submitt')

@@ -78,6 +78,8 @@ router.post('/', function(request, response, next) {
     let HRticket = new ticketMgmt(HREmail.getHRTitle(), HREmail.getHRMailAddress(), HREmail.getOnChangingSubject(), HREmail.getHROnChangingMessage("#", data.employeeid, changeString), HREmail.getHRHelpTopic());
     var HRMailLog = HREmail.sendMail(HREmail.getHRMailAddress(), HREmail.getOnChangingSubject(), HREmail.getHROnChangingMessage(HRticket.getTicketID(), data.employeeid, changeString));
 
-    response.render("entryform");
+    response.render("entryform", {
+        session: request.session
+    });
 });
 module.exports = router;

@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-//import groups list
-//const groupsList = require('./utils/groupList.json');
 
 //import group data from BD
 const mysqlCnx = require('./utils/dbConnection.js');
@@ -10,46 +8,44 @@ const mysqlCnx = require('./utils/dbConnection.js');
 
 /* GET users listing. */
 router.post('/', function(request, response, next) {
-    let cnx1 = new mysqlCnx();
-    //var groups = "###";
-    //let result = [];
     var concerns = request.body.concerns;
     switch (concerns) {
         case "newemployee":
-            {
-                cnx1.connection.query("SELECT * FROM `Enko_groups` ORDER BY mail desc ",
-                    function(err, rows) {
-                        if (err) {
-                            console.log('error', err)
-
-                        } else {
-                            response.render('formNewEmployee', {
-                                userid: request.session.userId,
-                                groups: rows
-                            })
-                        }
+            let groups;
+            let cnx = new mysqlCnx();
+            var groupQuery = "SELECT * FROM Enko_groups WHERE `important`=1";
+            var accessQuerry = "SELECT * FROM Enko_tool_access ";
+            cnx.connection.query(groupQuery, function(err, resultGroup, fields) {
+                if (err) throw err;
+                cnx.connection.query(accessQuerry, function(err, resultAccess, fields) {
+                    if (err) throw err;
+                    response.render("formNewEmployee", {
+                        //userid: request.session.userId
+                        groups: Object.values(JSON.parse(JSON.stringify(resultGroup))),
+                        access: Object.values(JSON.parse(JSON.stringify(resultAccess))),
+                        session: request.session
                     });
-                break;
-            }
-        case "employeeleaving":
-            response.render("formEmployeeLeaving", {
-                userid: request.session.userId
+                });
             });
+            break;
+
+        case "employeeleaving":
+            response.send(request.session);
             break;
         case "employeechanging":
             response.render("formEmployeeChanging", {
-                userid: request.session.userId
+                session: request.session
             });
             break;
         default:
             response.render('entryform', {
-                userid: request.session.userId
+                session: request.session
             });
     }
 });
 router.get('/', function(request, response, next) {
     response.render('entryform', {
-        userid: request.session.userId
+        session: request.session
     });
 });
 module.exports = router;

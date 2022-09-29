@@ -13,22 +13,22 @@ function checkProposedEmail() {
     ];
 
     // Displaying the value
-    var outputMessage = "";
-    var onsubmitMessage = "Please, check the proposed email field";
+    var outputMessage = "&nbsp ";
+    var onsubmitMessage = "&nbsp Please, check the proposed email field";
     document.getElementById("emailfeedback").style.color = "#dc3545";
     document.getElementById("onsubmitemailfeedback").style.color = "#dc3545";
     if (inputEmail.length <= 3) {
-        outputMessage = "Wrong length";
+        outputMessage += "Wrong length";
     } else if (inputEmail.includes("@")) {
-        outputMessage = "Wrong! Just type the prefix";
+        outputMessage += "Wrong! Just type the prefix";
     } else if (emailList.includes(inputEmail + "@enkoeducation.com")) {
-        outputMessage = "This email already exist";
+        outputMessage += "This email already exist";
     } else if (!inputEmail.includes(".")) {
-        outputMessage = "Wrong format; must be FristName.LastName";
+        outputMessage += "Wrong format; must be FristName.LastName";
     } else {
-        outputMessage = "Good";
+        outputMessage += "Good";
         document.getElementById("emailfeedback").style.color = "green";
-        onsubmitMessage = ""
+        onsubmitMessage += ""
     }
 
     //alert(outputMessage);
@@ -37,20 +37,6 @@ function checkProposedEmail() {
 
 }
 
-
-function onSignIn(googleUser) {
-    // Useful data for your client-side scripts:
-    var profile = googleUser.getBasicProfile();
-    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-    console.log('Full Name: ' + profile.getName());
-    console.log('Given Name: ' + profile.getGivenName());
-    console.log('Family Name: ' + profile.getFamilyName());
-    console.log("Image URL: " + profile.getImageUrl());
-    console.log("Email: " + profile.getEmail());
-    // The ID token you need to pass to your backend:
-    var id_token = googleUser.getAuthResponse().id_token;
-    console.log("ID Token: " + id_token);
-}
 
 function check(elementId) {
     document.getElementById(elementId).checked = true;
@@ -76,33 +62,58 @@ function unCheckAllItTools() {
 }
 
 
-function positionChecker() {
+function toolChecker() {
     var position = document.getElementById('position');
     var positionValue = position.options[position.selectedIndex].value;
     unCheckAllItTools();
     switch (positionValue) {
-        case "hos":
-            check("itpowerbi");
-            check("itgsuit");
+        case "finance":
+            check("itgsuite");
+            check("itpayspace");
+            check("itslack");
             break;
-        case "mo":
+        case "it":
+            check("itasana");
             check("itdocusign");
-            break;
-        case "pro":
-            check("itpowerbi");
+            check("itgsuite");
+            check("itjazzhr");
+            check("itpayspace");
+            check("itslack");
+            check("itzoom");
             break;
         case "hr":
             check("ithelpdesk");
-            break;
-        case "it":
-            check("itpowerbi");
             check("ithelpdesk");
-            check("itoffice365");
+            check("ithelpdesk");
+            check("ithelpdesk");
+            break;
+        case "mo":
+            check("itedAdmin");
+            check("itgsuite");
+            check("itmailchimp");
+            check("itpayspace");
+            check("itpipedrive");
+            check("itslack");
+            check("itsurveymonkey");
+            break;
+        case "hos":
+            check("itcanvas");
+            check("itedAdmin");
+            check("itgsuite");
+            check("itpayspace");
+            check("itturnitin");
+            break;
+        case "pro":
+            check("itedadmin");
+            check("itmailchimp");
+            check("itpayspace");
+            check("itpowerbi");
+            check("itsurveymonkey");
             break;
         case "ext":
-            check("itdocusign");
+            check("itgsuit");
+            check("itpayspace");
             break;
-
         default:
             check("");
     }

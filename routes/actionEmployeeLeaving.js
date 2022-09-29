@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, 'static')));
 router.post('/', function(request, response, next) {
 
     var data = request.body;
-    var user = request.body.userid;
+    var user = request.session.email;
     let cnx1 = new mysqlCnx();
 
     var req = cnx1.connection.query(
@@ -40,7 +40,9 @@ router.post('/', function(request, response, next) {
     var HRMailLog = HREmail.sendMail(HREmail.getHRMailAddress(), HREmail.getOnLeavingSubject(), HREmail.getHROnLeavingMessage(HRticket.getTicketID(), data.employeeid, data.deprovisioningdate, data.leavingreason));
 
 
-    response.render("entryform");
+    response.render("entryform", {
+        session: request.session
+    });
 });
 
 
