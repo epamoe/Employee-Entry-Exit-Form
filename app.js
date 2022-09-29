@@ -3,19 +3,57 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var cookieParser = require('cookie-parser');
-const session = require('express-session');
+//const session = require('express-session');
+var session = require('client-sessions');
 var logger = require('morgan');
 const { exec } = require("child_process");
-const oneDay = 1000 * 60 * 60 * 24;
+var csrf = require('csurf');
+var bodyParser = require('body-parser');
+
+// middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+
+/*
+ * Middleware function to check if the user is logged in
+ */
+function isLogedIn(req, res, next) {
+    if (req.user) {
+        next();
+    } else {
+        res.redirect('/login');
+    }
+
+};
+
+/*
+ * to handle session data over templates/views
+ 
+app.configure();
+app.dynamicHelpers({
+    session: function(req, res) {
+        return req.session;
+    }
+});
+*/
 
 /*  PASSPORT SETUP  */
 app.use(session({
-    resave: false,
-    saveUninitialized: true,
-    secret: 'SECRET',
-    cookie: { secure: true, maxAge: oneDay, userID: "###" }
+    cookieName: 'session', // cookie name dictates the key name added to the request object 
+    secret: 'superSecret', // should be a large unguessable string 
+    duration: 24 * 60 * 60 * 1000, // how long the session will stay valid in ms 
+    activeDuration: 1000 * 60 * 5, // if expiresIn < activeDuration, the session will be extended by activeDuration milliseconds 
+    httpOnly: true,
+    secure: true
 }));
-const passport = require('passport');
+
+app.use(csrf());
+
+app.use(function(req, res, next) {
+    res.locals.csrfToken = req.csrfToken();
+    next();
+});
+
+var passport = require('passport');
 var userProfile;
 app.use(passport.initialize());
 app.use(passport.session());
@@ -45,6 +83,12 @@ app.use(express.static(__dirname));
 // cookie parser middleware i002KiCcr_N7J-liN6-PseoTDcfYnAT6
 app.use(cookieParser());
 
+/**
+ * entry choice route
+ */
+app.get('/', isLogedIn, function(req, res) {
+    res.render('entryform');
+});
 
 app.get('/auth/google',
     passport.authenticate('google', { scope: ['profile', 'email'] }));
@@ -52,9 +96,25 @@ app.get('/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/error' }),
     function(request, response) {; // Successful authentication, redirect success.
 
-        request.session.cookie.userID = userProfile.emails[0].value;
-        response.render("entryform");
+        if (!(userProfile.emails[0].value).toString().includes("@enkoeducation.com")) {
+            request.session.reset()
+            response.render("error", {
+                message: "Please, use your ENKO Education address",
+            })
+        } else {
+            request.session.email = userProfile.emails[0].value;
+            request.session.username = userProfile.name.givenName
+            request.session.picture = userProfile.name.photo[0].value;
+            response.render("entryform");
+        }
     });
+/**
+ * Logout route
+ */
+app.get('/logout', function(req, res) {
+    req.session.reset()
+    res.redirect('/');
+});
 
 /* -- End Session setup */
 
@@ -84,7 +144,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use('/login', authRouter);
-app.use('/', indexRouter);
+app.use('/login', indexRouter);
 //app.use('/auth/google/callback', formRouter);
 //app.use('/auth', authRouter);
 app.use('/entryform', formRouter);
