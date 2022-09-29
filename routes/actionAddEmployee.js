@@ -16,15 +16,16 @@ app.use(express.static(path.join(__dirname, 'static')));
 /* GET users listing. */
 router.post('/', function(request, response, next) {
     var data = request.body;
-    var user = request.session.userId;
+    console.log(data.enkogroups);
+    var user = request.session.email;
     var it_tools = [
-        data.gsuite, data.edadmin, data.payspace,
-        data.turnitin, data.canvas, data.pipedrive, data.docusign,
-        data.slack, data.helpdesk, data.jazzhr, data.asana, data.mailchimp,
-        data.surveymonkey, data.powerbi, data.office365, data.zoom
+        data.asana, data.canvas, data.docusign, data.edadmin,
+        data.gsuite, data.helpdesk, data.jazzhr, data.mailchimp,
+        data.office365, data.payspace, data.pipedrive, data.powerbi,
+        data.slack, data.surveymonkey, data.turnitin, data.zoom
     ];
     it_tools = it_tools.filter(n => n); //remove null and undefined values
-    var groups = [data.allstaff, data.allteacher, data.allrh];
+    var groups = [data.enkogroups];
     groups = groups.filter(n => n); //remove null and undefined values
     //establishing connection and running query
     let cnx1 = new mysqlCnx();

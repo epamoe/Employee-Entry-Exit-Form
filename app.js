@@ -46,12 +46,6 @@ app.use(session({
     secure: true
 }));
 
-app.use(csrf());
-
-app.use(function(req, res, next) {
-    res.locals.csrfToken = req.csrfToken();
-    next();
-});
 
 var passport = require('passport');
 var userProfile;
@@ -86,8 +80,13 @@ app.use(cookieParser());
 /**
  * entry choice route
  */
-app.get('/', isLogedIn, function(req, res) {
-    res.render('entryform');
+var userinfo = {
+    "tmp": "###"
+};
+app.get('/', isLogedIn, function(request, response) {
+    response.render("entryform", {
+        session: request.session
+    });
 });
 
 app.get('/auth/google',
@@ -104,8 +103,9 @@ app.get('/auth/google/callback',
         } else {
             request.session.email = userProfile.emails[0].value;
             request.session.username = userProfile.name.givenName
-            request.session.picture = userProfile.name.photo[0].value;
-            response.render("entryform");
+            response.render("entryform", {
+                session: request.session
+            });
         }
     });
 /**

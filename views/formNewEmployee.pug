@@ -16,8 +16,12 @@ block content
                 img(src='assets/img/enko-modern-logo.png' alt='')
                 span.d-lg-block.text-success Enko Education
             // End Logo
-            .col-lg-8.col-md-6.d-flex.flex-column.align-items-center.justify-content-center
-                h6 Hello #{session.username}, You are about to create a new user
+            .col-lg-12.col-md-6.d-flex.flex-column.align-items-center.justify-content-center
+                p
+                    | Hello 
+                    strong #{session.username}, 
+                    |You are about to create a new user.
+                    a(href='/logout') &nbsp Close this app
     .row.lg-6.justify-content-center
         .row-lg-6.justify-content-center
             form.row.g-3.needs-validation.justify-content-center(novalidate='' action='/add_employee' method='post')
@@ -281,7 +285,7 @@ block content
                             .row
                                 .col
                                     .form-check.form-switch
-                                    input#itgsuite.position.form-check-input(type='checkbox' value='gsuite' )
+                                    input#itgsuite.position.form-check-input(type='checkbox' value='gsuite' name='gsuite')
                                     label.form-check-label(for='itgsuite') &nbsp Google Workspace
                                 .col
                                     .form-check.form-switch
@@ -347,7 +351,7 @@ block content
                                                 if (group.school_code=="AGP")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.email name=group.email)
+                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
                             .accordion-item
@@ -362,7 +366,7 @@ block content
                                                 if (group.school_code=="EBK")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.email name=group.email)
+                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
                             .accordion-item
@@ -377,7 +381,7 @@ block content
                                                 if (group.school_code=="EBC")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.email name=group.email)
+                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
                             .accordion-item
@@ -392,7 +396,7 @@ block content
                                                 if (group.school_code=="EBT")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.email name=group.email)
+                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
                             .accordion-item
@@ -407,7 +411,7 @@ block content
                                                 if (group.school_code=="EKG")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.email name=group.email)
+                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
                             .accordion-item
@@ -422,7 +426,7 @@ block content
                                                 if (group.school_code=="EGC")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.email name=group.email)
+                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
                             .accordion-item
@@ -437,7 +441,7 @@ block content
                                                 if (group.school_code=="EOG")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.email name=group.email)
+                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
                             .accordion-item
@@ -452,7 +456,7 @@ block content
                                                 if (group.school_code=="EVS")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.email name=group.email)
+                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
                             .accordion-item
@@ -467,7 +471,7 @@ block content
                                                 if (group.school_code=="ERV")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school_code type='checkbox' value=group.email name=group.email)
+                                                        input(id=group.mail class='school' class=group.school_code type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
                             .accordion-item
@@ -482,7 +486,7 @@ block content
                                                 if (group.school_code=="ESC")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.email name=group.email)
+                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
                             .accordion-item
@@ -497,7 +501,7 @@ block content
                                                 if (group.school_code=="EWC")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.email name=group.email)
+                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
                             .accordion-item
@@ -512,7 +516,7 @@ block content
                                                 if (group.school_code=="EJA")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.email name=group.email)
+                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
                             .accordion-item
@@ -527,7 +531,7 @@ block content
                                                 if (group.school_code=="PED")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.email name=group.email)
+                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
                             .accordion-item
@@ -542,14 +546,13 @@ block content
                                                 if (group.school_code=="ALL")
                                                     .col-sm
                                                         .form-check.form-switch
-                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.email name=group.email checked='')
+                                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups' checked='')
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
-    section.d-flex.flex-column.align-items-center.justify-content-center
-        .row.justify-content-center
-            .col-lg-12.justify-content-center 
-                #onsubmitemailfeedback
-                .d-flex.justify-content-center.py-4
-                    button.btn.btn-primary(type='submit' onclick='checkProposedEmail()' ) Submit form
-                //button#submit.btn.btn-primary(type='submit' onclick='checkProposedEmail()') Submit form
-                  
+                section.d-flex.flex-column.align-items-center.justify-content-center
+                    .row.justify-content-center
+                        .col-lg-12.justify-content-center 
+                            #onsubmitemailfeedback
+                            .d-flex.justify-content-center.py-4
+                            button.btn.btn-primary(type='submit' onclick='checkProposedEmail()' ) Submit the form
+                    

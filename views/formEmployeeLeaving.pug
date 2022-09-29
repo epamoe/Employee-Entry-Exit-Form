@@ -10,7 +10,11 @@ block content
                 img(src='assets/img/enko-modern-logo.png' alt='')
                 span.d-lg-block.text-success Enko Education
             // End Logo
-            h6 Hello #{session.username}, You are about to dismiss an employee
+            p
+                | Hello 
+                strong #{session.username}, 
+                | You are about to dismiss an employee.
+                a(href='/logout') &nbsp Close this app
     .row.lg-6.justify-content-center
         .row-lg-6.justify-content-center
             form.row.g-3.needs-validation.justify-content-center(novalidate='' method='POST' action='/delete_employee' autocomplete='off')

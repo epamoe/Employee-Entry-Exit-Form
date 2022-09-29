@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, 'static')));
 router.post('/', function(request, response, next) {
 
     var data = request.body;
-    var user = request.body.userid;
+    var user = request.session.email;
     var reqOrganisation = "NA",
         reqPosition = "NA",
         reqContractType = "NA",

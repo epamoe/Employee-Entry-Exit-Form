@@ -39,11 +39,6 @@ router.post('/', function(request, response, next) {
     let HRticket = new ticketMgmt(HREmail.getHRTitle(), HREmail.getHRMailAddress(), HREmail.getOnLeavingSubject(), HREmail.getHROnLeavingMessage("#", data.employeeid, data.deprovisioningdate, data.leavingreason), HREmail.getHRHelpTopic());
     var HRMailLog = HREmail.sendMail(HREmail.getHRMailAddress(), HREmail.getOnLeavingSubject(), HREmail.getHROnLeavingMessage(HRticket.getTicketID(), data.employeeid, data.deprovisioningdate, data.leavingreason));
 
-    //Store the token in a variable for reuse purpose
-    var token = request.csrfToken();
-    //response.cookie('XSRF-TOKEN', token);
-    response.locals.csrfToken = token
-
     response.render("entryform", {
         session: request.session
     });

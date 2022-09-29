@@ -30,7 +30,9 @@ router.post('/', function(request, response, next) {
             break;
 
         case "employeeleaving":
-            response.send(request.session);
+            response.render("formEmployeeLeaving", {
+                session: request.session
+            });
             break;
         case "employeechanging":
             response.render("formEmployeeChanging", {

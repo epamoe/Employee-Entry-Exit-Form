@@ -11,15 +11,17 @@ block content
               img(src='assets/img/enko-modern-logo.png' alt='')
               span.d-lg-block.text-success Enko Education
           // End Logo
-          h6 Hello #{session}, choose an action below or 
-            a(href='/logout') close this app
+          p
+            | Hello 
+            strong #{session.username}, 
+            | choose an action below.
+            a(href='/logout') &nbsp Close this app
   .row.justify-content-center
     
     .col-lg-3.align-self-start      
       .form-check
         form.container(method='POST' action='/concerns')
           //gathering current user from session
-          input.form-control(type='hidden' name='session' required='' value=session)
           input(type='text' name='concerns' value='newemployee' hidden)
           label.form-check-label(for='flexRadioDefaultNew')
             button(type='submitt')
