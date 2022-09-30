@@ -19,7 +19,7 @@ router.post('/', function(request, response, next) {
                 if (err) throw err;
                 cnx.connection.query(accessQuerry, function(err, resultAccess, fields) {
                     if (err) throw err;
-                    response.render("formNewEmployee", {
+                    response.render("formAddUser", {
                         //userid: request.session.userId
                         groups: Object.values(JSON.parse(JSON.stringify(resultGroup))),
                         access: Object.values(JSON.parse(JSON.stringify(resultAccess))),
@@ -30,12 +30,12 @@ router.post('/', function(request, response, next) {
             break;
 
         case "employeeleaving":
-            response.render("formEmployeeLeaving", {
+            response.render("formDeleteUser", {
                 session: request.session
             });
             break;
         case "employeechanging":
-            response.render("formEmployeeChanging", {
+            response.render("formModifyUser", {
                 session: request.session
             });
             break;

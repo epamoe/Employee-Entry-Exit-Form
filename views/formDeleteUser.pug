@@ -17,14 +17,14 @@ block content
                 a(href='/logout') &nbsp Close this app
     .row.lg-6.justify-content-center
         .row-lg-6.justify-content-center
-            form.row.g-3.needs-validation.justify-content-center(novalidate='' method='POST' action='/delete_employee' autocomplete='off')
+            form.row.g-3.needs-validation.justify-content-center(novalidate='' method='POST' action='/' autocomplete='off')
                 .card(style="width: 75%")
                     .card-body
                         h5.card-title Please, provide information bellow
                         // General Form Elements                           
                         .col-6
                             //gathering current user from session
-                            input.form-control(type='hidden' name='userid' required='' value=session.email)
+                            input.form-control(type='text' name='usecase' required='' value='deleteuser' hidden )
                             label.form-label(for='yourUsername') Username
                             .input-group.has-validation
                             .input-group.mb-3

@@ -64,9 +64,7 @@ var indexRouter = require('./routes/index');
 //var authRouter = require('./routes/auth');
 var formRouter = require('./routes/entryForm');
 var concernsRouterRedirection = require('./routes/entryForm');
-var actionAdEMployeeRouter = require('./routes/actionAddEmployee');
-var actionEMployeeChangingRouter = require('./routes/actionEmployeeChanging');
-var actionEMployeeLeavingRouter = require('./routes/actionEmployeeLeaving');
+//var manageUserRouter = require('./routes/manageUsers');
 const { ConnectionClosedEvent } = require('mongodb');
 
 // parsing the incoming data
@@ -84,16 +82,6 @@ app.get('/', isLogedIn, function(request, response) {
         session: request.session
     });
 });
-
-app.get('/auth/google',
-    passport.authenticate('google', { scope: ['profile', 'email'] }));
-
-app.get('/auth/google/callback',
-    passport.authenticate('google', { failureRedirect: '/error' }),
-    function(req, res) {; // Successful authentication, redirect home.
-        res.redirect('/home');
-    });
-
 app.get('/home', (request, response) => {
 
     request.session.email = userProfile.emails[0].value;
@@ -103,6 +91,16 @@ app.get('/home', (request, response) => {
 
     });
 });
+app.get('/auth/google',
+    passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+app.get('/auth/google/callback',
+    passport.authenticate('google', { failureRedirect: '/error' }),
+    function(req, res) {; // Successful authentication, redirect home.
+        res.redirect('/home');
+    });
+
+
 app.get('/error', (request, response) => {
     request.session.reset()
     response.render("error", {
@@ -169,7 +167,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//app.use('/login', authRouter);
+app.use('/', indexRouter);
 app.use('/login', indexRouter);
 //app.use('/auth/google/callback', formRouter);
 //app.use('/auth', authRouter);
@@ -177,9 +175,7 @@ app.use('/entryform', formRouter);
 app.use('/createuser', concernsRouterRedirection);
 app.use('/deleteuser', concernsRouterRedirection);
 app.use('/modifyuser', concernsRouterRedirection);
-app.use('/add_employee', actionAdEMployeeRouter);
-app.use('/change_employee', actionEMployeeChangingRouter);
-app.use('/delete_employee', actionEMployeeLeavingRouter);
+app.use('/home', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

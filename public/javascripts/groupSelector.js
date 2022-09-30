@@ -115,7 +115,7 @@ function toolChecker() {
             check("itpayspace");
             break;
         default:
-            check("");
+            //check("");
     }
     console.log(positionValue); // en position
 }
