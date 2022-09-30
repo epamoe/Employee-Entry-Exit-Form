@@ -20,7 +20,7 @@ function isLogedIn(req, res, next) {
     if (req.user) {
         next();
     } else {
-        res.redirect('/login');
+        res.redirect('/user-management/login');
     }
 
 };
@@ -77,12 +77,12 @@ app.use(cookieParser());
 
 
 var callbackpage = "";
-app.get('/', isLogedIn, function(request, response) {
+app.get('/user-management/', isLogedIn, function(request, response) {
     response.render("entryform", {
         session: request.session
     });
 });
-app.get('/home', (request, response) => {
+app.get('/user-management/home', (request, response) => {
 
     request.session.email = userProfile.emails[0].value;
     request.session.username = userProfile.name.givenName
@@ -91,17 +91,17 @@ app.get('/home', (request, response) => {
 
     });
 });
-app.get('/auth/google',
+app.get('/user-management/auth/google',
     passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-app.get('/auth/google/callback',
-    passport.authenticate('google', { failureRedirect: '/error' }),
+app.get('/user-management/auth/google/callback',
+    passport.authenticate('google', { failureRedirect: '/user-management/error' }),
     function(req, res) {; // Successful authentication, redirect home.
-        res.redirect('/home');
+        res.redirect('/user-management/home');
     });
 
 
-app.get('/error', (request, response) => {
+app.get('/user-management/error', (request, response) => {
     request.session.reset()
     response.render("error", {
         message: "Please, use your ENKO Education address",
@@ -109,8 +109,8 @@ app.get('/error', (request, response) => {
 });
 
 /*
-app.get('/auth/google/callback',
-    passport.authenticate('google', { failureRedirect: '/error' }),
+app.get('/user-management/auth/google/callback',
+    passport.authenticate('google', { failureRedirect: '/user-management/error' }),
     function(request, response) {; // Successful authentication, redirect home.
 
         if (!(userProfile.emails[0].value).toString().includes("@enkoeducation.com")) {
@@ -130,9 +130,9 @@ app.get('/auth/google/callback',
 /**
  * Logout route
  */
-app.get('/logout', function(req, res) {
+app.get('/user-management/logout', function(req, res) {
     req.session.reset()
-    res.redirect('/');
+    res.redirect('/user-management/');
 });
 
 /* -- End Session setup */
@@ -148,7 +148,7 @@ const GOOGLE_CLIENT_SECRET = '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';
 passport.use(new GoogleStrategy({
         clientID: GOOGLE_CLIENT_ID,
         clientSecret: GOOGLE_CLIENT_SECRET,
-        callbackURL: "http://localhost:3001/auth/google/callback"
+        callbackURL: "http://localhost:3001/user-management/auth/google/callback"
     },
     function(accessToken, refreshToken, profile, done) {
         userProfile = profile;
@@ -167,15 +167,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/login', indexRouter);
-//app.use('/auth/google/callback', formRouter);
-//app.use('/auth', authRouter);
-app.use('/entryform', formRouter);
-app.use('/createuser', concernsRouterRedirection);
-app.use('/deleteuser', concernsRouterRedirection);
-app.use('/modifyuser', concernsRouterRedirection);
-app.use('/home', indexRouter);
+app.use('/user-management/', indexRouter);
+app.use('/user-management/login', indexRouter);
+//app.use('/user-management/auth/google/callback', formRouter);
+//app.use('/user-management/auth', authRouter);
+app.use('/user-management/entryform', formRouter);
+app.use('/user-management/createuser', concernsRouterRedirection);
+app.use('/user-management/deleteuser', concernsRouterRedirection);
+app.use('/user-management/modifyuser', concernsRouterRedirection);
+app.use('/user-management/home', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

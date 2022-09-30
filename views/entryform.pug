@@ -7,7 +7,7 @@ block content
       .row.justify-content-center
         .col-lg-6.col-md-6.d-flex.flex-column.align-items-center.justify-content-center
           .d-flex.justify-content-center.py-4
-            a.logo.d-flex.align-items-center.w-auto(href='/')
+            a.logo.d-flex.align-items-center.w-auto(href='/user-management/')
               img(src='assets/img/enko-modern-logo.png' alt='')
               span.d-lg-block.text-success Enko Education
           // End Logo
@@ -15,12 +15,12 @@ block content
             | Hello 
             strong #{session.username}, 
             | choose an action below.
-            a(href='/logout') &nbsp Close this app
+            a(href='/user-management/logout') &nbsp Close this app
   .row.justify-content-center
     
     .col-lg-3.align-self-start      
       .form-check
-        form.container(method='POST' action='/createuser')
+        form.container(method='POST' action='/user-management/createuser')
           //gathering current user from session
           input(type='text' name='concerns' value='newemployee' hidden)
           label.form-check-label(for='flexRadioDefaultNew')
@@ -31,7 +31,7 @@ block content
                   //p.card-text.text-dark
     .col-lg-3.align-self-center
       .form-check
-        form.container(method='POST' action='/deleteuser')
+        form.container(method='POST' action='/user-management/deleteuser')
           //gathering current user from session
           input(type='text' name='concerns' value='employeeleaving' hidden)
           label.form-check-label(for='flexRadioDefaultLeaving')
@@ -42,7 +42,7 @@ block content
                   p.card-text.text-dark
     .col-lg-3.align-self-end
       .form-check
-        form.container(method='POST' action='/modifyuser')
+        form.container(method='POST' action='/user-management/modifyuser')
           input(type='text' name='concerns' value='employeechanging' hidden)
           label.form-check-label(for='flexRadioDefaultChanging')
             button(type='submitt')

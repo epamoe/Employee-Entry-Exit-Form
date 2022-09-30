@@ -6,7 +6,7 @@ block content
         .row.justify-content-center
           .col-lg-12.col-md-6.d-flex.flex-column.align-items-center.justify-content-center
             .d-flex.justify-content-center.py-4
-              a.logo.d-flex.align-items-center.w-auto(href='/')
+              a.logo.d-flex.align-items-center.w-auto(href='/user-management/')
                 img(src='assets/img/enko-modern-logo.png' alt='')
                 span.d-lg-block.text-success Enko Education
             // End Logo
@@ -14,10 +14,10 @@ block content
                 | Hello 
                 strong #{session.username}, 
                 | You are about to dismiss an employee.
-                a(href='/logout') &nbsp Close this app
+                a(href='/user-management/logout') &nbsp Close this app
     .row.lg-6.justify-content-center
         .row-lg-6.justify-content-center
-            form.row.g-3.needs-validation.justify-content-center(novalidate='' method='POST' action='/' autocomplete='off')
+            form.row.g-3.needs-validation.justify-content-center(novalidate='' method='POST' action='/user-management/' autocomplete='off')
                 .card(style="width: 75%")
                     .card-body
                         h5.card-title Please, provide information bellow
