@@ -20,7 +20,7 @@ block content
     
     .col-lg-3.align-self-start      
       .form-check
-        form.container(method='POST' action='/concerns')
+        form.container(method='POST' action='/createuser')
           //gathering current user from session
           input(type='text' name='concerns' value='newemployee' hidden)
           label.form-check-label(for='flexRadioDefaultNew')
@@ -31,9 +31,8 @@ block content
                   //p.card-text.text-dark
     .col-lg-3.align-self-center
       .form-check
-        form.container(method='POST' action='/concerns')
+        form.container(method='POST' action='/deleteuser')
           //gathering current user from session
-          input.form-control(type='hidden' name='session' required='' value=session)
           input(type='text' name='concerns' value='employeeleaving' hidden)
           label.form-check-label(for='flexRadioDefaultLeaving')
             button(type='submitt')
@@ -43,8 +42,7 @@ block content
                   p.card-text.text-dark
     .col-lg-3.align-self-end
       .form-check
-        form.container(method='POST' action='/concerns')
-          input.form-control(type='hidden' name='session' required='' value=session)
+        form.container(method='POST' action='/modifyuser')
           input(type='text' name='concerns' value='employeechanging' hidden)
           label.form-check-label(for='flexRadioDefaultChanging')
             button(type='submitt')

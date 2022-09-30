@@ -77,12 +77,8 @@ app.use(express.static(__dirname));
 // cookie parser middleware i002KiCcr_N7J-liN6-PseoTDcfYnAT6
 app.use(cookieParser());
 
-/**
- * entry choice route
- */
-var userinfo = {
-    "tmp": "###"
-};
+
+var callbackpage = "";
 app.get('/', isLogedIn, function(request, response) {
     response.render("entryform", {
         session: request.session
@@ -91,9 +87,33 @@ app.get('/', isLogedIn, function(request, response) {
 
 app.get('/auth/google',
     passport.authenticate('google', { scope: ['profile', 'email'] }));
+
 app.get('/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/error' }),
-    function(request, response) {; // Successful authentication, redirect success.
+    function(req, res) {; // Successful authentication, redirect home.
+        res.redirect('/home');
+    });
+
+app.get('/home', (request, response) => {
+
+    request.session.email = userProfile.emails[0].value;
+    request.session.username = userProfile.name.givenName
+    response.render("entryform", {
+        session: request.session
+
+    });
+});
+app.get('/error', (request, response) => {
+    request.session.reset()
+    response.render("error", {
+        message: "Please, use your ENKO Education address",
+    });
+});
+
+/*
+app.get('/auth/google/callback',
+    passport.authenticate('google', { failureRedirect: '/error' }),
+    function(request, response) {; // Successful authentication, redirect home.
 
         if (!(userProfile.emails[0].value).toString().includes("@enkoeducation.com")) {
             request.session.reset()
@@ -108,6 +128,7 @@ app.get('/auth/google/callback',
             });
         }
     });
+*/
 /**
  * Logout route
  */
@@ -133,6 +154,11 @@ passport.use(new GoogleStrategy({
     },
     function(accessToken, refreshToken, profile, done) {
         userProfile = profile;
+        if ((userProfile.emails[0].value).toString().includes('@enkoeducation.com')) {
+            callbackpage = "pages/home";
+        } else {
+            callbackpage = "pages/error";
+        }
         return done(null, userProfile);
     }
 ));
@@ -148,7 +174,9 @@ app.use('/login', indexRouter);
 //app.use('/auth/google/callback', formRouter);
 //app.use('/auth', authRouter);
 app.use('/entryform', formRouter);
-app.use('/concerns', concernsRouterRedirection);
+app.use('/createuser', concernsRouterRedirection);
+app.use('/deleteuser', concernsRouterRedirection);
+app.use('/modifyuser', concernsRouterRedirection);
 app.use('/add_employee', actionAdEMployeeRouter);
 app.use('/change_employee', actionEMployeeChangingRouter);
 app.use('/delete_employee', actionEMployeeLeavingRouter);
