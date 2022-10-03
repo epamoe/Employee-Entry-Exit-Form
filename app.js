@@ -25,16 +25,6 @@ function isLogedIn(req, res, next) {
 
 };
 
-/*
- * to handle session data over templates/views
- 
-app.configure();
-app.dynamicHelpers({
-    session: function(req, res) {
-        return req.session;
-    }
-});
-*/
 
 /*  PASSPORT SETUP  */
 app.use(session({
@@ -59,12 +49,13 @@ passport.deserializeUser(function(obj, cb) {
 });
 
 
-var indexRouter = require('./routes/index');
+var indexRouter = require('./routes/user-management');
 //var usersRouter = require('./routes/users');
 //var authRouter = require('./routes/auth');
 var formRouter = require('./routes/entryForm');
 var concernsRouterRedirection = require('./routes/entryForm');
-//var manageUserRouter = require('./routes/manageUsers');
+//var fresherRouter = require('./routes/fresher-management ');
+//var manageUserRouter = require('./routes/manageUsers'); 
 const { ConnectionClosedEvent } = require('mongodb');
 
 // parsing the incoming data
@@ -96,16 +87,20 @@ app.get('/user-management/auth/google',
 
 app.get('/user-management/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/user-management/error' }),
-    function(req, res) {; // Successful authentication, redirect home.
-        res.redirect('/user-management/home');
+    function(request, response) {; // Successful authentication, redirect home.
+        if (!(userProfile.emails[0].value).toString().includes("@enkoeducation.com")) {
+            request.session.reset()
+            response.redirect("/user-management/fresher-management");
+        } else {
+            request.session.email = userProfile.emails[0].value;
+            request.session.username = userProfile.name.givenName
+            response.redirect("/user-management/home");
+        }
     });
 
 
-app.get('/user-management/error', (request, response) => {
-    request.session.reset()
-    response.render("error", {
-        message: "Please, use your ENKO Education address",
-    });
+app.get('/user-management/fresher-management', (request, response) => {
+    response.render('fresher-management');
 });
 
 /*
@@ -148,18 +143,19 @@ const GOOGLE_CLIENT_SECRET = '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';
 passport.use(new GoogleStrategy({
         clientID: GOOGLE_CLIENT_ID,
         clientSecret: GOOGLE_CLIENT_SECRET,
-        callbackURL: "http://localhost:3001/user-management/auth/google/callback"
+        callbackURL: "https://support.enkoeducation.com/user-management/auth/google/callback"
     },
     function(accessToken, refreshToken, profile, done) {
         userProfile = profile;
         if ((userProfile.emails[0].value).toString().includes('@enkoeducation.com')) {
-            callbackpage = "pages/home";
+            console.log("### ENKO Staff");
+            callbackpage = "/home";
         } else {
-            callbackpage = "pages/error";
+            console.log("### Not ENKO Staff");
+            callbackpage = '/fresher-management';
         }
         return done(null, userProfile);
-    }
-));
+    }));
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -175,7 +171,8 @@ app.use('/user-management/entryform', formRouter);
 app.use('/user-management/createuser', concernsRouterRedirection);
 app.use('/user-management/deleteuser', concernsRouterRedirection);
 app.use('/user-management/modifyuser', concernsRouterRedirection);
-app.use('/user-management/home', indexRouter);
+app.use('/user-management/home', indexRouter); // 
+//app.use('/fresher-management', fresherRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
