@@ -55,13 +55,13 @@ router.post('/', function(request, response, next) {
             );
             //Send IT email
             var ITEmail = new emailMgmt();
-            var ITticket = new ticketMgmt(ITEmail.getITTitle(), ITEmail.getITMailAddress(), ITEmail.getOnComingSubject(), ITEmail.getITOnComingMessage("#", data.suggestedemail, groups, it_tools), ITEmail.getITHelpTopic());
-            var ITMailLog = ITEmail.sendMail(ITEmail.getITMailAddress(), ITEmail.getOnComingSubject(), ITEmail.getITOnComingMessage(ITticket.getTicketID(), data.suggestedemail, groups, it_tools));
+            var ITticket = new ticketMgmt(ITEmail.getITTitle(), user, ITEmail.getOnComingSubject(), ITEmail.getITOnComingMessage("#", data.suggestedemail, groups, it_tools), ITEmail.getITHelpTopic());
+            //var ITMailLog = ITEmail.sendMail(ITEmail.getITMailAddress(), ITEmail.getOnComingSubject(), ITEmail.getITOnComingMessage(ITticket.getTicketID(), data.suggestedemail, groups, it_tools));
 
             //Send HR email
             var HREmail = new emailMgmt();
-            var HRticket = new ticketMgmt(HREmail.getHRTitle(), HREmail.getHRMailAddress(), HREmail.getOnComingSubject(), HREmail.getHROnComingMessage("#", data.suggestedemail), HREmail.getHRHelpTopic());
-            var HRMailLog = HREmail.sendMail(HREmail.getHRMailAddress(), HREmail.getOnComingSubject(), HREmail.getHROnComingMessage(HRticket.getTicketID(), data.suggestedemail));
+            var HRticket = new ticketMgmt(HREmail.getHRTitle(), user, HREmail.getOnComingSubject(), HREmail.getHROnComingMessage("#", data.suggestedemail), HREmail.getHRHelpTopic());
+            //var HRMailLog = HREmail.sendMail(HREmail.getHRMailAddress(), HREmail.getOnComingSubject(), HREmail.getHROnComingMessage(HRticket.getTicketID(), data.suggestedemail));
 
 
             response.render("entryform", {
@@ -86,13 +86,13 @@ router.post('/', function(request, response, next) {
 
             //Send IT email
             var ITEmail = new emailMgmt();
-            var ITticket = new ticketMgmt(ITEmail.getITTitle(), ITEmail.getITMailAddress(), ITEmail.getOnLeavingSubject(), ITEmail.getITOnLeavingMessage("#", data.employeeid, data.deprovisioningdate), ITEmail.getITHelpTopic());
-            var ITMailLog = ITEmail.sendMail(ITEmail.getITMailAddress(), ITEmail.getOnLeavingSubject(), ITEmail.getITOnLeavingMessage(ITticket.getTicketID(), data.employeeid, data.deprovisioningdate));
+            var ITticket = new ticketMgmt(ITEmail.getITTitle(), user, ITEmail.getOnLeavingSubject(), ITEmail.getITOnLeavingMessage("#", data.employeeid, data.deprovisioningdate), ITEmail.getITHelpTopic());
+            //var ITMailLog = ITEmail.sendMail(ITEmail.getITMailAddress(), ITEmail.getOnLeavingSubject(), ITEmail.getITOnLeavingMessage(ITticket.getTicketID(), data.employeeid, data.deprovisioningdate));
 
             //Send HR email
             var HREmail = new emailMgmt();
-            var HRticket = new ticketMgmt(HREmail.getHRTitle(), HREmail.getHRMailAddress(), HREmail.getOnLeavingSubject(), HREmail.getHROnLeavingMessage("#", data.employeeid, data.deprovisioningdate, data.leavingreason), HREmail.getHRHelpTopic());
-            var HRMailLog = HREmail.sendMail(HREmail.getHRMailAddress(), HREmail.getOnLeavingSubject(), HREmail.getHROnLeavingMessage(HRticket.getTicketID(), data.employeeid, data.deprovisioningdate, data.leavingreason));
+            var HRticket = new ticketMgmt(HREmail.getHRTitle(), user, HREmail.getOnLeavingSubject(), HREmail.getHROnLeavingMessage("#", data.employeeid, data.deprovisioningdate, data.leavingreason), HREmail.getHRHelpTopic());
+            //var HRMailLog = HREmail.sendMail(HREmail.getHRMailAddress(), HREmail.getOnLeavingSubject(), HREmail.getHROnLeavingMessage(HRticket.getTicketID(), data.employeeid, data.deprovisioningdate, data.leavingreason));
 
             response.render("entryform", {
                 session: request.session
@@ -155,13 +155,13 @@ router.post('/', function(request, response, next) {
             }
             //Send IT email
             var ITEmail = new emailMgmt();
-            var ITticket = new ticketMgmt(ITEmail.getITTitle(), ITEmail.getITMailAddress(), ITEmail.getOnChangingSubject(), ITEmail.getITOnChangingMessage("#", data.employeeid, changeString));
-            var ITMailLog = ITEmail.sendMail(ITEmail.getITMailAddress(), ITEmail.getOnChangingSubject(), ITEmail.getITOnChangingMessage(ITticket.getTicketID(), data.employeeid, changeString));
+            var ITticket = new ticketMgmt(ITEmail.getITTitle(), user, ITEmail.getOnChangingSubject(), ITEmail.getITOnChangingMessage("#", data.employeeid, changeString));
+            //var ITMailLog = ITEmail.sendMail(ITEmail.getITMailAddress(), ITEmail.getOnChangingSubject(), ITEmail.getITOnChangingMessage(ITticket.getTicketID(), data.employeeid, changeString));
 
             //Send HR email
             var HREmail = new emailMgmt();
-            var HRticket = new ticketMgmt(HREmail.getHRTitle(), HREmail.getHRMailAddress(), HREmail.getOnChangingSubject(), HREmail.getHROnChangingMessage("#", data.employeeid, changeString), HREmail.getHRHelpTopic());
-            var HRMailLog = HREmail.sendMail(HREmail.getHRMailAddress(), HREmail.getOnChangingSubject(), HREmail.getHROnChangingMessage(HRticket.getTicketID(), data.employeeid, changeString));
+            var HRticket = new ticketMgmt(HREmail.getHRTitle(), user, HREmail.getOnChangingSubject(), HREmail.getHROnChangingMessage("#", data.employeeid, changeString), HREmail.getHRHelpTopic());
+            //var HRMailLog = HREmail.sendMail(HREmail.getHRMailAddress(), HREmail.getOnChangingSubject(), HREmail.getHROnChangingMessage(HRticket.getTicketID(), data.employeeid, changeString));
 
             response.render("entryform", {
                 session: request.session

@@ -4,10 +4,10 @@ class Mail {
     constructor() {
         this.ITTitle = "IT team";
         this.ITMailAddress = "estebanc.pamoe@enkoeducation.com";
-        this.ITHelpTopic = "IT form";
+        this.ITHelpTopic = "IT questions";
         this.HRTitle = "HR Team";
         this.HRMailAddress = "epamoe@gmail.com";
-        this.HRHelpTopic = "HR form";
+        this.HRHelpTopic = "HR questions";
         this.OnLeavingSubject = "Employee Leaving";
         this.OnComingSubject = "New employee creation";
         this.OnComingSubjectEmployee = "Welcome to ENKO Education Group";
