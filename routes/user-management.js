@@ -7,23 +7,7 @@ var ticketMgmt = require('./utils/helpdeskManagement.js');
 var emailMgmt = require('./utils/emailManagement');
 var googleUserMgmt = require('./utils/googleUserCRUD')
 
-//Google API Variable declaration 
-var opts = {
-    client: {
-        id: '245661520998-kpur0fcekfgbdkgja419q3hddngcdhdg.apps.googleusercontent.com',
-        secret: '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'
-    },
-    token: {
-        refresh: "1//03UQ3sJTV5sapCgYIARAAGAMSNwF-L9IrJJRQdg70OjmWt-tH1L6UKPNj9TPA06P-jSaT10mnlXDVOCTraGFxjyI3nR8YesNTg8s"
-    }
-};
-var admin_sdk = require('./utils/GoogleLib/user_provisioning.coffee');
-var user_provisioning = new admin_sdk(opts);
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Enko Education portal' });
-});
 /* POST home page. */
 router.post('/', function(request, response, next) {
     //Switch on Entry form use cases
@@ -65,6 +49,27 @@ router.post('/', function(request, response, next) {
                 //"','[" + data.allstaff + "," + data.allteacher + "," + data.allrh + "]" + // All groups
                 "','entry');"
             );
+
+            //creating Workspace account
+            var admin_sdk = googleUserMgmt.UserProvisioning;
+            var user_provisioning = new admin_sdk(googleUserMgmt.opts);
+            new_user = {
+                name: {
+                    givenName: "" + data.firstname,
+                    familyName: "" + data.lastname,
+                },
+                password: 'password123',
+                primaryEmail: "" + data.suggestedemail + "@enkoeducation.com",
+                fields: "kind,nextPageToken,users(id,kind,name,orgUnitPath,primaryEmail)"
+            };
+            user_provisioning.insert(new_user, function(err, body) {
+                if (err) {
+                    console.log("An error occured: " + JSON.stringify(err.error));
+                } else {
+                    console.log("Received response: " + JSON.stringify(body));
+                }
+            });
+
             //Send IT email
             var ITEmail = new emailMgmt();
             var ITticket = new ticketMgmt(ITEmail.getITTitle(), user, ITEmail.getOnComingSubject(), ITEmail.getITOnComingMessage("#", data.suggestedemail, groups, it_tools), ITEmail.getITHelpTopic());
@@ -99,6 +104,10 @@ router.post('/', function(request, response, next) {
                 "');"
             );
 
+            //creating Workspace account
+            var admin_sdk = googleUserMgmt.OrgUnitProvisioning;
+            var tmp = new admin_sdk(googleUserMgmt.opts);
+            console.log(tmp.list());
             //Send IT email
             var ITEmail = new emailMgmt();
             var ITticket = new ticketMgmt(ITEmail.getITTitle(), user, ITEmail.getOnLeavingSubject(), ITEmail.getITOnLeavingMessage("#", data.employeeid, data.deprovisioningdate), ITEmail.getITHelpTopic());
@@ -188,5 +197,9 @@ router.post('/', function(request, response, next) {
             break;
     }
     //console.log("###error!" + request.body.usecase);
+});
+/* GET home page. */
+router.get('/', function(req, res, next) {
+    res.render('index', { title: 'Enko Education portal' });
 });
 module.exports = router;

@@ -74,6 +74,10 @@ function toolChecker() {
             check("itgsuit");
             check("itpayspace");
             break;
+        case "ext":
+            check("itgsuit");
+            check("itpayspace");
+            break;
         default:
             //check("");
     }
