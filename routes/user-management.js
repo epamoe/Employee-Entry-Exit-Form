@@ -5,11 +5,23 @@ const path = require('path');
 const mysqlCnx = require('./utils/dbConnection.js');
 var ticketMgmt = require('./utils/helpdeskManagement.js');
 var emailMgmt = require('./utils/emailManagement');
+var googleUserMgmt = require('./utils/googleUserCRUD')
 
+//Google API Variable declaration 
+var opts = {
+    client: {
+        id: '245661520998-kpur0fcekfgbdkgja419q3hddngcdhdg.apps.googleusercontent.com',
+        secret: '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'
+    },
+    token: {
+        refresh: "1//03UQ3sJTV5sapCgYIARAAGAMSNwF-L9IrJJRQdg70OjmWt-tH1L6UKPNj9TPA06P-jSaT10mnlXDVOCTraGFxjyI3nR8YesNTg8s"
+    }
+};
+var admin_sdk = require('./utils/GoogleLib/user_provisioning.coffee');
+var user_provisioning = new admin_sdk(opts);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-
     res.render('index', { title: 'Enko Education portal' });
 });
 /* POST home page. */
@@ -63,6 +75,9 @@ router.post('/', function(request, response, next) {
             var HRticket = new ticketMgmt(HREmail.getHRTitle(), user, HREmail.getOnComingSubject(), HREmail.getHROnComingMessage("#", data.suggestedemail), HREmail.getHRHelpTopic());
             //var HRMailLog = HREmail.sendMail(HREmail.getHRMailAddress(), HREmail.getOnComingSubject(), HREmail.getHROnComingMessage(HRticket.getTicketID(), data.suggestedemail));
 
+            //send fresher email
+            var fresherEmail = new emailMgmt();
+            var fresherEmailLog = ITEmail.sendMail(data.personalemail, fresherEmail.getWelcomeSubject(), fresherEmail.getEmployeeOnComingMessage(data.firstname));
 
             response.render("entryform", {
                 session: request.session

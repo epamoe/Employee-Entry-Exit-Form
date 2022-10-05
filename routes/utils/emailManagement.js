@@ -23,7 +23,7 @@ class Mail {
     getOnLeavingSubject() { return this.OnLeavingSubject; }
     getOnComingSubject() { return this.OnComingSubject; }
     getOnChangingSubject() { return this.OnChangingSubject; }
-
+    getWelcomeSubject() { return this.OnComingSubjectEmployee; }
 
     getRequesterOnCommingMessage(firstName, lastName, startDate, endDate, position) {
         return " Hi,\n\
@@ -47,8 +47,8 @@ class Mail {
         Regards\n\
         IT Support - itsupport @enkoeducation.com ";
     }
-    getEmployeeOnComingMessage(ticketID, employeeID, groups, ITTools) {
-        return "Dear {Firstname},\n\n\
+    getEmployeeOnComingMessage(ticketID, employeeID, groups, ITTools, firstName) {
+        return "Dear " + firstName + ",\n\n\
         Welcome to the ENKO Education group.\n\
         We are so happy to have you onboard with us, and know you will help us achieve the very high goals we have.\n\n\
         You will receive an email to set your ENKO email.\n\n\
@@ -106,7 +106,7 @@ class Mail {
             }
         });
         var mailOptions = {
-            from: 'ENKO IT Support <itsupport@enkoeducation.com>', //create an alias
+            from: 'ENKO Education Group <itsupport@enkoeducation.com>', //create an alias
             to: '' + to,
             subject: '' + subject + " - " + new Date().toISOString().slice(0, 10),
             text: '' + body

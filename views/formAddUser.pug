@@ -3,10 +3,7 @@ extends layout
 
   
 block content  
-    script(type='text/javascript' src='javascripts/groupSelector.js').
-
-    //script(type='text/javascript' src='javascripts/emaiAddressVerifier.js').
-        
+    script(type='text/javascript' src='javascripts/groupSelector.js')       
     section.d-flex.flex-column.align-items-center.justify-content-center.py-4
       .container
         .row.justify-content-center
@@ -145,12 +142,19 @@ block content
                             .col-8
                                 label.form-label(for='yourUsername') Proposed email
                                 .input-group.has-validation
-                                .input-group.mb-3
-                                    input#proposedemail.form-control(type='text' name='suggestedemail' pattern="[A-Za-z]{1,}.[A-Za-z]{1,}" minLength="3" placeholder="firstname.lastname" aria-label="Recipient's username" aria-describedby='basic-addon2' required='' )
+                                p.input-group.mb-3
+                                    input#proposedemail.form-control(type='text' name='suggestedemail' onkeypress='clearProposedEmailRespponse()' pattern="[A-Za-z]{1,}.[A-Za-z]{1,}" style='text-transform:lowercase' minLength="3" placeholder="firstname.lastname" aria-label="Recipient's username" aria-describedby='basic-addon2' required='' )
                                     span#basic-addon2.input-group-text @enkoeducation.com
-                                    button#checkproposedemail.btn.btn-primary(onclick='checkProposedEmail()' type='button') Verify
-                                    .invalid-feedback please provide a valid suggestion
-                                    #emailfeedback
+                                    button#checkproposedemail.btn.btn-primary(onclick='verifyEmail()' type='button')
+                                        span
+                                        |                 Verify
+                                    button#checkingproposedemail.btn.btn-primary(type='button' disabled='' style="display: none;"  )
+                                        span.spinner-border.spinner-border-sm(role='status' aria-hidden='true')
+                                        |                 Verify
+                            .col-8
+                                #emailfeedback 
+                                .invalid-feedback  please provide a valid suggestion
+                                
                                     
                             .col-md-8
                                 label.form-label(for='school') School / Campus / Organisation
@@ -549,10 +553,10 @@ block content
                                                         input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups' checked='')
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
-                section.d-flex.flex-column.align-items-center.justify-content-center
-                    .row.justify-content-center
-                        .col-lg-12.justify-content-center 
-                            #onsubmitemailfeedback
-                            .d-flex.justify-content-center.py-4
-                            button.btn.btn-primary(type='submit' onclick='checkProposedEmail()' ) Submit the form
+                section.d-flex.flex-column.align-items-center.justify-content-center(style="width: 75%")
+                    .row.justify-content-center                            
+                        #onsubmitemailfeedback.justify-content-center.py-4 Please Verify 
+                            a(href='#proposedemail') &nbsp the proposed email field 
+                            | &nbsp before submitting the form
+                        button#btnOnSubmitt.btn.btn-primary(type='submit' disabled='') Submit the form
                     

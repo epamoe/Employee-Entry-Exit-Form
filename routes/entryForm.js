@@ -30,6 +30,7 @@ router.post('/', function(request, response, next) {
             break;
 
         case "employeeleaving":
+            //console.log(JSON.stringify(request.session.opts));
             response.render("formDeleteUser", {
                 session: request.session
             });

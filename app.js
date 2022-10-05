@@ -50,6 +50,7 @@ passport.deserializeUser(function(obj, cb) {
 
 
 var indexRouter = require('./routes/user-management');
+var emailVerificationRoute = require('./routes/emailVerificator');
 //var usersRouter = require('./routes/users');
 //var authRouter = require('./routes/auth');
 var formRouter = require('./routes/entryForm');
@@ -94,6 +95,7 @@ app.get('/user-management/auth/google/callback',
         } else {
             request.session.email = userProfile.emails[0].value;
             request.session.username = userProfile.name.givenName
+            request.session.opts = opts;
             response.redirect("/user-management/home");
         }
     });
@@ -136,7 +138,6 @@ app.get('/user-management/logout', function(req, res) {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const GOOGLE_CLIENT_ID = '245661520998-kpur0fcekfgbdkgja419q3hddngcdhdg.apps.googleusercontent.com';
 const GOOGLE_CLIENT_SECRET = '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';
@@ -148,13 +149,22 @@ passport.use(new GoogleStrategy({
     function(accessToken, refreshToken, profile, done) {
         userProfile = profile;
         if ((userProfile.emails[0].value).toString().includes('@enkoeducation.com')) {
-            console.log("### ENKO Staff");
+            console.log("### ENKO Staff ");
             callbackpage = "/home";
         } else {
-            console.log("### Not ENKO Staff");
+            console.log("### Not ENKO Staff ");
             callbackpage = '/fresher-management';
         }
-        return done(null, userProfile);
+        opts = {
+            client: {
+                id: GOOGLE_CLIENT_ID,
+                secret: GOOGLE_CLIENT_SECRET
+            },
+            token: {
+                refresh: accessToken
+            }
+        }
+        return done(null, userProfile, opts);
     }));
 
 app.use(logger('dev'));
@@ -164,6 +174,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/user-management/', indexRouter);
+app.use('/user-management/verify-email', emailVerificationRoute);
+
 app.use('/user-management/login', indexRouter);
 //app.use('/user-management/auth/google/callback', formRouter);
 //app.use('/user-management/auth', authRouter);
