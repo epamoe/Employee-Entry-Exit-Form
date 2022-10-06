@@ -10,11 +10,11 @@ require('coffee-script/register');
 module.exports = {
     opts: {
         client: {
-            id: '245661520998-kpur0fcekfgbdkgja419q3hddngcdhdg.apps.googleusercontent.com',
-            secret: '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'
+            id: '153448695824-vc7l1fgl4gf1mmvnfmkbsrg0gj8l51bp.apps.googleusercontent.com',
+            secret: "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"
         },
         token: {
-            refresh: "1//03UQ3sJTV5sapCgYIARAAGAMSNwF-L9IrJJRQdg70OjmWt-tH1L6UKPNj9TPA06P-jSaT10mnlXDVOCTraGFxjyI3nR8YesNTg8s"
+            refresh: "1//0375UHUE3NINzCgYIARAAGAMSNwF-L9Ird57cGvmhgYbY55xmaSkqnZ7Cmfd2e8D_WWmi2_toe3NNcdxO8l6yCGH67f-T_2e_Asc"
         }
     },
     AdminSDK: require("./GoogleLib/google_api_admin_sdk.coffee"),

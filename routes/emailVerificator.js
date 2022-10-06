@@ -14,7 +14,12 @@ router.get('/', function(request, response, next) {
         user_provisioning.get(inputEmail + "@enkoeducation.com", function(err, body) {
             if (err) {
                 //response.send(err.error.toString());
-                response.send("Looks good!");
+                if (err.error.code != 404) {
+                    response.send("internal server error. Refer to itsupport.");
+                } else {
+
+                    response.send("Looks good!");
+                }
                 //console.log("An error occured: " + JSON.stringify(err.error.code));
             } else {
                 //response.send(body.primaryEmail.toString());

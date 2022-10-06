@@ -179,7 +179,7 @@ async function checkEmailValidity() {
         xhttp.send();
     });
     var output = await myPromise;
-    if (output.toString() == ("Looks good!").toString()) {
+    if (output.toString() == ("Looks good!").toString() || output.toString() == ("internal server error. Refer to itsupport")) {
         document.getElementById("emailfeedback").style.color = "green";
         document.querySelector('#btnOnSubmitt').disabled = false;
         document.getElementById("onsubmitemailfeedback").style.display = "none";

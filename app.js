@@ -95,7 +95,6 @@ app.get('/user-management/auth/google/callback',
         } else {
             request.session.email = userProfile.emails[0].value;
             request.session.username = userProfile.name.givenName
-            request.session.opts = opts;
             response.redirect("/user-management/home");
         }
     });
@@ -137,10 +136,11 @@ app.get('/user-management/logout', function(req, res) {
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+var googleUserMgmt = require('./routes/utils/googleUserCRUD')
 
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-const GOOGLE_CLIENT_ID = '245661520998-kpur0fcekfgbdkgja419q3hddngcdhdg.apps.googleusercontent.com';
-const GOOGLE_CLIENT_SECRET = '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';
+const GOOGLE_CLIENT_ID = googleUserMgmt.opts.client.id;
+const GOOGLE_CLIENT_SECRET = googleUserMgmt.opts.client.secret;
 passport.use(new GoogleStrategy({
         clientID: GOOGLE_CLIENT_ID,
         clientSecret: GOOGLE_CLIENT_SECRET,
@@ -150,21 +150,14 @@ passport.use(new GoogleStrategy({
         userProfile = profile;
         if ((userProfile.emails[0].value).toString().includes('@enkoeducation.com')) {
             console.log("### ENKO Staff ");
+            console.log("###A " + accessToken);
+            console.log("###R " + JSON.stringify(refreshToken));
             callbackpage = "/home";
         } else {
             console.log("### Not ENKO Staff ");
             callbackpage = '/fresher-management';
         }
-        opts = {
-            client: {
-                id: GOOGLE_CLIENT_ID,
-                secret: GOOGLE_CLIENT_SECRET
-            },
-            token: {
-                refresh: accessToken
-            }
-        }
-        return done(null, userProfile, opts);
+        return done(null, userProfile);
     }));
 
 app.use(logger('dev'));
