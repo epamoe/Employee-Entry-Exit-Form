@@ -42,7 +42,7 @@ function toolChecker() {
             //check("itjazzhr");
             //check("itpayspace");
             check("itslack");
-            check("itzoom");
+            //heck("itzoom");
             break;
         case "hr":
             check("itasana");
@@ -53,14 +53,18 @@ function toolChecker() {
             check("itslack");
             check("itzoom");
             break;
+        case "ext":
+            check("itgsuit");
+            check("itpayspace");
+            break;
         case "mo":
             check("itedadmin");
-            check("itgsuite");
-            check("itmailchimp");
+            //check("itgsuite");
+            //check("itmailchimp");
             check("itpayspace");
-            check("itpipedrive");
-            check("itslack");
-            check("itsurveymonkey");
+            //check("itpipedrive");
+            //check("itslack");
+            //check("itsurveymonkey");
             break;
         case "hos":
             check("itcanvas");
@@ -76,16 +80,6 @@ function toolChecker() {
             //check("itpowerbi");
             //check("itsurveymonkey");
             break;
-        case "ext":
-            check("itgsuit");
-            check("itpayspace");
-            break;
-        case "ext":
-            check("itgsuit");
-            check("itpayspace");
-            break;
-        default:
-            //check("");
     }
     console.log(positionValue); // en position
 }

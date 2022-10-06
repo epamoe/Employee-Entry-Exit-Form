@@ -231,10 +231,8 @@ block content
                                 script(type='text/javascript' src='javascripts/managerEmailAddressFinder.js') 
                                 label.form-label(for='validationCustom01') Who will be his/her manager? (Search by names)
                                 p.input-group.mb-3
-                                    input#managerKeyWord.form-control(type='text' required='' onkeypress="clearPreviousManager()")
-                                    //input#givenmanager.form-control(type='text' name='suggestedemail' onkeypress='clearGivenmanagerRespponse()' pattern="[A-Za-z]{1,}.[A-Za-z]{1,}" style='text-transform:lowercase' minLength="3" placeholder="firstname.lastname" aria-label="Recipient's username" aria-describedby='basic-addon2' required='' )
+                                    input#managerKeyWord.form-control(type='text'  name='staffmemberreportingto' required='' onkeypress="clearPreviousManager()")
                                     span#managerEmailValue.input-group-text(style="display: none;")
-                                        input#validationCustom0st.form-control(type='text' name='staffmemberreportingto' disabled='' hidden='')
                                     button#searchManager.btn.btn-primary(onclick='seachManagerAddress()' type='button')
                                         span
                                         |                 Search

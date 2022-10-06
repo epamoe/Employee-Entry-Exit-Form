@@ -60,6 +60,15 @@ router.post('/', function(request, response, next) {
                 },
                 password: 'password123',
                 primaryEmail: "" + data.suggestedemail + "@enkoeducation.com",
+                emails: [{
+                        address: "" + data.personalemail,
+                        type: "work"
+                    },
+                    {
+                        "address": "" + data.suggestedemail + "@enkoeducation.com",
+                        "primary": true
+                    }
+                ],
                 fields: "kind,nextPageToken,users(id,kind,name,orgUnitPath,primaryEmail)"
             };
             /*

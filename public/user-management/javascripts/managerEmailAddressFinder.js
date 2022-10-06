@@ -45,5 +45,6 @@ async function findManagerEmail() {
     document.getElementById("searchingManager").style.display = "none";
     document.getElementById("managerEmailValue").style.display = "block";
     document.getElementById("managerEmailValue").innerHTML = output;
-    //alert(output);managerEmailValue
+    //Filling the manager email into the form value
+    document.getElementById("managerKeyWord").setAttribute("value", output);
 }
