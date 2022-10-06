@@ -105,9 +105,9 @@ router.post('/', function(request, response, next) {
             );
 
             //creating Workspace account
-            var admin_sdk = googleUserMgmt.OrgUnitProvisioning;
-            var tmp = new admin_sdk(googleUserMgmt.opts);
-            console.log(tmp.list());
+            //var admin_sdk = googleUserMgmt.OrgUnitProvisioning;
+            //var tmp = new admin_sdk(googleUserMgmt.opts);
+            //console.log(tmp.list());
             //Send IT email
             var ITEmail = new emailMgmt();
             var ITticket = new ticketMgmt(ITEmail.getITTitle(), user, ITEmail.getOnLeavingSubject(), ITEmail.getITOnLeavingMessage("#", data.employeeid, data.deprovisioningdate), ITEmail.getITHelpTopic());
