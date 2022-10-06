@@ -24,51 +24,46 @@ class Mail {
     getOnComingSubject() { return this.OnComingSubject; }
     getOnChangingSubject() { return this.OnChangingSubject; }
     getWelcomeSubject() { return this.OnComingSubjectEmployee; }
-
-    getRequesterOnCommingMessage(firstName, lastName, startDate, endDate, position) {
-        return " Hi,\n\
-            You ask an employee creation, and your request has been transmitted to HR Department and IT Department.\n\
-            You will be keep informed of the status of the request very soon.\n\
-            Below are some details about your request:\n\
-            Organization: blablabla > xxxxxx\n\
-            First Name: " + firstName + "\n\
-            Last Name: " + lastName + "\n\
-            Start Date: " + startDate + "\n\
-            End Date: " + endDate + "\n\
-            Position: " + position + "\n\n\
-            Regards\n\
-            IT Support - itsupport @enkoeducation.com\n\
-            ";
-    }
+        /*
+            getRequesterOnCommingMessage(firstName, lastName, startDate, endDate, position) {
+                return " Hi,\n\
+                    You ask an employee creation, and your request has been transmitted to HR Department and IT Department.\n\
+                    You will be keep informed of the status of the request very soon.\n\
+                    Below are some details about your request:\n\
+                    Organization: blablabla > xxxxxx\n\
+                    First Name: " + firstName + "\n\
+                    Last Name: " + lastName + "\n\
+                    Start Date: " + startDate + "\n\
+                    End Date: " + endDate + "\n\
+                    Position: " + position + "\n\n\
+                    Regards\n\
+                    IT Support - itsupport @enkoeducation.com\n\
+                    ";
+            }
+            */
     getITOnComingMessage(ticketID, employeeID, groups, ITTools) {
-        return "Hello\n\n\
-        Please make sure the following user is created: " + employeeID + "@enkoeducation.com \n\
-        Create an account on the following tools: " + ITTools + "n\
-        Regards\n\
-        IT Support - itsupport @enkoeducation.com ";
+        return "Dear IT Support, \n\
+                Please make sure the following user is created: " + employeeID + "@enkoeducation.com \n\
+                Create an account on the following tools: " + ITTools + "n\
+                Regards\n\
+                IT Support - itsupport @enkoeducation.com ";
     }
-    getEmployeeOnComingMessage(ticketID, employeeID, groups, ITTools, firstName) {
-        return "Dear " + firstName + ",\n\n\
-        Welcome to the ENKO Education group.\n\
-        We are so happy to have you onboard with us, and know you will help us achieve the very high goals we have.\n\n\
-        You will receive an email to set your ENKO email.\n\n\
-        For any inquiry,\n\
-        if it is related to\n\
-        HR, then write to hrsupport@enkoeducation.com\n\
-        Payroll, then write to payroll@enkoeducation.com\n\
-        IT tools, then write to itsupport@enkoeducation.com\n\n\
-        Regards\n\
-        HR Support - hrsupport@enkoeducation.com ";
+    getEmployeeOnComingMessage(firstName) {
+        return "Dear " + firstName + ",\n\
+                Welcome to the ENKO Education group.\n\
+                We are so happy to have you onboard with us, and know you will help us achieve the very high goals we have.\n\n\
+                You will receive an email to set your ENKO email.\n\n\
+              ";
     }
 
     getHROnComingMessage(ticketID, employeeID) {
         return "Dear HR team, \n\
-            There is a new employee at ENKO Education.\n\
-            A ticket Number" + ticketID + "\n\
-            is assigned to you so that you complete the new profile in Payspace.\n\
-            The ticket will provide you with all necessary information and attachment.\n\n\
-            Regards\n\
-            IT Support - itsupport@enkoeducation.com ";
+                    There is a new employee at ENKO Education.\n\
+                    A ticket Number" + ticketID + "\n\
+                    is assigned to you so that you complete the new profile in Payspace.\n\
+                    The ticket will provide you with all necessary information and attachment.\n\n\
+                    Regards\n\
+                    IT Support - itsupport@enkoeducation.com ";
     }
 
     getITOnChangingMessage(ticketID, employeeID, changes) {
