@@ -33,47 +33,56 @@ block content
                             input#validationCustom03jh.form-control(type='text' value=useridentry name='userid' placeholder='' required='' disabled='' hidden='')                                        
 
                         .col-md-8
-                            label.form-label(for='validationCustom01') Firstname
+                            label.form-label(for='validationCustom01') Firstname &nbsp
+                                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the first or common name of the employee')
                             input#validationCustom03.form-control(type='text' required='' name='firstname' pattern="[A-Za-z]{2,}" minLength="2")
                             .invalid-feedback
                                 | Please provide a valid Firstname without space.
                         .col-md-8
-                            label.form-label(for='validationCustom02') Lastname
+                            label.form-label(for='validationCustom02') Lastname &nbsp
+                                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the last or given name of the employee')
                             input#validationCustom03.form-control(type='text' required='' name='lastname' pattern="[A-Za-z]{2,}" minLength="2")
                             .invalid-feedback
                                 | Please provide a valid Last name without space.
                         
                         .col-md-8
-                                label.form-label(for='validationCustompemail') Personal email of the employee
+                                label.form-label(for='validationCustompemail') Personal email of the employee&nbsp
+                                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the email address that the employee uses for personnal stuff')
                                 input.form-control(type='email' required='' minLength="4" placeholder="personal email" name='personalemail')
                                 .invalid-feedback
                                     | Please provide a valid email.
                         .col-md-8
-                                label.form-label(for='validationCustom01') Personal phone number
+                                label.form-label(for='validationCustom01') Personal phone number&nbsp
+                                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the main telephone number of the employee(without a country code)')
                                 input.form-control(type='number' required='' name='personalphone' min='1')
                                 .invalid-feedback
                                     | Please provide a valid Phone number.
                         .col-md-8
-                                label.form-label(for='inputDate') Birth date
+                                label.form-label(for='inputDate') Birth date&nbsp
+                                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the official birth date of the employee as on the bith certificate')
                                 input.form-control(type='date' name='birthdate')
                         .col-md-8
-                            label.form-label(for='validationCustom01') Country of residence
+                            label.form-label(for='validationCustom01') Country of residence&nbsp
+                                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide country where the employee is actually living in')
                             select.selectpicker.countrypicker.form-control(data-flag='true' name='contryresidence')
                             .invalid-feedback
                                 | Please provide a valid contry.
                         .col-md-8
-                            label.form-label(for='validationCustom0Nat') Nationality
+                            label.form-label(for='validationCustom0Nat') Nationality&nbsp
+                                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the nationality as writen on the passport/NIC')
                             select.selectpicker.countrypicker.form-control(data-flag='true' name='nationality')
                                 .invalid-feedback
                                     | Please provide a valid Nationality.
                         .col-md-8
-                            label.form-label(for='validationCustom02') City of residence
+                            label.form-label(for='validationCustom02') City of residence&nbsp
+                                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the city/town where the employee is actually livin in')
                             input#validationCustom03.form-control(type='text' required='' name='city')
                             .invalid-feedback
                                 | Please provide a valid Last name.
                         
                         .col-md-8
-                                label.form-label(for='validationCustom02') Gender
+                                label.form-label(for='validationCustom02') Gender&nbsp
+                                    i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='In case of other, please let us know ')
                                 .br
                                 .form-check.form-check-inline
                                     input#inlineRadiom.form-check-input(type='radio' value='male' name='gender' )
@@ -87,7 +96,8 @@ block content
                                     input#validationCustom03.form-control(type='text' name='othergender')
                                                                                 
                         .col-md-8
-                            label.form-label(for='validationCustom02') Identifier type
+                            label.form-label(for='validationCustom02') Identifier type&nbsp
+                                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='toogle between NIC/passport, then provide the corresponding identifier')
                             .br
                             .form-check.form-check-inline
                                 input#inlineRadioid.form-check-input(type='radio' value='NIC' name='identifier')
@@ -97,11 +107,13 @@ block content
                                 input#inlineRadiop.form-check-input(type='radio' value='passport' name='identifier')
                                 label.form-check-label(for='inlineRadiop') Passport
                             .br
-                            label.form-check-label(for='validationCustom0v2') Identifier number
+                            label.form-check-label(for='validationCustom0v2') Identifier number&nbsp
+                                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='if you choose passport, please provide the passport number. Otherwise, plesa provide the NIC number')
                             input#validationCustom03.form-control(type='text' name='identifiervalue')                        
                             
                         .col-md-8
-                            label.form-label(for='validationCustom02') Marital Status
+                            label.form-label(for='validationCustom02') Marital Status&nbsp
+                                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='In case of other, provide a detailled value')
                             .br
                             .form-check.form-check-inline
                                 input#inlineRadiosi.form-check-input(type='radio' value='sigle' name='maritalstatus' )
@@ -117,18 +129,21 @@ block content
                                 label.form-check-label(for='inlineRadioooth') Other
                                 input#inlineRadioooth.form-control(type='text' name='othermaritalstatus' placeholder='type other')                    
                         .col-md-8
-                            label.form-label(for='validationCustom01') Number of children (lower than 18)
+                            label.form-label(for='validationCustom01') Number of children (lower than 18)&nbsp
+                                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide official information')
                             input#validationCustom03.form-control(type='number'  name='numberchildren' min='0')
                             .invalid-feedback
                                 | Please provide a valid number.
                             
                         .col-md-8
-                            label.form-label(for='validationCustom01') Emergency contact - Name
+                            label.form-label(for='validationCustom01') Emergency contact - Name&nbsp
+                                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='The fullname of the personn to concact in case of emergency')
                             input.form-control(type='text' required='' name='emergencycontactname')
                             .invalid-feedback
                                 | Please provide a valid name.
                         .col-md-8
-                            label.form-label(for='validationCustom01') Emergency contact - Phone
+                            label.form-label(for='validationCustom01') Emergency contact - Phone&nbsp
+                                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='The phone number of the personn to concact in case of emergency')
                             input.form-control(type='number' required='' name='emergencycontactphone')
                             .invalid-feedback
                                 | Please provide a valid Phone number.
@@ -141,7 +156,8 @@ block content
                            
                             .col-md-8
                                 script(type='text/javascript' src='javascripts/proposedEmailValidator.js') 
-                                label.form-label(for='yourUsername') Proposed email
+                                label.form-label(for='yourUsername') Proposed email&nbsp
+                                    i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide a username that an employee will be using at ENKO Education, then verify if it is still availaible.')
                                 .input-group.has-validation
                                 p.input-group.mb-3
                                     input#proposedemail.form-control(type='text' name='suggestedemail' onkeypress='clearProposedEmailRespponse()' pattern="[A-Za-z]{1,}.[A-Za-z]{1,}" style='text-transform:lowercase' minLength="3" placeholder="firstname.lastname" aria-label="Recipient's username" aria-describedby='basic-addon2' required='' )
@@ -157,7 +173,8 @@ block content
                                 
                                     
                             .col-md-8
-                                label.form-label(for='school') School / Campus / Organisation
+                                label.form-label(for='school') School / Campus / Organisation&nbsp
+                                    i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Choose the organisation rattachez to the employee \nNote: This will automatically choose in which group he deserve to be inserted')
                                 select#school.form-control.form-select(required='' name='school' onclick='groupChecker()')                                    
                                     option(value='' disabled=''  selected='') Choose ...
                                     option(value='' disabled='') N.H
@@ -188,7 +205,8 @@ block content
                                     | Please select a valid school / Campus.
                             
                             .col-md-8
-                                label.form-label(for='validationCustomPos') Position
+                                label.form-label(for='validationCustomPos') Position&nbsp
+                                    i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the position/function of the employee \nThis will help you to automatically choose which IT tools he deserve to use at ENKO Education')
                                 select#position.form-control.form-select(required='' name='position' onclick='toolChecker()' )                               
                                     option(value='' disabled=''  selected='') Choose ...
                                     option(value='teacher' ) Teacher
@@ -209,13 +227,14 @@ block content
                                         | Please provide a valid Subject.                     
                             
                             .col-md-8
-                                label.form-label(for='validationCustom02') Type of contract
+                                label.form-label(for='validationCustom02') Type of contract&nbsp
+                                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='')
                                 select.form-select.form-control(aria-label='Default select example' name='typeofcontract')
                                     option(selected='' disabled='') Choose ...
                                     option(value='permanent') Permanent
                                     option(value='fixed') Fixed term (1 year, 2 year, ...) contract
                                     option(value='consultant') Consultant                  
-                                    option(value='Other') Intern
+                                    option(value='intern') Intern
                                     option(value='other') Other
 
                             .col-md-8
@@ -263,12 +282,14 @@ block content
                                 label.form-label(for='endDate') End date
                                 input.form-control(type='date' name='enddate')
                             .col-md-8
-                                label.form-label(for='validationCustomsal') Gross monthly salary (in local currency)
+                                label.form-label(for='validationCustomsal') Gross monthly salary (in local currency)&nbsp
+                                    i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the value specified in the contract')
                                 input.form-control(type='text' required='' name='grosssalary')
                                 .invalid-feedback
                                     | Please provide a valid salary.
                             .col-md-8
-                                label.form-label(for='validationCustomsal') Net monthly salary (in local currency)
+                                label.form-label(for='validationCustomsal') Net monthly salary (in local currency)&nbsp
+                                    i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the value specified in the contract')
                                 input.form-control(type='text' required='' name='netsalary')
                                 .invalid-feedback
                                     | Please provide a valid salary.
@@ -276,7 +297,9 @@ block content
                 .card(style="width: 75%")
                     .card-body.container
                         .row
-                            h5.card-title IT tools
+                            h5.card-title IT tools&nbsp
+                                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='In this section, check or uncheck tools that employee will need to achieve his/her missions\
+                                \nNote: This list have been automatically checked when you choosed the employee position')
                             // General Form Elements                        
                                         
                             .row
@@ -351,7 +374,9 @@ block content
                 .card(style="width: 75%")
                     script(type='text/javascript' src='javascripts/groupSelector.js')
                     .card-body.container
-                        h5.card-title Groups
+                        h5.card-title Groups&nbs
+                            i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Check groups in which the new employee will be inserted\
+                            \nNOTE: this list have been automatically checked when you choosed the student organisation')
                         // Accordion without outline borders
                         #accordionFlushExample.accordion.accordion-flush
                             .accordion-item
@@ -564,8 +589,10 @@ block content
                                                         input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups' checked='')
                                                         label.form-check-label(for=group.mail) &nbsp 
                                                             | #{ group.mail.toString().split('@')[0] }
+               
                 section.d-flex.flex-column.align-items-center.justify-content-center(style="width: 75%")
-                    .row.justify-content-center                            
+                    .row.justify-content-center( data-toggle='tooltip' data-placement='top' title='\
+                        After submiting this form, you will not be able to rollback. It is strongly recommand to read twice.')                          
                         #onsubmitemailfeedback.justify-content-center.py-4 Please Verify 
                             a(href='#proposedemail') &nbsp the proposed email field 
                             | &nbsp before submitting the form
