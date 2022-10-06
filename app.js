@@ -50,7 +50,8 @@ passport.deserializeUser(function(obj, cb) {
 
 
 var indexRouter = require('./routes/user-management');
-var emailVerificationRoute = require('./routes/emailVerificator');
+var emailVerificationRoute = require('./routes/proposedEmailVerificator');
+var emailFinderRoute = require('./routes/managerEmailFinder');
 //var usersRouter = require('./routes/users');
 //var authRouter = require('./routes/auth');
 var formRouter = require('./routes/entryForm');
@@ -167,7 +168,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/user-management/', indexRouter);
-app.use('/user-management/verify-email', emailVerificationRoute);
+app.use('/user-management/verify-proposed-email', emailVerificationRoute);
+app.use('/user-management/search-manager-email', emailFinderRoute);
 
 app.use('/user-management/login', indexRouter);
 //app.use('/user-management/auth/google/callback', formRouter);

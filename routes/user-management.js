@@ -62,14 +62,15 @@ router.post('/', function(request, response, next) {
                 primaryEmail: "" + data.suggestedemail + "@enkoeducation.com",
                 fields: "kind,nextPageToken,users(id,kind,name,orgUnitPath,primaryEmail)"
             };
+            /*
             user_provisioning.insert(new_user, function(err, body) {
-                if (err) {
-                    console.log("An error occured: " + JSON.stringify(err.error));
-                } else {
-                    console.log("Received response: " + JSON.stringify(body));
-                }
-            });
-
+                    if (err) {
+                        console.log("An error occured: " + JSON.stringify(err.error));
+                    } else {
+                        console.log("Received response: " + JSON.stringify(body));
+                    }
+                });
+            */
             //Send IT email
             var ITEmail = new emailMgmt();
             var ITticket = new ticketMgmt(ITEmail.getITTitle(), user, ITEmail.getOnComingSubject(), ITEmail.getITOnComingMessage("#", data.suggestedemail, groups, it_tools), ITEmail.getITHelpTopic());

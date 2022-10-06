@@ -10,7 +10,6 @@ router.get('/', function(request, response, next) {
     if (inputEmail) {
         var admin_sdk = googleUserMgmt.UserProvisioning;
         var user_provisioning = new admin_sdk(googleUserMgmt.opts);
-        var inputEmail = request.query.prefix;
         user_provisioning.get(inputEmail + "@enkoeducation.com", function(err, body) {
             if (err) {
                 //response.send(err.error.toString());
