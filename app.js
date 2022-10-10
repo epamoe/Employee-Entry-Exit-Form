@@ -145,7 +145,7 @@ const GOOGLE_CLIENT_SECRET = googleUserMgmt.opts.client.secret;
 passport.use(new GoogleStrategy({
         clientID: GOOGLE_CLIENT_ID,
         clientSecret: GOOGLE_CLIENT_SECRET,
-        callbackURL: "http://localhost:3001/user-management/auth/google/callback"
+        callbackURL: "https://intra.enkoeducation.com/user-management/auth/google/callback"
     },
     function(accessToken, refreshToken, profile, done) {
         userProfile = profile;
