@@ -39,7 +39,17 @@ async function findManagerEmail() {
         xhttp.send();
     });
     var output = await myPromise;
-
+    /*
+    try {
+        /*
+            JSON.parse(output).forEach(element => {
+                writeFoundEmails(element.primaryEmail);
+                console.log(element.primaryEmail);
+        });
+        } catch (err) {
+            console.log(err);
+        } 
+    */
     //Toogle verification Button
     document.getElementById("searchManager").style.display = "block";
     document.getElementById("searchingManager").style.display = "none";

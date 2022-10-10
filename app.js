@@ -50,8 +50,8 @@ passport.deserializeUser(function(obj, cb) {
 
 
 var indexRouter = require('./routes/user-management');
-var emailVerificationRoute = require('./routes/proposedEmailVerificator');
-var emailFinderRoute = require('./routes/managerEmailFinder');
+var emailVerificationRoute = require('./routes/emailValidator');
+var emailFinderRoute = require('./routes/emailFinder');
 //var usersRouter = require('./routes/users');
 //var authRouter = require('./routes/auth');
 var formRouter = require('./routes/entryForm');
@@ -145,7 +145,7 @@ const GOOGLE_CLIENT_SECRET = googleUserMgmt.opts.client.secret;
 passport.use(new GoogleStrategy({
         clientID: GOOGLE_CLIENT_ID,
         clientSecret: GOOGLE_CLIENT_SECRET,
-        callbackURL: "https://intra.enkoeducation.com/user-management/auth/google/callback"
+        callbackURL: "http://localhost:3001/user-management/auth/google/callback"
     },
     function(accessToken, refreshToken, profile, done) {
         userProfile = profile;

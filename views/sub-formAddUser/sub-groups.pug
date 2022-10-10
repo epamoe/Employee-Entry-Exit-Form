@@ -1,0 +1,219 @@
+   
+.card(style="width: 75%")
+    script(type='text/javascript' src='javascripts/groupsChecker.js')
+    .card-body.container
+        h5.card-title Groups&nbsp
+            i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Check groups in which the new employee will be inserted\
+            \nNOTE: this list have been automatically checked when you choosed the student organisation')
+        // Accordion without outline borders
+        #accordionFlushExample.accordion.accordion-flush
+            .accordion-item
+                h2#flush-headingOne.accordion-header
+                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseOne' aria-expanded='false' aria-controls='flush-collapseOne')
+                    | Amazing Grace Private School
+                #flush-collapseOne.accordion-collapse.collapse(aria-labelledby='flush-headingOne' data-bs-parent='#accordionFlushExample')
+                .accordion-body
+                    .container
+                        .row
+                            each group in groups
+                                if (group.school_code=="AGP")
+                                    .col-sm
+                                        .form-check.form-switch
+                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
+                                        label.form-check-label(for=group.mail) &nbsp 
+                                            | #{ group.mail.toString().split('@')[0] }
+            .accordion-item
+                h2#flush-headingOne.accordion-header
+                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseOne' aria-expanded='false' aria-controls='flush-collapseOne')
+                    | Enko Bamako Campus
+                #flush-collapseOne.accordion-collapse.collapse(aria-labelledby='flush-headingOne' data-bs-parent='#accordionFlushExample')
+                .accordion-body
+                    .container
+                        .row
+                            each group in groups
+                                if (group.school_code=="EBK")
+                                    .col-sm
+                                        .form-check.form-switch
+                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
+                                        label.form-check-label(for=group.mail) &nbsp 
+                                            | #{ group.mail.toString().split('@')[0] }
+            .accordion-item
+                h2#flush-headingTwo.accordion-header
+                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
+                    | Enko Bonanjo Campus
+                #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
+                .accordion-body
+                    .container
+                        .row
+                            each group in groups
+                                if (group.school_code=="EBC")
+                                    .col-sm
+                                        .form-check.form-switch
+                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
+                                        label.form-check-label(for=group.mail) &nbsp 
+                                            | #{ group.mail.toString().split('@')[0] }
+            .accordion-item
+                h2#flush-headingOne.accordion-header
+                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseOne' aria-expanded='false' aria-controls='flush-collapseOne')
+                    | Enko Botho Campus
+                #flush-collapseOne.accordion-collapse.collapse(aria-labelledby='flush-headingOne' data-bs-parent='#accordionFlushExample')
+                .accordion-body
+                    .container
+                        .row
+                            each group in groups
+                                if (group.school_code=="EBT")
+                                    .col-sm
+                                        .form-check.form-switch
+                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
+                                        label.form-check-label(for=group.mail) &nbsp 
+                                            | #{ group.mail.toString().split('@')[0] }
+            .accordion-item
+                h2#flush-headingTwo.accordion-header
+                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
+                    | Enko Keur Gorgui Campus
+                #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
+                .accordion-body
+                    .container
+                        .row
+                            each group in groups
+                                if (group.school_code=="EKG")
+                                    .col-sm
+                                        .form-check.form-switch
+                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
+                                        label.form-check-label(for=group.mail) &nbsp 
+                                            | #{ group.mail.toString().split('@')[0] }
+            .accordion-item
+                h2#flush-headingOne.accordion-header
+                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseOne' aria-expanded='false' aria-controls='flush-collapseOne')
+                    | Enko La Gaiete Campus
+                #flush-collapseOne.accordion-collapse.collapse(aria-labelledby='flush-headingOne' data-bs-parent='#accordionFlushExample')
+                .accordion-body
+                    .container
+                        .row
+                            each group in groups
+                                if (group.school_code=="EGC")
+                                    .col-sm
+                                        .form-check.form-switch
+                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
+                                        label.form-check-label(for=group.mail) &nbsp 
+                                            | #{ group.mail.toString().split('@')[0] }
+            .accordion-item
+                h2#flush-headingTwo.accordion-header
+                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
+                    | Enko Ouaga Campus
+                #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
+                .accordion-body
+                    .container
+                        .row
+                            each group in groups
+                                if (group.school_code=="EOG")
+                                    .col-sm
+                                        .form-check.form-switch
+                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
+                                        label.form-check-label(for=group.mail) &nbsp 
+                                            | #{ group.mail.toString().split('@')[0] }
+            .accordion-item
+                h2#flush-headingOne.accordion-header
+                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseOne' aria-expanded='false' aria-controls='flush-collapseOne')
+                    | Enko Riverside Campus
+                #flush-collapseOne.accordion-collapse.collapse(aria-labelledby='flush-headingOne' data-bs-parent='#accordionFlushExample')
+                .accordion-body
+                    .container
+                        .row
+                            each group in groups
+                                if (group.school_code=="EVS")
+                                    .col-sm
+                                        .form-check.form-switch
+                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
+                                        label.form-check-label(for=group.mail) &nbsp 
+                                            | #{ group.mail.toString().split('@')[0] }
+            .accordion-item
+                h2#flush-headingTwo.accordion-header
+                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
+                    | Enko Riviera Campus
+                #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
+                .accordion-body
+                    .container
+                        .row
+                            each group in groups
+                                if (group.school_code=="ERV")
+                                    .col-sm
+                                        .form-check.form-switch
+                                        input(id=group.mail class='school' class=group.school_code type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
+                                        label.form-check-label(for=group.mail) &nbsp 
+                                            | #{ group.mail.toString().split('@')[0] }
+            .accordion-item
+                h2#flush-headingOne.accordion-header
+                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseOne' aria-expanded='false' aria-controls='flush-collapseOne')
+                    | Enko Sekeleka Campus
+                #flush-collapseOne.accordion-collapse.collapse(aria-labelledby='flush-headingOne' data-bs-parent='#accordionFlushExample')
+                .accordion-body
+                    .container
+                        .row
+                            each group in groups
+                                if (group.school_code=="ESC")
+                                    .col-sm
+                                        .form-check.form-switch
+                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
+                                        label.form-check-label(for=group.mail) &nbsp 
+                                            | #{ group.mail.toString().split('@')[0] }
+            .accordion-item
+                h2#flush-headingTwo.accordion-header
+                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
+                    | Enko Waca Campus
+                #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
+                .accordion-body
+                    .container
+                        .row
+                            each group in groups
+                                if (group.school_code=="EWC")
+                                    .col-sm
+                                        .form-check.form-switch
+                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
+                                        label.form-check-label(for=group.mail) &nbsp 
+                                            | #{ group.mail.toString().split('@')[0] }
+            .accordion-item
+                h2#flush-headingTwo.accordion-header
+                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
+                    | Jacaranda Academy
+                #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
+                .accordion-body
+                    .container
+                        .row
+                            each group in groups
+                                if (group.school_code=="EJA")
+                                    .col-sm
+                                        .form-check.form-switch
+                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
+                                        label.form-check-label(for=group.mail) &nbsp 
+                                            | #{ group.mail.toString().split('@')[0] }
+            .accordion-item
+                h2#flush-headingTwo.accordion-header
+                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
+                    | Pestalozzi Education Center
+                #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
+                .accordion-body
+                    .container
+                        .row
+                            each group in groups
+                                if (group.school_code=="PED")
+                                    .col-sm
+                                        .form-check.form-switch
+                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
+                                        label.form-check-label(for=group.mail) &nbsp 
+                                            | #{ group.mail.toString().split('@')[0] }
+            .accordion-item
+                h2#flush-headingTwo.accordion-header
+                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
+                    | Common groups
+                #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
+                .accordion-body
+                    .container
+                        .row
+                            each group in groups
+                                if (group.school_code=="ALL")
+                                    .col-sm
+                                        .form-check.form-switch
+                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups' checked='')
+                                        label.form-check-label(for=group.mail) &nbsp 
+                                            | #{ group.mail.toString().split('@')[0] }
