@@ -26,6 +26,8 @@ router.post('/', function(request, response, next) {
             it_tools = it_tools.filter(n => n); //remove null and undefined values
             var groups = [data.enkogroups];
             groups = groups.filter(n => n); //remove null and undefined values
+            var emergencyPhoneNumber = "+" + data.emergencycontactphonecode + data.emergencycontactphone,
+                personnalPhoneNumber = "+" + data.personalphonecode + data.personalphone;
             //establishing connection and running query
             var cnx1 = new mysqlCnx();
             var rq = cnx1.connection.query(" INSERT INTO `entry_exit_form` " +
@@ -42,7 +44,7 @@ router.post('/', function(request, response, next) {
                 "','" + data.school + "','" + data.position + "','" + data.subject + "','" + data.startdate + "','" + data.enddate + "','" + data.enddate +
                 "','" + data.gender + "','" + data.nationality + "','" + data.identifier + "','" + data.identifiervalue + "','" + data.contryresidence + "','" + data.city +
                 "','" + data.maritalstatus + "','" + data.othermaritalstatus + "','" + data.numberchildren + "','" + data.typeofcontract + "','" + data.typeofemployment + "','" + data.staffmemberreportingto + "',AES_ENCRYPT('" + data.netsalary + "',CURRENT_TIMESTAMP())" +
-                ",AES_ENCRYPT('" + data.grosssalary + "',CURRENT_TIMESTAMP())" + ",'" + data.emergencycontactname + "','" + data.emergencycontactphone + "','" + data.personalemail + "','" + data.personalphone + "','" + data.expirationdateofpropationperiod + "','" + data.isprobationperionrenewable +
+                ",AES_ENCRYPT('" + data.grosssalary + "',CURRENT_TIMESTAMP())" + ",'" + data.emergencycontactname + "','" + emergencyPhoneNumber + "','" + data.personalemail + "','" + personnalPhoneNumber + "','" + data.expirationdateofpropationperiod + "','" + data.isprobationperionrenewable +
                 "','[" + it_tools + "]" +
                 //"','[" + data.gsuite + "," + data.edadmin + "]" + //It admin tools
                 "','[" + groups + "]" +
@@ -58,7 +60,7 @@ router.post('/', function(request, response, next) {
                     givenName: "" + data.firstname,
                     familyName: "" + data.lastname,
                 },
-                password: 'password123',
+                password: 'passworD' + new Date().toISOString().slice(0, 10),
                 primaryEmail: "" + data.suggestedemail + "@enkoeducation.com",
                 emails: [{
                         address: "" + data.personalemail,
@@ -69,17 +71,19 @@ router.post('/', function(request, response, next) {
                         "primary": true
                     }
                 ],
+
+
                 fields: "kind,nextPageToken,users(id,kind,name,orgUnitPath,primaryEmail)"
             };
-            /*
+
             user_provisioning.insert(new_user, function(err, body) {
-                    if (err) {
-                        console.log("An error occured: " + JSON.stringify(err.error));
-                    } else {
-                        console.log("Received response: " + JSON.stringify(body));
-                    }
-                });
-            */
+                if (err) {
+                    console.log("An error occured: " + JSON.stringify(err.error));
+                } else {
+                    console.log("Received response: " + JSON.stringify(body));
+                }
+            });
+
             //Send IT email
             var ITEmail = new emailMgmt();
             var ITticket = new ticketMgmt(ITEmail.getITTitle(), user, ITEmail.getOnComingSubject(), ITEmail.getITOnComingMessage("#", data.suggestedemail, groups, it_tools), ITEmail.getITHelpTopic());

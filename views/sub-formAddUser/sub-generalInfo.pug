@@ -30,7 +30,10 @@
         .col-md-8
                 label.form-label(for='validationCustom01') Personal phone number&nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the main telephone number of the employee(without a country code)')
-                input.form-control(type='number' required='' name='personalphone' min='1')
+                .input-group
+                    select(name='personalphonecode' id='')(style="width: 25%")
+                        include ./sub-countryPhoneCode.pug
+                    input.form-control(type='number' required='' name='personalphone' min='1')
                 .invalid-feedback
                     | Please provide a valid Phone number.
         .col-md-8
@@ -120,6 +123,9 @@
         .col-md-8
             label.form-label(for='validationCustom01') Emergency contact - Phone&nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='The phone number of the personn to concact in case of emergency')
-            input.form-control(type='number' required='' name='emergencycontactphone')
+            .input-group
+                select(name='emergencycontactphonecode' id='')(style="width: 25%")
+                    include ./sub-countryPhoneCode.pug
+                input.form-control(type='number' required='' name='emergencycontactphone')
             .invalid-feedback
                 | Please provide a valid Phone number.

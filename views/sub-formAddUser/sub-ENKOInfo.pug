@@ -54,11 +54,11 @@
                     | Please select a valid school / Campus.
             
             .col-md-8
-                label.form-label(for='validationCustomPos') Position&nbsp
+                label.form-label(for='validationCustomPos') Department&nbsp
                     i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the position/function of the employee \nThis will help you to automatically choose which IT tools he deserve to use at ENKO Education')
                 select#position.form-control.form-select(required='' name='position' onclick='toolChecker()' )                               
                     option(value='' disabled=''  selected='') Choose ...
-                    option(value='teacher' ) Teacher
+                    option(value='teacher' ) Learning & Teaching
                     option(value='hos' ) Head Of School
                     option(value='mo' ) Marketing Officer
                     option(value='pro' ) Parent Relations Officer
@@ -67,10 +67,10 @@
                     option(value='finance' ) Finance
                     option(value='ext' ) External
                 .invalid-feedback 
-                    | Please provide a valid position.
+                    | Please provide a valid Department.
                 
             .col-md-8
-                label.form-label(for='validationCustom0333') Subject (If teacher)
+                label.form-label(for='validationCustom0333') Position/Title (Provide subject if teacher)
                 input#validationCustom03.form-control(type='text' name='subject' )  
                 .invalid-feedback 
                         | Please provide a valid Subject.                     
