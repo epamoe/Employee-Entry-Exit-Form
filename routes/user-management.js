@@ -102,16 +102,16 @@ router.post('/', function(request, response, next) {
             //Send IT email & Tickets
             var ITEmail = new emailMgmt();
             var ITToolsTicket = new ticketMgmt(
-                ITEmail.getITTitle() + data.suggestedemail,
-                user,
+                "ITtools: " + data.suggestedemail,
+                data.suggestedemail,
                 ITEmail.getOnComingSubject() + data.suggestedemail,
                 ITEmail.getITOnComingMessageTools(
                     data.suggestedemail, data.personalemail, it_tools
                 )
             );
             var ITGroupsTicket = new ticketMgmt(
-                ITEmail.getITTitle() + data.suggestedemail,
-                user,
+                "Groups: " + data.suggestedemail,
+                data.suggestedemail,
                 ITEmail.getOnComingSubject() + data.suggestedemail,
                 ITEmail.getITOnComingMessageGroups(
                     data.suggestedemail, data.personalemail, groups
@@ -122,13 +122,13 @@ router.post('/', function(request, response, next) {
             //Send HR email & ticket
             var HREmail = new emailMgmt();
             var HRticket = new ticketMgmt(
-                HREmail.getHRTitle(),
-                user,
-                HREmail.getOnComingSubject() + data.suggestedemail,
+                "Payspace for" + data.suggestedemail,
+                data.suggestedemail,
+                "New acc: " + data.suggestedemail,
                 HREmail.getHROnComingMessage(
-                    orgUnitFinder.getOrgFullText(data.organisation), data.firstname, data.lastname, data.suggestedemail, data.personalemail,
+                    user, orgUnitFinder.getOrgFullText(data.organisation), data.firstname, data.lastname, data.suggestedemail, data.personalemail,
                     personnalPhoneNumber, data.birthdate, data.contryresidence, data.nationality, data.city, data.gender,
-                    data.identifier, data.identifier, data.maritalstatus, data.numberchildren, data.emergencycontactname,
+                    data.identifier, data.identifiervalue, data.maritalstatus, data.numberchildren, data.emergencycontactname,
                     emergencyPhoneNumber, positionFinder.getPositionFullText(data.position), data.subject, data.typeofcontract, data.typeofemployment,
                     data.staffmemberreportingto, data.expirationdateofpropationperiod, data.isprobationperionrenewable, data.startdate,
                     data.enddate, data.grosssalary, data.netsalary

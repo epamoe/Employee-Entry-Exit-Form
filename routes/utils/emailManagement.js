@@ -65,14 +65,17 @@ class Mail {
             "\n\n Regards,";
     }
 
-    getHROnComingMessage(Entity, Firstname, Lastname, Enkoemail, PersonnalEmail, Phonenumber, Birthdate, countryofresidence, Nationality,
+    getHROnComingMessage(user, Entity, Firstname, Lastname, Enkoemail, PersonnalEmail, Phonenumber, Birthdate, countryofresidence, Nationality,
         Cityofresidence, Gender, NIC, Passport, Marital, children, EmergencyName, EmergencyPhone, Department, Position, Typecontract,
         Typeemployment, Manager, Expirationprobation, probationrenewable, startdate, Enddate, grossmonthlysalary, netmonthlysalary) {
         return "Hello \n" +
-            "\nWe have a new employee in our ourganization\n" +
+            "\nWe have a new employee in our our organisation\n" +
+            "\nRequester email:" + user +
             "\nProvide an account with these informations:\n\n" +
             "\nEntity:" + Entity +
-            "\nFirstname:" + Firstname +
+            "\nDepartment:" + Department +
+            "\nPosition:" + Position +
+            "\n\nFirstname:" + Firstname +
             "\nLastname:" + Lastname +
             "\nEnko email:" + Enkoemail +
             "\nPersonnal Email:" + PersonnalEmail +
@@ -82,14 +85,12 @@ class Mail {
             "\nNationality:" + Nationality +
             "\nCity of residence:" + Cityofresidence +
             "\nGender:" + Gender +
-            "\nNIC identifier number:" + NIC +
+            "\nNIC identifier type:" + NIC +
             "\nPassport identifier number:" + Passport +
             "\nMarital status:" + Marital +
             "\nNumber of children:" + children +
             "\nEmergency contact - Name:" + EmergencyName +
             "\nEmergency contact - Phone:" + EmergencyPhone +
-            "\nDepartment:" + Department +
-            "\nPosition:" + Position +
             "\nType of contract:" + Typecontract +
             "\nType of employment:" + Typeemployment +
             "\nManager email address:" + Manager +

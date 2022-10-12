@@ -5,45 +5,45 @@ module.exports = {
             case "AGP":
                 return "Amazing Grace Private School";
             case "EBK":
-                return "Enko Bamako Campus";
+                return "/Schools/Enko Bamako Campus";
             case "EBC":
-                return "Enko Bonanjo Campus";
+                return "/Schools/Enko Bonanjo Campus";
             case "EBT":
-                return "Enko Botho Campus";
+                return "/Schools/Enko Botho Campus";
             case "EKG":
-                return "Enko Keur Gorgui Campus";
-            case "EOG":
-                return "Enko Ouaga Campus";
-            case "ERS":
-                return "Enko Riverside Campus";
-            case "ERV":
-                return "Enko Riviera Campus";
-            case "ESC":
-                return "Enko Sekeleka Campus";
-            case "EWC":
-                return "Enko Waca Campus";
-            case "EJA":
-                return "Jacaranda Academy";
-            case "PED":
-                return "Pestalozzi Education Center";
+                return "/Schools/Enko Keur Gorgui Campus";
             case "EGC-P":
-                return "Enko La Gaieté";
+                return "/Schools/Enko La Gaieté/International Primary School";
             case "EGC-S":
-                return "Enko La Gaieté";
+                return "/Schools/Enko La Gaieté/International Secondary School";
+            case "EOG":
+                return "/Schools/Enko Ouaga Campus";
+            case "ERS":
+                return "/Schools/Enko Riverside Campus";
+            case "ERV":
+                return "/Schools/Enko Riviera Campus";
+            case "ESC":
+                return "/Schools/Enko Sekeleka Campus";
+            case "EWC":
+                return "/Schools/Enko Waca Campus";
+            case "EJA":
+                return "/Schools/Jacaranda Academy";
+            case "PED":
+                return "/Schools/Pestalozzi Education Center";
             case "MKG":
                 return "Central Office";
             case "IT":
-                return "Central Office";
+                return "Central office";
             case "FI":
-                return "Central Office";
+                return "Central office";
             case "L&T":
-                return "Central Office";
+                return "Central office";
             case "OPS":
-                return "Central Office";
+                return "Central office";
             case "":
-                return "Central Office";
+                return "Central office";
             case "ext":
-                return "Ext";
+                return "/Schools/External";
             default:
                 return "";
         }
