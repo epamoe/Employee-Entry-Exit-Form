@@ -41,7 +41,7 @@ router.post('/', function(request, response, next) {
                 "`it_groups`, " +
                 "`form_type`" +
                 " ) VALUES (" +
-                "'" + user + "','" + data.firstname + "','" + data.lastname + "','" + data.suggestedemail +
+                "'" + user + "','" + data.firstname + "','" + data.lastname + "','" + data.suggestedemail + "@enkoeducation.com" +
                 "','" + data.organisation + "','" + data.position + "','" + data.subject + "','" + data.startdate + "','" + data.enddate + "','" + data.enddate +
                 "','" + data.gender + "','" + data.nationality + "','" + data.identifier + "','" + data.identifiervalue + "','" + data.contryresidence + "','" + data.city +
                 "','" + data.maritalstatus + "','" + data.othermaritalstatus + "','" + data.numberchildren + "','" + data.typeofcontract + "','" + data.typeofemployment + "','" + data.staffmemberreportingto + "',AES_ENCRYPT('" + data.netsalary + "',CURRENT_TIMESTAMP())" +
@@ -86,7 +86,7 @@ router.post('/', function(request, response, next) {
                     value: "" + personnalPhoneNumber,
                     type: "work"
                 }],
-                orgUnitPath: "/" + orgUnitFinder.getOrgFullText(data.organisation),
+                orgUnitPath: +orgUnitFinder.getOrgFullText(data.organisation),
 
                 fields: "kind,nextPageToken,users(id,kind,name,orgUnitPath,primaryEmail)"
             };
@@ -102,19 +102,19 @@ router.post('/', function(request, response, next) {
             //Send IT email & Tickets
             var ITEmail = new emailMgmt();
             var ITToolsTicket = new ticketMgmt(
-                "ITtools: " + data.suggestedemail,
+                "ITtools: " + data.suggestedemail + "@enkoeducation.com",
                 data.suggestedemail,
-                ITEmail.getOnComingSubject() + data.suggestedemail,
+                ITEmail.getOnComingSubject() + data.suggestedemail + "@enkoeducation.com",
                 ITEmail.getITOnComingMessageTools(
-                    data.suggestedemail, data.personalemail, it_tools
+                    data.suggestedemail + "@enkoeducation.com", data.personalemail, it_tools
                 )
             );
             var ITGroupsTicket = new ticketMgmt(
-                "Groups: " + data.suggestedemail,
+                "Groups: " + data.suggestedemail + "@enkoeducation.com",
                 data.suggestedemail,
-                ITEmail.getOnComingSubject() + data.suggestedemail,
+                ITEmail.getOnComingSubject() + data.suggestedemail + "@enkoeducation.com",
                 ITEmail.getITOnComingMessageGroups(
-                    data.suggestedemail, data.personalemail, groups
+                    data.suggestedemail + "@enkoeducation.com", data.personalemail, groups
                 )
             );
             //var ITMailLog = ITEmail.sendMail(ITEmail.getITMailAddress(), ITEmail.getOnComingSubject(), ITEmail.getITOnComingMessage(ITticket.getTicketID(), data.suggestedemail, groups, it_tools));
@@ -123,8 +123,8 @@ router.post('/', function(request, response, next) {
             var HREmail = new emailMgmt();
             var HRticket = new ticketMgmt(
                 "Payspace for" + data.suggestedemail,
-                data.suggestedemail,
-                "New acc: " + data.suggestedemail,
+                data.suggestedemail + "@enkoeducation.com",
+                "New acc: " + data.suggestedemail + "@enkoeducation.com",
                 HREmail.getHROnComingMessage(
                     user, orgUnitFinder.getOrgFullText(data.organisation), data.firstname, data.lastname, data.suggestedemail, data.personalemail,
                     personnalPhoneNumber, data.birthdate, data.contryresidence, data.nationality, data.city, data.gender,
@@ -169,7 +169,8 @@ router.post('/', function(request, response, next) {
             var data = request.body;
             var user = request.session.email;
             var cnx1 = new mysqlCnx();
-
+            var admin_sdk = googleUserMgmt.UserProvisioning;
+            var user_provisioning = new admin_sdk(googleUserMgmt.opts);
             var req = cnx1.connection.query(
                 "INSERT INTO `entry_exit_form`( " +
                 "`initiator`, `leaving_email`, `departure_date`, `deprovisioning_date`, `leaving_reason` , `form_type`" +
@@ -178,19 +179,35 @@ router.post('/', function(request, response, next) {
                 user + "','" + data.employeeid + "','" + data.leavingdate + "','" + data.deprovisioningdate + "','" + data.leavingreason + "','leaving" +
                 "');"
             );
-
+            console.log("### userkey:" + data.employeeid);
+            user_provisioning.update(data.employeeid, { "suspended": true },
+                function(err, body) {
+                    if (err) {
+                        console.log("Return with error: " + JSON.stringify(err));
+                    } else {
+                        console.log("User suspended: " + JSON.stringify(body));
+                    }
+                });
             //creating Workspace account
             //var admin_sdk = googleUserMgmt.OrgUnitProvisioning;
             //var tmp = new admin_sdk(googleUserMgmt.opts);
             //console.log(tmp.list());
             //Send IT email
             var ITEmail = new emailMgmt();
-            var ITticket = new ticketMgmt(ITEmail.getITTitle(), user, ITEmail.getOnLeavingSubject(), ITEmail.getITOnLeavingMessage("#", data.employeeid, data.deprovisioningdate), ITEmail.getITHelpTopic());
+            //var ITticket = new ticketMgmt(ITEmail.getITTitle(), user, ITEmail.getOnLeavingSubject(), ITEmail.getITOnLeavingMessage("#", data.employeeid, data.deprovisioningdate), ITEmail.getITHelpTopic());
             //var ITMailLog = ITEmail.sendMail(ITEmail.getITMailAddress(), ITEmail.getOnLeavingSubject(), ITEmail.getITOnLeavingMessage(ITticket.getTicketID(), data.employeeid, data.deprovisioningdate));
 
             //Send HR email
             var HREmail = new emailMgmt();
-            var HRticket = new ticketMgmt(HREmail.getHRTitle(), user, HREmail.getOnLeavingSubject(), HREmail.getHROnLeavingMessage("#", data.employeeid, data.deprovisioningdate, data.leavingreason), HREmail.getHRHelpTopic());
+            var HRticket = new ticketMgmt(
+                "Payspace acc suppression:" + data.employeeid,
+                user,
+                "Payspace acc suppression" + data.employeeid,
+                HREmail.getHROnLeavingMessage(
+                    data.employeeid, data.leavingreason,
+                    data.leavingdate, data.deprovisioningdate
+                )
+            );
             //var HRMailLog = HREmail.sendMail(HREmail.getHRMailAddress(), HREmail.getOnLeavingSubject(), HREmail.getHROnLeavingMessage(HRticket.getTicketID(), data.employeeid, data.deprovisioningdate, data.leavingreason));
 
             response.render("entryform", {
@@ -248,6 +265,8 @@ router.post('/', function(request, response, next) {
                 );
                 changeString += "New Employment type: " + data.employmenttype + "\n";
             }
+
+
             //Send IT email
             var ITEmail = new emailMgmt();
             var ITticket = new ticketMgmt(ITEmail.getITTitle(), user, ITEmail.getOnChangingSubject(), ITEmail.getITOnChangingMessage("#", data.employeeid, changeString));

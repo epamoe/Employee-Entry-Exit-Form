@@ -3,7 +3,7 @@ module.exports = {
     getOrgFullText(organisationCode) {
         switch (organisationCode) {
             case "AGP":
-                return "Amazing Grace Private School";
+                return "/Schools/Amazing Grace Private School";
             case "EBK":
                 return "/Schools/Enko Bamako Campus";
             case "EBC":
@@ -31,17 +31,17 @@ module.exports = {
             case "PED":
                 return "/Schools/Pestalozzi Education Center";
             case "MKG":
-                return "Central Office";
+                return "/Central Office";
             case "IT":
                 return "Central office";
             case "FI":
-                return "Central office";
+                return "/Central office";
             case "L&T":
-                return "Central office";
+                return "/Central office";
             case "OPS":
-                return "Central office";
+                return "/Central office";
             case "":
-                return "Central office";
+                return "/Central office";
             case "ext":
                 return "/Schools/External";
             default:

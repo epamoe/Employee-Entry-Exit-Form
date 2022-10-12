@@ -129,11 +129,14 @@ class Mail {
             "1) Deprovision " + employeeID + "@enkoeducation.com on " +
             deprovisioningDate;
     }
-    getHROnLeavingMessage(ticketID, employeeID, departureDate, leavingReason) {
-        return "Ticket number: " + ticketID + "\n" +
-            "Please, be sure you have made these actions: \n" +
-            "1) Send a goodbye mail to " + employeeID + "@enkoeducation.com on " +
-            departureDate + "\n reason of leaving: " + leavingReason;
+    getHROnLeavingMessage(employeeID, leavingReason, departureDate, deprovisioningDate) {
+        return "Hello" +
+            "\nOne of our coleague is leaving our organization." +
+            "\nEmployee email:" + employeeID +
+            "\nLeaving reason: " + leavingReason +
+            "\nLeaving date: " + departureDate +
+            "\nPlease be sure you delete/suspend his/her account on Payspace by " + deprovisioningDate +
+            "\n\nRegards";
     }
 
 
