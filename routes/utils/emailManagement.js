@@ -9,7 +9,7 @@ class Mail {
         this.HRMailAddress = "epamoe@gmail.com";
         this.HRHelpTopic = "HR questions";
         this.OnLeavingSubject = "Employee Leaving";
-        this.OnComingSubject = "New employee creation";
+        this.OnComingSubject = "New employee creation: ";
         this.OnComingSubjectEmployee = "Welcome to ENKO Education Group";
         this.OnChangingSubject = "Employee changing";
     }
@@ -41,29 +41,74 @@ class Mail {
                     ";
             }
             */
-    getITOnComingMessage(ticketID, employeeID, groups, ITTools) {
-        return "Dear IT Support, \n\
-                Please make sure the following user is created: " + employeeID + "@enkoeducation.com \n\
-                Create an account on the following tools: " + ITTools + "n\
-                Regards\n\
-                IT Support - itsupport @enkoeducation.com ";
+    getITOnComingMessageTools(suggestedEmail, personalEmail, itToolsList) {
+        return "Hello, " +
+            "\nWe have a new colleague at ENKO organisation.\n" +
+            "\nHis/Her Enko email: " + suggestedEmail +
+            "\nHis/Her Personal email:" + personalEmail +
+            "\nWould you provide access to the Following tools:" + itToolsList +
+            "\n\n Rregards";
     }
-    getEmployeeOnComingMessage(firstName) {
-        return "Dear " + firstName + ",\n\
-                Welcome to the ENKO Education group.\n\
-                We are so happy to have you onboard with us, and know you will help us achieve the very high goals we have.\n\n\
-                You will receive an email to set your ENKO email.\n\n\
-              ";
+    getITOnComingMessageGroups(suggestedEmail, personalEmail, groupsList) {
+        return "Hello, " +
+            "\nWe have a new colleague at ENKO organisation.\n" +
+            "\nHis/Her Enko email: " + suggestedEmail +
+            "\nHis/Her Personal email:" + personalEmail +
+            "\nWould you provide access to the Following groups:" + groupsList +
+            "\n\n Rregards";
+    }
+    getFresherOnComingMessage(firstName) {
+        return "Dear " + firstName + "," +
+            "\nWelcome to the ENKO Education group." +
+            "\nWe are so happy to have you onboard with us, and know you will help us achieve the very high goals we have." +
+            "\nYou will receive an email to set your ENKO email. " +
+            "\n\n Regards,";
     }
 
-    getHROnComingMessage(ticketID, employeeID) {
-        return "Dear HR team, \n\
-                    There is a new employee at ENKO Education.\n\
-                    A ticket Number" + ticketID + "\n\
-                    is assigned to you so that you complete the new profile in Payspace.\n\
-                    The ticket will provide you with all necessary information and attachment.\n\n\
-                    Regards\n\
-                    IT Support - itsupport@enkoeducation.com ";
+    getHROnComingMessage(Entity, Firstname, Lastname, Enkoemail, PersonnalEmail, Phonenumber, Birthdate, countryofresidence, Nationality,
+        Cityofresidence, Gender, NIC, Passport, Marital, children, EmergencyName, EmergencyPhone, Department, Position, Typecontract,
+        Typeemployment, Manager, Expirationprobation, probationrenewable, startdate, Enddate, grossmonthlysalary, netmonthlysalary) {
+        return "Hello \n" +
+            "\nWe have a new employee in our ourganization\n" +
+            "\nProvide an account with these informations:\n\n" +
+            "\nEntity:" + Entity +
+            "\nFirstname:" + Firstname +
+            "\nLastname:" + Lastname +
+            "\nEnko email:" + Enkoemail +
+            "\nPersonnal Email:" + PersonnalEmail +
+            "\nPhone number:" + Phonenumber +
+            "\nBirth date:" + Birthdate +
+            "\nCountry of residence:" + countryofresidence +
+            "\nNationality:" + Nationality +
+            "\nCity of residence:" + Cityofresidence +
+            "\nGender:" + Gender +
+            "\nNIC identifier number:" + NIC +
+            "\nPassport identifier number:" + Passport +
+            "\nMarital status:" + Marital +
+            "\nNumber of children:" + children +
+            "\nEmergency contact - Name:" + EmergencyName +
+            "\nEmergency contact - Phone:" + EmergencyPhone +
+            "\nDepartment:" + Department +
+            "\nPosition:" + Position +
+            "\nType of contract:" + Typecontract +
+            "\nType of employment:" + Typeemployment +
+            "\nManager email address:" + Manager +
+            "\nExpiration date of the probation period:" + Expirationprobation +
+            "\nIs the probation period renewable:" + probationrenewable +
+            "\nEffective start date:" + startdate +
+            "\nEnd date:" + Enddate +
+            "\nGross monthly salary (in local currency) :" + grossmonthlysalary +
+            "\nNet monthly salary (in local currency) :" + netmonthlysalary;
+    }
+    getUserOncomingMessage(firstName, lastName, email) {
+        return "Hello\n" +
+            "You have requested the creation of an employee account on :" + new Date().toISOString().slice(0, 10) + "\n" +
+            "Names: " + firstName + lastName + "\n " +
+            "Email: " + email +
+            "\n The account should take up to 48H to be created. The user will be directly informed of the creation.\n" +
+            "\n\nIt is not necessary to answer to this email\n\n" +
+            "Regards \n " +
+            "IT Support - itsupport@enkoeducation.com";
     }
 
     getITOnChangingMessage(ticketID, employeeID, changes) {

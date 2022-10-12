@@ -11,9 +11,11 @@ function seachManagerAddress() {
     document.getElementById("managerFeedback").style.color = "#dc3545";
     if (managerKeyWork.length < 3) {
         outputMessage = "Required at least 3 characters";
-        document.getElementById("managerEmailValue").style.display = "block";
-        document.getElementById("managerEmailValue").innerHTML = outputMessage;
+        document.getElementById("managerEmailContainer").style.display = "block";
+        document.getElementById("managerEmailContainer").innerHTML = outputMessage;
     } else {
+
+        document.getElementById("managerEmailContainer").style.display = "block";
         findManagerEmail();
     }
 };
@@ -39,22 +41,22 @@ async function findManagerEmail() {
         xhttp.send();
     });
     var output = await myPromise;
-    /*
-    try {
-        /*
-            JSON.parse(output).forEach(element => {
-                writeFoundEmails(element.primaryEmail);
-                console.log(element.primaryEmail);
-        });
-        } catch (err) {
-            console.log(err);
-        } 
-    */
+
     //Toogle verification Button
     document.getElementById("searchManager").style.display = "block";
     document.getElementById("searchingManager").style.display = "none";
     document.getElementById("managerEmailValue").style.display = "block";
     document.getElementById("managerEmailValue").innerHTML = output;
     //Filling the manager email into the form value
-    document.getElementById("managerKeyWord").setAttribute("value", output);
+    //document.getElementById("managerKeyWord").setAttribute("value", output);
+    //document.getElementById("managerEmailContainer").innerHTML = "";
+
+    //Toogle verification Button
+    document.getElementById("searchManager").style.display = "block";
+    document.getElementById("searchingManager").style.display = "none";
+    document.getElementById("managerEmailValue").style.display = "block";
+    document.getElementById("managerEmailValue").innerHTML = output;
+    //Filling the manager email into the form value
+    //document.getElementById("managerKeyWord").setAttribute("value", output);
+    //document.getElementById("managerEmailContainer").innerHTML = "";
 }

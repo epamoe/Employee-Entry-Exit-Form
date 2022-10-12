@@ -60,6 +60,8 @@ async function checkEmailValidity() {
     if (output.toString() == ("Looks good!").toString() || output.toString() == ("internal server error. Refer to itsupport")) {
         document.getElementById("emailfeedback").style.color = "green";
         document.querySelector('#btnOnSubmitt').disabled = false;
+        document.getElementById("btnOnSubmitt").classList.remove('btn-secondary');
+        document.getElementById("btnOnSubmitt").classList.add('btn-success');
         document.getElementById("onsubmitemailfeedback").style.display = "none";
     } else {
 

@@ -6,7 +6,8 @@ const mysqlCnx = require('./utils/dbConnection.js');
 var ticketMgmt = require('./utils/helpdeskManagement.js');
 var emailMgmt = require('./utils/emailManagement');
 var googleUserMgmt = require('./utils/googleUserCRUD')
-
+var orgUnitFinder = require('./utils/other/orgUnitFinder');
+var positionFinder = require('./utils/other/positionFinder');
 
 /* POST home page. */
 router.post('/', function(request, response, next) {
@@ -40,8 +41,8 @@ router.post('/', function(request, response, next) {
                 "`it_groups`, " +
                 "`form_type`" +
                 " ) VALUES (" +
-                "'" + user + "','" + data.firstname + "','" + data.lastname + "','" + data.suggestedemail + "@enkoeducation.com" +
-                "','" + data.school + "','" + data.position + "','" + data.subject + "','" + data.startdate + "','" + data.enddate + "','" + data.enddate +
+                "'" + user + "','" + data.firstname + "','" + data.lastname + "','" + data.suggestedemail +
+                "','" + data.organisation + "','" + data.position + "','" + data.subject + "','" + data.startdate + "','" + data.enddate + "','" + data.enddate +
                 "','" + data.gender + "','" + data.nationality + "','" + data.identifier + "','" + data.identifiervalue + "','" + data.contryresidence + "','" + data.city +
                 "','" + data.maritalstatus + "','" + data.othermaritalstatus + "','" + data.numberchildren + "','" + data.typeofcontract + "','" + data.typeofemployment + "','" + data.staffmemberreportingto + "',AES_ENCRYPT('" + data.netsalary + "',CURRENT_TIMESTAMP())" +
                 ",AES_ENCRYPT('" + data.grosssalary + "',CURRENT_TIMESTAMP())" + ",'" + data.emergencycontactname + "','" + emergencyPhoneNumber + "','" + data.personalemail + "','" + personnalPhoneNumber + "','" + data.expirationdateofpropationperiod + "','" + data.isprobationperionrenewable +
@@ -71,7 +72,21 @@ router.post('/', function(request, response, next) {
                         "primary": true
                     }
                 ],
-
+                relations: [{
+                    value: "" + data.staffmemberreportingto,
+                    type: "manager"
+                }],
+                organizations: [{
+                    title: "" + data.subject,
+                    primary: true,
+                    customType: "",
+                    department: "" + positionFinder.getPositionFullText(data.position),
+                }],
+                phones: [{
+                    value: "" + personnalPhoneNumber,
+                    type: "work"
+                }],
+                orgUnitPath: "/" + orgUnitFinder.getOrgFullText(data.organisation),
 
                 fields: "kind,nextPageToken,users(id,kind,name,orgUnitPath,primaryEmail)"
             };
@@ -84,19 +99,65 @@ router.post('/', function(request, response, next) {
                 }
             });
 
-            //Send IT email
+            //Send IT email & Tickets
             var ITEmail = new emailMgmt();
-            var ITticket = new ticketMgmt(ITEmail.getITTitle(), user, ITEmail.getOnComingSubject(), ITEmail.getITOnComingMessage("#", data.suggestedemail, groups, it_tools), ITEmail.getITHelpTopic());
+            var ITToolsTicket = new ticketMgmt(
+                ITEmail.getITTitle() + data.suggestedemail,
+                user,
+                ITEmail.getOnComingSubject() + data.suggestedemail,
+                ITEmail.getITOnComingMessageTools(
+                    data.suggestedemail, data.personalemail, it_tools
+                )
+            );
+            var ITGroupsTicket = new ticketMgmt(
+                ITEmail.getITTitle() + data.suggestedemail,
+                user,
+                ITEmail.getOnComingSubject() + data.suggestedemail,
+                ITEmail.getITOnComingMessageGroups(
+                    data.suggestedemail, data.personalemail, groups
+                )
+            );
             //var ITMailLog = ITEmail.sendMail(ITEmail.getITMailAddress(), ITEmail.getOnComingSubject(), ITEmail.getITOnComingMessage(ITticket.getTicketID(), data.suggestedemail, groups, it_tools));
 
-            //Send HR email
+            //Send HR email & ticket
             var HREmail = new emailMgmt();
-            var HRticket = new ticketMgmt(HREmail.getHRTitle(), user, HREmail.getOnComingSubject(), HREmail.getHROnComingMessage("#", data.suggestedemail), HREmail.getHRHelpTopic());
-            //var HRMailLog = HREmail.sendMail(HREmail.getHRMailAddress(), HREmail.getOnComingSubject(), HREmail.getHROnComingMessage(HRticket.getTicketID(), data.suggestedemail));
+            var HRticket = new ticketMgmt(
+                HREmail.getHRTitle(),
+                user,
+                HREmail.getOnComingSubject() + data.suggestedemail,
+                HREmail.getHROnComingMessage(
+                    orgUnitFinder.getOrgFullText(data.organisation), data.firstname, data.lastname, data.suggestedemail, data.personalemail,
+                    personnalPhoneNumber, data.birthdate, data.contryresidence, data.nationality, data.city, data.gender,
+                    data.identifier, data.identifier, data.maritalstatus, data.numberchildren, data.emergencycontactname,
+                    emergencyPhoneNumber, positionFinder.getPositionFullText(data.position), data.subject, data.typeofcontract, data.typeofemployment,
+                    data.staffmemberreportingto, data.expirationdateofpropationperiod, data.isprobationperionrenewable, data.startdate,
+                    data.enddate, data.grosssalary, data.netsalary
+                ),
+                HREmail.getHRHelpTopic()
+            );
+            /*
+            var HRMailLog = HREmail.sendMail(
+                HREmail.getHRMailAddress(),
+                HREmail.getOnComingSubject(),
+                HREmail.getHROnComingMessage(
+                    orgUnitFinder.getOrgFullText(data.organisation), data.firstname, data.lastname, data.suggestedemail, data.personalemail,
+                    personnalPhoneNumber, data.birthdate, data.contryresidence, data.nationality, data.city, data.gender,
+                    data.identifier, data.identifier, data.maritalstatus, data.numberchildren, data.emergencycontactname,
+                    emergencyPhoneNumber, positionFinder.getPositionFullText(data.position), data.subject, data.typeofcontract, data.typeofemployment,
+                    data.staffmemberreportingto, data.expirationdateofpropationperiod, data.isprobationperionrenewable, data.startdate,
+                    data.enddate, data.grosssalary, data.netsalary
+                )
+            );
+            */
 
             //send fresher email
             var fresherEmail = new emailMgmt();
-            var fresherEmailLog = ITEmail.sendMail(data.personalemail, fresherEmail.getWelcomeSubject(), fresherEmail.getEmployeeOnComingMessage(data.firstname));
+            var fresherEmailLog = ITEmail.sendMail(data.personalemail, fresherEmail.getWelcomeSubject(), fresherEmail.getFresherOnComingMessage(data.firstname));
+
+            //Send user Email
+            var userEmail = new emailMgmt();
+            var userEmailLog = userEmail.sendMail(user, "Account creation - " + data.suggestedemail + "@enkoeducation.com", userEmail.getUserOncomingMessage(data.firstname, data.lastname, data.suggestedemail + "@enkoeducation.com"));
+
 
             response.render("entryform", {
                 session: request.session
@@ -114,7 +175,7 @@ router.post('/', function(request, response, next) {
                 "`initiator`, `leaving_email`, `departure_date`, `deprovisioning_date`, `leaving_reason` , `form_type`" +
                 " ) VALUES " +
                 "('" +
-                user + "','" + data.employeeid + "@enkoeducation.com','" + data.leavingdate + "','" + data.deprovisioningdate + "','" + data.leavingreason + "','leaving" +
+                user + "','" + data.employeeid + "','" + data.leavingdate + "','" + data.deprovisioningdate + "','" + data.leavingreason + "','leaving" +
                 "');"
             );
 
@@ -141,10 +202,6 @@ router.post('/', function(request, response, next) {
             console.log("####");
             var data = request.body;
             var user = request.session.email;
-            var reqOrganisation = "NA",
-                reqPosition = "NA",
-                reqContractType = "NA",
-                reqEmploymentType = "NA";
             var changeString = "";
             var cnx1 = new mysqlCnx();
             if ((data.change).toString().includes("organisation")) {

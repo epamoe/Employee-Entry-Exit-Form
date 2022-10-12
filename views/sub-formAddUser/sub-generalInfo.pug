@@ -3,31 +3,36 @@
     .card-body
         //gathering current user from session
         input.form-control(type='text' name='usecase' required='' value='adduser' hidden)
-        h5.card-title General informations about the person
+        h5.card-title Employee general information
+        br
         // General Form Elements                        
-        .col-md-4
+        p.col-md-4
             input#validationCustom03jh.form-control(type='text' value=useridentry name='userid' placeholder='' required='' disabled='' hidden='')                                        
 
-        .col-md-8
+        p.col-md-8
             label.form-label(for='validationCustom01') Firstname &nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the first or common name of the employee')
-            input#validationCustom03.form-control(type='text' required='' name='firstname' pattern="[A-Za-z]{2,}" minLength="2")
+
+            input#validationCustom03.form-control(type='text' required='' name='firstname' minLength="2")
             .invalid-feedback
                 | Please provide a valid Firstname without space.
-        .col-md-8
+        br
+        p.col-md-8
             label.form-label(for='validationCustom02') Lastname &nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the last or given name of the employee')
-            input#validationCustom03.form-control(type='text' required='' name='lastname' pattern="[A-Za-z]{2,}" minLength="2")
+            input#validationCustom03.form-control(type='text' required='' name='lastname' minLength="2")
             .invalid-feedback
                 | Please provide a valid Last name without space.
+        br
         
-        .col-md-8
+        p.col-md-8
                 label.form-label(for='validationCustompemail') Personal email of the employee&nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the email address that the employee uses for personnal stuff')
                 input.form-control(type='email' required='' minLength="4" placeholder="personal email" name='personalemail')
                 .invalid-feedback
                     | Please provide a valid email.
-        .col-md-8
+        br
+        p.col-md-8
                 label.form-label(for='validationCustom01') Personal phone number&nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the main telephone number of the employee(without a country code)')
                 .input-group
@@ -36,30 +41,35 @@
                     input.form-control(type='number' required='' name='personalphone' min='1')
                 .invalid-feedback
                     | Please provide a valid Phone number.
-        .col-md-8
+        br
+        p.col-md-8
                 label.form-label(for='inputDate') Birth date&nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the official birth date of the employee as on the bith certificate')
                 input.form-control(type='date' name='birthdate')
-        .col-md-8
+        br
+        p.col-md-8
             label.form-label(for='validationCustom01') Country of residence&nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide country where the employee is actually living in')
             select.selectpicker.countrypicker.form-control(data-flag='true' name='contryresidence')
             .invalid-feedback
                 | Please provide a valid contry.
-        .col-md-8
+        br
+        p.col-md-8
             label.form-label(for='validationCustom0Nat') Nationality&nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the nationality as writen on the passport/NIC')
             select.selectpicker.countrypicker.form-control(data-flag='true' name='nationality')
                 .invalid-feedback
                     | Please provide a valid Nationality.
-        .col-md-8
+        br
+        p.col-md-8
             label.form-label(for='validationCustom02') City of residence&nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the city/town where the employee is actually livin in')
             input#validationCustom03.form-control(type='text' required='' name='city')
             .invalid-feedback
                 | Please provide a valid Last name.
+        br
         
-        .col-md-8
+        p.col-md-8
                 label.form-label(for='validationCustom02') Gender&nbsp
                     i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='In case of other, please let us know ')
                 .br
@@ -73,8 +83,9 @@
                     input#inlineRadioo.form-check-input(type='radio' value='other' name='gender')
                     label.form-check-label(for='inlineRadioo') Other
                     input#validationCustom03.form-control(type='text' name='othergender')
+        br
                                                                 
-        .col-md-8
+        p.col-md-8
             label.form-label(for='validationCustom02') Identifier type&nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='toogle between NIC/passport, then provide the corresponding identifier')
             .br
@@ -85,12 +96,14 @@
             .form-check.form-check-inline
                 input#inlineRadiop.form-check-input(type='radio' value='passport' name='identifier')
                 label.form-check-label(for='inlineRadiop') Passport
-            .br
+        br
+        p.col-md-8
             label.form-check-label(for='validationCustom0v2') Identifier number&nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='if you choose passport, please provide the passport number. Otherwise, plesa provide the NIC number')
-            input#validationCustom03.form-control(type='text' name='identifiervalue')                        
+            input#validationCustom03.form-control(type='text' name='identifiervalue')  
+        br                      
             
-        .col-md-8
+        p.col-md-8
             label.form-label(for='validationCustom02') Marital Status&nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='In case of other, provide a detailled value')
             .br
@@ -107,20 +120,23 @@
                 input#inlineRadioooth.form-check-input(type='radio' value='other' name='maritalstatus')
                 label.form-check-label(for='inlineRadioooth') Other
                 input#inlineRadioooth.form-control(type='text' name='othermaritalstatus' placeholder='type other')                    
-        .col-md-8
+        br
+        p.col-md-8
             label.form-label(for='validationCustom01') Number of children (lower than 18)&nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide official information')
             input#validationCustom03.form-control(type='number'  name='numberchildren' min='0')
             .invalid-feedback
-                | Please provide a valid number.
+                 Please enter a value, search an email then select the appropriated one     
+        br
             
-        .col-md-8
+        p.col-md-8
             label.form-label(for='validationCustom01') Emergency contact - Name&nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='The fullname of the personn to concact in case of emergency')
             input.form-control(type='text' required='' name='emergencycontactname')
             .invalid-feedback
                 | Please provide a valid name.
-        .col-md-8
+        br
+        p.col-md-8
             label.form-label(for='validationCustom01') Emergency contact - Phone&nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='The phone number of the personn to concact in case of emergency')
             .input-group
@@ -129,3 +145,4 @@
                 input.form-control(type='number' required='' name='emergencycontactphone')
             .invalid-feedback
                 | Please provide a valid Phone number.
+        br

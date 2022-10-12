@@ -2,143 +2,155 @@
     script(type='text/javascript' src='javascripts/emailAddressValidator.js' defer='') 
     script(type='text/javascript' src='javascripts/emailAddressFinder.js' defer='') 
     .card-body
-        .pt-4.pb-2
-            h5.card-title Specific informations about the person at Enko
-            .col-md-8                
-                label.form-label(for='yourUsername') Proposed email&nbsp
-                    i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide a username that an employee will be using at ENKO Education, then verify if it is still availaible.')
-                .input-group.has-validation
-                p.input-group.mb-3
-                    input#proposedemail.form-control(type='text' name='suggestedemail' onkeypress='clearProposedEmailRespponse()' pattern="[A-Za-z]{1,}.[A-Za-z]{1,}" style='text-transform:lowercase' minLength="3" placeholder="firstname.lastname" aria-label="Recipient's username" aria-describedby='basic-addon2' required='' )
-                    span#basic-addon2.input-group-text @enkoeducation.com
-                    button#checkproposedemail.btn.btn-primary(onclick='verifyEmail()' type='button')
-                        span
-                        |                 Verify
-                    button#checkingproposedemail.btn.btn-primary(type='button' disabled='' style="display: none;"  )
-                        span.spinner-border.spinner-border-sm(role='status' aria-hidden='true')
-                        |                 Verify
-                    #emailfeedback 
-                    .invalid-feedback  please provide a valid suggestion
+        h5.card-title Employee informations at ENKO Education
+        br
+        p.col-md-8                
+            label.form-label(for='yourUsername') Proposed email &nbsp
+                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide a username that an employee will be using at ENKO Education, then verify if it is still availaible.')
+                strong &nbsp (Please, click on "Verify" to check if the email exists)
+            .input-group.has-validation
+            p.input-group.mb-2
+                input#proposedemail.form-control(type='text' name='suggestedemail' onkeypress='clearProposedEmailRespponse()'  style='text-transform:lowercase' minLength="3" placeholder="firstname.lastname" aria-label="Recipient's username" aria-describedby='basic-addon2' required='' )
+                span#basic-addon2.input-group-text @enkoeducation.com
+                button#checkproposedemail.btn.btn-primary(onclick='verifyEmail()' type='button')
+                    span
+                    |                 Verify
+                button#checkingproposedemail.btn.btn-primary(type='button' disabled='' style="display: none;"  )
+                    span.spinner-border.spinner-border-sm(role='status' aria-hidden='true')
+                    |                 Verify
+                #emailfeedback 
+                .invalid-feedback  please provide a valid suggestion
+        br
+            
                 
-                    
-            .col-md-8
-                label.form-label(for='school') School / Campus / Organisation&nbsp
-                    i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Choose the organisation rattachez to the employee \nNote: This will automatically choose in which group he deserve to be inserted')
-                select#school.form-control.form-select(required='' name='school' onclick='groupChecker()')                                    
-                    option(value='' disabled=''  selected='') Choose ...
-                    option(value='' disabled='') N.H
-                    option(value='ERV') Enko Riviera                   
-                    option(value='EOG') Enko Ouaga                    
-                    option(value='EBK') Enko Bamako                 
-                    option(value='EKG') Enko Keur Gorgui         
-                    option(value='EWC') Enko Waca                      
-                    option(value='EGC-P') Enko La Gaieté Primary              
-                    option(value='EGC-S') Enko La Gaieté Secondary
-                    option(value='EBC') Enko Bonanjo
-                    option(value='' disabled='') S.H
-                    option(value='AGP') Amazing Grace Private School
-                    option(value='EJA') Jacaranda Academy
-                    option(value='EBT') Enko Botho
-                    option(value='PED') Pestalozzi Education Center
-                    option(value='EVS') Enko Riverside
-                    option(value='ESC') Enko Sekeleka
-                    option(value='' disabled='') Central Office
-                    option(value='MKG') Marketing Team
-                    option(value='IT') IT Team
-                    option(value='FI') Finance Team
-                    option(value='L&T') Learning and Teaching Team
-                    option(value='OPS') School Ops Team
-                    option(value='LDS') Leadership Team
+        p.col-md-8
+            label.form-label(for='school') School / Campus / Organisation&nbsp
+                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Choose the organisation rattachez to the employee \nNote: This will automatically choose in which group he deserve to be inserted')
+            select#school.form-control.form-select(required='' name='organisation' onclick='groupChecker()')                                    
+                option(value='' disabled=''  selected='') Choose ...
+                option(value='' disabled='') N.H
+                option(value='ERV') Enko Riviera                   
+                option(value='EOG') Enko Ouaga                    
+                option(value='EBK') Enko Bamako                 
+                option(value='EKG') Enko Keur Gorgui         
+                option(value='EWC') Enko Waca                      
+                option(value='EGC-P') Enko La Gaieté Primary              
+                option(value='EGC-S') Enko La Gaieté Secondary
+                option(value='EBC') Enko Bonanjo
+                option(value='' disabled='') S.H
+                option(value='AGP') Amazing Grace Private School
+                option(value='EJA') Jacaranda Academy
+                option(value='EBT') Enko Botho
+                option(value='PED') Pestalozzi Education Center
+                option(value='EVS') Enko Riverside
+                option(value='ESC') Enko Sekeleka
+                option(value='' disabled='') Central Office
+                option(value='MKG') Marketing Team
+                option(value='IT') IT Team
+                option(value='FI') Finance Team
+                option(value='L&T') Learning and Teaching Team
+                option(value='OPS') School Ops Team
+                option(value='LDS') Leadership Team
 
-                .invalid-feedback
-                    | Please select a valid school / Campus.
+            .invalid-feedback
+                | Please select a valid school / Campus.
+        br
+        
+        p.col-md-8
+            label.form-label(for='validationCustomPos') Department&nbsp
+                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the position/function of the employee \nThis will help you to automatically choose which IT tools he deserve to use at ENKO Education')
+            select#position.form-control.form-select(required='' name='position' onclick='toolChecker()' )                               
+                option(value='' disabled=''  selected='') Choose ...
+                option(value='teacher' ) Learning & Teaching
+                option(value='hos' ) Head Of School
+                option(value='mo' ) Marketing Officer
+                option(value='pro' ) Parent Relations Officer
+                option(value='hr' ) HR
+                option(value='it' ) IT
+                option(value='finance' ) Finance
+                option(value='ext' ) External
+            .invalid-feedback 
+                | Please provide a valid Department.
             
-            .col-md-8
-                label.form-label(for='validationCustomPos') Department&nbsp
-                    i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the position/function of the employee \nThis will help you to automatically choose which IT tools he deserve to use at ENKO Education')
-                select#position.form-control.form-select(required='' name='position' onclick='toolChecker()' )                               
-                    option(value='' disabled=''  selected='') Choose ...
-                    option(value='teacher' ) Learning & Teaching
-                    option(value='hos' ) Head Of School
-                    option(value='mo' ) Marketing Officer
-                    option(value='pro' ) Parent Relations Officer
-                    option(value='hr' ) HR
-                    option(value='it' ) IT
-                    option(value='finance' ) Finance
-                    option(value='ext' ) External
-                .invalid-feedback 
-                    | Please provide a valid Department.
-                
-            .col-md-8
-                label.form-label(for='validationCustom0333') Position/Title (Provide subject if teacher)
-                input#validationCustom03.form-control(type='text' name='subject' )  
-                .invalid-feedback 
-                        | Please provide a valid Subject.                     
-            
-            .col-md-8
-                label.form-label(for='validationCustom02') Type of contract&nbsp
-                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='')
-                select.form-select.form-control(aria-label='Default select example' name='typeofcontract')
-                    option(selected='' disabled='') Choose ...
-                    option(value='permanent') Permanent
-                    option(value='fixed') Fixed term (1 year, 2 year, ...) contract
-                    option(value='consultant') Consultant                  
-                    option(value='intern') Intern
-                    option(value='other') Other
+        p.col-md-8
+            label.form-label(for='validationCustom0333') Position/Title (Provide subject if teacher)
+            input#validationCustom03.form-control(type='text' name='subject' )  
+            .invalid-feedback 
+                    | Please provide a valid Subject.     
+        br                
+        
+        p.col-md-8
+            label.form-label(for='validationCustom02') Type of contract&nbsp
+            i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='')
+            select.form-select.form-control(aria-label='Default select example' name='typeofcontract')
+                option(selected='' disabled='') Choose ...
+                option(value='permanent') Permanent
+                option(value='fixed') Fixed term (1 year, 2 year, ...) contract
+                option(value='consultant') Consultant                  
+                option(value='intern') Intern
+                option(value='other') Other
+        br
 
-            .col-md-8
-                label.form-label(for='validationCustom02') Type of employment
-                .br
-                .form-check.form-check-inline
-                    input#inlineRadiofull.form-check-input(type='radio' name='typeofemployment' value='fulltime')
-                    label.form-check-label(for='inlineRadiofull') Full time
-                .form-check.form-check-inline
-                    input#inlineRadiopart.form-check-input(type='radio' name='typeofemployment' value='parttime')
-                    label.form-check-label(for='inlineRadiopart') Part time 
-            .col-md-8
-                label.form-label(for='validationCustom01') Who will be his/her manager? (Search by names)
-                p.input-group.mb-3
-                    input#managerKeyWord.form-control(type='text'  name='tmp-staffmemberreportingto' required='' onkeypress="clearPreviousManager()")
-                    span#managerEmailValue.input-group-text(style="display: none;")
-                        //select#emailSelectTag.form-control.form-select
-                    button#searchManager.btn.btn-primary(onclick='seachManagerAddress()' type='button')
-                        span
-                        |                 Search
-                    button#searchingManager.btn.btn-primary(type='button' disabled='' style="display: none;"  )
-                        span.spinner-border.spinner-border-sm(role='status' aria-hidden='true')
-                        |                 Search
-                    #managerFeedback
-                    .invalid-feedback
-                        | Please provide a valid salary.              
-            .col-md-8
-                label.form-label(for='inputDateProbation') Expiration date of the probation period.
-                input.form-control(type='date' name='expirationdateofpropationperiod' required='')
-                    
-            .col-md-12
-                label.form-label(for='validationCustom02') Is the probation period renewable?
-                .br
-                .form-check.form-check-inline
-                    input#inlineRadioyes.form-check-input(type='radio' value='yes' name='isprobationperionrenewable' checked='')
-                    label.form-check-label(for='inlineRadioyes') Yes
-                .form-check.form-check-inline
-                    input#inlineRadiono.form-check-input(type='radio' value='no' name='isprobationperionrenewable')
-                    label.form-check-label(for='inlineRadiono') No
-            
-            .col-md-4
-                label.form-label(for='startDate') Start date
-                input.form-control(type='date' name='startdate' required='')
-            .col-md-4
-                label.form-label(for='endDate') End date
-                input.form-control(type='date' name='enddate')
-            .col-md-8
-                label.form-label(for='validationCustomsal') Gross monthly salary (in local currency)&nbsp
-                    i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the value specified in the contract')
-                input.form-control(type='text' required='' name='grosssalary')
+        p.col-md-8
+            label.form-label(for='validationCustom02') Type of employment
+            .br
+            .form-check.form-check-inline
+                input#inlineRadiofull.form-check-input(type='radio' name='typeofemployment' value='fulltime')
+                label.form-check-label(for='inlineRadiofull') Full time
+            .form-check.form-check-inline
+                input#inlineRadiopart.form-check-input(type='radio' name='typeofemployment' value='parttime')
+                label.form-check-label(for='inlineRadiopart') Part time 
+        br
+        p.col-md-8
+            label.form-label(for='validationCustom01') Who will be his/her manager? (Search by names)
+            p.input-group.mb-3
+                input#managerKeyWord.form-control(type='text'  name='staffmemberreportingto' required='' onkeypress="clearPreviousManager()")
+                span#managerEmailContainer.input-group-text(style="display: none;")
+                    select#managerEmailValue.form-control.form-select(name='staffmemberreportingto' required='')
+                button#searchManager.btn.btn-primary(onclick='seachManagerAddress()' type='button')
+                    span
+                    |                 Search
+                button#searchingManager.btn.btn-primary(type='button' disabled='' style="display: none;"  )
+                    span.spinner-border.spinner-border-sm(role='status' aria-hidden='true')
+                    |                 Search
+                #managerFeedback
                 .invalid-feedback
-                    | Please provide a valid salary.
-            .col-md-8
-                label.form-label(for='validationCustomsal') Net monthly salary (in local currency)&nbsp
-                    i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the value specified in the contract')
-                input.form-control(type='text' required='' name='netsalary')
-                .invalid-feedback
-                    | Please provide a valid salary.
+                    | Please provide a valid salary.   
+        br           
+        p.col-md-8
+            label.form-label(for='inputDateProbation') Expiration date of the probation period.
+            input.form-control(type='date' name='expirationdateofpropationperiod' )
+        br       
+        p.col-md-12
+            label.form-label(for='validationCustom02') Is the probation period renewable?
+            .br
+            .form-check.form-check-inline
+                input#inlineRadioyes.form-check-input(type='radio' value='yes' name='isprobationperionrenewable' checked='')
+                label.form-check-label(for='inlineRadioyes') Yes
+            .form-check.form-check-inline
+                input#inlineRadiono.form-check-input(type='radio' value='no' name='isprobationperionrenewable')
+                label.form-check-label(for='inlineRadiono') No
+        br
+        
+        p.col-md-4
+            label.form-label(for='startDate') Start date
+            input.form-control(type='date' name='startdate' required='')
+        br
+        p.col-md-4
+            label.form-label(for='endDate') End date
+            input.form-control(type='date' name='enddate')
+        br
+        p.col-md-8
+            label.form-label(for='validationCustomsal') Gross monthly salary (in local currency)&nbsp
+                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the value specified in the contract')
+            input.form-control(type='text' required='' name='grosssalary')
+            .invalid-feedback
+                | Please provide a valid salary.
+        br
+        p.col-md-8
+            label.form-label(for='validationCustomsal') Net monthly salary (in local currency)&nbsp
+                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the value specified in the contract')
+            input.form-control(type='text' required='' name='netsalary')
+            .invalid-feedback
+                | Please provide a valid salary.
+        br
