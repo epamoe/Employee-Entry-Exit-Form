@@ -9,8 +9,10 @@ const mysqlCnx = require('./utils/dbConnection.js');
 /* GET users listing. */
 router.post('/', function(request, response, next) {
     var concerns = request.body.concerns;
+
     switch (concerns) {
         case "newemployee":
+            //request.flash('success', 'User ### successfully!!');
             let groups;
             let cnx = new mysqlCnx();
             var groupQuery = "SELECT * FROM Enko_groups WHERE `important`=1";
@@ -46,9 +48,13 @@ router.post('/', function(request, response, next) {
             });
     }
 });
+/*
 router.get('/', function(request, response, next) {
-    response.render('entryform', {
-        session: request.session
-    });
+    {
+        response.render('entryform', {
+            session: request.session
+        });
+    }
 });
+*/
 module.exports = router;

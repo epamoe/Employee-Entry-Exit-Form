@@ -10,18 +10,25 @@ router.get('/', function(request, response, next) {
     if (inputEmail) {
         var admin_sdk = googleUserMgmt.UserProvisioning;
         var user_provisioning = new admin_sdk(googleUserMgmt.opts);
-        user_provisioning.get(inputEmail + "@enkoeducation.com", function(err, body) {
+        params = {
+            customer: "my_customer",
+            domain: "enkoeducation.com",
+            event: "add",
+            orderBy: "email",
+            projection: "custom",
+            query: inputEmail + "@enkoeducation.com",
+            sortOrder: "ASCENDING",
+            viewType: "admin_view"
+        };
+        user_provisioning.list(params, function(err, body) {
             if (err) {
                 //response.send(err.error.toString());
-                if (err.error.code != 404) {
-                    response.send("internal server error. Refer to itsupport.");
-                } else {
-
-                    response.send("Looks good!");
-                }
+                response.send("internal server error. Repport the problem to to itsupport@enkoeducation.com.");
                 //console.log("An error occured: " + JSON.stringify(err.error.code));
+            } else if (Object.keys(body).length <= 2) {
+                log = "Not Found.";
+                response.send("Looks good!");
             } else {
-                //response.send(body.primaryEmail.toString());
                 response.send("This email already exist. Try " + inputEmail + "1");
                 console.log("Received response: " + JSON.stringify(body));
             }

@@ -9,6 +9,7 @@ var logger = require('morgan');
 const { exec } = require("child_process");
 var csrf = require('csurf');
 var bodyParser = require('body-parser');
+const flash = require('connect-flash');
 
 // middleware
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -35,7 +36,13 @@ app.use(session({
     httpOnly: true,
     secure: true
 }));
+//flash messsage handling
 
+app.use(flash());
+app.use(function(req, res, next) {
+    res.locals.message = req.flash();
+    next();
+});
 
 var passport = require('passport');
 var userProfile;
@@ -79,6 +86,7 @@ app.get('/user-management/home', (request, response) => {
 
     request.session.email = userProfile.emails[0].value;
     request.session.username = userProfile.name.givenName
+    request.flash('success', 'User ### successfully!!');
     response.render("entryform", {
         session: request.session
 
@@ -145,8 +153,8 @@ const GOOGLE_CLIENT_SECRET = googleUserMgmt.opts.client.secret;
 passport.use(new GoogleStrategy({
         clientID: GOOGLE_CLIENT_ID,
         clientSecret: GOOGLE_CLIENT_SECRET,
-        callbackURL: "https://intra.enkoeducation.com/user-management/auth/google/callback"
-            //callbackURL: "http://localhost:3001/user-management/auth/google/callback"
+        //callbackURL: "https://intra.enkoeducation.com/user-management/auth/google/callback"
+        callbackURL: "http://localhost:3001/user-management/auth/google/callback"
     },
     function(accessToken, refreshToken, profile, done) {
         userProfile = profile;

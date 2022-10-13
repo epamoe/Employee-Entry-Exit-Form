@@ -72,34 +72,34 @@ class Mail {
             "\nWe have a new employee in our our organisation\n" +
             "\nRequester email:" + user +
             "\nProvide an account with these informations:\n\n" +
-            "\nEntity:" + Entity +
-            "\nDepartment:" + Department +
-            "\nPosition:" + Position +
-            "\n\nFirstname:" + Firstname +
-            "\nLastname:" + Lastname +
-            "\nEnko email:" + Enkoemail +
-            "\nPersonnal Email:" + PersonnalEmail +
-            "\nPhone number:" + Phonenumber +
-            "\nBirth date:" + Birthdate +
-            "\nCountry of residence:" + countryofresidence +
-            "\nNationality:" + Nationality +
-            "\nCity of residence:" + Cityofresidence +
-            "\nGender:" + Gender +
-            "\nNIC identifier type:" + NIC +
-            "\nPassport identifier number:" + Passport +
-            "\nMarital status:" + Marital +
-            "\nNumber of children:" + children +
-            "\nEmergency contact - Name:" + EmergencyName +
-            "\nEmergency contact - Phone:" + EmergencyPhone +
-            "\nType of contract:" + Typecontract +
-            "\nType of employment:" + Typeemployment +
-            "\nManager email address:" + Manager +
-            "\nExpiration date of the probation period:" + Expirationprobation +
-            "\nIs the probation period renewable:" + probationrenewable +
-            "\nEffective start date:" + startdate +
-            "\nEnd date:" + Enddate +
-            "\nGross monthly salary (in local currency) :" + grossmonthlysalary +
-            "\nNet monthly salary (in local currency) :" + netmonthlysalary;
+            "\n<b>Entity:</b> " + Entity +
+            "\n<b>Department:</b> " + Department +
+            "\n<b>Position:</b> " + Position +
+            "\n\n<b>Firstname:</b> " + Firstname +
+            "\n<b>Lastname:</b> " + Lastname +
+            "\n<b>Enko email:</b> " + Enkoemail +
+            "\n<b>Personnal Email:</b> " + PersonnalEmail +
+            "\n<b>Phone number:</b> " + Phonenumber +
+            "\n<b>Birth date:</b> " + Birthdate +
+            "\n<b>Country of residence:</b> " + countryofresidence +
+            "\n<b>Nationality:</b> " + Nationality +
+            "\n<b>City of residence:</b> " + Cityofresidence +
+            "\n<b>Gender:</b> " + Gender +
+            "\n<b>NIC identifier type:</b> " + NIC +
+            "\n<b>Passport identifier number:</b> " + Passport +
+            "\n<b>Marital status:</b> " + Marital +
+            "\n<b>Number of children:</b> " + children +
+            "\n<b>Emergency contact - Name:</b> " + EmergencyName +
+            "\n<b>Emergency contact - Phone:</b> " + EmergencyPhone +
+            "\n<b>Type of contract:</b> " + Typecontract +
+            "\n<b>Type of employment:</b> " + Typeemployment +
+            "\n<b>Manager email address:</b> " + Manager +
+            "\nExpiration date of the probation period:</b> " + Expirationprobation +
+            "\n<b>Is the probation period renewable:</b> " + probationrenewable +
+            "\n<b>Effective start date:</b> " + startdate +
+            "\n<b>End date:</b> " + Enddate +
+            "\n<b>Gross monthly salary (in local currency):</b> " + grossmonthlysalary +
+            "\n<b>Net monthly salary (in local currency):</b> " + netmonthlysalary;
     }
     getUserOncomingMessage(firstName, lastName, email) {
         return "Hello\n" +
@@ -131,11 +131,11 @@ class Mail {
     }
     getHROnLeavingMessage(employeeID, leavingReason, departureDate, deprovisioningDate) {
         return "Hello" +
-            "\nOne of our coleague is leaving our organization." +
-            "\nEmployee email:" + employeeID +
-            "\nLeaving reason: " + leavingReason +
-            "\nLeaving date: " + departureDate +
-            "\nPlease be sure you delete/suspend his/her account on Payspace by " + deprovisioningDate +
+            "\nOne of our colleagues is leaving our organization." +
+            "\n<b>Employee email</b>: " + employeeID +
+            "\n<b>Leaving reason:</b> " + leavingReason +
+            "\n<b>Leaving date:</b> " + departureDate +
+            "\nPlease be sure you delete/suspend his/her account on Payspace by <b>" + deprovisioningDate + "</b>" +
             "\n\nRegards";
     }
 

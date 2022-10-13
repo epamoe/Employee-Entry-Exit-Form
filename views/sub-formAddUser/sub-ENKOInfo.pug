@@ -4,12 +4,14 @@
     .card-body
         h5.card-title Employee informations at ENKO Education
         br
-        p.col-md-8                
+        p
+        .col-md-8                
             label.form-label(for='yourUsername') Proposed email &nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide a username that an employee will be using at ENKO Education, then verify if it is still availaible.')
-                strong &nbsp (Please, click on "Verify" to check if the email exists)
+                strong &nbsp (Please, provide an email in the format "firstname.lastname", then click on "Verify" to check if the email exists)
             .input-group.has-validation
-            p.input-group.mb-2
+            p
+            .input-group.mb-2
                 input#proposedemail.form-control(type='text' name='suggestedemail' onkeypress='clearProposedEmailRespponse()'  style='text-transform:lowercase' minLength="3" placeholder="firstname.lastname" aria-label="Recipient's username" aria-describedby='basic-addon2' required='' )
                 span#basic-addon2.input-group-text @enkoeducation.com
                 button#checkproposedemail.btn.btn-primary(onclick='verifyEmail()' type='button')
@@ -23,7 +25,8 @@
         br
             
                 
-        p.col-md-8
+        p
+        .col-md-8
             label.form-label(for='school') School / Campus / Organisation&nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Choose the organisation rattachez to the employee \nNote: This will automatically choose in which group he deserve to be inserted')
             select#school.form-control.form-select(required='' name='organisation' onclick='groupChecker()')                                    
@@ -56,7 +59,8 @@
                 | Please select a valid school / Campus.
         br
         
-        p.col-md-8
+        p
+        .col-md-8
             label.form-label(for='validationCustomPos') Department&nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the position/function of the employee \nThis will help you to automatically choose which IT tools he deserve to use at ENKO Education')
             select#position.form-control.form-select(required='' name='position' onclick='toolChecker()' )                               
@@ -72,14 +76,16 @@
             .invalid-feedback 
                 | Please provide a valid Department.
             
-        p.col-md-8
+        p
+        .col-md-8
             label.form-label(for='validationCustom0333') Position/Title (Provide subject if teacher)
             input#validationCustom03.form-control(type='text' name='subject' )  
             .invalid-feedback 
                     | Please provide a valid Subject.     
         br                
         
-        p.col-md-8
+        p
+        .col-md-8
             label.form-label(for='validationCustom02') Type of contract&nbsp
             i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='')
             select.form-select.form-control(aria-label='Default select example' name='typeofcontract')
@@ -91,7 +97,8 @@
                 option(value='other') Other
         br
 
-        p.col-md-8
+        p
+        .col-md-8
             label.form-label(for='validationCustom02') Type of employment
             .br
             .form-check.form-check-inline
@@ -101,7 +108,8 @@
                 input#inlineRadiopart.form-check-input(type='radio' name='typeofemployment' value='parttime')
                 label.form-check-label(for='inlineRadiopart') Part time 
         br
-        p.col-md-8
+        p
+        .col-md-8
             label.form-label(for='validationCustom01') Who will be his/her manager? (Search by names)
             p.input-group.mb-3
                 input#managerKeyWord.form-control(type='text'  name='staffmemberreportingto' required='' onkeypress="clearPreviousManager()")
@@ -117,40 +125,67 @@
                 .invalid-feedback
                     | Please provide a valid salary.   
         br           
-        p.col-md-8
+        p
+        .col-md-8
             label.form-label(for='inputDateProbation') Expiration date of the probation period.
-            input.form-control(type='date' name='expirationdateofpropationperiod' )
-        br       
-        p.col-md-12
-            label.form-label(for='validationCustom02') Is the probation period renewable?
-            .br
-            .form-check.form-check-inline
-                input#inlineRadioyes.form-check-input(type='radio' value='yes' name='isprobationperionrenewable' checked='')
-                label.form-check-label(for='inlineRadioyes') Yes
-            .form-check.form-check-inline
-                input#inlineRadiono.form-check-input(type='radio' value='no' name='isprobationperionrenewable')
-                label.form-check-label(for='inlineRadiono') No
-        br
-        
-        p.col-md-4
+            //input.form-control(type='date' name='expirationdateofpropationperiod' )
+            .input-group.mb-3
+                span.input-group-text(style="width: 10%") DD
+                input.form-control(type='number' required='' aria-label='Default select example' name='expirationdateofpropationperiod_day' min='1' max='31' style='width: 15%')              
+                span &nbsp 
+                span.input-group-text(style="width: 10%") MM
+                input.form-control(type='number' required='' aria-label='Default select example' name='expirationdateofpropationperiod_month' min='1' max='12' style='width: 15%')                    
+                span &nbsp
+                span.input-group-text(style="width: 10%") YYYY
+                input.form-control(type='number' required='' aria-label='Default select example' name='expirationdateofpropationperiod_year' min='1900' max='2030' style='width: 30%')
+                .invalid-feedback
+                    | Please provide a valid date.
+        p
+        .col-md-4(style="width: 75%")
             label.form-label(for='startDate') Start date
-            input.form-control(type='date' name='startdate' required='')
+            //input.form-control(type='date' name='startdate' required='')
+            .input-group.mb-3
+                span.input-group-text(style="width: 10%") DD
+                input.form-control(type='number' required='' aria-label='Default select example' name='startdate_day' min='1' max='31' style='width: 15%')              
+                span &nbsp 
+                span.input-group-text(style="width: 10%") MM
+                input.form-control(type='number' required='' aria-label='Default select example' name='startdate_month' min='1' max='12' style='width: 15%')                    
+                span &nbsp
+                span.input-group-text(style="width: 10%") YYYY
+                input.form-control(type='number' required='' aria-label='Default select example' name='startdate_year' min='1900' max='2030' style='width: 30%')
+                .invalid-feedback
+                    | Please provide a valid date.
         br
-        p.col-md-4
+        p
+        .col-md-4
             label.form-label(for='endDate') End date
-            input.form-control(type='date' name='enddate')
+            //input.form-control(type='date' name='enddate')
+            .input-group.mb-3
+                span.input-group-text(style="width: 10%") DD
+                input.form-control(type='number' required='' aria-label='Default select example' name='enddate_day' min='1' max='31' style='width: 15%')              
+                span &nbsp 
+                span.input-group-text(style="width: 10%") MM
+                input.form-control(type='number' required='' aria-label='Default select example' name='enddate_month' min='1' max='12' style='width: 15%')                    
+                span &nbsp
+                span.input-group-text(style="width: 10%") YYYY
+                input.form-control(type='number' required='' aria-label='Default select example' name='enddate_year' min='1900' max='2030' style='width: 30%')
+                .invalid-feedback
+                    | Please provide a valid date.
+                    
         br
-        p.col-md-8
+        p
+        .col-md-8
             label.form-label(for='validationCustomsal') Gross monthly salary (in local currency)&nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the value specified in the contract')
             input.form-control(type='text' required='' name='grosssalary')
             .invalid-feedback
                 | Please provide a valid salary.
         br
-        p.col-md-8
+        p
+        .col-md-8(hidden='')
             label.form-label(for='validationCustomsal') Net monthly salary (in local currency)&nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the value specified in the contract')
-            input.form-control(type='text' required='' name='netsalary')
+            input.form-control(type='text' required='' value='00000' name='netsalary')
             .invalid-feedback
                 | Please provide a valid salary.
-        br
+        

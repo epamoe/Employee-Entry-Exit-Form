@@ -6,13 +6,19 @@ html
     meta(charset='utf-8')
     meta(content='width=device-width, initial-scale=1.0' name='viewport')
     meta(content='' name='description')
-    meta(content='' name='keywords')
-    meta(charset='UTF-8')     
+    meta(content='' name='keywords')    
     //google Signin variables
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     meta(name='google-signin-client_id' content='245661520998-kpur0fcekfgbdkgja419q3hddngcdhdg.apps.googleusercontent.com')
     script(src='https://apis.google.com/js/platform.js' async='' defer='')
 
+    //Date formating
+      script(src='https://momentjs.com/downloads/moment.min.js')
+      script(type='text/javascript').
+        function toTimeZone(time, zone) {
+          var format = 'YYYY/MM/DD HH:mm:ss ZZ';
+          return moment(time, format).tz(zone).format(format);
+        } 
     // Favicons
     link(href='assets/img/favicon.ico' rel='icon')
     link(href='assets/img/enko-modern-logo.png' rel='apple-touch-icon')

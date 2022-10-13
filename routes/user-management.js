@@ -11,11 +11,28 @@ var positionFinder = require('./utils/other/positionFinder');
 
 /* POST home page. */
 router.post('/', function(request, response, next) {
+    //data transformation due to feedback
+    var data = request.body;
+    var expirationdateofpropationperiod =
+        data.expirationdateofpropationperiod_year +
+        "-" + data.expirationdateofpropationperiod_month +
+        "-" + data.expirationdateofpropationperiod_day;
+    var startdate =
+        data.startdate_year +
+        "-" + data.startdate_month +
+        "-" + data.startdate_day;
+    var enddate =
+        data.enddate_year +
+        "-" + data.enddate_month +
+        "-" + data.enddate_day;
+    var birthdate =
+        data.birthdate_year +
+        "-" + birthdate_month +
+        "-" + birthdate_day;
     //Switch on Entry form use cases
-
     switch (request.body.usecase) {
         case "adduser":
-            var data = request.body;
+
             console.log(data.enkogroups);
             var user = request.session.email;
             var it_tools = [
@@ -42,10 +59,10 @@ router.post('/', function(request, response, next) {
                 "`form_type`" +
                 " ) VALUES (" +
                 "'" + user + "','" + data.firstname + "','" + data.lastname + "','" + data.suggestedemail + "@enkoeducation.com" +
-                "','" + data.organisation + "','" + data.position + "','" + data.subject + "','" + data.startdate + "','" + data.enddate + "','" + data.enddate +
+                "','" + data.organisation + "','" + data.position + "','" + data.subject + "','" + startdate + "','" + enddate + "','" + birthdate +
                 "','" + data.gender + "','" + data.nationality + "','" + data.identifier + "','" + data.identifiervalue + "','" + data.contryresidence + "','" + data.city +
                 "','" + data.maritalstatus + "','" + data.othermaritalstatus + "','" + data.numberchildren + "','" + data.typeofcontract + "','" + data.typeofemployment + "','" + data.staffmemberreportingto + "',AES_ENCRYPT('" + data.netsalary + "',CURRENT_TIMESTAMP())" +
-                ",AES_ENCRYPT('" + data.grosssalary + "',CURRENT_TIMESTAMP())" + ",'" + data.emergencycontactname + "','" + emergencyPhoneNumber + "','" + data.personalemail + "','" + personnalPhoneNumber + "','" + data.expirationdateofpropationperiod + "','" + data.isprobationperionrenewable +
+                ",AES_ENCRYPT('" + data.grosssalary + "',CURRENT_TIMESTAMP())" + ",'" + data.emergencycontactname + "','" + emergencyPhoneNumber + "','" + data.personalemail + "','" + personnalPhoneNumber + "','" + expirationdateofpropationperiod + "','" + data.isprobationperionrenewable +
                 "','[" + it_tools + "]" +
                 //"','[" + data.gsuite + "," + data.edadmin + "]" + //It admin tools
                 "','[" + groups + "]" +
@@ -90,7 +107,7 @@ router.post('/', function(request, response, next) {
 
                 fields: "kind,nextPageToken,users(id,kind,name,orgUnitPath,primaryEmail)"
             };
-
+            /*
             user_provisioning.insert(new_user, function(err, body) {
                 if (err) {
                     console.log("An error occured: " + JSON.stringify(err.error));
@@ -98,7 +115,7 @@ router.post('/', function(request, response, next) {
                     console.log("Received response: " + JSON.stringify(body));
                 }
             });
-
+            */
             //Send IT email & Tickets
             var ITEmail = new emailMgmt();
             var ITToolsTicket = new ticketMgmt(
@@ -127,11 +144,11 @@ router.post('/', function(request, response, next) {
                 "New acc: " + data.suggestedemail + "@enkoeducation.com",
                 HREmail.getHROnComingMessage(
                     user, orgUnitFinder.getOrgFullText(data.organisation), data.firstname, data.lastname, data.suggestedemail, data.personalemail,
-                    personnalPhoneNumber, data.birthdate, data.contryresidence, data.nationality, data.city, data.gender,
+                    personnalPhoneNumber, birthdate, data.contryresidence, data.nationality, data.city, data.gender,
                     data.identifier, data.identifiervalue, data.maritalstatus, data.numberchildren, data.emergencycontactname,
                     emergencyPhoneNumber, positionFinder.getPositionFullText(data.position), data.subject, data.typeofcontract, data.typeofemployment,
-                    data.staffmemberreportingto, data.expirationdateofpropationperiod, data.isprobationperionrenewable, data.startdate,
-                    data.enddate, data.grosssalary, data.netsalary
+                    data.staffmemberreportingto, expirationdateofpropationperiod, data.isprobationperionrenewable, startdate,
+                    enddate, data.grosssalary, data.netsalary
                 ),
                 HREmail.getHRHelpTopic()
             );
@@ -141,18 +158,19 @@ router.post('/', function(request, response, next) {
                 HREmail.getOnComingSubject(),
                 HREmail.getHROnComingMessage(
                     orgUnitFinder.getOrgFullText(data.organisation), data.firstname, data.lastname, data.suggestedemail, data.personalemail,
-                    personnalPhoneNumber, data.birthdate, data.contryresidence, data.nationality, data.city, data.gender,
+                    personnalPhoneNumber, birthdate, data.contryresidence, data.nationality, data.city, data.gender,
                     data.identifier, data.identifier, data.maritalstatus, data.numberchildren, data.emergencycontactname,
                     emergencyPhoneNumber, positionFinder.getPositionFullText(data.position), data.subject, data.typeofcontract, data.typeofemployment,
-                    data.staffmemberreportingto, data.expirationdateofpropationperiod, data.isprobationperionrenewable, data.startdate,
-                    data.enddate, data.grosssalary, data.netsalary
+                    data.staffmemberreportingto, expirationdateofpropationperiod, data.isprobationperionrenewable, startdate,
+                    enddate, data.grosssalary, data.netsalary
                 )
             );
             */
 
             //send fresher email
             var fresherEmail = new emailMgmt();
-            var fresherEmailLog = ITEmail.sendMail(data.personalemail, fresherEmail.getWelcomeSubject(), fresherEmail.getFresherOnComingMessage(data.firstname));
+            //var fresherEmailLog = fresherEmail.sendMail("###", data.personalemail, fresherEmail.getWelcomeSubject(), fresherEmail.getFresherOnComingMessage(data.firstname));
+            var fresherEmailLog = fresherEmail.sendMail(data.personalemail, fresherEmail.getWelcomeSubject(), fresherEmail.getFresherOnComingMessage(data.firstname));
 
             //Send user Email
             var userEmail = new emailMgmt();
@@ -166,7 +184,7 @@ router.post('/', function(request, response, next) {
             break;
         case "deleteuser":
 
-            var data = request.body;
+
             var user = request.session.email;
             var cnx1 = new mysqlCnx();
             var admin_sdk = googleUserMgmt.UserProvisioning;
@@ -200,9 +218,9 @@ router.post('/', function(request, response, next) {
             //Send HR email
             var HREmail = new emailMgmt();
             var HRticket = new ticketMgmt(
-                "Payspace acc suppression:" + data.employeeid,
+                "Payspace acc suppression: " + data.employeeid,
                 user,
-                "Payspace acc suppression" + data.employeeid,
+                "Payspace acc suppression: " + data.employeeid,
                 HREmail.getHROnLeavingMessage(
                     data.employeeid, data.leavingreason,
                     data.leavingdate, data.deprovisioningdate
@@ -217,7 +235,7 @@ router.post('/', function(request, response, next) {
             break;
         case "modifyuser":
             console.log("####");
-            var data = request.body;
+
             var user = request.session.email;
             var changeString = "";
             var cnx1 = new mysqlCnx();
