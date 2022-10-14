@@ -15,7 +15,7 @@
             label.form-label(for='validationCustom01') Firstname &nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the first or common name of the employee')
 
-            input#validationCustom03.form-control(type='text' required='' name='firstname' minLength="2")
+            input#validationCustom03.form-control.text-capitalize(type='text' required='' name='firstname' minLength="2" )
             .invalid-feedback
                 | Please provide a valid Firstname without space.
         br
@@ -23,7 +23,7 @@
         .col-md-8
             label.form-label(for='validationCustom02') Lastname &nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the last or given name of the employee')
-            input#validationCustom03.form-control(type='text' required='' name='lastname' minLength="2")
+            input#validationCustom03.form-control.text-capitalize(type='text' required='' name='lastname' minLength="2")
             .invalid-feedback
                 | Please provide a valid Last name without space.
         br
@@ -72,6 +72,15 @@
             .invalid-feedback
                 | Please provide a valid contry.
         br
+        
+        p
+        .col-md-8
+            label.form-label(for='validationCustom02') City of residence&nbsp
+                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the city/town where the employee is actually livin in')
+            input#validationCustom03.form-control(type='text' required='' name='city')
+            .invalid-feedback
+                | Please provide a valid Last name.
+        br
         p
         .col-md-8
             label.form-label(for='validationCustom0Nat') Nationality&nbsp
@@ -82,28 +91,19 @@
         br
         p
         .col-md-8
-            label.form-label(for='validationCustom02') City of residence&nbsp
-                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the city/town where the employee is actually livin in')
-            input#validationCustom03.form-control(type='text' required='' name='city')
-            .invalid-feedback
-                | Please provide a valid Last name.
-        br
-        
-        p
-        .col-md-8
                 label.form-label(for='validationCustom02') Gender&nbsp
                     i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='In case of other, please let us know ')
-                .br
-                .form-check.form-check-inline
-                    input#inlineRadiom.form-check-input(type='radio' value='male' name='gender' )
-                    label.form-check-label(for='inlineRadiom') Male
-                .form-check.form-check-inline
-                    input#inlineRadiof.form-check-input(type='radio' value='female' name='gender')
-                    label.form-check-label(for='inlineRadiof') Female
-                .form-check.form-check-inline
-                    input#inlineRadioo.form-check-input(type='radio' value='other' name='gender')
-                    label.form-check-label(for='inlineRadioo') Other
-                    input#validationCustom03.form-control(type='text' name='othergender')
+                .d-flex.justify-content-center
+                    .form-check.form-check-inline
+                        input#inlineRadiom.form-check-input(type='radio' value='male' name='gender' )
+                        label.form-check-label(for='inlineRadiom') Male
+                    .form-check.form-check-inline
+                        input#inlineRadiof.form-check-input(type='radio' value='female' name='gender')
+                        label.form-check-label(for='inlineRadiof') Female
+                    .form-check.form-check-inline
+                        input#inlineRadioo.form-check-input(type='radio' value='other' name='gender')
+                        label.form-check-label(for='inlineRadioo') Other
+                        input#validationCustom03.form-control(type='text' name='othergender')
         br
                                                                 
         p
@@ -130,20 +130,20 @@
         .col-md-8
             label.form-label(for='validationCustom02') Marital Status&nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='In case of other, provide a detailled value')
-            .br
-            .form-check.form-check-inline
-                input#inlineRadiosi.form-check-input(type='radio' value='single' name='maritalstatus' )
-                label.form-check-label(for='inlineRadiosi') Single
-            .form-check.form-check-inline
-                input#inlineRadioma.form-check-input(type='radio' value='married' name='maritalstatus')
-                label.form-check-label(for='inlineRadioma') Married
-            .form-check.form-check-inline
-                input#inlineRadiow.form-check-input(type='radio' value='widow' name='maritalstatus')
-                label.form-check-label(for='inlineRadiow') Widow(er)
-            .form-check.form-check-inline
-                input#inlineRadioooth.form-check-input(type='radio' value='other' name='maritalstatus')
-                label.form-check-label(for='inlineRadioooth') Other
-                input#inlineRadioooth.form-control(type='text' name='othermaritalstatus' placeholder='type other')                    
+            .d-flex.justify-content-center
+                .form-check.form-check-inline
+                    input#inlineRadiosi.form-check-input(type='radio' value='single' name='maritalstatus' )
+                    label.form-check-label(for='inlineRadiosi') Single
+                .form-check.form-check-inline
+                    input#inlineRadioma.form-check-input(type='radio' value='married' name='maritalstatus')
+                    label.form-check-label(for='inlineRadioma') Married
+                .form-check.form-check-inline
+                    input#inlineRadiow.form-check-input(type='radio' value='widow' name='maritalstatus')
+                    label.form-check-label(for='inlineRadiow') Widow(er)
+                .form-check.form-check-inline
+                    input#inlineRadioooth.form-check-input(type='radio' value='other' name='maritalstatus')
+                    label.form-check-label(for='inlineRadioooth') Other
+                    input#inlineRadioooth.form-control(type='text' name='othermaritalstatus' placeholder='type other')                    
         br
         p
         .col-md-8
@@ -169,7 +169,7 @@
             .input-group
                 select(name='emergencycontactphonecode' id='')(style="width: 25%")
                     include ./sub-countryPhoneCode.pug
-                input.form-control(type='number' required='' name='emergencycontactphone')
+                input.form-control.text-capitalize(type='number' required='' name='emergencycontactphone')
             .invalid-feedback
                 | Please provide a valid Phone number.
         br

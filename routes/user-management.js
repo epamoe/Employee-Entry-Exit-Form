@@ -107,7 +107,7 @@ router.post('/', function(request, response, next) {
 
                 fields: "kind,nextPageToken,users(id,kind,name,orgUnitPath,primaryEmail)"
             };
-            /*
+
             user_provisioning.insert(new_user, function(err, body) {
                 if (err) {
                     console.log("An error occured: " + JSON.stringify(err.error));
@@ -115,7 +115,7 @@ router.post('/', function(request, response, next) {
                     console.log("Received response: " + JSON.stringify(body));
                 }
             });
-            */
+
             //Send IT email & Tickets
             var ITEmail = new emailMgmt();
             var ITToolsTicket = new ticketMgmt(
@@ -206,6 +206,7 @@ router.post('/', function(request, response, next) {
                         console.log("User suspended: " + JSON.stringify(body));
                     }
                 });
+
             //creating Workspace account
             //var admin_sdk = googleUserMgmt.OrgUnitProvisioning;
             //var tmp = new admin_sdk(googleUserMgmt.opts);
@@ -227,7 +228,7 @@ router.post('/', function(request, response, next) {
                 )
             );
             //var HRMailLog = HREmail.sendMail(HREmail.getHRMailAddress(), HREmail.getOnLeavingSubject(), HREmail.getHROnLeavingMessage(HRticket.getTicketID(), data.employeeid, data.deprovisioningdate, data.leavingreason));
-
+            //request.flash('success', 'User ### successfully!!');
             response.render("entryform", {
                 session: request.session
             });

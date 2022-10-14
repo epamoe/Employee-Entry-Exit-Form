@@ -86,7 +86,7 @@ app.get('/user-management/home', (request, response) => {
 
     request.session.email = userProfile.emails[0].value;
     request.session.username = userProfile.name.givenName
-    request.flash('success', 'User ### successfully!!');
+        //request.flash('success', 'User ### successfully!!');
     response.render("entryform", {
         session: request.session
 
@@ -153,8 +153,8 @@ const GOOGLE_CLIENT_SECRET = googleUserMgmt.opts.client.secret;
 passport.use(new GoogleStrategy({
         clientID: GOOGLE_CLIENT_ID,
         clientSecret: GOOGLE_CLIENT_SECRET,
-        //callbackURL: "https://intra.enkoeducation.com/user-management/auth/google/callback"
-        callbackURL: "http://localhost:3001/user-management/auth/google/callback"
+        callbackURL: "https://intra.enkoeducation.com/user-management/auth/google/callback"
+            //callbackURL: "http://localhost:3001/user-management/auth/google/callback"
     },
     function(accessToken, refreshToken, profile, done) {
         userProfile = profile;
@@ -188,6 +188,7 @@ app.use('/user-management/createuser', concernsRouterRedirection);
 app.use('/user-management/deleteuser', concernsRouterRedirection);
 app.use('/user-management/modifyuser', concernsRouterRedirection);
 app.use('/user-management/home', indexRouter); // 
+app.use('/', indexRouter); //
 //app.use('/fresher-management', fresherRouter);
 
 // catch 404 and forward to error handler

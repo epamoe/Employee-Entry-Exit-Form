@@ -2,24 +2,7 @@ extends layout
   
 block content 
   
-  section.d-flex.flex-column.align-items-center.justify-content-center.py-4
-    .container
-      .row.justify-content-center
-        .col-lg-6.col-md-6.d-flex.flex-column.align-items-center.justify-content-center
-          .d-flex.justify-content-center.py-4
-            a.logo.d-flex.align-items-center.w-auto(href='/user-management/')
-              img(src='assets/img/enko-modern-logo.png' alt='')
-              span.d-lg-block.text-success Enko Education
-          // End Logo
-          if (0) 
-            .alert.alert-success(role='alert')
-              #{message.success}
-              | blablabla
-          p
-            | Hello 
-            strong #{session.username}, 
-            | choose an action below.
-            a(href='/user-management/logout') &nbsp Close this app
+  
   .row.justify-content-center
     
     .col-lg-3.align-self-start      
