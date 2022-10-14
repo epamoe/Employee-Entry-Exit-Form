@@ -64,8 +64,8 @@ html
             
             p
               | Hello 
-              strong #{session.username}, 
-              | choose an action below.
+              //strong #{session.username}
+              |, choose an action below.
               a(href='/user-management/logout') &nbsp Close this app
 
     if (message.success) 

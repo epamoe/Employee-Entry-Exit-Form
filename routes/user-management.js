@@ -27,8 +27,8 @@ router.post('/', function(request, response, next) {
         "-" + data.enddate_day;
     var birthdate =
         data.birthdate_year +
-        "-" + birthdate_month +
-        "-" + birthdate_day;
+        "-" + data.birthdate_month +
+        "-" + data.birthdate_day;
     //Switch on Entry form use cases
     switch (request.body.usecase) {
         case "adduser":
@@ -117,20 +117,21 @@ router.post('/', function(request, response, next) {
             });
 
             //Send IT email & Tickets
-            var ITEmail = new emailMgmt();
+            var ITEmailForTools = new emailMgmt();
             var ITToolsTicket = new ticketMgmt(
                 "ITtools: " + data.suggestedemail + "@enkoeducation.com",
                 data.suggestedemail,
-                ITEmail.getOnComingSubject() + data.suggestedemail + "@enkoeducation.com",
-                ITEmail.getITOnComingMessageTools(
+                ITEmailForTools.getOnComingSubject() + data.suggestedemail + "@enkoeducation.com",
+                ITEmailForTools.getITOnComingMessageTools(
                     data.suggestedemail + "@enkoeducation.com", data.personalemail, it_tools
                 )
             );
+            var ITEmailForGroups = new emailMgmt();
             var ITGroupsTicket = new ticketMgmt(
                 "Groups: " + data.suggestedemail + "@enkoeducation.com",
                 data.suggestedemail,
-                ITEmail.getOnComingSubject() + data.suggestedemail + "@enkoeducation.com",
-                ITEmail.getITOnComingMessageGroups(
+                ITEmailForGroups.getOnComingSubject() + data.suggestedemail + "@enkoeducation.com",
+                ITEmailForGroups.getITOnComingMessageGroups(
                     data.suggestedemail + "@enkoeducation.com", data.personalemail, groups
                 )
             );
@@ -184,7 +185,6 @@ router.post('/', function(request, response, next) {
             break;
         case "deleteuser":
 
-
             var user = request.session.email;
             var cnx1 = new mysqlCnx();
             var admin_sdk = googleUserMgmt.UserProvisioning;
@@ -212,7 +212,7 @@ router.post('/', function(request, response, next) {
             //var tmp = new admin_sdk(googleUserMgmt.opts);
             //console.log(tmp.list());
             //Send IT email
-            var ITEmail = new emailMgmt();
+            //var ITEmail = new emailMgmt();
             //var ITticket = new ticketMgmt(ITEmail.getITTitle(), user, ITEmail.getOnLeavingSubject(), ITEmail.getITOnLeavingMessage("#", data.employeeid, data.deprovisioningdate), ITEmail.getITHelpTopic());
             //var ITMailLog = ITEmail.sendMail(ITEmail.getITMailAddress(), ITEmail.getOnLeavingSubject(), ITEmail.getITOnLeavingMessage(ITticket.getTicketID(), data.employeeid, data.deprovisioningdate));
 
@@ -227,6 +227,7 @@ router.post('/', function(request, response, next) {
                     data.leavingdate, data.deprovisioningdate
                 )
             );
+            console.log("###HR Ticket:" + HRticket.getTicketID());
             //var HRMailLog = HREmail.sendMail(HREmail.getHRMailAddress(), HREmail.getOnLeavingSubject(), HREmail.getHROnLeavingMessage(HRticket.getTicketID(), data.employeeid, data.deprovisioningdate, data.leavingreason));
             //request.flash('success', 'User ### successfully!!');
             response.render("entryform", {

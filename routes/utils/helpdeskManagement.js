@@ -16,10 +16,10 @@ class TicketMgr {
             topicId: ticketTopic
         }, function(err, osTicketId) {
             if (!err) {
-                //console.log("Your osTicket Support Ticket ID #", osTicketId);
+                console.log("Your osTicket Support Ticket ID #", osTicketId);
                 return osTicketId;
             } else {
-                //console.log("Error creating support ticket! ", err);
+                console.log("Error creating support ticket! ", err);
                 return "000000";
             }
         });
