@@ -98,8 +98,7 @@ class Mail {
             "\nIs the probation period renewable: " + probationrenewable +
             "\nEffective start date: " + startdate +
             "\nEnd date: " + Enddate +
-            "\nGross monthly salary (in local currency): " + grossmonthlysalary +
-            "\nNet monthly salary (in local currency): " + netmonthlysalary;
+            "\nGross monthly salary (in local currency): " + grossmonthlysalary;
     }
     getUserOncomingMessage(firstName, lastName, email) {
         return "Hello\n" +

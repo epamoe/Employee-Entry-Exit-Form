@@ -2,15 +2,15 @@ const osTicketAPI = require('osticket-nodejs-api-wrapper');
 
 class TicketMgr {
 
-    constructor(agentTitle, agentEmailAddress, ticketSubject, ticketBody, ticketTopic) {
+    constructor(From, responsible, ticketSubject, ticketBody, ticketTopic) {
         this.ticketID = osTicketAPI({
-            API_KEY: 'E63B50AB002D9131AD017E6EBF72DE49', // The API key created inside the osTicket settings.
+            API_KEY: 'A1BCB130D5201817039C7F81BD7AE45A', // The API key created inside the osTicket settings.
             INSTALL_URL_PATH: 'https://support.enkoeducation.com/helpdesk/', // URL path of your osTicket server installation.
             ALERT: true,
             AUTO_RESPOND: true
         }, { //passing required tiket's data to function
-            name: agentTitle,
-            email: agentEmailAddress,
+            name: From,
+            email: responsible,
             subject: ticketSubject,
             message: ticketBody,
             topicId: ticketTopic

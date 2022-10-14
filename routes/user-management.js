@@ -119,37 +119,37 @@ router.post('/', function(request, response, next) {
             //Send IT email & Tickets
             var ITEmailForTools = new emailMgmt();
             var ITToolsTicket = new ticketMgmt(
+                data.suggestedemail + "@enkoeducation.com",
+                data.suggestedemail + "@enkoeducation.com",
                 "ITtools: " + data.suggestedemail + "@enkoeducation.com",
-                data.suggestedemail,
-                ITEmailForTools.getOnComingSubject() + data.suggestedemail + "@enkoeducation.com",
                 ITEmailForTools.getITOnComingMessageTools(
                     data.suggestedemail + "@enkoeducation.com", data.personalemail, it_tools
-                )
+                ), HREmail.getITHelpTopic()
             );
             var ITEmailForGroups = new emailMgmt();
             var ITGroupsTicket = new ticketMgmt(
+                data.suggestedemail + "@enkoeducation.com",
+                data.suggestedemail + "@enkoeducation.com",
                 "Groups: " + data.suggestedemail + "@enkoeducation.com",
-                data.suggestedemail,
-                ITEmailForGroups.getOnComingSubject() + data.suggestedemail + "@enkoeducation.com",
                 ITEmailForGroups.getITOnComingMessageGroups(
                     data.suggestedemail + "@enkoeducation.com", data.personalemail, groups
-                )
+                ), HREmail.getITHelpTopic()
             );
             //var ITMailLog = ITEmail.sendMail(ITEmail.getITMailAddress(), ITEmail.getOnComingSubject(), ITEmail.getITOnComingMessage(ITticket.getTicketID(), data.suggestedemail, groups, it_tools));
 
             //Send HR email & ticket
             var HREmail = new emailMgmt();
             var HRticket = new ticketMgmt(
-                "Payspace for" + data.suggestedemail,
                 data.suggestedemail + "@enkoeducation.com",
-                "New acc: " + data.suggestedemail + "@enkoeducation.com",
+                data.suggestedemail + "@enkoeducation.com",
+                "Payspace for " + data.suggestedemail + "@enkoeducation.com",
                 HREmail.getHROnComingMessage(
                     user, orgUnitFinder.getOrgFullText(data.organisation), data.firstname, data.lastname, data.suggestedemail, data.personalemail,
                     personnalPhoneNumber, birthdate, data.contryresidence, data.nationality, data.city, data.gender,
                     data.identifier, data.identifiervalue, data.maritalstatus, data.numberchildren, data.emergencycontactname,
                     emergencyPhoneNumber, positionFinder.getPositionFullText(data.position), data.subject, data.typeofcontract, data.typeofemployment,
                     data.staffmemberreportingto, expirationdateofpropationperiod, data.isprobationperionrenewable, startdate,
-                    enddate, data.grosssalary, data.netsalary
+                    enddate, data.grosssalary
                 ),
                 HREmail.getHRHelpTopic()
             );
