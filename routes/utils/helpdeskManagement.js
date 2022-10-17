@@ -1,8 +1,10 @@
 const osTicketAPI = require('osticket-nodejs-api-wrapper');
 
 class TicketMgr {
+    constructor() {
 
-    constructor(From, responsible, ticketSubject, ticketBody, ticketTopic) {
+    }
+    createTicket(From, responsible, ticketSubject, ticketBody, ticketTopic) {
         this.ticketID = osTicketAPI({
             API_KEY: 'A1BCB130D5201817039C7F81BD7AE45A', // The API key created inside the osTicket settings.
             INSTALL_URL_PATH: 'https://support.enkoeducation.com/helpdesk/', // URL path of your osTicket server installation.
@@ -16,12 +18,12 @@ class TicketMgr {
             topicId: ticketTopic
         }, function(err, osTicketId) {
             if (!err) {
-                console.log("Your osTicket Support Ticket ID #", osTicketId);
-                console.log("Trace# name:" + From + " email:" + responsible + " topicId" + ticketTopic);
+                console.log("Api-internal trace - Your osTicket Support Ticket ID #", osTicketId);
+                console.log("Api-internal Trace - Error# name:" + From + " email:" + responsible + " topicId" + ticketTopic);
                 return osTicketId;
             } else {
-                console.log("Error creating support ticket! ", err);
-                console.log("Trace# name:" + From + " email:" + responsible + " topicId" + ticketTopic);
+                console.log("Api-internal Error - Creating support ticket! ", err);
+                console.log("Api-internal Trace - Success:# name:" + From + " email:" + responsible + " topicId" + ticketTopic);
                 return "000000";
             }
         });

@@ -5,4 +5,4 @@
 *.log
 
 # Ignorer les fichiers d connexion à la BD
-#./routes/utils/dbConnection.js
+./routes/utils/dbConnection.js
