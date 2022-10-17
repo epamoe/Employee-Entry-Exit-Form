@@ -3,11 +3,9 @@ class Mail {
 
     constructor() {
         this.ITTitle = "IT team";
-        this.ITMailAddress = "estebanc.pamoe@enkoeducation.com";
-        this.ITHelpTopic = "IT questions";
+        this.ITHelpTopic = 12;
         this.HRTitle = "HR Team";
-        this.HRMailAddress = "epamoe@gmail.com";
-        this.HRHelpTopic = "HR questions";
+        this.HRHelpTopic = 14;
         this.OnLeavingSubject = "Employee Leaving";
         this.OnComingSubject = "New employee creation: ";
         this.OnComingSubjectEmployee = "Welcome to ENKO Education Group";
@@ -24,23 +22,7 @@ class Mail {
     getOnComingSubject() { return this.OnComingSubject; }
     getOnChangingSubject() { return this.OnChangingSubject; }
     getWelcomeSubject() { return this.OnComingSubjectEmployee; }
-        /*
-            getRequesterOnCommingMessage(firstName, lastName, startDate, endDate, position) {
-                return " Hi,\n\
-                    You ask an employee creation, and your request has been transmitted to HR Department and IT Department.\n\
-                    You will be keep informed of the status of the request very soon.\n\
-                    Below are some details about your request:\n\
-                    Organization: blablabla > xxxxxx\n\
-                    First Name: " + firstName + "\n\
-                    Last Name: " + lastName + "\n\
-                    Start Date: " + startDate + "\n\
-                    End Date: " + endDate + "\n\
-                    Position: " + position + "\n\n\
-                    Regards\n\
-                    IT Support - itsupport @enkoeducation.com\n\
-                    ";
-            }
-            */
+
     getITOnComingMessageTools(suggestedEmail, personalEmail, itToolsList) {
         return "Hello, " +
             "\nWe have a new colleague at ENKO organisation.\n" +

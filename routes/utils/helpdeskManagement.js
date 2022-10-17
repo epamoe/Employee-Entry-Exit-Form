@@ -17,9 +17,11 @@ class TicketMgr {
         }, function(err, osTicketId) {
             if (!err) {
                 console.log("Your osTicket Support Ticket ID #", osTicketId);
+                console.log("Trace# name:" + From + " email:" + responsible + " topicId" + ticketTopic);
                 return osTicketId;
             } else {
                 console.log("Error creating support ticket! ", err);
+                console.log("Trace# name:" + From + " email:" + responsible + " topicId" + ticketTopic);
                 return "000000";
             }
         });

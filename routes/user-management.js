@@ -13,22 +13,22 @@ var positionFinder = require('./utils/other/positionFinder');
 router.post('/', function(request, response, next) {
     //data transformation due to feedback
     var data = request.body;
-    var expirationdateofpropationperiod =
-        data.expirationdateofpropationperiod_year +
+    var expirationdateofpropationperiod = (data.expirationdateofpropationperiod_year) ?
+        "'" + data.expirationdateofpropationperiod_year +
         "-" + data.expirationdateofpropationperiod_month +
-        "-" + data.expirationdateofpropationperiod_day;
+        "-" + data.expirationdateofpropationperiod_day + "'" : 'NULL';
     var startdate =
-        data.startdate_year +
+        "'" + data.startdate_year +
         "-" + data.startdate_month +
-        "-" + data.startdate_day;
-    var enddate =
-        data.enddate_year +
+        "-" + data.startdate_day + "'";
+    var enddate = (data.enddate_year) ?
+        "'" + data.enddate_year +
         "-" + data.enddate_month +
-        "-" + data.enddate_day;
+        "-" + data.enddate_day + "'" : 'NULL';
     var birthdate =
-        data.birthdate_year +
+        "'" + data.birthdate_year +
         "-" + data.birthdate_month +
-        "-" + data.birthdate_day;
+        "-" + data.birthdate_day + "'";
     //Switch on Entry form use cases
     switch (request.body.usecase) {
         case "adduser":
@@ -59,10 +59,10 @@ router.post('/', function(request, response, next) {
                 "`form_type`" +
                 " ) VALUES (" +
                 "'" + user + "','" + data.firstname + "','" + data.lastname + "','" + data.suggestedemail + "@enkoeducation.com" +
-                "','" + data.organisation + "','" + data.position + "','" + data.subject + "','" + startdate + "','" + enddate + "','" + birthdate +
-                "','" + data.gender + "','" + data.nationality + "','" + data.identifier + "','" + data.identifiervalue + "','" + data.contryresidence + "','" + data.city +
+                "','" + data.organisation + "','" + data.position + "','" + data.subject + "'," + startdate + "," + enddate + "," + birthdate +
+                ",'" + data.gender + "','" + data.nationality + "','" + data.identifier + "','" + data.identifiervalue + "','" + data.contryresidence + "','" + data.city +
                 "','" + data.maritalstatus + "','" + data.othermaritalstatus + "','" + data.numberchildren + "','" + data.typeofcontract + "','" + data.typeofemployment + "','" + data.staffmemberreportingto + "',AES_ENCRYPT('" + data.netsalary + "',CURRENT_TIMESTAMP())" +
-                ",AES_ENCRYPT('" + data.grosssalary + "',CURRENT_TIMESTAMP())" + ",'" + data.emergencycontactname + "','" + emergencyPhoneNumber + "','" + data.personalemail + "','" + personnalPhoneNumber + "','" + expirationdateofpropationperiod + "','" + data.isprobationperionrenewable +
+                ",AES_ENCRYPT('" + data.grosssalary + "',CURRENT_TIMESTAMP())" + ",'" + data.emergencycontactname + "','" + emergencyPhoneNumber + "','" + data.personalemail + "','" + personnalPhoneNumber + "'," + expirationdateofpropationperiod + ",'" + data.isprobationperionrenewable +
                 "','[" + it_tools + "]" +
                 //"','[" + data.gsuite + "," + data.edadmin + "]" + //It admin tools
                 "','[" + groups + "]" +
@@ -124,7 +124,7 @@ router.post('/', function(request, response, next) {
                 "ITtools: " + data.suggestedemail + "@enkoeducation.com",
                 ITEmailForTools.getITOnComingMessageTools(
                     data.suggestedemail + "@enkoeducation.com", data.personalemail, it_tools
-                ), HREmail.getITHelpTopic()
+                ), ITEmailForTools.getITHelpTopic()
             );
             var ITEmailForGroups = new emailMgmt();
             var ITGroupsTicket = new ticketMgmt(
@@ -133,7 +133,7 @@ router.post('/', function(request, response, next) {
                 "Groups: " + data.suggestedemail + "@enkoeducation.com",
                 ITEmailForGroups.getITOnComingMessageGroups(
                     data.suggestedemail + "@enkoeducation.com", data.personalemail, groups
-                ), HREmail.getITHelpTopic()
+                ), ITEmailForGroups.getITHelpTopic()
             );
             //var ITMailLog = ITEmail.sendMail(ITEmail.getITMailAddress(), ITEmail.getOnComingSubject(), ITEmail.getITOnComingMessage(ITticket.getTicketID(), data.suggestedemail, groups, it_tools));
 
