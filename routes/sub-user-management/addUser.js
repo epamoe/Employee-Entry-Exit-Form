@@ -171,7 +171,8 @@ module.exports = {
         let HRPromise = new Promise((resolve, reject) => {
             //Send HR email & ticket
             var HREmail = new emailMgmt();
-            var HRticket = new ticketMgmt(
+            var HRticket = new ticketMgmt();
+            HRticket.createTicket(
                 data.suggestedemail + "@enkoeducation.com",
                 data.suggestedemail + "@enkoeducation.com",
                 "Payspace for " + data.suggestedemail + "@enkoeducation.com",
@@ -187,10 +188,11 @@ module.exports = {
             );
         });
         //promise to sync groups query
-        let groupsPromise = new Promise((resolve, reject) => {
+        let groupsPromise = new Promise((solve, reject) => {
 
             var ITEmailForGroups = new emailMgmt();
-            var ITGroupsTicket = new ticketMgmt(
+            var ITGroupsTicket = new ticketMgmt();
+            ITGroupsTicket.createTicket(
                 data.suggestedemail + "@enkoeducation.com",
                 data.suggestedemail + "@enkoeducation.com",
                 "Groups: " + data.suggestedemail + "@enkoeducation.com",
@@ -198,9 +200,10 @@ module.exports = {
                     data.suggestedemail + "@enkoeducation.com", data.personalemail, groups
                 ), ITEmailForGroups.getITHelpTopic()
             );
+            solve("Groups-ok");
         });
         //promise to sync ITTools
-        let ITPromise = new Promise((resolve, reject) => {
+        let ITPromise = new Promise((solve, reject) => {
 
             //Send IT email & Tickets
             var ITEmailForTools = new emailMgmt();
@@ -213,10 +216,11 @@ module.exports = {
                     data.suggestedemail + "@enkoeducation.com", data.personalemail, it_tools
                 ), ITEmailForTools.getITHelpTopic()
             );
+            solve("IT-ok: " + ticketID);
         });
         //scheduling promise execution and error handling 
         let promiseExecution = async() => {
-            for (let promise of[sqlPromise, googlePromise, HRPromise, groupsPromise, ITPromise, fresherPromise]) {
+            for (let promise of[sqlPromise, HRPromise, groupsPromise, ITPromise, googlePromise, fresherPromise]) {
                 //Inserting log files into database
                 var cnx = new mysqlCnx();
                 try {
@@ -229,7 +233,7 @@ module.exports = {
                             ");"
                         );
                     */
-                    console.log(JSON.stringify(message));
+                    console.log("#PromiseSuccess: " + JSON.stringify(message));
                 } catch (error) {
                     /*
                         var rq = cnx.connection.query(
@@ -239,7 +243,7 @@ module.exports = {
                             ");"
                         );
                     */
-                    console.log(JSON.stringify(message));
+                    console.log("#PromiseError: " + JSON.stringify(message));
                 }
             }
         };
