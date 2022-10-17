@@ -4,8 +4,8 @@ class Tmp {
 
     connection = mysql.createConnection({
         host: 'localhost',
-        user: 'eadmin',
-        password: 'eadmin123',
+        user: 'enkoadmin',
+        password: 'passworD',
         database: 'bdEnko'
     });
 
