@@ -160,8 +160,6 @@ passport.use(new GoogleStrategy({
         userProfile = profile;
         if ((userProfile.emails[0].value).toString().includes('@enkoeducation.com')) {
             console.log("### ENKO Staff ");
-            console.log("###A " + accessToken);
-            console.log("###R " + JSON.stringify(refreshToken));
             callbackpage = "/home";
         } else {
             console.log("### Not ENKO Staff ");
