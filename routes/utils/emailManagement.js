@@ -10,7 +10,7 @@ class Mail {
         this.HRHelpTopic = 14;
         this.OnLeavingSubject = "Employee Leaving";
         this.OnComingSubject = "New employee creation: ";
-        this.OnComingSubjectEmployee = "Welcome to ENKO Education Group";
+        this.OnComingSubjectEmployee = "Welcome to ENKO Education";
         this.OnChangingSubject = "Employee changing";
     }
 
@@ -34,20 +34,40 @@ class Mail {
             "\nWould you provide access to the Following tools:" + itToolsList +
             "\n\n Rregards";
     }
-    getITOnComingMessageGroups(suggestedEmail, personalEmail, groupsList) {
+    getITOnComingMessageGroups(suggestedEmail, personalEmail, groupsList, organisation) {
         return "Hello, " +
-            "\nWe have a new colleague at ENKO organisation.\n" +
-            "\nHis/Her Enko email: " + suggestedEmail +
-            "\nHis/Her Personal email:" + personalEmail +
-            "\nWould you provide access to the Following groups:" + groupsList +
-            "\n\n Rregards";
+            "\nWe have a new colleague at ENKO.\n" +
+            "\nEnko email: " + suggestedEmail +
+            "\nPersonal email:" + personalEmail +
+            "\n\nWould you provide access to the Following groups:" + groupsList +
+            "\n\nInsert this user into the following organisation unit:" + organisation +
+            "";
     }
-    getFresherOnComingMessage(firstName) {
+    getFresherOnComingMessage(firstName, email, password) {
         return "Dear " + firstName + "," +
-            "\nWelcome to the ENKO Education group." +
+            "\nWelcome to ENKO Education" +
             "\nWe are so happy to have you onboard with us, and know you will help us achieve the very high goals we have." +
-            "\nYou will receive an email to set your ENKO email. " +
-            "\n\n Regards,";
+            "\n\nUse this link to login: https://gmail.com" +
+            "\nYour login: " + email +
+            "\nYour password: " + password +
+            "\n\nYou will have to change your password at first login," +
+            "\n\nRegards" +
+            "\nENKO IT Support" +
+            "\nIf you have any request, drop us an email at itsupport@enkoeducation.com" +
+            "\n" +
+            "-----------------------------------------" +
+            "\n\n" +
+            "Bonjour " + firstName + "," +
+            "\nBienvenue à ENKO Education" +
+            "\n" +
+            "\n\nUtilisez ce lien pour vous connecter: https://gmail.com" +
+            "\nVotre login: " + email +
+            "\nVotre mot de passe: " + password +
+            "\n\nIl vous faudra changer de mot de passe dès la première connexion" +
+            "\n\nCordialement" +
+            "\nENKO IT Support" +
+            "\nSi vous avez des questions, écrivez-nous à itsupport@enkoeducation.com" +
+            "\n\n\n";
     }
 
     getHROnComingMessage(user, Entity, Firstname, Lastname, Enkoemail, PersonnalEmail, Phonenumber, Birthdate, countryofresidence, Nationality,

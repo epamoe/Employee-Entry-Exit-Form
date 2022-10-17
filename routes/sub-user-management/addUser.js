@@ -13,6 +13,7 @@ var positionFinder = require('../utils/other/positionFinder');
 module.exports = {
     addUser(request, response) {
         var data = request.body;
+
         //data transformation due to date format
         var expirationdateofpropationperiod = (data.expirationdateofpropationperiod_year) ?
             "'" + data.expirationdateofpropationperiod_year +
@@ -45,7 +46,46 @@ module.exports = {
         groups = groups.filter(n => n); //remove null and undefined values
         var emergencyPhoneNumber = "+" + data.emergencycontactphonecode + data.emergencycontactphone,
             personnalPhoneNumber = "+" + data.personalphonecode + data.personalphone;
+        //Goodle data creation
+        var admin_sdk = googleUserMgmt.UserProvisioning;
+        var user_provisioning = new admin_sdk(googleUserMgmt.opts);
+        var defaultPassword = "azerty123";
+        var defaultOrganisation = "" + orgUnitFinder.getOrgFullText(data.organisation);
+        new_user = {
+            name: {
+                givenName: "" + data.firstname,
+                familyName: "" + data.lastname,
+            },
+            password: defaultPassword,
+            primaryEmail: "" + data.suggestedemail + "@enkoeducation.com",
+            changePasswordAtNextLogin: true,
+            emails: [{
+                    address: "" + data.personalemail,
+                    type: "work"
+                },
+                {
+                    "address": "" + data.suggestedemail + "@enkoeducation.com",
+                    "primary": true
+                }
+            ],
+            relations: [{
+                value: "" + data.staffmemberreportingto,
+                type: "manager"
+            }],
+            organizations: [{
+                title: "" + data.subject,
+                primary: true,
+                customType: "",
+                department: "" + positionFinder.getPositionFullText(data.position),
+            }],
+            phones: [{
+                value: "" + personnalPhoneNumber,
+                type: "work"
+            }],
+            orgUnitPath: defaultOrganisation,
 
+            fields: "kind,nextPageToken,users(id,kind,name,orgUnitPath,primaryEmail)"
+        };
         //promise to sync SQLquery
         let sqlPromise = new Promise((solve, reject) => {
             //establishing connection and running query
@@ -92,42 +132,6 @@ module.exports = {
         //promise to sync GoogleQueries
         let googlePromise = new Promise((solve, reject) => {
             //creating Workspace account
-            var admin_sdk = googleUserMgmt.UserProvisioning;
-            var user_provisioning = new admin_sdk(googleUserMgmt.opts);
-            new_user = {
-                name: {
-                    givenName: "" + data.firstname,
-                    familyName: "" + data.lastname,
-                },
-                password: 'passworD' + new Date().toISOString().slice(0, 10),
-                primaryEmail: "" + data.suggestedemail + "@enkoeducation.com",
-                emails: [{
-                        address: "" + data.personalemail,
-                        type: "work"
-                    },
-                    {
-                        "address": "" + data.suggestedemail + "@enkoeducation.com",
-                        "primary": true
-                    }
-                ],
-                relations: [{
-                    value: "" + data.staffmemberreportingto,
-                    type: "manager"
-                }],
-                organizations: [{
-                    title: "" + data.subject,
-                    primary: true,
-                    customType: "",
-                    department: "" + positionFinder.getPositionFullText(data.position),
-                }],
-                phones: [{
-                    value: "" + personnalPhoneNumber,
-                    type: "work"
-                }],
-                orgUnitPath: +orgUnitFinder.getOrgFullText(data.organisation),
-
-                fields: "kind,nextPageToken,users(id,kind,name,orgUnitPath,primaryEmail)"
-            };
 
             user_provisioning.insert(new_user, function(err, body) {
                 if (err) {
@@ -152,13 +156,13 @@ module.exports = {
         let fresherPromise = new Promise((solve, reject) => {
             //send fresher email
             var fresherEmail = new emailMgmt();
-            var fresherEmailLog = fresherEmail.sendMail(data.personalemail, fresherEmail.getWelcomeSubject(), fresherEmail.getFresherOnComingMessage(data.firstname));
+            var fresherEmailLog = fresherEmail.sendMail(data.personalemail, fresherEmail.getWelcomeSubject(), fresherEmail.getFresherOnComingMessage(data.firstname, new_user.primaryEmail, defaultPassword));
 
             //Send user Email
             var userEmail = new emailMgmt();
             var userEmailLog = userEmail.sendMail(user, "Account creation - " + data.suggestedemail + "@enkoeducation.com", userEmail.getUserOncomingMessage(data.firstname, data.lastname, data.suggestedemail + "@enkoeducation.com"));
 
-            if (fresherEmailLog.toString().includes("Email sent")) {
+            if (1) {
                 let message = {
                     topic: "Fresher email sent",
                     summary: "Successfully sent fresher message",
@@ -180,7 +184,7 @@ module.exports = {
             var userEmail = new emailMgmt();
             var userEmailLog = userEmail.sendMail(user, "Account creation - " + data.suggestedemail + "@enkoeducation.com", userEmail.getUserOncomingMessage(data.firstname, data.lastname, data.suggestedemail + "@enkoeducation.com"));
 
-            if (!userEmailLog.toString().includes("Email sent")) {
+            if (1) {
                 let message = {
                     topic: "User email sent",
                     summary: "Successfully sent user message",
@@ -229,7 +233,7 @@ module.exports = {
                 data.suggestedemail + "@enkoeducation.com",
                 "Groups: " + data.suggestedemail + "@enkoeducation.com",
                 ITEmailForGroups.getITOnComingMessageGroups(
-                    data.suggestedemail + "@enkoeducation.com", data.personalemail, groups
+                    data.suggestedemail + "@enkoeducation.com", data.personalemail, groups, defaultOrganisation
                 ), ITEmailForGroups.getITHelpTopic()
             );
             solve("Groups-ok");

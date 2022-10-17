@@ -4,7 +4,7 @@ const mysql = require('mysql');
 const path = require('path');
 const mysqlCnx = require('../utils/dbConnection.js');
 var ticketMgmt = require('../utils/helpdeskManagement.js');
-var emailMgmt = require('../utils/emailManagement');
+var emailMgmt = require('../utils/emailManagement2');
 var googleUserMgmt = require('../utils/googleUserCRUD');
 
 module.exports = {
@@ -33,20 +33,22 @@ module.exports = {
             });
 
         //Send HR email
-        var email = new emailMgmt();
-        var emailLog = email.sendMailWithouthSMTP(user, "frederic.tchouli@enkoeducation.com", "Test email without SMTP", "The test was successfully")
-            /*
-                    var HRticket = new ticketMgmt(
-                    "Payspace acc suppression: " + data.employeeid,
-                    user,
-                    "Payspace acc suppression: " + data.employeeid,
-                    HREmail.getHROnLeavingMessage(
-                        data.employeeid, data.leavingreason,
-                        data.leavingdate, data.deprovisioningdate
-                    )
-                );
-                */
-        console.log("###HR Ticket:" + HRticket.getTicketID());
+        //var email = new emailMgmt();
+        //var emailLog = email.sendMailWithouthSMTP(user, "frederic.tchouli@enkoeducation.com", "Test email without SMTP", "The test was successfully")
+        //email.sendMail();
+        emailMgmt.sendMail();
+        /*
+                var HRticket = new ticketMgmt(
+                "Payspace acc suppression: " + data.employeeid,
+                user,
+                "Payspace acc suppression: " + data.employeeid,
+                HREmail.getHROnLeavingMessage(
+                    data.employeeid, data.leavingreason,
+                    data.leavingdate, data.deprovisioningdate
+                )
+            );
+            */
+        //console.log("###HR Ticket:" + HRticket.getTicketID());
         //var HRMailLog = HREmail.sendMail(HREmail.getHRMailAddress(), HREmail.getOnLeavingSubject(), HREmail.getHROnLeavingMessage(HRticket.getTicketID(), data.employeeid, data.deprovisioningdate, data.leavingreason));
         //request.flash('success', 'User ### successfully!!');
         response.render("entryform", {
