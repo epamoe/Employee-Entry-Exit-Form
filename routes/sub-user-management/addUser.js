@@ -152,7 +152,7 @@ module.exports = {
         let fresherPromise = new Promise((solve, reject) => {
             //send fresher email
             var fresherEmail = new emailMgmt();
-            var fresherEmailLog = fresherEmail.sendMailWithouthSMTP("itsupport@enkoeducation.com", data.personalemail, fresherEmail.getWelcomeSubject(), fresherEmail.getFresherOnComingMessage(data.firstname));
+            var fresherEmailLog = fresherEmail.sendMail(data.personalemail, fresherEmail.getWelcomeSubject(), fresherEmail.getFresherOnComingMessage(data.firstname));
 
             //Send user Email
             var userEmail = new emailMgmt();
@@ -178,7 +178,7 @@ module.exports = {
         let userPromise = new Promise((solve, reject) => {
             //Send user Email
             var userEmail = new emailMgmt();
-            var userEmailLog = userEmail.sendMailWithouthSMTP("itsupport@enkoeducation.com", data.personalemail, "Account creation - " + data.suggestedemail + "@enkoeducation.com", userEmail.getUserOncomingMessage(data.firstname, data.lastname, data.suggestedemail + "@enkoeducation.com"));
+            var userEmailLog = userEmail.sendMail(user, "Account creation - " + data.suggestedemail + "@enkoeducation.com", userEmail.getUserOncomingMessage(data.firstname, data.lastname, data.suggestedemail + "@enkoeducation.com"));
 
             if (!userEmailLog.toString().includes("Email sent")) {
                 let message = {

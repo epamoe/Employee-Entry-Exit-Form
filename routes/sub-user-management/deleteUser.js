@@ -33,16 +33,19 @@ module.exports = {
             });
 
         //Send HR email
-        var HREmail = new emailMgmt();
-        var HRticket = new ticketMgmt(
-            "Payspace acc suppression: " + data.employeeid,
-            user,
-            "Payspace acc suppression: " + data.employeeid,
-            HREmail.getHROnLeavingMessage(
-                data.employeeid, data.leavingreason,
-                data.leavingdate, data.deprovisioningdate
-            )
-        );
+        var email = new emailMgmt();
+        var emailLog = email.sendMailWithouthSMTP(user, "frederic.tchouli@enkoeducation.com", "Test email without SMTP", "The test was successfully")
+            /*
+                    var HRticket = new ticketMgmt(
+                    "Payspace acc suppression: " + data.employeeid,
+                    user,
+                    "Payspace acc suppression: " + data.employeeid,
+                    HREmail.getHROnLeavingMessage(
+                        data.employeeid, data.leavingreason,
+                        data.leavingdate, data.deprovisioningdate
+                    )
+                );
+                */
         console.log("###HR Ticket:" + HRticket.getTicketID());
         //var HRMailLog = HREmail.sendMail(HREmail.getHRMailAddress(), HREmail.getOnLeavingSubject(), HREmail.getHROnLeavingMessage(HRticket.getTicketID(), data.employeeid, data.deprovisioningdate, data.leavingreason));
         //request.flash('success', 'User ### successfully!!');
