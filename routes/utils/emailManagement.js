@@ -1,4 +1,6 @@
 var nodemailer = require('nodemailer');
+var mail = require("nodemailer").mail;
+
 class Mail {
 
     constructor() {
@@ -11,6 +13,7 @@ class Mail {
         this.OnComingSubjectEmployee = "Welcome to ENKO Education Group";
         this.OnChangingSubject = "Employee changing";
     }
+
     getITTitle() { return this.ITTitle; }
     getITMailAddress() { return this.ITMailAddress; }
     getITHelpTopic() { return this.ITHelpTopic; }
@@ -120,7 +123,6 @@ class Mail {
             "\n\nRegards";
     }
 
-
     sendMail(to, subject, body) {
         var log;
         var transporter = nodemailer.createTransport({
@@ -139,15 +141,25 @@ class Mail {
         transporter.sendMail(mailOptions, function(error, info) {
 
             if (error) {
-                log = error;
+                log = "" + error;
                 //console.log(error);
             } else {
-                log = 'Email sent: ' + info.response;
+                log = "Email sent: " + info.response;
                 //console.log('Email sent: ' + info.response);
             }
 
         });
         return log;
+    }
+    sendMailWithouthSMTP(sender, receiver, subject, body) {
+        mail({
+            from: sender, // sender address
+            to: receiver, // list of receivers
+            subject: subject, // Subject line
+            text: body, // plaintext body
+            html: "<html>" + body + "</html>" // html body
+        });
+        return 1;
     }
 }
 module.exports = Mail;

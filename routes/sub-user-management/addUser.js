@@ -75,16 +75,16 @@ module.exports = {
             var rq = cnx1.connection.query(query);
             if (rq) {
                 let message = {
-                    topic: "DB insertion",
+                    topic: "DB insertion success",
                     summary: "Successfully insert fresher data in database",
-                    details: "query"
+                    details: "" + query
                 };
                 solve(message);
             } else {
                 let message = {
-                    topic: "DB insertion",
+                    topic: "DB insertion error",
                     summary: "Error inserting fresher data in database",
-                    details: "query"
+                    details: "" + query
                 };
                 reject(message);
             }
@@ -134,41 +134,73 @@ module.exports = {
                     let message = {
                         topic: "Workspace user creation",
                         summary: "Error creating fresher account",
-                        details: "query"
+                        details: JSON.stringify(err)
                     };
                     reject(message);
-                    console.log("An error occured: " + JSON.stringify(err.error));
                 } else {
                     let message = {
                         topic: "Workspace user creation",
                         summary: "Successfully creating fresher account",
-                        details: "query"
+                        details: JSON.stringify(body)
                     };
                     solve(message);
-                    console.log("Received response: " + JSON.stringify(body));
                 }
             });
         });
 
-        //promise for fresher sync
+        //promise for fresher message
         let fresherPromise = new Promise((solve, reject) => {
             //send fresher email
             var fresherEmail = new emailMgmt();
-            var fresherEmailLog = fresherEmail.sendMail(data.personalemail, fresherEmail.getWelcomeSubject(), fresherEmail.getFresherOnComingMessage(data.firstname));
+            var fresherEmailLog = fresherEmail.sendMailWithouthSMTP("itsupport@enkoeducation.com", data.personalemail, fresherEmail.getWelcomeSubject(), fresherEmail.getFresherOnComingMessage(data.firstname));
 
             //Send user Email
             var userEmail = new emailMgmt();
             var userEmailLog = userEmail.sendMail(user, "Account creation - " + data.suggestedemail + "@enkoeducation.com", userEmail.getUserOncomingMessage(data.firstname, data.lastname, data.suggestedemail + "@enkoeducation.com"));
-            let message = {
-                topic: "Fresher user email",
-                summary: "Error creating fresher account",
-                details: "query"
-            };
-            solve(message);
+
+            if (fresherEmailLog.toString().includes("Email sent")) {
+                let message = {
+                    topic: "Fresher email sent",
+                    summary: "Successfully sent fresher message",
+                    details: "" + fresherEmailLog
+                };
+                solve(message);
+            } else {
+                let message = {
+                    topic: "Fresher email sent",
+                    summary: "Error sending fresher message",
+                    details: "" + fresherEmailLog
+                };
+                reject(message);
+            }
+        });
+        //promise for user message
+        let userPromise = new Promise((solve, reject) => {
+            //Send user Email
+            var userEmail = new emailMgmt();
+            var userEmailLog = userEmail.sendMailWithouthSMTP("itsupport@enkoeducation.com", data.personalemail, "Account creation - " + data.suggestedemail + "@enkoeducation.com", userEmail.getUserOncomingMessage(data.firstname, data.lastname, data.suggestedemail + "@enkoeducation.com"));
+
+            if (!userEmailLog.toString().includes("Email sent")) {
+                let message = {
+                    topic: "User email sent",
+                    summary: "Successfully sent user message",
+                    details: "" + userEmailLog
+                };
+                solve(message);
+            } else {
+
+                let message = {
+                    topic: "User email sent",
+                    summary: "Error sending user message",
+                    details: "" + userEmailLog
+                };
+                reject(message);
+            }
         });
 
+
         //promise to HR tickets
-        let HRPromise = new Promise((resolve, reject) => {
+        let HRPromise = new Promise((solve, reject) => {
             //Send HR email & ticket
             var HREmail = new emailMgmt();
             var HRticket = new ticketMgmt();
@@ -220,7 +252,7 @@ module.exports = {
         });
         //scheduling promise execution and error handling 
         let promiseExecution = async() => {
-            for (let promise of[sqlPromise, HRPromise, groupsPromise, ITPromise, googlePromise, fresherPromise]) {
+            for (let promise of[sqlPromise, HRPromise, groupsPromise, ITPromise, googlePromise, fresherPromise, userPromise]) {
                 //Inserting log files into database
                 var cnx = new mysqlCnx();
                 try {

@@ -18,12 +18,12 @@ class TicketMgr {
             topicId: ticketTopic
         }, function(err, osTicketId) {
             if (!err) {
-                console.log("Api-internal trace - Error# ", osTicketId);
+                console.log("Api-internal trace - Success# ", osTicketId);
                 //console.log("Api-internal Trace - Error# name: " + From + " email: " + responsible + " topicId: " + ticketTopic);
                 return osTicketId;
             } else {
                 console.log("Api-internal Error - Creating support ticket! ", err);
-                console.log("Api-internal Trace - Success:# name: " + From + " email: " + responsible + " Body: " + message);
+                //console.log("Api-internal Trace - Success:# name: " + From + " email: " + responsible + " Body: " + message);
                 return "000000";
             }
         });
