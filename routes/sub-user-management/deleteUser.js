@@ -4,7 +4,7 @@ const mysql = require('mysql');
 const path = require('path');
 const mysqlCnx = require('../utils/dbConnection.js');
 var ticketMgmt = require('../utils/helpdeskManagement.js');
-var emailMgmt = require('../utils/emailManagement2');
+var emailMgmt = require('../utils/emailManagement');
 var googleUserMgmt = require('../utils/googleUserCRUD');
 
 module.exports = {
@@ -12,48 +12,132 @@ module.exports = {
         var data = request.body;
         var user = request.session.email;
         var cnx1 = new mysqlCnx();
-        var admin_sdk = googleUserMgmt.UserProvisioning;
-        var user_provisioning = new admin_sdk(googleUserMgmt.opts);
-        var req = cnx1.connection.query(
-            "INSERT INTO `entry_exit_form`( " +
-            "`initiator`, `leaving_email`, `departure_date`, `deprovisioning_date`, `leaving_reason` , `form_type`" +
-            " ) VALUES " +
-            "('" +
-            user + "','" + data.employeeid + "','" + data.leavingdate + "','" + data.deprovisioningdate + "','" + data.leavingreason + "','leaving" +
-            "');"
-        );
-        console.log("### userkey:" + data.employeeid);
-        user_provisioning.update(data.employeeid, { "suspended": true },
-            function(err, body) {
-                if (err) {
-                    console.log("Return with error: " + JSON.stringify(err));
-                } else {
-                    console.log("User suspended: " + JSON.stringify(body));
-                }
-            });
+        var leavingDate =
+            "'" + data.leavingdate_year +
+            "-" + data.leavingdate_month +
+            "-" + data.leavingdate_day + "'";
+        var deprovisioningDate =
+            "'" + data.deprovisioningdate_year +
+            "-" + data.deprovisioningdate_month +
+            "-" + data.deprovisioningdate_day + "'";
 
-        //Send HR email
-        //var email = new emailMgmt();
-        //var emailLog = email.sendMailWithouthSMTP(user, "frederic.tchouli@enkoeducation.com", "Test email without SMTP", "The test was successfully")
-        //email.sendMail();
-        emailMgmt.sendMail();
-        /*
-                var HRticket = new ticketMgmt(
+        //Create Sql promise for cequencing
+        let SQLpromise = new Promise((solve, reject) => {
+            var query =
+                "INSERT INTO `entry_exit_form`( " +
+                "`initiator`, `leaving_email`, `departure_date`, `deprovisioning_date`, `leaving_reason` , `form_type`" +
+                " ) VALUES " +
+                "('" +
+                user + "','" + data.employeeid + "'," + leavingDate + "," + deprovisioningDate + ",'" + data.leavingreason + "','leaving" +
+                "');"
+            var req = cnx1.connection.query(query);
+            if (req) {
+                let message = {
+                    topic: "DB insertion - suspension ",
+                    summary: "Successfully saved to DB",
+                    details: "" + query
+                };
+                solve(message);
+            } else {
+                let message = {
+                    topic: "DB insertion - suspension ",
+                    summary: "Error inserting deleted user account in DB",
+                    details: "" + query
+                };
+                reject(message);
+            }
+        });
+        //Create IT promise for cequencing
+        let ITpromise = new Promise((solve, reject) => {
+            var ITEmail = new emailMgmt();
+            var ITticket = new ticketMgmt();
+            var ticketID = ITticket.createTicket(
+                "Workspace acc Suspenssion: " + data.employeeid,
+                user,
+                "Workspace acc Suspenssion " + data.employeeid,
+                ITEmail.getITOnLeavingMessage(
+                    user, data.employeeid, deprovisioningDate
+                )
+            );
+            if (ticketID) {
+                let message = {
+                    topic: "IT-Workspace ticket",
+                    summary: "Successfully create IT ticket",
+                    details: "" + ""
+                };
+                solve(message);
+            } else {
+                let message = {
+                    topic: "IT-Workspace ticket",
+                    summary: "Error creating IT ticket",
+                    details: "" + ""
+                };
+                reject(message);
+            }
+        });
+        //Create HR promise for cequencing
+        let HRpromise = new Promise((solve, reject) => {
+            //Send HR email & ticket
+            var HREmail = new emailMgmt();
+            var HRticket = new ticketMgmt();
+            var ticketID = HRticket.createTicket(
                 "Payspace acc suppression: " + data.employeeid,
                 user,
                 "Payspace acc suppression: " + data.employeeid,
                 HREmail.getHROnLeavingMessage(
                     data.employeeid, data.leavingreason,
-                    data.leavingdate, data.deprovisioningdate
+                    leavingDate, deprovisioningDate
                 )
             );
-            */
-        //console.log("###HR Ticket:" + HRticket.getTicketID());
-        //var HRMailLog = HREmail.sendMail(HREmail.getHRMailAddress(), HREmail.getOnLeavingSubject(), HREmail.getHROnLeavingMessage(HRticket.getTicketID(), data.employeeid, data.deprovisioningdate, data.leavingreason));
-        //request.flash('success', 'User ### successfully!!');
+            if (ticketID) {
+                let message = {
+                    topic: "HR ticket - suspension ",
+                    summary: "Successfully create HR ticket",
+                    details: "" + ""
+                };
+                solve(message);
+            } else {
+                let message = {
+                    topic: "HR ticket -suspension",
+                    summary: "Error creating HR ticket",
+                    details: "" + ""
+                };
+                reject(message);
+            }
+        });
+        //scheduling promise execution and error handling 
+        let promiseExecution = async() => {
+                for (let promise of[SQLpromise, ITpromise, HRpromise]) {
+                    //Inserting log files into database
+                    var cnx = new mysqlCnx();
+                    try {
+                        const message = await promise;
+
+                        var rq = cnx.connection.query(
+                            "INSERT INTO `Enko_entry_exit_form_syslog`( `userID`,`topic`,`status`, `summary`, `details`) VALUES " +
+                            "(" +
+                            "'" + user + "','" + message.topic + "','success','" + message.summary + "','" + ((message.details).toString()).replaceAll("'", "") + "'" +
+                            ");"
+                        );
+                        console.log("#PromiseSuccess: " + JSON.stringify(message));
+                    } catch (error) {
+
+                        var rq = cnx.connection.query(
+                            "INSERT INTO `Enko_entry_exit_form_syslog`( `userID`,`topic`,`status`, `summary`, `details`) VALUES " +
+                            "(" +
+                            "'" + user + "','" + message.topic + "','error','" + message.summary + "','" + JSON.stringify(error) + "'" +
+                            ");"
+                        );
+                        console.log("#PromiseError: " + JSON.stringify(error));
+                    }
+                }
+            }
+            //execute promise
+        promiseExecution();
         response.render("entryform", {
             session: request.session
         });
+
 
 
     }

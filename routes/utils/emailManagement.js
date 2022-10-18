@@ -127,11 +127,14 @@ class Mail {
             "1) Adjust the following information about " + employeeID + "@enkoeducation.com ASAP: \n" +
             changes;
     }
-    getITOnLeavingMessage(ticketID, employeeID, deprovisioningDate) {
-        return "Ticket number: " + ticketID + "\n" +
-            "Please, be sure you have made these actions: \n" +
-            "1) Deprovision " + employeeID + "@enkoeducation.com on " +
-            deprovisioningDate;
+    getITOnLeavingMessage(initiator, employeeID, deprovisioningDate) {
+        return "Hello," +
+            "\nThe user " + employeeID + "is leaving ENKO Education." +
+            "\nComplete the following actions:" +
+            "\n\n1)Delete user account in the IT tool" +
+            "\n2)Suspend the email in the Woekspace" +
+            "\n\nInitiator:" + initiator +
+            "\nDue date:" + deprovisioningDate;
     }
     getHROnLeavingMessage(employeeID, leavingReason, departureDate, deprovisioningDate) {
         return "Hello" +
@@ -153,7 +156,7 @@ class Mail {
             }
         });
         var mailOptions = {
-            from: 'ENKO Education Group <itsupport@enkoeducation.com>', //create an alias
+            from: 'ENKO Education <itsupport@enkoeducation.com>', //create an alias
             to: '' + to,
             subject: '' + subject + " - " + new Date().toISOString().slice(0, 10),
             text: '' + body

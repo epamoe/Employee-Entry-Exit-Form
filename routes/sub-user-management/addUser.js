@@ -82,7 +82,7 @@ module.exports = {
                 value: "" + personnalPhoneNumber,
                 type: "work"
             }],
-            orgUnitPath: defaultOrganisation,
+
 
             fields: "kind,nextPageToken,users(id,kind,name,orgUnitPath,primaryEmail)"
         };
@@ -115,14 +115,14 @@ module.exports = {
             var rq = cnx1.connection.query(query);
             if (rq) {
                 let message = {
-                    topic: "DB insertion success",
+                    topic: "DB insertion - fresher",
                     summary: "Successfully insert fresher data in database",
                     details: "" + query
                 };
                 solve(message);
             } else {
                 let message = {
-                    topic: "DB insertion error",
+                    topic: "DB insertion - fresher",
                     summary: "Error inserting fresher data in database",
                     details: "" + query
                 };
@@ -164,14 +164,14 @@ module.exports = {
 
             if (1) {
                 let message = {
-                    topic: "Fresher email sent",
+                    topic: "Fresher email",
                     summary: "Successfully sent fresher message",
                     details: "" + fresherEmailLog
                 };
                 solve(message);
             } else {
                 let message = {
-                    topic: "Fresher email sent",
+                    topic: "Fresher email",
                     summary: "Error sending fresher message",
                     details: "" + fresherEmailLog
                 };
@@ -186,16 +186,16 @@ module.exports = {
 
             if (1) {
                 let message = {
-                    topic: "User email sent",
-                    summary: "Successfully sent user message",
+                    topic: "fresher email",
+                    summary: "Successfully sent fresher message",
                     details: "" + userEmailLog
                 };
                 solve(message);
             } else {
 
                 let message = {
-                    topic: "User email sent",
-                    summary: "Error sending user message",
+                    topic: "fresher email",
+                    summary: "Error sending fresher message",
                     details: "" + userEmailLog
                 };
                 reject(message);
@@ -208,7 +208,7 @@ module.exports = {
             //Send HR email & ticket
             var HREmail = new emailMgmt();
             var HRticket = new ticketMgmt();
-            HRticket.createTicket(
+            var ticketID = HRticket.createTicket(
                 data.suggestedemail + "@enkoeducation.com",
                 data.suggestedemail + "@enkoeducation.com",
                 "Payspace for " + data.suggestedemail + "@enkoeducation.com",
@@ -222,13 +222,29 @@ module.exports = {
                 ),
                 HREmail.getHRHelpTopic()
             );
+            if (ticketID) {
+                let message = {
+                    topic: "HR ticket for payspace",
+                    summary: "Successfully create HR ticket",
+                    details: "" + ""
+                };
+                solve(message);
+            } else {
+
+                let message = {
+                    topic: "HR ticket for payspace ",
+                    summary: "Error creating HR ticket",
+                    details: "" + ""
+                };
+                reject(message);
+            }
         });
         //promise to sync groups query
         let groupsPromise = new Promise((solve, reject) => {
 
             var ITEmailForGroups = new emailMgmt();
             var ITGroupsTicket = new ticketMgmt();
-            ITGroupsTicket.createTicket(
+            var ticketID = ITGroupsTicket.createTicket(
                 data.suggestedemail + "@enkoeducation.com",
                 data.suggestedemail + "@enkoeducation.com",
                 "Groups: " + data.suggestedemail + "@enkoeducation.com",
@@ -236,7 +252,22 @@ module.exports = {
                     data.suggestedemail + "@enkoeducation.com", data.personalemail, groups, defaultOrganisation
                 ), ITEmailForGroups.getITHelpTopic()
             );
-            solve("Groups-ok");
+            if (ticketID) {
+                let message = {
+                    topic: "IT-Groups ticket ",
+                    summary: "Successfully create IT-Groups ticket",
+                    details: ""
+                };
+                solve(message);
+            } else {
+
+                let message = {
+                    topic: "IT-Groups ticket ",
+                    summary: "Error creating IT-Groups ticket",
+                    details: ""
+                };
+                reject(message);
+            }
         });
         //promise to sync ITTools
         let ITPromise = new Promise((solve, reject) => {
@@ -252,7 +283,22 @@ module.exports = {
                     data.suggestedemail + "@enkoeducation.com", data.personalemail, it_tools
                 ), ITEmailForTools.getITHelpTopic()
             );
-            solve("IT-ok: " + ticketID);
+            if (ticketID) {
+                let message = {
+                    topic: "IT-Tools ticket ",
+                    summary: "Successfully create IT-Tools ticket",
+                    details: "" + ""
+                };
+                solve(message);
+            } else {
+
+                let message = {
+                    topic: "IT-Tools ticket ",
+                    summary: "Error creating IT-Tools TIcket",
+                    details: "" + ""
+                };
+                reject(message);
+            }
         });
         //scheduling promise execution and error handling 
         let promiseExecution = async() => {
@@ -261,25 +307,23 @@ module.exports = {
                 var cnx = new mysqlCnx();
                 try {
                     const message = await promise;
-                    /*
-                        var rq = cnx.connection.query(
-                            "INSERT INTO `Enko_entry_exit_form_syslog`( `userID`,`topic`,`status`, `summary`, `details`) VALUES " +
-                            "(" +
-                            "'" + user + "','" + message.topic + "','success','" + message.summary + "','" + message.details + "'" +
-                            ");"
-                        );
-                    */
+
+                    var rq = cnx.connection.query(
+                        "INSERT INTO `Enko_entry_exit_form_syslog`( `userID`,`topic`,`status`, `summary`, `details`) VALUES " +
+                        "(" +
+                        "'" + user + "','" + message.topic + "','success','" + message.summary + "','" + ((message.details).toString()).replaceAll("'", "") + "'" +
+                        ");"
+                    );
                     console.log("#PromiseSuccess: " + JSON.stringify(message));
                 } catch (error) {
-                    /*
-                        var rq = cnx.connection.query(
-                            "INSERT INTO `Enko_entry_exit_form_syslog`( `userID`,`topic`,`status`, `summary`, `details`) VALUES " +
-                            "(" +
-                            "'" + user + "','" + message.topic + "','error','" + message.summary + "','" + (message.details).toString() + "'" +
-                            ");"
-                        );
-                    */
-                    console.log("#PromiseError: " + JSON.stringify(message));
+
+                    var rq = cnx.connection.query(
+                        "INSERT INTO `Enko_entry_exit_form_syslog`( `userID`,`topic`,`status`, `summary`, `details`) VALUES " +
+                        "(" +
+                        "'" + user + "','" + "message.topic" + "','error','" + "message.summary" + "','" + JSON.stringify(error) + "'" +
+                        ");"
+                    );
+                    console.log("#PromiseError: " + JSON.stringify(error));
                 }
             }
         };

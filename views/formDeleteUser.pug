@@ -1,64 +1,86 @@
 extends layout
   
-block content     
+block content         
     script(type='text/javascript' src='javascripts/emailAddressFinder.js' defer='') 
+    script(type='text/javascript' src='javascripts/elementManipulator.js' defer='') 
     .row.lg-6.justify-content-center
         .row-lg-6.justify-content-center
             form.row.g-3.needs-validation.justify-content-center(novalidate='' method='POST' action='/user-management/' autocomplete='off')
                 .card(style="width: 75%")
                     .card-body
-                        h5.card-title Please, provide information bellow
+                        h5.card-title Please, provide information bellow 
+                            | (you will need to provide a valid email before submitting this form)
                         // General Form Elements                           
-                        p.col-6
-                            label.form-label(for='yourUsername') Provide the employee name, press search then select appropriated email&nbsp
-                                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the username of the employee')                                
-                            .input-group
-                                input#managerKeyWord.form-control(type='text' required='' onkeypress="clearPreviousManager()")
-                                span#managerEmailContainer.input-group-text(style="display: none;")
-                                    select#managerEmailValue.form-control.form-select(name='employeeid' required='')
-                                button#searchManager.btn.btn-primary(onclick='seachManagerAddress()' type='button')
-                                    span
-                                    |                 Search
-                                button#searchingManager.btn.btn-primary(type='button' disabled='' style="display: none;"  )
-                                    span.spinner-border.spinner-border-sm(role='status' aria-hidden='true')
-                                    |                 Search
-                                #managerFeedback
-                                .invalid-feedback
-                                    | Provide the employee name, press search then select appropriated email&nbsp
+                        p
+                            .col-md-8  
+                                label.form-label(for='yourUsername') Provide the employee name, press search then select appropriated email&nbsp
+                                    i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the username of the employee')                                
+                                .input-group
+                                    input#managerKeyWord.form-control(type='text' required='' onkeypress="clearPreviousManager()")
+                                    span#managerEmailContainer.input-group-text(style="display: none;")
+                                        select#managerEmailValue.form-control.form-select(name='employeeid' required='' )
+                                    button#searchManager.btn.btn-primary(onclick='seachManagerAddress()' type='button')
+                                        span
+                                        |                 Search
+                                    button#searchingManager.btn.btn-primary(type='button' disabled='' style="display: none;"  )
+                                        span.spinner-border.spinner-border-sm(role='status' aria-hidden='true')
+                                        |                 Search
+                                    #managerFeedback
+                                    .invalid-feedback
+                                        | Provide the employee name, press search then select appropriated email&nbsp
                         br      
-                        p.col-6
-                            //gathering current user from session
-                            input.form-control(type='text' name='usecase' required='' value='deleteuser' hidden )
-                            //label.form-label(for='yourUsername') Username&nbsp
-                                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the username of the employee')                                
-                            //.input-group.has-validation
-                            //.input-group.mb-3
-                                input.form-control(type='text' name='employeeid' pattern="[A-Za-z]{1,}.[A-Za-z]{1,}" minLength="3" placeholder="firstname.lastname" aria-label="Recipient's username" aria-describedby='basic-addon2' required='' )
-                                span#basic-addon2.input-group-text @enkoeducation.com
-                                .invalid-feedback please provide the Firstname and lastname separated with a point
+                        p
+                            .col-md-8  
+                                //gathering current user from session
+                                input.form-control(type='text' name='usecase' required='' value='deleteuser' hidden )
+                            
+                            .col-md-8  
+                                label.form-label(for='validationCustomre') Reason of leaving&nbsp
+                                    i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Choose the keywork that best summarize the leaving reason')  
+                                select.form-select.form-control(aria-label='Default select example' name='leavingreason' required='')
+                                    option( disabled='') Choose ...
+                                    option(selected='' value='endofcontract') End of contract
+                                    option(value='dismissal') Dismissal
+                                    option(value='resignation') Resignation 
                         br
-                        p.col-md-6
-                            label.form-label(for='validationCustomre') Reason of leaving&nbsp
-                                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Choose the keywork that best summarize the leaving reason')  
-                            select.form-select.form-control(aria-label='Default select example' name='leavingreason' required='')
-                                option( disabled='') Choose ...
-                                option(selected='' value='endofcontract') End of contract
-                                option(value='dismissal') Dismissal
-                                option(value='resignation') Resignation 
+                        p
+                            .col-md-8  
+                                label.form-label(for='leavingdate') Scheduled end date&nbsp
+                                    i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the date as writen the contract')  
+                                //input.form-control(type='date' name='leavingdate' required='')
+                                .input-group.mb-3
+                                    span.input-group-text(style="width: 10%") DD
+                                    input.form-control(type='number' required='' aria-label='Default select example' name='leavingdate_day' min='1' max='31' style='width: 15%')              
+                                    span &nbsp 
+                                    span.input-group-text(style="width: 10%") MM
+                                    input.form-control(type='number' required='' aria-label='Default select example' name='leavingdate_month' min='1' max='12' style='width: 15%')                    
+                                    span &nbsp
+                                    span.input-group-text(style="width: 10%") YYYY
+                                    input.form-control(type='number' required='' aria-label='Default select example' name='leavingdate_year' min='1900' max='2030' style='width: 30%')
+                                    .invalid-feedback
+                                        | Please provide a valid date.
                         br
-                        p.col-md-6
-                            label.form-label(for='leavingdate') Scheduled end date&nbsp
-                                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the date as writen the contract')  
-                            input.form-control(type='date' name='leavingdate' required='')
+                        p
+                            .col-md-8  
+                                label.form-label(for='leavingdate') Scheduled deprovisioning date&nbsp
+                                    i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the date by which we will suspend access his/her account to internal tools')  
+                                //input.form-control(type='date' name='deprovisioningdate' required='')
+                                .input-group.mb-3
+                                    span.input-group-text(style="width: 10%") DD
+                                    input.form-control(type='number' required='' aria-label='Default select example' name='deprovisioningdate_day' min='1' max='31' style='width: 15%')              
+                                    span &nbsp 
+                                    span.input-group-text(style="width: 10%") MM
+                                    input.form-control(type='number' required='' aria-label='Default select example' name='deprovisioningdate_month' min='1' max='12' style='width: 15%')                    
+                                    span &nbsp
+                                    span.input-group-text(style="width: 10%") YYYY
+                                    input.form-control(type='number' required='' aria-label='Default select example' name='deprovisioningdate_year' min='1900' max='2030' style='width: 30%')
+                                    .invalid-feedback
+                                        | Please provide a valid date.
                         br
-                        p.col-md-6
-                            label.form-label(for='leavingdate') Scheduled deprovisioning date&nbsp
-                                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the date by which we will suspend access his/her account to internal tools')  
-                            input.form-control(type='date' name='deprovisioningdate' required='')
                                                            
                     section.d-flex.flex-column.align-items-center.justify-content-center.py-4                    
                         .row.justify-content-center
                         .col-lg-6.col-md-6.justify-content-center
                             .d-flex.justify-content-center.py-4
-                            button.btn.btn-primary(type='submit') Submit form
+                            button#btnOnSubmitt.btn.btn-primary(type='submit' ) Submit form
                 
