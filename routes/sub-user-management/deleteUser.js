@@ -5,7 +5,6 @@ const path = require('path');
 const mysqlCnx = require('../utils/dbConnection.js');
 var ticketMgmt = require('../utils/helpdeskManagement.js');
 var emailMgmt = require('../utils/emailManagement');
-var googleUserMgmt = require('../utils/googleUserCRUD');
 
 module.exports = {
     deleteUser(request, response) {

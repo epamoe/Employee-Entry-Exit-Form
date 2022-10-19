@@ -12,64 +12,115 @@ module.exports = {
 
         var data = request.body;
         var user = request.session.email;
-        var changeString = "";
-        var cnx1 = new mysqlCnx();
-        if ((data.change).toString().includes("organisation")) {
-            reqOrganisation = cnx1.connection.query(
-                "INSERT INTO `entry_exit_form`( " +
-                "`initiator`, `changing_email`, `organisation`, `form_type`" +
-                " ) VALUES " +
-                "('" +
-                user + "','" + data.employeeid + "','" + data.organisation + "','changing" +
-                "');"
-            );
-            changeString += "New organisation: " + data.organisation + "\n";
-        }
-        if ((data.change).toString().includes("position")) {
-            reqPosition = cnx1.connection.query(
-                "INSERT INTO `entry_exit_form`( " +
-                "`initiator`, `changing_email`, `position`, `form_type`" +
-                " ) VALUES " +
-                "('" +
-                user + "','" + data.employeeid + "','" + data.position + "','changing" +
-                "');"
-            );
-            changeString += "New Position: " + data.position + "\n";
-        }
-        if ((data.change).toString().includes("contracttype")) {
-            reqContractType = cnx1.connection.query(
-                "INSERT INTO `entry_exit_form`( " +
-                "`initiator`, `changing_email`, `contract_type`, `form_type`" +
-                " ) VALUES " +
-                "('" +
-                user + "','" + data.employeeid + "','" + data.contracttype + "','changing" +
-                "');"
-            );
-            changeString += "New Contract type: " + data.contracttype + "\n";
-        }
-        if ((data.change).toString().includes("employmenttype")) {
-            reqEmploymentType = cnx1.connection.query(
-                "INSERT INTO `entry_exit_form`( " +
-                "`initiator`, `changing_email`, `employment_type`, `form_type`" +
-                " ) VALUES " +
-                "('" +
-                user + "','" + data.employeeid + "','" + data.employmenttype + "','changing" +
-                "');"
-            );
-            changeString += "New Employment type: " + data.employmenttype + "\n";
-        }
 
+        //SQL promise for sequencing
+        var modifyUserPromise = new Promise((solve, reject) => {
+            var query = "INSERT INTO `entry_exit_form`( `initiator`,`changing_email`, `changing_reason`,`form_type`)" +
+                "VALUES('" + user + "','" + data.employeeid + "', '" + data.changesdescription + "', 'changing')" +
+                ";";
+            var cnx = new mysqlCnx();
+            var rq = cnx.connection.query(query);
+            if (rq) {
+                let message = {
+                    topic: "DB insertion - modification ",
+                    summary: "Successfully saved modified information in DB",
+                    details: "" + query
+                };
+                solve(message);
+            } else {
+                let message = {
+                    topic: "DB insertion - modification ",
+                    summary: "Error saving modified information in DB",
+                    details: "" + query
+                };
+                reject(message);
+            }
+        });
+        //Create IT promise for cequencing
+        let ITpromise = new Promise((solve, reject) => {
+            var ITEmail = new emailMgmt();
+            var ITticket = new ticketMgmt();
+            var ticketID = ITticket.createTicket(
+                "Acc modification: " + data.employeeid,
+                user,
+                "Acc modification " + data.employeeid,
+                ITEmail.getITOnChangingMessage(
+                    user, data.employeeid, data.changesdescription
+                )
+            );
+            if (ticketID) {
+                let message = {
+                    topic: "IT-Changing ticket",
+                    summary: "Successfully create IT ticket",
+                    details: "" + ""
+                };
+                solve(message);
+            } else {
+                let message = {
+                    topic: "IT-Changing ticket",
+                    summary: "Error creating IT ticket",
+                    details: "" + ""
+                };
+                reject(message);
+            }
+        });
+        //Create HR promise for cequencing
+        let HRpromise = new Promise((solve, reject) => {
+            //Send HR email & ticket
+            var HREmail = new emailMgmt();
+            var HRticket = new ticketMgmt();
+            var ticketID = HRticket.createTicket(
+                "Payspace acc modification: " + data.employeeid,
+                user,
+                "Payspace acc modification: " + data.employeeid,
+                HREmail.getHROnChangingMessage(
+                    user, data.employeeid, data.changesdescription
+                )
+            );
+            if (ticketID) {
+                let message = {
+                    topic: "HR ticket - modification ",
+                    summary: "Successfully create HR ticket",
+                    details: "" + ""
+                };
+                solve(message);
+            } else {
+                let message = {
+                    topic: "HR ticket - modification",
+                    summary: "Error creating HR ticket",
+                    details: "" + ""
+                };
+                reject(message);
+            }
+        });
+        let promiseExecution = async() => {
+                for (let promise of[modifyUserPromise, ITpromise, HRpromise]) {
+                    //Inserting log files into database
+                    var cnx = new mysqlCnx();
+                    try {
+                        const message = await promise;
 
-        //Send IT email
-        var ITEmail = new emailMgmt();
-        var ITticket = new ticketMgmt(ITEmail.getITTitle(), user, ITEmail.getOnChangingSubject(), ITEmail.getITOnChangingMessage("#", data.employeeid, changeString));
-        //var ITMailLog = ITEmail.sendMail(ITEmail.getITMailAddress(), ITEmail.getOnChangingSubject(), ITEmail.getITOnChangingMessage(ITticket.getTicketID(), data.employeeid, changeString));
+                        var rq = cnx.connection.query(
+                            "INSERT INTO `Enko_entry_exit_form_syslog`( `userID`,`topic`,`status`, `summary`, `details`) VALUES " +
+                            "(" +
+                            "'" + user + "','" + message.topic + "','success','" + message.summary + "','" + ((message.details).toString()).replaceAll("'", "") + "'" +
+                            ");"
+                        );
+                        console.log("#PromiseSuccess: " + JSON.stringify(message));
+                    } catch (error) {
 
-        //Send HR email
-        var HREmail = new emailMgmt();
-        var HRticket = new ticketMgmt(HREmail.getHRTitle(), user, HREmail.getOnChangingSubject(), HREmail.getHROnChangingMessage("#", data.employeeid, changeString), HREmail.getHRHelpTopic());
-        //var HRMailLog = HREmail.sendMail(HREmail.getHRMailAddress(), HREmail.getOnChangingSubject(), HREmail.getHROnChangingMessage(HRticket.getTicketID(), data.employeeid, changeString));
-
+                        var rq = cnx.connection.query(
+                            "INSERT INTO `Enko_entry_exit_form_syslog`( `userID`,`topic`,`status`, `summary`, `details`) VALUES " +
+                            "(" +
+                            "'" + user + "','" + "" + "','error','" + "" + "','" + JSON.stringify(error) + "'" +
+                            ");"
+                        );
+                        console.log("#PromiseError: " + JSON.stringify(error));
+                    }
+                }
+            }
+            //execute promise
+        promiseExecution();
         response.render("entryform", {
             session: request.session
         });

@@ -116,23 +116,26 @@ class Mail {
             "IT Support - itsupport@enkoeducation.com";
     }
 
-    getITOnChangingMessage(ticketID, employeeID, changes) {
-        return "Ticket number: " + ticketID + "\n" +
-            "There is a change in our organisation. \n Please, Give/suspend access to appropiate tools/groups if necessary:\n" +
-            "Employee ID: " + employeeID + "@enkoeducation.com ASAP: \n " +
-            changes;
+    getITOnChangingMessage(initiator, employeeID, changesDescription) {
+        return "Hello" +
+            "\nProvide the following change on this account: " + employeeID +
+            "\n\n" + changesDescription +
+            "\n\nInitiator: " + initiator;
     }
-    getHROnChangingMessage(ticketID, employeeID, changes) {
-        return "Ticket number: " + ticketID + "\n" +
-            "1) Adjust the following information about " + employeeID + "@enkoeducation.com ASAP: \n" +
-            changes;
+    getHROnChangingMessage(initiator, employeeID, changesDescription) {
+        return "Hello" +
+            "\nProvide the following change on this account: " + employeeID +
+            "\n\n" + changesDescription +
+            "\n\nInitiator: " + initiator +
+            "\n\nRegards," +
+            "\nIT Support - itsupport@enkoeducation.com";
     }
     getITOnLeavingMessage(initiator, employeeID, deprovisioningDate) {
         return "Hello," +
-            "\nThe user " + employeeID + "is leaving ENKO Education." +
+            "\nThe user " + employeeID + " is leaving ENKO Education." +
             "\nComplete the following actions:" +
             "\n\n1)Delete user account in the IT tool" +
-            "\n2)Suspend the email in the Woekspace" +
+            "\n2)Suspend the email in the Workspace" +
             "\n\nInitiator:" + initiator +
             "\nDue date:" + deprovisioningDate;
     }
@@ -142,7 +145,7 @@ class Mail {
             "\nEmployee email: " + employeeID +
             "\nLeaving reason: " + leavingReason +
             "\nLeaving date: " + departureDate +
-            "\nPlease be sure you delete/suspend his/her account on Payspace by " + deprovisioningDate + "" +
+            "\nPlease be sure you delete/suspend this employee account on Payspace by " + deprovisioningDate + "" +
             "\n\nRegards";
     }
 

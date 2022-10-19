@@ -34,35 +34,12 @@ block content
                                 .invalid-feedback
                                     | Provide the employee name, press search then select appropriated email&nbsp
                         br   
-                        p.col-md-6
-                          label.form-check-label(for='employeeid') Choose the changing topic then type                       
-                          br
-                          p.form-check
-                            input#flexRadioDefaultorg.form-check-input(type='checkbox' value='organisation' name='change')
-                            label.form-check-label(for='flexRadioDefaultorg')
-                              | Organisation
-                              input#validationCustomOrg.form-control(type='text' name='organisation')                                   
-                        
-                          br
-                          p.form-check
-                            input#flexRadioDefaultpos.form-check-input(type='checkbox' value='position' name='change')
-                            label.form-check-label(for='flexRadioDefaultpos')
-                              | Position
-                              input#validationCustomPos.form-control(type='text' name='position')    
-                          br
-                          p.form-check
-                            input#flexRadioDefaultCon.form-check-input(type='checkbox' value='contracttype' name='change')
-                            label.form-check-label(for='flexRadioDefaultCon')
-                              | Contract type
-                              input#validationCustom03.form-control(type='text' name='contracttype')    
-                          br
-                          p.form-check
-                            input#flexRadioDefaultEmp.form-check-input(type='checkbox' value='employmenttype' name='change')
-                            label.form-check-label(for='flexRadioDefaultEmp')
-                              | Employment type
-                              input#validationCustom03.form-control(type='text' name='employmenttype') 
-                              
-
+                        p
+                          .col-md-6
+                            label.form-label(for='changesdescription') Describe the desired  changes below
+                            textarea(style="width: 100%" name='changesdescription' required='')
+                            .invalid-feedback  
+                              |Please, provide a valid description                        
                     section.d-flex.flex-column.align-items-center.justify-content-center.py-4                    
                         .row.justify-content-center
                         .col-lg-6.col-md-6.justify-content-center

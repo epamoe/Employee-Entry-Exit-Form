@@ -82,7 +82,7 @@ app.get('/user-management/', isLogedIn, function(request, response) {
         session: request.session
     });
 });
-app.get('/user-management/home', (request, response) => {
+app.get('/user-management/home', isLogedIn, (request, response) => {
 
     request.session.email = userProfile.emails[0].value;
     request.session.username = userProfile.name.givenName
