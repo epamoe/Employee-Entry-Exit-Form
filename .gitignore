@@ -1,5 +1,6 @@
 # Ignorer les modules nodesJs
 ./nodes_modules
+'./node_modules'
 
 # Ignore les logfiles
 *.log

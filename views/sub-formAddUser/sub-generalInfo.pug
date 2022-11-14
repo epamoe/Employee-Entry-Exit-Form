@@ -67,8 +67,9 @@
         p
         .col-md-8
             label.form-label(for='validationCustom01') Country of residence&nbsp
-                i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide country where the employee is actually living in')
-            select.selectpicker.countrypicker.form-control(data-flag='true' name='contryresidence')
+                //i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide country where the employee is actually living in')
+            select.form-control(data-flag='true' name='contryresidence')
+                include ./sub-countryCode.pug
             .invalid-feedback
                 | Please provide a valid contry.
         br
@@ -85,7 +86,8 @@
         .col-md-8
             label.form-label(for='validationCustom0Nat') Nationality&nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the nationality as writen on the passport/NIC')
-            select.selectpicker.countrypicker.form-control(data-flag='true' name='nationality')
+            select.form-control(data-flag='true' name='nationality')
+                include ./sub-countryCode.pug
             .invalid-feedback
                 | Please provide a valid Nationality.
         br
@@ -130,7 +132,7 @@
         .col-md-8
             label.form-label(for='validationCustom02') Marital Status&nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='In case of other, provide a detailled value')
-            .d-flex.justify-content-center
+            .justify-content-center
                 .form-check.form-check-inline
                     input#inlineRadiosi.form-check-input(type='radio' value='single' name='maritalstatus' )
                     label.form-check-label(for='inlineRadiosi') Single
@@ -140,9 +142,9 @@
                 .form-check.form-check-inline
                     input#inlineRadiow.form-check-input(type='radio' value='widow' name='maritalstatus')
                     label.form-check-label(for='inlineRadiow') Widow(er)
-                .form-check.form-check-inline
+                .d-flex.form-check.form-check-inline
                     input#inlineRadioooth.form-check-input(type='radio' value='other' name='maritalstatus')
-                    label.form-check-label(for='inlineRadioooth') Other
+                    label.form-check-label(for='inlineRadioooth') &nbsp Other &nbsp&nbsp&nbsp&nbsp
                     input#inlineRadioooth.form-control(type='text' name='othermaritalstatus' placeholder='type other')                    
         br
         p

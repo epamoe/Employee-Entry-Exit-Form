@@ -6,6 +6,8 @@ class Tmp {
         host: 'localhost',
         user: 'enkoadmin',
         password: 'passworD',
+        //user: 'eadmin',
+        //password: 'eadmin123',
         database: 'bdEnko'
     });
 
