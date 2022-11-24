@@ -14,7 +14,7 @@
                 p
                 .input-group.mb-2
                     input#proposedemail.form-control(type='text' name='suggestedemail' onkeypress='clearProposedEmailRespponse()'  style='text-transform:lowercase' minLength="3" placeholder="firstname.lastname" aria-label="Recipient's username" aria-describedby='basic-addon2' required='' )
-                    span#basic-addon2.input-group-text @enkoeducation.com
+                    span#basic-addon2.input-group-text @#{session.email.toString().split("@")[1]}
                     button#checkproposedemail.btn.btn-primary(onclick='verifyEmail()' type='button')
                         span
                         |                 Verify
@@ -54,7 +54,8 @@
                     option(value='FI') Finance Team
                     option(value='L&T') Learning and Teaching Team
                     option(value='OPS') School Ops Team
-                    option(value='LDS') Leadership Team
+                    option(value='EXP') Expansion Team
+                    option(value='PDT') Product Team
                 .invalid-feedback
                     | Please select a valid school / Campus.
         br
@@ -185,17 +186,17 @@
                     input.form-control.renewablePeriodYear(type='number' value='' aria-label='Default select example' name='expirationdateofpropationperiod_year' min='1900' max='2030' style='width: 30%')
                     .invalid-feedback
                         | Please provide a valid date.
-        br
+        br(hidden='')
 
-        p
-            .col-md-8
+        p(hidden='')
+            .col-md-8(hidden='')
                 label.form-label(for='validationCustomsal') Gross monthly salary (in local currency)&nbsp
                     i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the value specified in the contract')
-                input.form-control(type='number' required='' name='grosssalary')
+                input.form-control(type='number'  value='00000' required='' name='grosssalary')
                 .invalid-feedback
                     | Please provide a valid salary.
-        br
-        p
+        br(hidden='')
+        p(hidden='')
             .col-md-8(hidden='')
                 label.form-label(for='validationCustomsal') Net monthly salary (in local currency)&nbsp
                     i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the value specified in the contract')

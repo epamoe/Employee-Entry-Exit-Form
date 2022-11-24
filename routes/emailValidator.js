@@ -12,11 +12,11 @@ router.get('/', function(request, response, next) {
         var user_provisioning = new admin_sdk(googleUserMgmt.opts);
         params = {
             customer: "my_customer",
-            domain: "enkoeducation.com",
+            domain: "" + request.session.email.split("@")[1],
             event: "add",
             orderBy: "email",
             projection: "custom",
-            query: inputEmail + "@enkoeducation.com",
+            query: inputEmail + "@" + request.session.email.split("@")[1],
             sortOrder: "ASCENDING",
             viewType: "admin_view"
         };
