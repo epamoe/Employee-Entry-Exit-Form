@@ -13,7 +13,7 @@ var positionFinder = require('../utils/other/positionFinder');
 module.exports = {
     addUser(request, response) {
         var data = request.body;
-
+        let domain = "@" + request.session.email.split("@")[1];
         //data transformation due to date format
         var expirationdateofpropationperiod = (data.expirationdateofpropationperiod_year) ?
             "'" + data.expirationdateofpropationperiod_year +
@@ -57,14 +57,14 @@ module.exports = {
                 familyName: "" + data.lastname,
             },
             password: defaultPassword,
-            primaryEmail: "" + data.suggestedemail + "@enkoeducation.com",
+            primaryEmail: "" + data.suggestedemail + domain,
             changePasswordAtNextLogin: true,
             emails: [{
                     address: "" + data.personalemail,
                     type: "work"
                 },
                 {
-                    "address": "" + data.suggestedemail + "@enkoeducation.com",
+                    "address": "" + data.suggestedemail + domain,
                     "primary": true
                 }
             ],
@@ -101,7 +101,7 @@ module.exports = {
                 "`it_groups`, " +
                 "`form_type`" +
                 " ) VALUES (" +
-                "'" + user + "','" + data.firstname + "','" + data.lastname + "','" + data.suggestedemail + "@enkoeducation.com" +
+                "'" + user + "','" + data.firstname + "','" + data.lastname + "','" + data.suggestedemail + domain +
                 "','" + data.organisation + "','" + data.position + "','" + data.subject + "'," + startdate + "," + enddate + "," + birthdate +
                 ",'" + data.gender + "','" + data.nationality + "','" + data.identifier + "','" + data.identifiervalue + "','" + data.contryresidence + "','" + data.city +
                 "','" + data.maritalstatus + "','" + data.othermaritalstatus + "','" + data.numberchildren + "','" + data.typeofcontract + "','" + data.typeofemployment + "','" + data.staffmemberreportingto + "',AES_ENCRYPT('" + data.netsalary + "',CURRENT_TIMESTAMP())" +
@@ -160,7 +160,7 @@ module.exports = {
 
             //Send user Email
             var userEmail = new emailMgmt();
-            var userEmailLog = userEmail.sendMail(user, "Account creation - " + data.suggestedemail + "@enkoeducation.com", userEmail.getUserOncomingMessage(data.firstname, data.lastname, data.suggestedemail + "@enkoeducation.com"));
+            var userEmailLog = userEmail.sendMail(user, "Account creation - " + data.suggestedemail + domain, userEmail.getUserOncomingMessage(data.firstname, data.lastname, data.suggestedemail + domain));
 
             if (1) {
                 let message = {
@@ -182,7 +182,7 @@ module.exports = {
         let userPromise = new Promise((solve, reject) => {
             //Send user Email
             var userEmail = new emailMgmt();
-            var userEmailLog = userEmail.sendMail(user, "Account creation - " + data.suggestedemail + "@enkoeducation.com", userEmail.getUserOncomingMessage(data.firstname, data.lastname, data.suggestedemail + "@enkoeducation.com"));
+            var userEmailLog = userEmail.sendMail(user, "Account creation - " + data.suggestedemail + domain, userEmail.getUserOncomingMessage(data.firstname, data.lastname, data.suggestedemail + domain));
 
             if (1) {
                 let message = {
@@ -205,39 +205,37 @@ module.exports = {
 
         //promise to HR tickets
         let HRPromise = new Promise((solve, reject) => {
-            //Send HR email & ticket
-            var HREmail = new emailMgmt();
-            var HRticket = new ticketMgmt();
-            var ticketID = HRticket.createTicket(
-                data.suggestedemail + "@enkoeducation.com",
-                data.suggestedemail + "@enkoeducation.com",
-                "Payspace for " + data.suggestedemail + "@enkoeducation.com",
-                HREmail.getHROnComingMessage(
-                    user, orgUnitFinder.getOrgFullText(data.organisation), data.firstname, data.lastname, data.suggestedemail, data.personalemail,
-                    personnalPhoneNumber, birthdate, data.contryresidence, data.nationality, data.city, data.gender,
-                    data.identifier, data.identifiervalue, data.maritalstatus, data.numberchildren, data.emergencycontactname,
-                    emergencyPhoneNumber, positionFinder.getPositionFullText(data.position), data.subject, data.typeofcontract, data.typeofemployment,
-                    data.staffmemberreportingto, expirationdateofpropationperiod, data.isprobationperionrenewable, startdate,
-                    enddate, data.grosssalary
-                ),
-                HREmail.getHRHelpTopic()
-            );
-            if (ticketID) {
+            try {
+                //Send HR email & ticket
+                var HREmail = new emailMgmt();
+                HREmail.sendMail(
+                    HREmail.getHREmailAddress(),
+                    "Payspace acc for " + data.suggestedemail + domain,
+                    HREmail.getHROnComingMessage(
+                        user, orgUnitFinder.getOrgFullText(data.organisation), data.firstname, data.lastname, data.suggestedemail, data.personalemail,
+                        personnalPhoneNumber, birthdate, data.contryresidence, data.nationality, data.city, data.gender,
+                        data.identifier, data.identifiervalue, data.maritalstatus, data.numberchildren, data.emergencycontactname,
+                        emergencyPhoneNumber, positionFinder.getPositionFullText(data.position), data.subject, data.typeofcontract, data.typeofemployment,
+                        data.staffmemberreportingto, expirationdateofpropationperiod, data.isprobationperionrenewable, startdate,
+                        enddate, data.grosssalary
+                    ),
+                );
                 let message = {
                     topic: "HR ticket for payspace",
                     summary: "Successfully create HR ticket",
-                    details: "" + ""
+                    details: ""
                 };
                 solve(message);
-            } else {
+            } catch (error) {
 
                 let message = {
                     topic: "HR ticket for payspace ",
                     summary: "Error creating HR ticket",
-                    details: "" + ""
+                    details: "" + JSON.stringify(error)
                 };
                 reject(message);
             }
+
         });
         //promise to sync groups query
         let groupsPromise = new Promise((solve, reject) => {
@@ -245,11 +243,11 @@ module.exports = {
             var ITEmailForGroups = new emailMgmt();
             var ITGroupsTicket = new ticketMgmt();
             var ticketID = ITGroupsTicket.createTicket(
-                data.suggestedemail + "@enkoeducation.com",
-                data.suggestedemail + "@enkoeducation.com",
-                "Groups: " + data.suggestedemail + "@enkoeducation.com",
+                data.suggestedemail + domain,
+                data.suggestedemail + domain,
+                "Groups: " + data.suggestedemail + domain,
                 ITEmailForGroups.getITOnComingMessageGroups(
-                    data.suggestedemail + "@enkoeducation.com", data.personalemail, groups, defaultOrganisation
+                    data.suggestedemail + domain, data.personalemail, groups, defaultOrganisation
                 ), ITEmailForGroups.getITHelpTopic()
             );
             if (ticketID) {
@@ -276,11 +274,11 @@ module.exports = {
             var ITEmailForTools = new emailMgmt();
             var ITToolsTicket = new ticketMgmt();
             var ticketID = ITToolsTicket.createTicket(
-                data.suggestedemail + "@enkoeducation.com",
-                data.suggestedemail + "@enkoeducation.com",
-                "ITtools: " + data.suggestedemail + "@enkoeducation.com",
+                data.suggestedemail + domain,
+                data.suggestedemail + domain,
+                "ITtools: " + data.suggestedemail + domain,
                 ITEmailForTools.getITOnComingMessageTools(
-                    data.suggestedemail + "@enkoeducation.com", data.personalemail, it_tools
+                    data.suggestedemail + domain, data.personalemail, it_tools
                 ), ITEmailForTools.getITHelpTopic()
             );
             if (ticketID) {

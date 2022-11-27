@@ -5,6 +5,7 @@ const path = require('path');
 const mysqlCnx = require('../utils/dbConnection.js');
 var ticketMgmt = require('../utils/helpdeskManagement.js');
 var emailMgmt = require('../utils/emailManagement');
+const { json } = require('body-parser');
 
 module.exports = {
     deleteUser(request, response) {
@@ -76,30 +77,28 @@ module.exports = {
         });
         //Create HR promise for cequencing
         let HRpromise = new Promise((solve, reject) => {
-            //Send HR email & ticket
-            var HREmail = new emailMgmt();
-            var HRticket = new ticketMgmt();
-            var ticketID = HRticket.createTicket(
-                "Payspace acc suppression: " + data.employeeid,
-                user,
-                "Payspace acc suppression: " + data.employeeid,
-                HREmail.getHROnLeavingMessage(
-                    data.employeeid, data.leavingreason,
-                    leavingDate, deprovisioningDate
-                )
-            );
-            if (ticketID) {
+            try {
+                //Send HR email & ticket
+                var HREmail = new emailMgmt();
+                HREmail.sendMail(
+                    HREmail.getHREmailAddress(),
+                    "Payspace acc suppression: " + data.employeeid,
+                    HREmail.getHROnLeavingMessage(
+                        data.employeeid, data.leavingreason,
+                        leavingDate, deprovisioningDate
+                    )
+                );
                 let message = {
-                    topic: "HR ticket - suspension ",
+                    topic: "HR Email - suspension ",
                     summary: "Successfully create HR ticket",
                     details: "" + ""
                 };
                 solve(message);
-            } else {
+            } catch (error) {
                 let message = {
-                    topic: "HR ticket -suspension",
+                    topic: "HR Email -suspension",
                     summary: "Error creating HR ticket",
-                    details: "" + ""
+                    details: "" + JSON.stringify(error)
                 };
                 reject(message);
             }
@@ -111,7 +110,6 @@ module.exports = {
                     var cnx = new mysqlCnx();
                     try {
                         const message = await promise;
-
                         var rq = cnx.connection.query(
                             "INSERT INTO `Enko_entry_exit_form_syslog`( `userID`,`topic`,`status`, `summary`, `details`) VALUES " +
                             "(" +
@@ -119,15 +117,15 @@ module.exports = {
                             ");"
                         );
                         console.log("#PromiseSuccess: " + JSON.stringify(message));
-                    } catch (error) {
+                    } catch (message) {
 
                         var rq = cnx.connection.query(
                             "INSERT INTO `Enko_entry_exit_form_syslog`( `userID`,`topic`,`status`, `summary`, `details`) VALUES " +
                             "(" +
-                            "'" + user + "','" + message.topic + "','error','" + message.summary + "','" + JSON.stringify(error) + "'" +
+                            "'" + user + "','" + message.topic + "','error','" + message.summary + "','" + message.details + "'" +
                             ");"
                         );
-                        console.log("#PromiseError: " + JSON.stringify(error));
+                        console.log("#PromiseError: " + JSON.stringify(message.details));
                     }
                 }
             }

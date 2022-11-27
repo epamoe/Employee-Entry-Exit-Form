@@ -6,6 +6,7 @@ class Mail {
     constructor() {
         this.ITTitle = "IT team";
         this.ITHelpTopic = 12;
+        this.HREmailAddress = "hrsupport@enkoeducation.com";
         this.HRTitle = "HR Team";
         this.HRHelpTopic = 14;
         this.OnLeavingSubject = "Employee Leaving";
@@ -13,7 +14,9 @@ class Mail {
         this.OnComingSubjectEmployee = "Welcome to ENKO Education";
         this.OnChangingSubject = "Employee changing";
     }
-
+    getHREmailAddress() {
+        return this.HREmailAddress;
+    }
     getITTitle() { return this.ITTitle; }
     getITMailAddress() { return this.ITMailAddress; }
     getITHelpTopic() { return this.ITHelpTopic; }
@@ -75,7 +78,7 @@ class Mail {
         Typeemployment, Manager, Expirationprobation, probationrenewable, startdate, Enddate, grossmonthlysalary, netmonthlysalary) {
         return "Hello \n" +
             "\nWe have a new employee in our our organisation\n" +
-            "\nRequester email:" + user +
+            "\nRequester email: " + user +
             "\nProvide an account with these informations:\n\n" +
             "\nEntity: " + Entity +
             "\nDepartment: " + Department +
@@ -103,17 +106,18 @@ class Mail {
             "\nIs the probation period renewable: " + probationrenewable +
             "\nEffective start date: " + startdate +
             "\nEnd date: " + Enddate +
-            "\nGross monthly salary (in local currency): " + grossmonthlysalary;
+            "\n\nRegards" +
+            "\nIT Support - itsupport@enkoeducation.com";;
     }
     getUserOncomingMessage(firstName, lastName, email) {
         return "Hello\n" +
-            "You have requested the creation of an employee account on :" + new Date().toISOString().slice(0, 10) + "\n" +
-            "Names: " + firstName + lastName + "\n " +
+            "You have requested the creation of an employee account on: " + new Date().toISOString().slice(0, 10) + "\n" +
+            "Names: " + firstName + " " + lastName + "\n" +
             "Email: " + email +
-            "\n The account should take up to 48H to be created. The user will be directly informed of the creation.\n" +
+            "\nThe account should take up to 48H to be created. The user will be directly informed of the creation.\n" +
             "\n\nIt is not necessary to answer to this email\n\n" +
-            "Regards \n " +
-            "IT Support - itsupport@enkoeducation.com";
+            "Regards " +
+            "\nIT Support - itsupport@enkoeducation.com";
     }
 
     getITOnChangingMessage(initiator, employeeID, changesDescription) {
@@ -141,12 +145,13 @@ class Mail {
     }
     getHROnLeavingMessage(employeeID, leavingReason, departureDate, deprovisioningDate) {
         return "Hello" +
-            "\nOne of our colleagues is leaving our organization." +
+            "\n\nOne of our colleagues is leaving our organization." +
             "\nEmployee email: " + employeeID +
             "\nLeaving reason: " + leavingReason +
             "\nLeaving date: " + departureDate +
             "\nPlease be sure you delete/suspend this employee account on Payspace by " + deprovisioningDate + "" +
-            "\n\nRegards";
+            "\n\nRegards" +
+            "\nIT Support - itsupport@enkoeducation.com";
     }
 
     sendMail(to, subject, body) {
@@ -167,7 +172,7 @@ class Mail {
         transporter.sendMail(mailOptions, function(error, info) {
 
             if (error) {
-                log = "" + error;
+                log = "";
                 //console.log(error);
             } else {
                 log = "Email sent: " + info.response;

@@ -7,3 +7,4 @@
 
 # Ignorer les fichiers d connexion à la BD
 #./routes/utils/dbConnection.js
+node_modules

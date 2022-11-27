@@ -98,13 +98,26 @@ app.get('/user-management/auth/google',
 app.get('/user-management/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/user-management/error' }),
     function(request, response) {; // Successful authentication, redirect home.
-        if (!(userProfile.emails[0].value).toString().includes("@enkoeducation.com")) {
-            request.session.reset()
-            response.redirect("/user-management/fresher-management");
-        } else {
-            request.session.email = userProfile.emails[0].value;
-            request.session.username = userProfile.name.givenName
-            response.redirect("/user-management/home");
+        switch ((userProfile.emails[0].value).toString().split("@")[1]) {
+            case "enkoeducation.com":
+                request.session.email = userProfile.emails[0].value;
+                request.session.username = userProfile.name.givenName
+                response.redirect("/user-management/home");
+                break;
+            case "amazingraceschool.co.za":
+                request.session.email = userProfile.emails[0].value;
+                request.session.username = userProfile.name.givenName
+                response.redirect("/user-management/home");
+                break;
+            case "amazinggraceschool.co.za":
+                request.session.email = userProfile.emails[0].value;
+                request.session.username = userProfile.name.givenName
+                response.redirect("/user-management/home");
+                break;
+            default:
+                request.session.reset()
+                response.redirect("/user-management/fresher-management");
+                break;
         }
     });
 
@@ -113,25 +126,6 @@ app.get('/user-management/fresher-management', (request, response) => {
     response.render('fresher-management');
 });
 
-/*
-app.get('/user-management/auth/google/callback',
-    passport.authenticate('google', { failureRedirect: '/user-management/error' }),
-    function(request, response) {; // Successful authentication, redirect home.
-
-        if (!(userProfile.emails[0].value).toString().includes("@enkoeducation.com")) {
-            request.session.reset()
-            response.render("error", {
-                message: "Please, use your ENKO Education address",
-            })
-        } else {
-            request.session.email = userProfile.emails[0].value;
-            request.session.username = userProfile.name.givenName
-            response.render("entryform", {
-                session: request.session
-            });
-        }
-    });
-*/
 /**
  * Logout route
  */
@@ -158,13 +152,7 @@ passport.use(new GoogleStrategy({
     },
     function(accessToken, refreshToken, profile, done) {
         userProfile = profile;
-        if ((userProfile.emails[0].value).toString().includes('@enkoeducation.com')) {
-            console.log("### ENKO Staff ");
-            callbackpage = "/home";
-        } else {
-            console.log("### Not ENKO Staff ");
-            callbackpage = '/fresher-management';
-        }
+
         return done(null, userProfile);
     }));
 

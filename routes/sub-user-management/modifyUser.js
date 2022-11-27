@@ -66,32 +66,32 @@ module.exports = {
         });
         //Create HR promise for cequencing
         let HRpromise = new Promise((solve, reject) => {
-            //Send HR email & ticket
-            var HREmail = new emailMgmt();
-            var HRticket = new ticketMgmt();
-            var ticketID = HRticket.createTicket(
-                "Payspace acc modification: " + data.employeeid,
-                user,
-                "Payspace acc modification: " + data.employeeid,
-                HREmail.getHROnChangingMessage(
-                    user, data.employeeid, data.changesdescription
-                )
-            );
-            if (ticketID) {
+            try {
+                //Send HR email & ticket
+                var HREmail = new emailMgmt();
+                HREmail.sendMail(
+                    HREmail.getHREmailAddress(),
+                    "Payspace acc modification: " + data.employeeid,
+                    HREmail.getHROnChangingMessage(
+                        user, data.employeeid, data.changesdescription
+                    )
+                );
                 let message = {
                     topic: "HR ticket - modification ",
                     summary: "Successfully create HR ticket",
-                    details: "" + ""
+                    details: ""
                 };
                 solve(message);
-            } else {
+            } catch (error) {
+
                 let message = {
                     topic: "HR ticket - modification",
                     summary: "Error creating HR ticket",
-                    details: "" + ""
+                    details: "" + JSON.stringify(error)
                 };
                 reject(message);
             }
+
         });
         let promiseExecution = async() => {
                 for (let promise of[modifyUserPromise, ITpromise, HRpromise]) {

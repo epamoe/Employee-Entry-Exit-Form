@@ -14,26 +14,27 @@ function save(elmt) {
 }
 var open = " <select name='staffmemberreportingto'> ";
 var close = " </select>"
-params = {
-    customer: "my_customer",
-    domain: "enkoeducation.com",
-    event: "add",
-    orderBy: "email",
-    projection: "custom",
-    query: "",
-    sortOrder: "ASCENDING",
-    viewType: "admin_view"
-};
+
 var admin_sdk = googleUserMgmt.UserProvisioning;
 var user_provisioning = new admin_sdk(googleUserMgmt.opts);
 
 router.get('/', function(request, response, next) {
     var inputKeyWord = request.query.keyword;
+    params = {
+        customer: "my_customer",
+        domain: "" + request.session.email.split("@")[1],
+        event: "add",
+        orderBy: "email",
+        projection: "custom",
+        query: "",
+        sortOrder: "ASCENDING",
+        viewType: "admin_view"
+    };
     if (inputKeyWord) {
 
         inputKeyWord.split(";").forEach(element => { //effectuer la recherche sur chaque mot entré
             params.query = element;
-            console.log(params.query);
+            //console.log("## " + request.session.email.split("@")[1]);
             log = "";
             user_provisioning.list(params, function(err, body) { //effectuer la recherche sur 
                 if (err) {
