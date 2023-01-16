@@ -95,7 +95,7 @@ module.exports = {
                 "(`initiator`, `firstname`, `lastname`, `suggested_email`, " +
                 " `organisation`, `position`, `subject`, `begining_date`, `end_date`, `birthdate`, " +
                 "`gender`, `nationality`, `id_passport_type`, `id_passport_number`, `country_residence`, `city_residence`, " +
-                "`marital_status`, `other_marital_status`, `number_children`, `contract_type`, `employment_type`, `staff_member_repporting_to`,`crypted_net_salary`," +
+                "`marital_status`, `other_marital_status`, `number_children`, `contract_type`, `employment_type`, `staff_member_repporting_to`,`crypted_net_salary`, `link_to_contract`," +
                 "`crypted_gross_salary`, `emergency_name`, `emergency_phone`, `personal_email`, `personal_phone`, `expiration_date_of_probation_period`, `is_probation_period_renewable`, " +
                 "`it_tools`, " +
                 "`it_groups`, " +
@@ -104,7 +104,7 @@ module.exports = {
                 "'" + user + "','" + data.firstname + "','" + data.lastname + "','" + data.suggestedemail + domain +
                 "','" + data.organisation + "','" + data.position + "','" + data.subject + "'," + startdate + "," + enddate + "," + birthdate +
                 ",'" + data.gender + "','" + data.nationality + "','" + data.identifier + "','" + data.identifiervalue + "','" + data.contryresidence + "','" + data.city +
-                "','" + data.maritalstatus + "','" + data.othermaritalstatus + "','" + data.numberchildren + "','" + data.typeofcontract + "','" + data.typeofemployment + "','" + data.staffmemberreportingto + "',AES_ENCRYPT('" + data.netsalary + "',CURRENT_TIMESTAMP())" +
+                "','" + data.maritalstatus + "','" + data.othermaritalstatus + "','" + data.numberchildren + "','" + data.typeofcontract + "','" + data.typeofemployment + "','" + data.staffmemberreportingto + "',AES_ENCRYPT('" + data.netsalary + "',CURRENT_TIMESTAMP()),'" + data.linkToContract + "'" +
                 ",AES_ENCRYPT('" + data.grosssalary + "',CURRENT_TIMESTAMP())" + ",'" + data.emergencycontactname + "','" + emergencyPhoneNumber + "','" + data.personalemail + "','" + personnalPhoneNumber + "'," + expirationdateofpropationperiod + ",'" + data.isprobationperionrenewable +
                 "','[" + it_tools + "]" +
                 //"','[" + data.gsuite + "," + data.edadmin + "]" + //It admin tools
@@ -217,7 +217,7 @@ module.exports = {
                         data.identifier, data.identifiervalue, data.maritalstatus, data.numberchildren, data.emergencycontactname,
                         emergencyPhoneNumber, positionFinder.getPositionFullText(data.position), data.subject, data.typeofcontract, data.typeofemployment,
                         data.staffmemberreportingto, expirationdateofpropationperiod, data.isprobationperionrenewable, startdate,
-                        enddate, data.grosssalary
+                        enddate, data.grosssalary, data.netsalary, data.linkToContract
                     ),
                 );
                 let message = {

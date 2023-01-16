@@ -77,7 +77,7 @@
                     option(value='genService' ) School General Services
                 .invalid-feedback 
                     | Please provide a valid Department.
-            
+        br  
         p
             .col-md-8
                 label.form-label(for='validationCustom0333') Position/Title (Provide subject if teacher)
@@ -99,6 +99,14 @@
                     option(value='other') Other
         br
 
+        p
+            .col-md-8
+                label.form-label(for='validationCustomsal') Link to the contract&nbsp
+                    i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title="Provide a link/URL to the new employee's contract")
+                input.form-control(type='text' required='' name='linkToContract')
+                .invalid-feedback
+                    | Please provide a valid URL.
+        br
         p
             .col-md-8
                 label.form-label(for='validationCustom01') Who will be his/her manager? (Search by names)
@@ -171,7 +179,8 @@
                 .form-check.form-check-inline
                     input#inlineRadiono.form-check-input(type='radio' value='no' name='isprobationperionrenewable'  onclick='disableRenewableDate()')
                     label.form-check-label(for='inlineRadiono') No
-            br
+        br
+        p
             .col-md-8
                 label.form-label(for='inputDateProbation') Expiration date of the probation period.
                 //input.form-control(type='date' name='expirationdateofpropationperiod' )
@@ -203,4 +212,5 @@
                 input.form-control(type='text' required='' value='00000' name='netsalary')
                 .invalid-feedback
                     | Please provide a valid salary.
+
         

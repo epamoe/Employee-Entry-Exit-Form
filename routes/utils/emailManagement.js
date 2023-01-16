@@ -75,7 +75,7 @@ class Mail {
 
     getHROnComingMessage(user, Entity, Firstname, Lastname, Enkoemail, PersonnalEmail, Phonenumber, Birthdate, countryofresidence, Nationality,
         Cityofresidence, Gender, NIC, Passport, Marital, children, EmergencyName, EmergencyPhone, Department, Position, Typecontract,
-        Typeemployment, Manager, Expirationprobation, probationrenewable, startdate, Enddate, grossmonthlysalary, netmonthlysalary) {
+        Typeemployment, Manager, Expirationprobation, probationrenewable, startdate, Enddate, grossmonthlysalary, netmonthlysalary, linkToContract) {
         return "Hello \n" +
             "\nWe have a new employee in our our organisation\n" +
             "\nRequester email: " + user +
@@ -100,6 +100,7 @@ class Mail {
             "\nEmergency contact - Name: " + EmergencyName +
             "\nEmergency contact - Phone: " + EmergencyPhone +
             "\nType of contract: " + Typecontract +
+            "\nLink to contract: " + linkToContract +
             "\nType of employment: " + Typeemployment +
             "\nManager email address: " + Manager +
             "\nExpiration date of the probation period: " + Expirationprobation +
