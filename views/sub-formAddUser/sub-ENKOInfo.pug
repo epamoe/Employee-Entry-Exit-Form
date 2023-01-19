@@ -36,7 +36,9 @@
                     option(value='ERV') Enko Riviera                   
                     option(value='EOG') Enko Ouaga                    
                     option(value='EBK') Enko Bamako                 
-                    option(value='EKG') Enko Keur Gorgui         
+                    option(value='KLS') Enko Kalanso         
+                    option(value='EKG') Enko Keur Gorgui 
+                    option(value='KDS') Enko Kodonso
                     option(value='EWC') Enko Waca                      
                     option(value='EGC-P') Enko La Gaieté Primary              
                     option(value='EGC-S') Enko La Gaieté Secondary
@@ -63,7 +65,7 @@
         p
             .col-md-8
                 label.form-label(for='validationCustomPos') Department&nbsp
-                    i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the position/function of the employee \nThis will help you to automatically choose which IT tools he deserve to use at ENKO Education')
+                    i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the position / function of the employee \nThis will help you to automatically choose which IT tools he deserve to use at ENKO Education')
                 select#position.form-control.form-select(required='' name='position' onclick='toolChecker()' )                               
                     option(value='' disabled=''  selected='') Choose ...
                     option(value='teacher' ) Learning & Teaching
@@ -80,7 +82,7 @@
         br  
         p
             .col-md-8
-                label.form-label(for='validationCustom0333') Position/Title (Provide subject if teacher)
+                label.form-label(for='validationCustom0333') Position / Title (Provide subject if teacher)
                 input#validationCustom03.form-control(type='text' name='subject' )  
                 .invalid-feedback 
                         | Please provide a valid Subject.     
@@ -103,7 +105,7 @@
             .col-md-8
                 label.form-label(for='validationCustomsal') Link to the contract&nbsp
                     i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title="Provide a link/URL to the new employee's contract")
-                input.form-control(type='text' required='' name='linkToContract')
+                input.form-control(type='url' required='' name='linkToContract')
                 .invalid-feedback
                     | Please provide a valid URL.
         br

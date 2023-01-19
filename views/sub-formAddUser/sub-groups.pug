@@ -25,7 +25,7 @@
             .accordion-item
                 h2#flush-headingOne.accordion-header
                 button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseOne' aria-expanded='false' aria-controls='flush-collapseOne')
-                    | Enko Bamako Campus
+                    | Enko Bamako 
                 #flush-collapseOne.accordion-collapse.collapse(aria-labelledby='flush-headingOne' data-bs-parent='#accordionFlushExample')
                 .accordion-body
                     .container
@@ -40,7 +40,7 @@
             .accordion-item
                 h2#flush-headingTwo.accordion-header
                 button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
-                    | Enko Bonanjo Campus
+                    | Enko Bonanjo 
                 #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
                 .accordion-body
                     .container
@@ -55,7 +55,7 @@
             .accordion-item
                 h2#flush-headingOne.accordion-header
                 button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseOne' aria-expanded='false' aria-controls='flush-collapseOne')
-                    | Enko Botho Campus
+                    | Enko Botho 
                 #flush-collapseOne.accordion-collapse.collapse(aria-labelledby='flush-headingOne' data-bs-parent='#accordionFlushExample')
                 .accordion-body
                     .container
@@ -70,7 +70,23 @@
             .accordion-item
                 h2#flush-headingTwo.accordion-header
                 button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
-                    | Enko Keur Gorgui Campus
+                    | Enko Kalanso
+                #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
+                .accordion-body
+                    .container
+                        .row
+                            each group in groups
+                                if (group.school_code=="KLS")
+                                    .col-sm
+                                        .form-check.form-switch
+                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
+                                        label.form-check-label(for=group.mail) &nbsp 
+                                            | #{ group.mail.toString().split('@')[0] }
+
+            .accordion-item
+                h2#flush-headingTwo.accordion-header
+                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
+                    | Enko Keur Gorgui 
                 #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
                 .accordion-body
                     .container
@@ -83,9 +99,25 @@
                                         label.form-check-label(for=group.mail) &nbsp 
                                             | #{ group.mail.toString().split('@')[0] }
             .accordion-item
+                h2#flush-headingTwo.accordion-header
+                button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
+                    | Enko Kodonso
+                #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
+                .accordion-body
+                    .container
+                        .row
+                            each group in groups
+                                if (group.school_code=="KDS")
+                                    .col-sm
+                                        .form-check.form-switch
+                                        input(id=group.mail class='school' class=group.school_code  type='checkbox' value=group.mail.toString().split('@')[0] name='enkogroups')
+                                        label.form-check-label(for=group.mail) &nbsp 
+                                            | #{ group.mail.toString().split('@')[0] }
+                                            
+            .accordion-item
                 h2#flush-headingOne.accordion-header
                 button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseOne' aria-expanded='false' aria-controls='flush-collapseOne')
-                    | Enko La Gaiete Campus
+                    | Enko La Gaiete 
                 #flush-collapseOne.accordion-collapse.collapse(aria-labelledby='flush-headingOne' data-bs-parent='#accordionFlushExample')
                 .accordion-body
                     .container
@@ -100,7 +132,7 @@
             .accordion-item
                 h2#flush-headingTwo.accordion-header
                 button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
-                    | Enko Ouaga Campus
+                    | Enko Ouaga 
                 #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
                 .accordion-body
                     .container
@@ -115,7 +147,7 @@
             .accordion-item
                 h2#flush-headingOne.accordion-header
                 button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseOne' aria-expanded='false' aria-controls='flush-collapseOne')
-                    | Enko Riverside Campus
+                    | Enko Riverside 
                 #flush-collapseOne.accordion-collapse.collapse(aria-labelledby='flush-headingOne' data-bs-parent='#accordionFlushExample')
                 .accordion-body
                     .container
@@ -130,7 +162,7 @@
             .accordion-item
                 h2#flush-headingTwo.accordion-header
                 button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
-                    | Enko Riviera Campus
+                    | Enko Riviera 
                 #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
                 .accordion-body
                     .container
@@ -145,7 +177,7 @@
             .accordion-item
                 h2#flush-headingOne.accordion-header
                 button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseOne' aria-expanded='false' aria-controls='flush-collapseOne')
-                    | Enko Sekeleka Campus
+                    | Enko Sekeleka 
                 #flush-collapseOne.accordion-collapse.collapse(aria-labelledby='flush-headingOne' data-bs-parent='#accordionFlushExample')
                 .accordion-body
                     .container
@@ -160,7 +192,7 @@
             .accordion-item
                 h2#flush-headingTwo.accordion-header
                 button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo')
-                    | Enko Waca Campus
+                    | Enko Waca 
                 #flush-collapseTwo.accordion-collapse.collapse(aria-labelledby='flush-headingTwo' data-bs-parent='#accordionFlushExample')
                 .accordion-body
                     .container
