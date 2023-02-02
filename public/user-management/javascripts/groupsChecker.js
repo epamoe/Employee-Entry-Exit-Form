@@ -45,7 +45,6 @@ function hiddeNotSelectedSchoolGroups(school_code) {
     document.querySelector(".EWC_groups").setAttribute("hidden", "true");
     document.querySelector(".PED_groups").setAttribute("hidden", "true");
 
-    console.log("." + school_code + "_groups")
-        //Then display the choosen section
+    //Then display the choosen section
     document.querySelector("." + school_code + "_groups").removeAttribute('hidden')
 }
