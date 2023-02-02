@@ -22,12 +22,41 @@ function verifyEmail() {
         outputMessage += "Wrong! format! must be FristName.LastName";
     } else if (!inputEmail.includes(".")) {
         outputMessage += "Wrong! format! must be FristName.LastName";
+    } else if (checkPresenceSpecialCharacters(inputEmail)) {
+        outputMessage += "Special characters like é è ; # are deprecated";
     } else {
         checkEmailValidity();
     }
 
-    document.getElementById("emailfeedback").innerHTML = outputMessage;
+    document.getElementById("emailfeedback").innerHTML = outputMessage + "<br>";
     //document.getElementById("onsubmitemailfeedback").innerHTML = onsubmitMessage;
+}
+
+function checkPresenceSpecialCharacters(email) {
+    if (email.includes(" ")) return true;
+    if (email.includes("+")) return true;
+    if (email.includes("*")) return true;
+    if (email.includes("?")) return true;
+    if (email.includes("^")) return true;
+    if (email.includes("µ")) return true;
+    if (email.includes("$")) return true;
+    if (email.includes("£")) return true;
+    if (email.includes("(")) return true;
+    if (email.includes(")")) return true;
+    if (email.includes("|")) return true;
+    if (email.includes(",")) return true;
+    if (email.includes(";")) return true;
+    if (email.includes("é")) return true;
+    if (email.includes("è")) return true;
+    if (email.includes("à")) return true;
+    if (email.includes("â")) return true;
+    if (email.includes("î")) return true;
+    if (email.includes("&")) return true;
+    if (email.includes(":")) return true;
+    if (email.includes("!")) return true;
+    if (email.includes("?")) return true;
+    if (email.includes("#")) return true;
+    return false;
 }
 
 function searchManager() {

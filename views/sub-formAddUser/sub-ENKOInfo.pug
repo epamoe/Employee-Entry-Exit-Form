@@ -21,10 +21,10 @@
                     button#checkingproposedemail.btn.btn-primary(type='button' disabled='' style="display: none;"  )
                         span.spinner-border.spinner-border-sm(role='status' aria-hidden='true')
                         |                 Verify
+                p
                     #emailfeedback 
                     .invalid-feedback  please provide a valid suggestion
-        br
-            
+       
                 
         p
             .col-md-8
@@ -44,8 +44,7 @@
                     option(value='EGC-S') Enko La Gaieté Secondary
                     option(value='EBC') Enko Bonanjo
                     option(value='' disabled='') S.H
-                    option(value='AGP') Amazing Grace Private School
-                    option(value='EJA') Jacaranda Academy
+                    option(value='AGP') Amazing Grace Private School 
                     option(value='EBT') Enko Botho
                     option(value='PED') Pestalozzi Education Center
                     option(value='EVS') Enko Riverside
@@ -132,7 +131,7 @@
                 label.form-label(for='validationCustom02') Type of employment
                 .br
                 .form-check.form-check-inline
-                    input#inlineRadiofull.form-check-input(type='radio' name='typeofemployment' value='fulltime' onclick='disableEndDate()')
+                    input#inlineRadiofull.form-check-input(type='radio' name='typeofemployment' value='fulltime' onclick='disableEndDateX()')
                     label.form-check-label(for='inlineRadiofull') Full time
                 .form-check.form-check-inline
                     input#inlineRadiopart.form-check-input(type='radio' name='typeofemployment' value='parttime' onclick='enableEndDate()')

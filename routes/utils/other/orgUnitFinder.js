@@ -26,8 +26,7 @@ module.exports = {
                 return "/Schools/Enko Sekeleka Campus";
             case "EWC":
                 return "/Schools/Enko Waca Campus";
-            case "EJA":
-                return "/Schools/Jacaranda Academy";
+
             case "PED":
                 return "/Schools/Pestalozzi Education Center";
             case "MKG":
