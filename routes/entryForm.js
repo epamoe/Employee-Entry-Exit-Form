@@ -48,13 +48,11 @@ router.post('/', function(request, response, next) {
             });
     }
 });
-/*
+
+
 router.get('/', function(request, response, next) {
-    {
-        response.render('entryform', {
-            session: request.session
-        });
-    }
+    response.redirect('/user-management/');
 });
-*/
+
+
 module.exports = router;
