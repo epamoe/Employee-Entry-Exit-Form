@@ -1,0 +1,47 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Pure HTML + CSS Alerts with Dismiss
+  link(href='assets/css/alert.css' rel='stylesheet')
+h1 Pure HTML + CSS Alerts with Dismiss
+.main
+  // Alert message for displaying an error
+  .alert.error
+    input#alert1(type='checkbox')
+    label.close(title='close' for='alert1')
+      i.icon-remove
+    p.text
+      strong Error!
+      |  This is an error message.
+  // Alert message for displaying a success message
+  .alert.success
+    input#alert2(type='checkbox')
+    label.close(title='close' for='alert2')
+      i.icon-remove
+    p.text
+      strong Success!
+      |  This is a success alert.
+  // Alert message for displaying information
+  .alert.info
+    input#alert3(type='checkbox')
+    label.close(title='close' for='alert3')
+      i.icon-remove
+    p.text
+      | This alert message provides some information.
+  // Alert message for displaying a warning
+  .alert.warning
+    input#alert4(type='checkbox')
+    label.close(title='close' for='alert4')
+      i.icon-remove
+    p.text
+      strong Warning!
+      |  This is warning alert.
+  // A standard alert message
+  .alert
+    input#alert5(type='checkbox')
+    label.close(title='close' for='alert5')
+      i.icon-remove
+    p.text
+      | This is a standard alert message with no style.

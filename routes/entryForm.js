@@ -39,7 +39,7 @@ router.post('/', function(request, response, next) {
             break;
         case "employeechanging":
             response.render("formModifyUser", {
-                session: request.session
+                session: request.session,
             });
             break;
         default:
