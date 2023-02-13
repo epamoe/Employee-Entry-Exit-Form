@@ -25,7 +25,7 @@ router.post('/', function(request, response, next) {
                         //userid: request.session.userId
                         groups: Object.values(JSON.parse(JSON.stringify(resultGroup))),
                         access: Object.values(JSON.parse(JSON.stringify(resultAccess))),
-                        session: request.session
+                        session: request.session,
                     });
                 });
             });
@@ -34,7 +34,7 @@ router.post('/', function(request, response, next) {
         case "employeeleaving":
             //console.log(JSON.stringify(request.session.opts));
             response.render("formDeleteUser", {
-                session: request.session
+                session: request.session,
             });
             break;
         case "employeechanging":
@@ -44,14 +44,18 @@ router.post('/', function(request, response, next) {
             break;
         default:
             response.render('entryform', {
-                session: request.session
+                session: request.session,
+                headerMessage: "Choose an action below",
             });
     }
 });
 
 
 router.get('/', function(request, response, next) {
-    response.redirect('/user-management/');
+    response.render('entryform', {
+        session: request.session,
+        headerMessage: "Choose an action below",
+    });
 });
 
 

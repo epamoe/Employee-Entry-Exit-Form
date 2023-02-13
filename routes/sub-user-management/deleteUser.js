@@ -132,7 +132,7 @@ module.exports = {
             //execute promise
         promiseExecution();
         response.render("entryform", {
-            session: request.session
+            session: request.session,
         });
 
 

@@ -330,7 +330,7 @@ module.exports = {
 
 
         response.render("entryform", {
-            session: request.session
+            session: request.session,
         });
     }
 }

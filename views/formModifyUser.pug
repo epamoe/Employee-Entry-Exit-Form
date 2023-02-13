@@ -2,16 +2,13 @@ extends layout
   
 block content       
   script(type='text/javascript' src='javascripts/emailAddressFinder.js' defer='') 
-  script(type='text/javascript' src='javascripts/formChecker.js')
   .row.lg-6.justify-content-center
       .row-lg-6.justify-content-center          
           form.row.g-3.needs-validation.justify-content-center(method='post' action='/user-management/' novalidate='')
             .card(style="width: 75%")
                 .card-body
                     h5.card-title Please describe the exact changes in the contract (position, salary, employment type, ...)
-                    // Alert message 
-                    #alertMessage                      
-                      #{alertMessage}
+                    
                     .col-md-6
                       //gathering current user from session
                       input.form-control(type='text' name='usecase' required='' value='modifyuser' hidden)

@@ -58,23 +58,28 @@ html
     section.d-flex.flex-column.align-items-center.justify-content-center.py-4
       .container
         .row.justify-content-center
-          .col-lg-6.col-md-6.d-flex.flex-column.align-items-center.justify-content-center
-            .d-flex.justify-content-center.py-4
+          .col-lg-8.col-md-8.flex-column.align-items-center.justify-content-center
+            .d-flex.justify-content-center.py-2
               a.logo.d-flex.align-items-center.w-auto(href='/user-management/')
-                img(src='assets/img/enko-modern-logo.png' alt='')
+                img(src='assets/img/enko-modern-logo.png' alt='Enko Education logo')
                 span.d-lg-block.text-success Enko Education
-            // End Logo
+              // End Logo
             
-            p
-              | Hello 
-              //strong #{session.username}
-              |, choose an action below.
-              a(href='/user-management/logout') &nbsp Close this app
+            // Alert message for displaying a success message
+            .alert.info
+              input#alert3(type='checkbox')
+              label.close(title='close' for='alert3')
+                i.icon-remove
+              p.text
+                | Hello 
+                strong  #{session.username}
+                |, #{headerMessage}
+                br
+                strong
+                  a(href='/user-management/logout') Close this app
 
-    if (message.success) 
-      .alert.alert-success(role='alert' style='width: 100%')
-        | #{ message.success }
-        | blablabla
+
+    script(type='text/javascript' src='javascripts/formChecker.js')
     block content
     footer#footer.footer
       .copyright

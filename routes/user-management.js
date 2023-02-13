@@ -32,7 +32,10 @@ router.post('/', function(request, response, next) {
     //console.log("###error!" + request.body.usecase);
 });
 /* GET home page. */
-router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Enko Education portal' });
+router.get('/', function(request, response, next) {
+    response.render('index', {
+        session: request.session,
+        headerMessage: "Choose an action below",
+    });
 });
 module.exports = router;

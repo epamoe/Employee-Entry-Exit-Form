@@ -12,15 +12,15 @@
                     strong &nbsp (Please, provide an email in the format "firstname.lastname", then click on "Verify" to check if the email exists)
                 .input-group.has-validation
                 p
-                .input-group.mb-2
-                    input#proposedemail.form-control(type='text' name='suggestedemail' onkeypress='clearProposedEmailRespponse()'  style='text-transform:lowercase' minLength="3" placeholder="firstname.lastname" aria-label="Recipient's username" aria-describedby='basic-addon2' required='' )
-                    span#basic-addon2.input-group-text @#{session.email.toString().split("@")[1]}
-                    button#checkproposedemail.btn.btn-primary(onclick='verifyEmail()' type='button')
-                        span
-                        |                 Verify
-                    button#checkingproposedemail.btn.btn-primary(type='button' disabled='' style="display: none;"  )
-                        span.spinner-border.spinner-border-sm(role='status' aria-hidden='true')
-                        |                 Verify
+                    .input-group.mb-2
+                        input#proposedemail.form-control(type='text' name='suggestedemail' onkeypress='clearProposedEmailRespponse()'  style='text-transform:lowercase' minLength="3" placeholder="firstname.lastname" aria-label="Recipient's username" aria-describedby='basic-addon2' required='' )
+                        span#basic-addon2.input-group-text @#{session.email.toString().split("@")[1]}
+                        button#checkproposedemail.btn.btn-primary(onclick='verifyEmail()' type='button')
+                            span
+                            |                 Verify
+                        button#checkingproposedemail.btn.btn-primary(type='button' disabled='' style="display: none;"  )
+                            span.spinner-border.spinner-border-sm(role='status' aria-hidden='true')
+                            |                 Verify
                 p
                     #emailfeedback 
                     .invalid-feedback  please provide a valid suggestion

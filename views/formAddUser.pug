@@ -5,7 +5,7 @@ extends layout
 block content   
   script(type='text/javascript' src='javascripts/boostrapEffet.js')
   .row.lg-6.justify-content-center
-      .row-lg-6.justify-content-center
+      .row-lg-6.justify-content-center 
           form.row.g-3.needs-validation.justify-content-center(novalidate='' action='/user-management/' method='post')
               include ./sub-formAddUser/sub-generalInfo.pug                
               include ./sub-formAddUser/sub-ENKOInfo.pug              
@@ -17,5 +17,5 @@ block content
                       #onsubmitemailfeedback.justify-content-center.py-4 Please Verify 
                           a(href='#proposedemail') &nbsp the proposed email field 
                           | &nbsp before submitting the form
-                      button#btnOnSubmitt.btn.btn-secondary(type='submit' disabled='') Submit the form
+                      button#btnOnSubmitt.btn.btn-secondary(type='submit' disabled='' onclick="checkAddUserForm()" btnOnSubmitt="checkAddUserForm()") Submit the form
                   

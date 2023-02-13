@@ -77,9 +77,11 @@ app.use(cookieParser());
 
 
 var callbackpage = "";
+var welcomeMessage = "Welcome on the Entry & Exit Form. Choose an action below";
 app.get('/user-management/', isLogedIn, function(request, response) {
     response.render("entryform", {
-        session: request.session
+        session: request.session,
+        headerMessage: welcomeMessage,
     });
 });
 app.get('/user-management/home', isLogedIn, (request, response) => {
@@ -88,8 +90,8 @@ app.get('/user-management/home', isLogedIn, (request, response) => {
     request.session.username = userProfile.name.givenName
         //request.flash('success', 'User ### successfully!!');
     response.render("entryform", {
-        session: request.session
-
+        session: request.session,
+        headerMessage: welcomeMessage,
     });
 });
 app.get('/user-management/auth/google',
