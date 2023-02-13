@@ -26,6 +26,7 @@ router.post('/', function(request, response, next) {
                         groups: Object.values(JSON.parse(JSON.stringify(resultGroup))),
                         access: Object.values(JSON.parse(JSON.stringify(resultAccess))),
                         session: request.session,
+                        headerMessage: "provide information about the new employee",
                     });
                 });
             });
@@ -35,11 +36,13 @@ router.post('/', function(request, response, next) {
             //console.log(JSON.stringify(request.session.opts));
             response.render("formDeleteUser", {
                 session: request.session,
+                headerMessage: "provide information about the employee who is leaving",
             });
             break;
         case "employeechanging":
             response.render("formModifyUser", {
                 session: request.session,
+                headerMessage: "provide the employee's data to change",
             });
             break;
         default:

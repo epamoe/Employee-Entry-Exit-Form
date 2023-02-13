@@ -35,16 +35,17 @@ class Mail {
             "\nHis/Her Enko email: " + suggestedEmail +
             "\nHis/Her Personal email:" + personalEmail +
             "\nWould you provide access to the Following tools:" + itToolsList +
-            "\n\n Rregards";
+            "\n\n Regards";
     }
-    getITOnComingMessageGroups(suggestedEmail, personalEmail, groupsList, organisation) {
+    getITOnComingMessageGroups(suggestedEmail, personalEmail, groupsList, organisation, initiator) {
         return "Hello, " +
             "\nWe have a new colleague at ENKO.\n" +
             "\nEnko email: " + suggestedEmail +
             "\nPersonal email:" + personalEmail +
             "\n\nWould you provide access to the Following groups:" + groupsList +
-            "\n\nInsert this user into the following organisation unit:" + organisation +
-            "";
+            "\nInsert this user into the following organisation unit:" + organisation +
+            "\n\n" +
+            "Initiator: " + initiator + "\n\n";
     }
     getFresherOnComingMessage(firstName, email, password) {
         return "Dear " + firstName + "," +

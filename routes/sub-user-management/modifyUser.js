@@ -123,6 +123,7 @@ module.exports = {
         promiseExecution();
         response.render("entryform", {
             session: request.session,
+            headerMessage: "the user " + data.employeeid + " edition is successfully submitted",
         });
 
 

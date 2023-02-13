@@ -15,25 +15,20 @@ function AlertemplateForStandart(message) {
     return "<!-- A standard alert message --> <div class='alert'> <input type='checkbox' id='alert5' /> <label class='close' title='close' for='alert5'> <i class='icon-remove'></i> </label> <p class='text'>&nbsp;&nbsp;" + message + " </p> </div>"
 }
 
-
 function checkModificationForm() {
-    window.onbeforeunload = function(e) {
-        var message = "Your confirmation message goes here.",
-            e = e || window.event;
-        // For IE and Firefox
-        if (e) {
-            e.returnValue = message;
-        }
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    document.getElementById("headerMessage").setAttribute('class', 'alert error')
+}
 
-        // For Safari
-        return message;
-    };
-    document.getElementById("alertMessage").innerHTML = AlertemplateForStandart("top");
+function checkDeletionForm() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    document.getElementById("headerMessage").setAttribute('class', 'alert error')
 }
 
 function checkAddUserForm() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
-    document.getElementById("alertMessage").innerHTML = AlertTemplateForError("Some mandatory fields are missing ");
-
+    document.getElementById("headerMessage").setAttribute('class', 'alert error')
 }

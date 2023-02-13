@@ -247,7 +247,8 @@ module.exports = {
                 data.suggestedemail + domain,
                 "Groups: " + data.suggestedemail + domain,
                 ITEmailForGroups.getITOnComingMessageGroups(
-                    data.suggestedemail + domain, data.personalemail, groups, defaultOrganisation
+                    data.suggestedemail + domain, data.personalemail,
+                    groups, defaultOrganisation, user
                 ), ITEmailForGroups.getITHelpTopic()
             );
             if (ticketID) {
@@ -331,6 +332,7 @@ module.exports = {
 
         response.render("entryform", {
             session: request.session,
+            headerMessage: "the user " + data.suggestedemail + domain + " is successfully created",
         });
     }
 }

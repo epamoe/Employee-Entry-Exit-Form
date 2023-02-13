@@ -133,6 +133,7 @@ module.exports = {
         promiseExecution();
         response.render("entryform", {
             session: request.session,
+            headerMessage: "the user " + data.employeeid + " deletion is successfully scheduled",
         });
 
 
