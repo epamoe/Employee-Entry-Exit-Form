@@ -29,13 +29,26 @@ class Mail {
     getOnChangingSubject() { return this.OnChangingSubject; }
     getWelcomeSubject() { return this.OnComingSubjectEmployee; }
 
-    getITOnComingMessageTools(suggestedEmail, personalEmail, itToolsList) {
-        return "Hello, " +
-            "\nWe have a new colleague at ENKO organisation.\n" +
-            "\nHis/Her Enko email: " + suggestedEmail +
-            "\nHis/Her Personal email:" + personalEmail +
-            "\nWould you provide access to the Following tools:" + itToolsList +
-            "\n\n Regards";
+    getITOnComingMessageTools(user, Entity, Firstname, Lastname, Enkoemail, PersonnalEmail,
+        Phonenumber, Birthdate, Gender, NIC, Passport, Position, subject, Manager, it_tools) {
+        return "Hello \n" +
+            "\nWe have a new employee in our our organisation( " + Entity + " )\n" +
+            "\nWould you provide access to the Following tools : " + it_tools + "\n\n" +
+            "\nPosition: " + Position +
+            "\nSubject (if teacher): " + subject +
+            "\n\nFirstname: " + Firstname +
+            "\nLastname: " + Lastname +
+            "\nEnko email: " + Enkoemail +
+            "\nPersonnal Email: " + PersonnalEmail +
+            "\nPhone number: " + Phonenumber +
+            "\nBirth date: " + Birthdate +
+            "\nGender: " + Gender +
+            "\nNIC identifier type: " + NIC +
+            "\nPassport identifier number: " + Passport +
+            "\nManager email address: " + Manager +
+            "\nInitiator: " + user +
+            "\n\nRegards" +
+            "\nIT Support - itsupport@enkoeducation.com";
     }
     getITOnComingMessageGroups(suggestedEmail, personalEmail, groupsList, organisation, initiator) {
         return "Hello, " +
@@ -109,7 +122,7 @@ class Mail {
             "\nEffective start date: " + startdate +
             "\nEnd date: " + Enddate +
             "\n\nRegards" +
-            "\nIT Support - itsupport@enkoeducation.com";;
+            "\nIT Support - itsupport@enkoeducation.com";
     }
     getUserOncomingMessage(firstName, lastName, email) {
         return "Hello\n" +

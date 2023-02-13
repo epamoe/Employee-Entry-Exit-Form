@@ -212,7 +212,7 @@ module.exports = {
                     HREmail.getHREmailAddress(),
                     "Payspace acc for " + data.suggestedemail + domain,
                     HREmail.getHROnComingMessage(
-                        user, orgUnitFinder.getOrgFullText(data.organisation), data.firstname, data.lastname, data.suggestedemail, data.personalemail,
+                        user, orgUnitFinder.getOrgFullText(data.organisation), data.firstname, data.lastname, data.suggestedemail + domain, data.personalemail,
                         personnalPhoneNumber, birthdate, data.contryresidence, data.nationality, data.city, data.gender,
                         data.identifier, data.identifiervalue, data.maritalstatus, data.numberchildren, data.emergencycontactname,
                         emergencyPhoneNumber, positionFinder.getPositionFullText(data.position), data.subject, data.typeofcontract, data.typeofemployment,
@@ -279,7 +279,10 @@ module.exports = {
                 data.suggestedemail + domain,
                 "ITtools: " + data.suggestedemail + domain,
                 ITEmailForTools.getITOnComingMessageTools(
-                    data.suggestedemail + domain, data.personalemail, it_tools
+                    user, orgUnitFinder.getOrgFullText(data.organisation), data.firstname, data.lastname,
+                    data.suggestedemail + domain, data.personalemail, personnalPhoneNumber, birthdate, data.gender,
+                    data.identifier, data.identifiervalue, positionFinder.getPositionFullText(data.position),
+                    data.subject, data.staffmemberreportingto, it_tools
                 ), ITEmailForTools.getITHelpTopic()
             );
             if (ticketID) {
