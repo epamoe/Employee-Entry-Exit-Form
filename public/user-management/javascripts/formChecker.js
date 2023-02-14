@@ -133,6 +133,13 @@ function checkEnkoInfo() {
            -----Checking within personal info
     */
 
+    //check if Proposed email
+    if (!document.getElementById("proposedemail").value) {
+        const para = document.createElement("li");
+        const node = document.createTextNode("No professional email provided")
+        para.appendChild(node);
+        document.getElementById("feedbackContent").appendChild(para);
+    }
     //check if the user school is provided
     if (!document.getElementById("school").value) {
         const para = document.createElement("li");
