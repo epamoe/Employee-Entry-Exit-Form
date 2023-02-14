@@ -1,3 +1,16 @@
+//Feedback box
+.row.lg-6.justify-content-center
+    .row-lg-6.justify-content-center(style="width: 75%")
+        #personalInfoFeedbackBox(hidden='' )
+            // Alert message for displaying an error
+            .alert.error
+                input#alert1(type='checkbox')
+                label.close(title='close' for='alert1')
+                    //i.icon-remove
+                p.text
+                    strong Error regarding employee information! &nbsp;
+                    span#personalInfoFeedbackContent
+                        | &nbsp;
 .card(style="width: 75%")
                     
     .card-body
@@ -15,7 +28,7 @@
             label.form-label(for='validationCustom01') Firstname &nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the first or common name of the employee')
 
-            input#validationCustom03.form-control.text-capitalize(type='text' required='' name='firstname' minLength="2" )
+            input#firstname.form-control.text-capitalize(type='text' required='' name='firstname' minLength="2" )
             .invalid-feedback
                 | Please provide a valid Firstname without space.
         br
@@ -23,7 +36,7 @@
         .col-md-8
             label.form-label(for='validationCustom02') Lastname &nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the last or given name of the employee')
-            input#validationCustom03.form-control.text-capitalize(type='text' required='' name='lastname' minLength="2")
+            input#lastname.form-control.text-capitalize(type='text' required='' name='lastname' minLength="2")
             .invalid-feedback
                 | Please provide a valid Last name without space.
         br
@@ -32,7 +45,7 @@
         .col-md-8
                 label.form-label(for='validationCustompemail') Personal email of the employee&nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the email address that the employee uses for personnal stuff')
-                input.form-control(type='email' required='' minLength="4" placeholder="personal email" name='personalemail')
+                input#personalEmail.form-control(type='email' required='' minLength="4" placeholder="personal email" name='personalemail')
                 .invalid-feedback
                     | Please provide a valid email.
         br
@@ -43,7 +56,7 @@
                 .input-group
                     select(name='personalphonecode'  style="width: 25%")
                         include ./sub-countryPhoneCode.pug
-                    input.form-control(type='number' required='' name='personalphone' min='1')
+                    input#personalPhone.form-control(type='number' required='' name='personalphone' min='1')
                     .invalid-feedback
                         | Please provide a valid Phone number.
         br
@@ -54,13 +67,13 @@
                 //input.form-control(type='date' name='birthdate')
                 .input-group.mb-3
                     span.input-group-text(style="width: 10%") DD
-                    input.form-control(type='number' value='' required='' aria-label='Default select example' name='birthdate_day' min='1' max='31' style='width: 15%')              
+                    input#birthDay.form-control(type='number' value='' required='' aria-label='Default select example' name='birthdate_day' min='1' max='31' style='width: 15%')              
                     span &nbsp 
                     span.input-group-text(style="width: 10%") MM
-                    input.form-control(type='number' value='' required='' aria-label='Default select example' name='birthdate_month' min='1' max='12' style='width: 15%')                    
+                    input#birthMonth.form-control(type='number' value='' required='' aria-label='Default select example' name='birthdate_month' min='1' max='12' style='width: 15%')                    
                     span &nbsp
                     span.input-group-text(style="width: 10%") YYYY
-                    input.form-control(type='number' value='' required='' aria-label='Default select example' name='birthdate_year' min='1900' max='2030' style='width: 30%')
+                    input#birthYear.form-control(type='number' value='' required='' aria-label='Default select example' name='birthdate_year' min='1900' max='2030' style='width: 30%')
                     .invalid-feedback
                         | Please provide a valid date.
         br
@@ -78,7 +91,7 @@
         .col-md-8
             label.form-label(for='validationCustom02') City of residence&nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Provide the city/town where the employee is actually livin in')
-            input#validationCustom03.form-control(type='text' required='' name='city')
+            input#city.form-control(type='text' required='' name='city')
             .invalid-feedback
                 | Please provide a valid Last name.
         br
@@ -160,7 +173,7 @@
         .col-md-8
             label.form-label(for='validationCustom01') Emergency contact - Name&nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='The fullname of the personn to concact in case of emergency')
-            input.form-control.text-capitalize(type='text' required='' name='emergencycontactname')
+            input#emergencyContactName.form-control.text-capitalize(type='text' required='' name='emergencycontactname')
             .invalid-feedback
                 | Please provide a valid name.
         br
@@ -171,7 +184,7 @@
             .input-group
                 select(name='emergencycontactphonecode'  style="width: 25%")
                     include ./sub-countryPhoneCode.pug
-                input.form-control.text-capitalize(type='number' required='' name='emergencycontactphone')
+                input#emergencyContactPhone.form-control.text-capitalize(type='number' required='' name='emergencycontactphone')
             .invalid-feedback
                 | Please provide a valid Phone number.
         br

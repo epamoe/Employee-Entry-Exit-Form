@@ -38,7 +38,6 @@ block content
                                 label.form-label(for='validationCustomre') Reason of leaving&nbsp
                                     i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='Choose the keywork that best summarize the leaving reason')  
                                 select.form-select.form-control(aria-label='Default select example' name='leavingreason' required='')
-                                    option( disabled='') Choose ...
                                     option(selected='' value='endofcontract') End of contract
                                     option(value='dismissal') Dismissal
                                     option(value='resignation') Resignation 
@@ -50,12 +49,12 @@ block content
                                 //input.form-control(type='date' name='leavingdate' required='')
                                 .input-group.mb-3
                                     span.input-group-text(style="width: 10%") DD
-                                    input.form-control(type='number' required='' aria-label='Default select example' name='leavingdate_day' min='1' max='31' style='width: 15%')              
+                                    input#leavingDay.form-control(type='number' required='' aria-label='Default select example' name='leavingdate_day' min='1' max='31' style='width: 15%')              
                                     span &nbsp 
                                     span.input-group-text(style="width: 10%") MM
-                                    input.form-control(type='number' required='' aria-label='Default select example' name='leavingdate_month' min='1' max='12' style='width: 15%')                    
+                                    input#leavingMonth.form-control(type='number' required='' aria-label='Default select example' name='leavingdate_month' min='1' max='12' style='width: 15%')                    
                                     span &nbsp
-                                    span.input-group-text(style="width: 10%") YYYY
+                                    span#leavingYear.input-group-text(style="width: 10%") YYYY
                                     input.form-control(type='number' required='' aria-label='Default select example' name='leavingdate_year' min='1900' max='2030' style='width: 30%')
                                     .invalid-feedback
                                         | Please provide a valid date.
@@ -67,13 +66,13 @@ block content
                                 //input.form-control(type='date' name='deprovisioningdate' required='')
                                 .input-group.mb-3
                                     span.input-group-text(style="width: 10%") DD
-                                    input.form-control(type='number' required='' aria-label='Default select example' name='deprovisioningdate_day' min='1' max='31' style='width: 15%')              
+                                    input#deprovisioningDay.form-control(type='number' required='' aria-label='Default select example' name='deprovisioningdate_day' min='1' max='31' style='width: 15%')              
                                     span &nbsp 
                                     span.input-group-text(style="width: 10%") MM
-                                    input.form-control(type='number' required='' aria-label='Default select example' name='deprovisioningdate_month' min='1' max='12' style='width: 15%')                    
+                                    input#deprovisioningMonth.form-control(type='number' required='' aria-label='Default select example' name='deprovisioningdate_month' min='1' max='12' style='width: 15%')                    
                                     span &nbsp
                                     span.input-group-text(style="width: 10%") YYYY
-                                    input.form-control(type='number' required='' aria-label='Default select example' name='deprovisioningdate_year' min='1900' max='2030' style='width: 30%')
+                                    input#deprovisioningYear.form-control(type='number' required='' aria-label='Default select example' name='deprovisioningdate_year' min='1900' max='2030' style='width: 30%')
                                     .invalid-feedback
                                         | Please provide a valid date.
                         br

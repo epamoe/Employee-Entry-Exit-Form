@@ -1,3 +1,16 @@
+//Feedback box
+.row.lg-6.justify-content-center
+    .row-lg-6.justify-content-center(style="width: 75%")
+        #enkoInfoFeedbackBox(hidden='' )
+            // Alert message for displaying an error
+            .alert.error
+                input#alert1(type='checkbox')
+                label.close(title='close' for='alert1')
+                    //i.icon-remove
+                p.text
+                    strong Error regarding the employee's personal information! &nbsp;
+                    span#enkoInfoFeedbackContent
+                        | &nbsp;
 .card(style="width: 75%") 
     script(type='text/javascript' src='javascripts/emailAddressValidator.js' defer='') 
     script(type='text/javascript' src='javascripts/emailAddressFinder.js' defer='') 
@@ -82,7 +95,7 @@
         p
             .col-md-8
                 label.form-label(for='validationCustom0333') Position / Title (Provide subject if teacher)
-                input#validationCustom03.form-control(type='text' name='subject' )  
+                input#subject.form-control(type='text' name='subject' )  
                 .invalid-feedback 
                         | Please provide a valid Subject.     
         br                
@@ -91,8 +104,8 @@
             .col-md-8
                 label.form-label(for='validationCustom02') Type of contract&nbsp
                 i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title='')
-                select.form-select.form-control(aria-label='Default select example' name='typeofcontract')
-                    option(selected='' disabled='') Choose ...
+                select#contractType.form-select.form-control(aria-label='Default select example' name='typeofcontract')
+                    option(selected='' disabled='' value='') Choose ...
                     option(value='permanent') Permanent
                     option(value='fixed') Fixed term (1 year, 2 year, ...) contract
                     option(value='consultant') Consultant                  
@@ -104,7 +117,7 @@
             .col-md-8
                 label.form-label(for='validationCustomsal') Link to the contract&nbsp
                     i.bi.bi-question-circle(data-toggle='tooltip' data-placement='top' title="Provide a link/URL to the new employee's contract")
-                input.form-control(type='url' required='' name='linkToContract')
+                input#linkToContract.form-control(type='url' required='' name='linkToContract')
                 .invalid-feedback
                     | Please provide a valid URL.
         br
@@ -143,13 +156,13 @@
                 //input.form-control(type='date' name='startdate' required='')
                 .input-group.mb-3
                     span.input-group-text(style="width: 10%") DD
-                    input.form-control(type='number' required='' aria-label='Default select example' name='startdate_day' min='1' max='31' style='width: 15%')              
+                    input#startDay.form-control(type='number' required='' aria-label='Default select example' name='startdate_day' min='1' max='31' style='width: 15%')              
                     span &nbsp 
                     span.input-group-text(style="width: 10%") MM
-                    input.form-control(type='number' required='' aria-label='Default select example' name='startdate_month' min='1' max='12' style='width: 15%')                    
+                    input#startMonth.form-control(type='number' required='' aria-label='Default select example' name='startdate_month' min='1' max='12' style='width: 15%')                    
                     span &nbsp
                     span.input-group-text(style="width: 10%") YYYY
-                    input.form-control(type='number' required='' aria-label='Default select example' name='startdate_year' min='1900' max='2030' style='width: 30%')
+                    input#startYear.form-control(type='number' required='' aria-label='Default select example' name='startdate_year' min='1900' max='2030' style='width: 30%')
                     .invalid-feedback
                         | Please provide a valid date.
         br
@@ -159,13 +172,13 @@
                 //input.form-control(type='date' name='enddate')
                 .input-group.mb-3
                     span.input-group-text(style="width: 10%") DD
-                    input.form-control.employmentEndDateDay(type='number' value='' required='' aria-label='Default select example' name='enddate_day' min='1' max='31' style='width: 15%')              
+                    input#endDay.form-control.employmentEndDateDay(type='number' value='' required='' aria-label='Default select example' name='enddate_day' min='1' max='31' style='width: 15%')              
                     span &nbsp 
                     span.input-group-text(style="width: 10%") MM
-                    input.form-control.employmentEndDateMonth(type='number' value='' required='' aria-label='Default select example' name='enddate_month' min='1' max='12' style='width: 15%')                    
+                    input#endMonth.form-control.employmentEndDateMonth(type='number' value='' required='' aria-label='Default select example' name='enddate_month' min='1' max='12' style='width: 15%')                    
                     span &nbsp
                     span.input-group-text(style="width: 10%") YYYY
-                    input.form-control.employmentEndDateYear(type='number' value='' required='' aria-label='Default select example' name='enddate_year' min='1900' max='2030' style='width: 30%')
+                    input#endYear.form-control.employmentEndDateYear(type='number' value='' required='' aria-label='Default select example' name='enddate_year' min='1900' max='2030' style='width: 30%')
                     .invalid-feedback
                         | Please provide a valid date.
                     

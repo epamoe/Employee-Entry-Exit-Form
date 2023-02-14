@@ -1,0 +1,3 @@
+function successAlert() {
+    alert("ok")
+}

@@ -2,6 +2,7 @@ extends layout
   
 block content       
   script(type='text/javascript' src='javascripts/emailAddressFinder.js' defer='') 
+  
   .row.lg-6.justify-content-center
       .row-lg-6.justify-content-center          
           form.row.g-3.needs-validation.justify-content-center(method='post' action='/user-management/' novalidate='')
@@ -36,12 +37,12 @@ block content
                     p
                       .col-md-6
                         label.form-label(for='changesdescription') Describe the desired  changes below
-                        textarea(style="width: 100%" name='changesdescription' required='')
+                        textarea#updateDescription(style="width: 100%" name='changesdescription' required='')
                         .invalid-feedback  
                           |Please, provide a valid description                        
                 section.d-flex.flex-column.align-items-center.justify-content-center.py-4                    
                     .row.justify-content-center
                     .col-lg-6.col-md-6.justify-content-center
                         .d-flex.justify-content-center.py-4
-                        button.btn.btn-primary(type='submit' onclick='checkModificationForm()') Submit form
+                        button.btn.btn-primary(type='submit' onclick='checkModificationForm()' onload='successAlert()') Submit form
                         

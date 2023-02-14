@@ -22,7 +22,6 @@ router.post('/', function(request, response, next) {
                 cnx.connection.query(accessQuerry, function(err, resultAccess, fields) {
                     if (err) throw err;
                     response.render("formAddUser", {
-                        //userid: request.session.userId
                         groups: Object.values(JSON.parse(JSON.stringify(resultGroup))),
                         access: Object.values(JSON.parse(JSON.stringify(resultAccess))),
                         session: request.session,

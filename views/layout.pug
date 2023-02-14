@@ -69,10 +69,11 @@ html
             .alert.info#headerMessage
               input#alert3(type='checkbox')
               label.close(title='close' for='alert3')
-                i.icon-remove
+                //i.icon-remove
               p.text
-                | Hello 
-                strong  #{session.username}
+                | Hello
+                strong  
+                  span #{session.username} 
                 |, #{headerMessage}
                 br
                 strong
@@ -80,6 +81,20 @@ html
 
 
     script(type='text/javascript' src='javascripts/formChecker.js')
+    script(type='text/javascript' src='javascripts/formEventListener.js')
+    //Feedback box
+    .row.lg-6.justify-content-center
+      .row-lg-6.justify-content-center(style="width: 75%")
+        #feedbackBox(hidden='' )
+          // Alert message for displaying an error
+          .alert.error
+              input#alert1(type='checkbox')
+              label.close(title='close' for='alert1')
+                  //i.icon-remove
+              p.text
+                  strong Error! &nbsp;
+                  span#feedbackContent
+                      | &nbsp;
     block content
     footer#footer.footer
       .copyright
