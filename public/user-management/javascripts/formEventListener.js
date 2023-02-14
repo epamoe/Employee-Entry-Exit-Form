@@ -1,3 +1,0 @@
-function successAlert() {
-    alert("ok")
-}
