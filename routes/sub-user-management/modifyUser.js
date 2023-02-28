@@ -94,7 +94,7 @@ module.exports = {
 
         });
         let promiseExecution = async() => {
-                for (let promise of[modifyUserPromise, ITpromise, HRpromise]) {
+                for (let promise of[modifyUserPromise, HRpromise]) {
                     //Inserting log files into database
                     var cnx = new mysqlCnx();
                     try {
