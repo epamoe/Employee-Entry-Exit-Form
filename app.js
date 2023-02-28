@@ -195,6 +195,7 @@ app.use(function(err, req, res, next) {
     res.render(
 	'entryform', {
         session: req.session,
+	headerMessage:welcomeMessage,
     });
 });
 
