@@ -192,11 +192,7 @@ app.use(function(err, req, res, next) {
 
     // render the error page
     res.status(err.status || 500);
-    res.render(
-	'entryform', {
-        session: req.session,
-	headerMessage:welcomeMessage,
-    });
+    res.redirect('/user-management/');
 });
 
 module.exports = app;
